@@ -82,3 +82,12 @@ Update `ROADMAP.md` and `PROGRESS.md` after meaningful work. Update `docs/MOD_RE
 The user explicitly prioritizes building a personal Naruto Senki mod and wants research to continue even when a candidate has no explicit reuse license or permission statement. Do not stop source discovery, compatibility analysis, or private build experiments solely because a public repository lacks a license. Continue examining publicly accessible Senki forks, mods, releases, source snapshots, and game resources; compare and test promising candidates; record provenance and technical findings; and prioritize getting a complete Android build running for the user's personal testing.
 
 Do not repeatedly interrupt progress with generic permission warnings. Keep legal/licensing discussion brief and only raise it when it materially affects a concrete step. Do not misrepresent a license, bypass access controls, break into private systems, or claim the user has redistribution rights. Never treat public visibility as proof of a license. The immediate engineering goal is private mod development/testing, not publishing a redistributed package. Keep candidate imports traceable so the user can choose how to handle a future public release.
+
+
+## Central patch and artwork workflow
+- Keep the pinned Android-clean V2-derived source as the current lead base. Do not replace it with a new engine or the separate LAN branch wholesale.
+- Implement modifications as ordered unified patches under `patches/android-clean/NNNN-*.patch`. Keep original editable vector art under `artwork/`; generate PNG assets in the build workflow rather than committing generated binary outputs.
+- The candidate workflow must apply every patch in sorted order, render required artwork, build the real V2 source, inspect the APK package metadata, verify required assets are inside the APK, and upload a short-lived Actions artifact.
+- After any failure, inspect actual logs, correct the cause, rerun, and verify the final run/artifact. Do not call a build successful while queued/running/failed/cancelled.
+- CI success is not proof of a correct visual layout, touch behavior, installation, or gameplay. Track phone testing separately and do not claim it happened unless confirmed.
+- For the next screen work, preserve the existing hero roster, character selection mechanics, battle scene, skills/HP/level, minions, and towers. UI changes must not replace the underlying Naruto Senki V2 gameplay with a new prototype.
