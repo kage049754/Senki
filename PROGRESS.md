@@ -6,7 +6,7 @@ Last updated: 2026-10-10
 - GitHub repository: https://github.com/kage049754/Senki
 - Default branch: main
 - Current engine/build state: NOT YET VERIFIED IN THIS TRACKER
-- Latest CI result: NOT CHECKED IN THIS SESSION
+- Latest CI result: GitHub Actions API returned 0 workflow runs on 2026-10-10; no run available to verify
 - APK artifact: NOT CHECKED IN THIS SESSION
 - Physical-device installation/gameplay: NOT VERIFIED IN THIS SESSION
 
@@ -17,12 +17,12 @@ Build one cohesive landscape-first Android 2D lane-battle game with a data-drive
 - [x] README updated with AI instructions and scalable 70+ roster target.
 - [x] AGENTS.md updated with no-hardcoded-cap rules.
 - [x] ROADMAP.md updated with dynamic registry and 75-entry scalability test.
-- [ ] Verify docs/MOD_RESEARCH.md update.
-- [ ] Create/verify docs/CHARACTER_ROSTER.md.
-- [ ] Create/verify docs/ROSTER_SCALABILITY.md.
-- [ ] Create/verify docs/ASSET_LICENSES.md.
+- [x] Verified docs/MOD_RESEARCH.md contains the roster-scaling requirement.
+- [x] Created and verified docs/CHARACTER_ROSTER.md.
+- [x] Created and verified docs/ROSTER_SCALABILITY.md.
+- [x] Created and verified docs/ASSET_LICENSES.md.
 - [ ] Inspect actual game source/build structure.
-- [ ] Inspect latest GitHub Actions workflow and APK artifact.
+- [ ] Inspect actual workflow files and establish CI; Actions API currently returns zero runs and no APK artifact is verified.
 
 ## Roster metrics
 - Discovered leads: NOT YET COUNTED
