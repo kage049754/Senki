@@ -231,3 +231,13 @@ For every promising candidate, record the source URL, revision/release, engine, 
 - Added central diagnostic build workflow `.github/workflows/v2-lan-candidate.yml` (commit `6cc298c6791a42f00aa4a3ec968705255f95a4a7`) using the candidate's legacy NDK r17c / Java 8 build requirements.
 - Run `37967514487`: **SUCCESS**. Verified artifact `naruto-senki-v2-lan-candidate-apk`, ID `11633633661`, ZIP size 80,405,874 bytes, expiry 2026-10-23.
 - This candidate now has a verified central-CI APK artifact alongside the Android-clean candidate. The LAN-enabled branch is not yet selected as the central source base; compare source/resource deltas and keep optional LAN functionality isolated if offline-only gameplay is the target.
+
+
+
+## Direct source-tree comparison — 2026-10-10
+- Compared recursive Git trees for Android-clean commit `279e85e73040558c84988a0eea310b6286eb77f0` and LAN-enhanced commit `1751b7fb8f05a96ff6e85bc8a6c8e3fdcca3f74a`.
+- Tree sizes: Android-clean 1,903 tracked files; LAN-enhanced 2,618. Of 1,886 common paths, 1,828 have identical blob hashes and 58 differ. The LAN tree has 732 paths not present in the Android-clean tree, largely desktop/platform content plus LAN networking. Android-clean has 17 unique paths.
+- Important roster finding: Android-clean uniquely contains `Classes/Core/Shinobi/Kabuto.hpp`, `Bunshin/KabutoClone.hpp`, Kabuto sprite/plist/XML assets, Kabuto audio, and projectile data. The inspected LAN-enhanced branch does not contain `Kabuto.hpp`. The Android-clean README calls it a clean base, but it contains this substantive custom Kabuto redesign and is not simply an untouched vanilla snapshot.
+- Practical direction: **use the successfully built Android-clean source as the current lead candidate** for an Android/offline-first mod base because it is smaller and preserves the unique Kabuto content. Treat LAN-enhanced V2 as a source for selective crash fixes and optional networking research, not a wholesale replacement. Do not copy all 58 changed files at once; review and port individual fixes with tests.
+- This is a provisional engineering recommendation based on tree/build evidence, not yet the final source import. Both candidates have successful central CI artifacts; neither has been tested on the user's phone.
+
