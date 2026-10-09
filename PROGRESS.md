@@ -77,3 +77,15 @@ The repo previously received a native Kotlin/Canvas prototype scaffold. It is no
 - [ ] Resolve V2 source and asset permission before import; then establish a real V2 build and begin controlled, verified merges.
 
 **Important:** this search pass did not produce a permission-cleared source base or a new APK. The latest successful CI still builds only the prototype scaffold, not Naruto Senki V2. No modded character has been counted as integrated or verified.
+
+
+## Fourth-pass source comparison — 2026-10-10
+- [x] Inspected `LeaderOnePro/NarutoSenki` metadata, README, source tree, and resource directories.
+- [x] Confirmed it contains editable legacy C++ game systems under `Classes/` and game resources under `Resources/`.
+- [x] Confirmed its README documents Cocos2d-x 2.2.2 and Visual Studio 2010, not a verified modern Android build path.
+- [x] Compared `wsnbbnbb/NarutoSenki1.17Mod` metadata/history against `LeaderOnePro/NarutoSenki1.17Mod`; GitHub marks it as a fork and inspected history shows the same two commits, so it is not counted as an independent mod.
+- [x] Recorded both findings in `docs/MOD_RESEARCH.md` (latest research commit `c86df00189fba1903c9e4552554dd566c2962ac0`).
+- [ ] Continue searching for additional editable, permission-cleared V2-compatible source/mods.
+- [ ] Resolve code and asset rights for the selected V2 source before import; build the real V2 base and then start verified merges.
+
+**Decision unchanged:** `LeaderOnePro/NarutoSenki` is reference-only due its older Windows-focused build path and unresolved rights. The selected target remains Naruto Senki V2. No external code/assets were imported, no character was merged, and no final V2 APK was produced in this pass.
