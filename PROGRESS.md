@@ -167,3 +167,12 @@ The repo previously received a native Kotlin/Canvas prototype scaffold. It is no
 - Run `37966861114`: **SUCCESS** on commit `fcccc784c39f0f33c041c4d00bb39b3408ccaef9`. All steps passed: pinned source checkout, isolated SDK provisioning, Gradle build, APK existence check, and artifact upload.
 - Verified artifact: `naruto-senki-v2-candidate-debug-apk`, artifact ID `11634177274`, ZIP size 83,435,979 bytes, expires 2026-10-23. Open the [successful Actions run](https://github.com/kage049754/Senki/actions/runs/37966861114) and download the artifact card.
 - Scope: this is a successfully compiled debug APK of the pinned external V2-derived candidate in CI. It is not yet source-integrated into this repo and has not been physically installed or gameplay-tested on the user's phone.
+
+
+## Second V2 candidate build — 2026-10-10
+- [x] Added `.github/workflows/v2-lan-candidate.yml` in commit `6cc298c6791a42f00aa4a3ec968705255f95a4a7` to build the feature-rich `sansaks-jpg/NarutoSenki-V2` branch at pinned commit `1751b7fb8f05a96ff6e85bc8a6c8e3fdcca3f74a`.
+- [x] GitHub Actions run `37967514487`: **SUCCESS**. Source checkout, Java 8 + NDK r17c setup, release APK build, APK existence check, and artifact upload all passed.
+- [x] Verified artifact `naruto-senki-v2-lan-candidate-apk`, artifact ID `11633633661`, ZIP size 80,405,874 bytes, expires 2026-10-23. Download from the [successful LAN candidate Actions run](https://github.com/kage049754/Senki/actions/runs/37967514487).
+- [x] Source diff review confirmed this branch adds LAN hotspot multiplayer and hardening, including reliable state/order handling, app-background forfeits, crash-safe pause/gear/game-over cleanup, and runtime UI localization. It retains the original Cocos2d-x C++/Lua game foundation.
+- [ ] Compare its gameplay/resource baseline with the Android-clean candidate before deciding which source tree becomes the central base.
+- [ ] APK install and actual gameplay on the user's phone are still unverified. Both verified CI artifacts are candidate builds, not the unified final mod.
