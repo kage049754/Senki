@@ -100,3 +100,13 @@ A fresh metadata check of the following additional or previously identified V2 f
 - `dont-cry-522/NarutoSenki-V2` (fork of `Zx-Akito/NarutoSenki-V2`).
 
 This metadata check does not prove that no separate permission statement exists elsewhere, but none of these mirrors resolves the licensing issue by itself. Do not infer a license from fork activity, recent updates, or public accessibility.
+
+
+## Older Cocos2d-x source-family metadata check (2026-10-10)
+A metadata pass on the older `NarutoSenki-cocos2dx` source family found no declared GitHub license for:
+- `LeaderOnePro/NarutoSenki-cocos2dx` (candidate upstream).
+- `dadafei8/NarutoSenki-cocos2dx` (fork of the candidate upstream).
+- `Heachy/NarutoSenki-cocos2dx` (fork of the candidate upstream).
+- `wuhewanxiang/NarutoSenki-cocos2dx` (fork of the candidate upstream).
+
+These may be useful for technical comparison only; this metadata result does not establish code or asset reuse rights. They do not currently provide a permission-cleared replacement for the selected V2 source.
