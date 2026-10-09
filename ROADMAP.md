@@ -142,3 +142,9 @@ The custom launcher icon, loading background, and character-selection background
 2. Adjust selection-screen grid spacing, preview placement, and touch targets only from observed behavior; preserve double-tap/confirm and mode-specific team selection.
 3. Redesign the main menu and skill/hero info presentation, then improve launcher splash transition without disturbing the battle scene.
 4. Run the APK build and archive checks after each patch; phone install/launch/battle checks remain a separate gate.
+
+
+## UI pass 2 complete in CI (2026-10-10)
+The main menu now uses the new Senki artwork while preserving the original mode carousel and callbacks. The latest successful APK archive contains the custom launcher icon plus loading, main-menu, and character-selection backgrounds. See run `37971712613`.
+
+Next work should focus on the visible controls and interaction layer: confirm menu button placement, improve selected-mode feedback, refine character portrait/selection highlights and team-pick status, and retain all existing selection rules. Device visual checks are still required before making coordinate changes.
