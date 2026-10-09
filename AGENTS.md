@@ -1,81 +1,73 @@
-# Mandatory Instructions for AI Coding Agents
+# Mandatory Instructions for AI Agents — READ FIRST
 
-These rules apply to every task in this repository. Read README.md, ROADMAP.md, and docs/MOD_RESEARCH.md before coding.
+## Absolute project rule
 
-## 1. First actions
-- Inspect the current branch, file tree, Android/build setup, and recent commit history.
-- Inspect the latest GitHub Actions run and its APK artifacts before assuming build status.
-- Establish what is actually implemented. Do not infer functionality from the roadmap.
-- Keep the user informed with concrete verified progress, not unsupported claims.
-- Read docs/CHARACTER_ROSTER.md before changing roster architecture or adding characters.
-- Read docs/ROSTER_SCALABILITY.md before making any roster-size, selection-screen, or character-loading decisions.
+**THIS PROJECT IS FOR MODDING AND MERGING EXISTING NARUTO SENKI PROJECTS. DO NOT CREATE A NEW GAME.**
 
-## 2. Development approach
-- Build a landscape-first Android game with a stable launch sequence: engine/application initialization → loading → main menu. Never leave a blank screen after splash.
-- Keep gameplay systems modular: character definitions, skill definitions, combat, minions, towers, leveling, UI, input, match state, and audio should have clear responsibilities.
-- Preserve the core game loop: HP, skills, cooldowns, minions, towers/objectives, progression, and win/loss conditions.
-- Prefer a small playable vertical slice before adding a huge roster.
-- Keep the core offline battle playable without login/network access.
-- Do not replace working systems without inspecting them and explaining why a replacement is needed.
-- Avoid large opaque changes. Commit coherent milestones and document important architecture choices.
+The central repository is `kage049754/Senki`. It is the integration workspace, not a mandate to invent a new engine or build a separate Naruto-inspired clone. The intended result is one unified modded version of an existing Naruto Senki game.
 
-## 3. Large roster requirement — IMPORTANT
-The roster must be designed to support **70+ playable characters and remain expandable beyond that**. Seventy is a planning target, not a hard maximum or a promise that 70 characters already exist.
+If older instructions, roadmap entries, issues, or code encourage building a game from scratch, these rules override them. Pause new-game development. Inspect the existing Kotlin/Canvas prototype scaffold, but do not extend it as the final engine. First identify and verify the most suitable existing Senki source/base. Only decide what to retain, replace, or remove after the source audit.
 
-- Never hardcode a maximum roster size such as 29, 30, 50, or 70.
-- Never tie character capacity to a fixed number of UI buttons, array slots, enum values, or switch-case branches.
-- Character selection must be generated from a data-driven registry/catalog, not manually fixed slots.
-- Character IDs must be stable and unique. Do not use list position as a character's identity.
-- Adding a character should normally mean adding a validated character definition and permitted resources/behavior modules, then registering/discovering it automatically—not rewriting the core battle engine.
-- Use pagination, scrolling, search, filters, categories, and/or virtualized/lazy-loaded UI so the roster remains usable on phone screens.
-- Load heavyweight sprites, animations, and audio on demand; unload or release resources when safe.
-- Avoid loading every character's full assets into memory at startup.
-- Validate definitions at build time or startup and report missing IDs, portraits, animations, skills, and resource paths clearly.
-- Support alternate forms as either distinct playable entries or selectable variants according to whether their movesets/gameplay differ. Avoid accidental duplicates.
-- Keep selection, battle spawning, save/unlock data, AI, and tests compatible with an expanding catalog.
-- Prefer shared reusable skill implementations and data-driven parameters, while allowing custom behavior for genuinely unique mechanics.
-- Define no artificial roster ceiling. Practical limits should come from measured device performance, asset size, and tested UX—not an arbitrary source-code constant.
-- Keep a verified count of implemented and tested playable characters in docs/CHARACTER_ROSTER.md. Never count planned, discovered, or untested entries as verified playable characters.
+## Mandatory reading at the start of every task
 
-## 4. Mod/source research and asset provenance
-- Read docs/MOD_RESEARCH.md before importing external content.
-- For every external repository, record its canonical URL, fork/upstream relationship, engine, what was actually inspected, license/terms, and what may be reusable.
-- A public repository, APK, sprite sheet, or mod description is not automatically permission to reuse or redistribute its contents.
-- Do not copy extracted APK assets, ripped sprites, audio, proprietary code, or other copyrighted content unless rights/permission clearly allow the planned use.
-- When rights are unclear, use the source as research only and create original compatible implementations/assets instead.
-- Do not claim to have combined a mod unless its implementation has actually been ported, built, and tested.
-- Deduplicate characters/forms while preserving meaningful variants with genuinely different movesets.
+1. Read `README.md`.
+2. Read this file completely.
+3. Read `ROADMAP.md` and `PROGRESS.md`.
+4. Read `docs/MOD_RESEARCH.md` before investigating/importing external mods.
+5. Read `docs/ASSET_LICENSES.md` before any reuse.
+6. Read roster/scalability docs before roster changes.
+7. Inspect current tree, latest commits, candidate upstreams/forks, and latest Actions run before assuming anything.
 
-## 5. Build and failure loop — mandatory
-For each implementation milestone:
+## Correct workflow: research → choose base → merge
+
+1. Search for existing Naruto Senki source repositories and mod projects.
+2. Inspect repository tree, source files, engine/version, build scripts, dependencies, history, upstream/fork relation, and licenses.
+3. Compare candidates and document evidence. Do not assume any previously mentioned candidate is compatible or permitted.
+4. Select one existing, buildable Senki project as the base and record the decision in the research docs before large implementation changes.
+5. Preserve that game's engine and core mechanics wherever possible.
+6. Integrate compatible modded characters, skills, animations, effects, maps, UI, and other content into the chosen base. Resolve naming/ID/resource conflicts and engine-version differences.
+7. Keep one central integration workspace and one final APK. Do not produce a family of disconnected game implementations.
+8. Verify each merge by building and testing it. A code copy or successful build alone does not prove a character is playable.
+9. Keep source attribution, license, and asset provenance records accurate.
+
+## Prohibited behavior
+
+- Do not design or implement a replacement game engine as the main deliverable.
+- Do not continue expanding the standalone Kotlin/Canvas prototype into a new game while base selection is unresolved.
+- Do not invent new gameplay systems as a substitute for finding/merging existing Senki systems.
+- Do not claim that a repository, mod, character, animation, or asset was inspected/merged unless evidence exists.
+- Do not blindly merge complete repositories or APKs.
+- Do not extract and redistribute APK assets or copyrighted content without permission.
+- Do not assume a public GitHub repository means its code/assets are free to reuse.
+- Do not call forks independent projects without comparing changes.
+- Do not report queued/running/failed CI as success or claim physical-device tests without actually performing them.
+
+## Merge engineering rules
+
+- Prefer adapting content to the selected base's native architecture rather than replacing the architecture.
+- Maintain a source inventory: canonical URL, upstream/fork relationship, inspected paths, engine, buildability, license/asset terms, useful content, and integration status.
+- Preserve existing gameplay behavior unless the requested mod integration requires a documented change.
+- Standardize identifiers/resources only as needed for compatibility; preserve meaningful variants with distinct gameplay.
+- Make changes in reviewable batches, with a build/test after each batch.
+- If source or asset permission is unclear, mark it reference-only or excluded until clarified.
+- Roster scalability (including 70+ if practical) is a content goal, never a reason to start a new game engine.
+
+## Build and failure loop
+
+For every integration milestone:
 1. Inspect the latest workflow run.
-2. If queued or running, poll/check until an actual terminal result if tools allow.
-3. If failed, open the actual failed job/step logs and identify the root cause.
-4. Make a targeted fix in the repository.
-5. Commit the fix and rerun the workflow.
-6. Repeat until a completed successful run is observed or a real blocker prevents further action.
-7. Verify the APK artifact exists, record its exact name and run, and verify package/build metadata when possible.
-8. Distinguish CI build success from physical-device installation and gameplay testing.
+2. Wait/poll if queued or running, when tools allow.
+3. On failure, inspect the actual failed job/step logs.
+4. Fix the identified cause directly in the repository.
+5. Commit and rerun.
+6. Repeat until a completed successful run is verified or a real blocker is documented.
+7. Verify the APK artifact and record its exact name and run link.
+8. Separate CI/package verification from real Android installation/gameplay testing.
 
-Never say a build succeeded because it was merely started, is still running, or because an older run succeeded. Never fabricate logs, test results, APK artifacts, or device testing. If continuing background work/polling is not possible in the current tool session, state the exact last verified status rather than pretending to keep working.
+If the current tool session cannot keep polling in the background, report the exact last verified state; never pretend work continued.
 
-## 6. Acceptance criteria
-- App opens reliably and proceeds to visible UI after the engine splash.
-- Main menu, mode selection, and character selection buttons work.
-- Game runs in landscape with responsive touch controls and no clipped essential UI.
-- A match can start, run, end, and restart.
-- Player and enemies have visible HP; attacks and skills apply expected damage and cooldowns.
-- Minions move/attack and towers/base objectives can be destroyed or otherwise resolve a win/loss.
-- Level/experience mechanics work if included in the current milestone.
-- No fatal startup exception, blank scene, or invalid APK packaging.
-- Automated tests/build pass and the generated APK artifact is verified.
-- Real-device behavior is only marked verified after an actual install/launch test.
-- The roster UI and registry have no fixed 29-character ceiling; tests can register more than 70 entries without code changes to a fixed-capacity UI.
+## Documentation duties
 
-## 7. Documentation
-- Update ROADMAP.md when a milestone changes status.
-- Update docs/MOD_RESEARCH.md when sources, mods, licenses, forks, or character ideas are verified.
-- Update docs/CHARACTER_ROSTER.md whenever roster entries or their verification statuses change.
-- Update docs/ROSTER_SCALABILITY.md when architecture or load/performance decisions change.
-- Record build run links, artifact names, known failures, and exact validation status.
-- Do not mark unchecked items complete without evidence.
+Update `ROADMAP.md` and `PROGRESS.md` after meaningful work. Update `docs/MOD_RESEARCH.md` for source inspections/base decisions; update `docs/ASSET_LICENSES.md` for provenance and permission decisions. Keep planned, copied, integrated, built, and device-tested content as separate states.
+
+**Remember every session: we are modding/merging an existing Naruto Senki game. We are not creating a new game.**
