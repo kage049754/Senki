@@ -1,0 +1,81 @@
+name: Android APK Build
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "app/**"
+      - "gradle/**"
+      - "build.gradle"
+      - "build.gradle.kts"
+      - "settings.gradle"
+      - "settings.gradle.kts"
+      - "gradlew"
+      - "gradlew.bat"
+      - "gradle.properties"
+      - ".github/workflows/android.yml"
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: android-build-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  inspect-and-build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Inspect repository state
+        run: |
+          echo "Commit: $GITHUB_SHA"
+          echo "Repository root:"
+          ls -la
+          echo "Android project candidates:"
+          find . -maxdepth 4 \( -name settings.gradle -o -name settings.gradle.kts -o -name build.gradle -o -name build.gradle.kts -o -name gradlew \) -print
+
+      - name: Stop clearly if Android Gradle project is not present
+        run: |
+          if [ ! -f ./gradlew ] || { [ ! -f ./settings.gradle ] && [ ! -f ./settings.gradle.kts ]; }; then
+            echo "::error::No Gradle Android project is present yet. See PROGRESS.md and ROADMAP.md."
+            exit 1
+          fi
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+          cache: gradle
+
+      - name: Make Gradle wrapper executable
+        run: chmod +x ./gradlew
+
+      - name: Validate Gradle configuration
+        run: ./gradlew --no-daemon tasks
+
+      - name: Build debug APK
+        run: ./gradlew --no-daemon assembleDebug
+
+      - name: Verify APK artifact exists
+        run: |
+          find . -type f -path "*/build/outputs/apk/*/*.apk" -print
+          test -n "$(find . -type f -path "*/build/outputs/apk/*/*.apk" -print -quit)" || {
+            echo "::error::Gradle reported success but no APK was found."
+            exit 1
+          }
+
+      - name: Upload debug APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: senki-debug-apk
+          path: "**/build/outputs/apk/**/*.apk"
+          if-no-files-found: error
+          retention-days: 14
