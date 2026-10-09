@@ -2,38 +2,52 @@
 
 ## User-confirmed direction
 
-The user's chosen game target is **Naruto Senki: V2**, using the official public release listing below as the reference/baseline release.
+The user's chosen game target is **Naruto Senki: V2**, using the public release listing below as the reference/baseline release.
 
 - **Release listing:** https://github.com/Naruto-Senki/files/releases
-- **Current release found during audit:** `v2.1.6-fix`, published 2024-01-22.
-- **Android release asset:** `NSV2_2.1.6-fix_Android.apk` (binary release asset, about 159 MB).
+- **Selected reference:** v2.1.6-fix, published 2024-01-22.
+- **Android release asset:** NSV2_2.1.6-fix_Android.apk (binary release asset, about 159 MB).
 - **Specific release page:** https://github.com/Naruto-Senki/files/releases/tag/v2.1.6-fix
 - **Direct Android APK:** https://github.com/Naruto-Senki/files/releases/download/v2.1.6-fix/NSV2_2.1.6-fix_Android.apk
-- **V2 source documentation candidate:** https://github.com/Zx-Akito/NarutoSenki-V2/blob/master/Doc/README_ZH.md
+- **Editable source candidate:** https://github.com/Zx-Akito/NarutoSenki-V2
+- **Source documentation:** https://github.com/Zx-Akito/NarutoSenki-V2/blob/master/Doc/README_ZH.md
 
-The releases repository is described as a **file host** and the inspected release assets are packaged binaries (Android APK, iOS IPA, Linux archive). This release page is therefore a download/reference point, not by itself an editable Android source project. Do not treat the APK as source code.
+The release host is described as a V2 file host and the release assets are packaged binaries. The APK is a download/reference point, not an editable source tree.
 
-## What is the central workspace?
+## Source audit result (2026-10-10)
 
-`kage049754/Senki` remains the single central workspace where all authorized source changes and mod integrations should be maintained. When an approved mod character, skill, animation, fix, or other component is integrated, its source changes and provenance record belong here—not in a separate disconnected project.
+The public Zx-Akito/NarutoSenki-V2 repository is a real source candidate, not merely an APK:
+- Its root includes Cocos2d-x engine folders and C++/Lua game source structure.
+- It contains projects/NarutoSenki/proj.android-studio, including Gradle build files and a Gradle wrapper.
+- Its documentation describes the Android build flow and source/resource layout.
+- Its repository metadata identifies it as a fork of real-re/NarutoSenki-V2-old; the parent was reported private.
+- The repository has no root LICENSE, and GitHub metadata reports no declared license. Asset-specific permissions are also not documented in the files checked.
 
-## Required next steps before calling the game integrated
+**Current decision:** technically promising, but **not approved for wholesale copying/import** until code and bundled asset permissions are clarified. Do not assume a public repository grants permission to redistribute Naruto characters, sprites, animations, sound, or music. See docs/ASSET_LICENSES.md.
 
-1. Inspect the linked V2 source candidate and any canonical/upstream repository links from its documentation.
-2. Verify the repository is accessible, contains the actual C++/Lua/Cocos2d-x game source and Android project, and determine its current commit/branch.
-3. Compare its code/content to the `v2.1.6-fix` release where possible; do not assume the source tree exactly matches the binary release.
-4. Inspect code license and asset-specific permissions. The file-host release has no license field in its repository metadata; do not assume that means redistribution/modification rights are granted.
-5. Once source and permissions are understood, bring/adapt the chosen existing V2 source into this repository with provenance preserved, then build the original base before merging mods.
-6. Do not continue developing the separate Kotlin/Canvas prototype as a new game. Decide whether to remove or retain its files only after the source-base import plan is verified.
-7. Keep the release APK linked as the reference download. Do not commit the 159 MB APK/other packaged binaries into the source repository as a substitute for editable source. Only mirror binaries if the rights, repository policy, and distribution plan explicitly permit it.
+The current source revision has not been proven to correspond exactly to the v2.1.6-fix APK. That comparison remains open.
+
+## Central workspace
+
+kage049754/Senki remains the single central integration workspace for all authorized source changes and mod integrations. When an approved mod character, skill, animation, fix, or other component is integrated, its source changes and provenance record belong here—not in a separate disconnected project.
+
+## Required next steps
+
+1. Resolve permission/license terms for V2 code and each asset set, or locate a source distribution with clear reuse terms.
+2. Compare the source revision with v2.1.6-fix where possible.
+3. Once the permission decision is documented, bring/adapt the existing V2 source into this repository while preserving provenance.
+4. Build the original base before merging mods.
+5. Do not continue developing the separate Kotlin/Canvas prototype as a new game. Decide whether to remove or retain its files only after the source import path is verified.
+6. Do not commit the 159 MB APK or extracted APK contents into this repository as a substitute for editable source.
 
 ## Status
 
-- User-selected game target: **Naruto Senki V2**.
+- User-selected target: **Naruto Senki V2**.
 - Release reference identified: **v2.1.6-fix**.
-- Release APK linked: yes, via the original release page.
-- Editable source imported into `kage049754/Senki`: **not yet verified**.
-- License/asset reuse permission: **not yet verified**.
-- Unified modded build: **not yet built or verified**.
+- Editable source candidate located and structure inspected: **yes**.
+- Source imported into kage049754/Senki: **no**.
+- Code/asset reuse permission: **unresolved; permission required**.
+- Exact source-to-release match: **not verified**.
+- Unified modded build: **not built or verified**.
 
-Do not describe the base as fully installed/imported or modded until those steps have actually happened.
+Do not describe the base as imported, built, or modded until those steps have actually happened.
