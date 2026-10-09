@@ -1,7 +1,9 @@
-# Scalable Character Roster Architecture
+# Roster Expansion Within the Existing Senki Base
+
+> **Do not create a new game or replacement engine.** These notes apply only after an existing Naruto Senki base is selected. Preserve its roster/character architecture and adapt it for compatible mod content where practical.
 
 ## Goal
-Design Senki to support **70+ playable characters and future expansion beyond 70**. Seventy is a planning target, not a hard maximum. Do not inherit a fixed 29-character limit from any reference game.
+Expand the selected existing Senki game's roster toward **70+ playable characters**, with room for future expansion if the base supports it. Do not replace the game engine just to reach a number. Preserve the chosen base's native architecture and change it only as required for compatible content.
 
 This is an architecture requirement, not a claim that the roster system is already implemented or that 70 characters already exist.
 
@@ -22,7 +24,7 @@ This is an architecture requirement, not a claim that the roster system is alrea
 ## Suggested character data
 Use the format appropriate to the chosen engine. A character definition should include stable ID, display name, schema version, stats, skill IDs/parameters, animation-state mappings, resource identifiers, collision settings, AI profile, optional form relationship, and provenance/license references.
 
-Do not implement a new data format until the actual engine and repository structure have been inspected.
+Do not implement a new engine, roster framework, or data format before the existing base has been selected and its actual architecture inspected. Prefer its native systems.
 
 ## Character selection UX
 - Search by display name or ID.
