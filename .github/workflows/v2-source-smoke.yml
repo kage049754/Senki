@@ -1,4 +1,4 @@
-name: V2 Source Build Smoke Test (No APK Distribution)
+name: V2 Source Candidate Build (Private Testing Artifact)
 
 on:
   workflow_dispatch:
@@ -28,7 +28,7 @@ jobs:
           echo "It is NOT the integrated/final game build."
           echo "Candidate: muhammadadilsyaputra08-alt/NarutoSenki-Custom"
           echo "Pinned revision: 279e85e73040558c84988a0eea310b6286eb77f0"
-          echo "No APK will be uploaded or released by this workflow."
+          echo "The diagnostic APK will be retained as a short-lived Actions artifact for private testing; this is not a public release."
 
       - name: Fetch pinned candidate into temporary runner workspace
         run: |
@@ -74,12 +74,21 @@ jobs:
         working-directory: /tmp/narutosenki-candidate/projects/NarutoSenki/proj.android-studio
         run: ./gradlew --no-daemon assembleDebug --stacktrace
 
-      - name: Verify candidate APK exists without publishing it
+      - name: Verify candidate APK exists
         if: success()
         run: |
           find /tmp/narutosenki-candidate/projects/NarutoSenki/proj.android-studio -type f -path '*/build/outputs/apk/*/*.apk' -print
           test -n "$(find /tmp/narutosenki-candidate/projects/NarutoSenki/proj.android-studio -type f -path '*/build/outputs/apk/*/*.apk' -print -quit)"
-          echo "Candidate compiled in this CI runner. APK intentionally not uploaded."
+          echo "Candidate APK exists and will be uploaded as a private-testing Actions artifact."
+
+      - name: Upload candidate debug APK for private testing
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: naruto-senki-v2-candidate-debug-apk
+          path: /tmp/narutosenki-candidate/projects/NarutoSenki/proj.android-studio/**/build/outputs/apk/**/*.apk
+          if-no-files-found: error
+          retention-days: 14
 
       - name: Print build diagnostics on failure
         if: failure()
