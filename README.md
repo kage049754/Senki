@@ -72,7 +72,7 @@ Naruto, Naruto Senki, related characters, names, art, music, and assets belong t
 
 ## Selected base game: Naruto Senki V2
 
-The user has selected **Naruto Senki: V2** as the game to mod. The original release listing is the reference point: [Naruto-Senki/files releases](https://github.com/Naruto-Senki/files/releases), with the [v2.1.6-fix release page](https://github.com/Naruto-Senki/files/releases/tag/v2.1.6-fix) currently identified.
+The user has selected **Naruto Senki: V2** as the game to mod. The original release listing is the reference point: [Naruto-Senki/files releases](https://github.com/Naruto-Senki/files/releases), with the [v2.1.6-fix release page](https://github.com/Naruto-Senki/files/releases/tag/v2.1.6-fix) currently identified. The direct [Android APK release asset](https://github.com/Naruto-Senki/files/releases/download/v2.1.6-fix/NSV2_2.1.6-fix_Android.apk) is linked for reference/download from the original host.
 
 **All future authorized modding work is centralized in this repository, `kage049754/Senki`.** Changes to characters, skills, animations, fixes, and other content must be integrated into the selected existing Senki V2 base here, not built as a separate new game.
 
