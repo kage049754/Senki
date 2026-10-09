@@ -64,3 +64,16 @@ The repo previously received a native Kotlin/Canvas prototype scaffold. It is no
 
 ## Reminder
 **Every session: work toward Naruto Senki V2 in kage049754/Senki. If adding a character/mod, integrate it into the existing V2 game here. No separate new game. Never call a prototype build the final Senki build.**
+
+
+## Additional mod repository audit — 2026-10-10
+- [x] Re-ran GitHub repository search for Naruto Senki mod/source projects.
+- [x] Inspected metadata and the root tree of `LeaderOnePro/NarutoSenki1.17Mod`.
+- Finding: the repository is a package/decompiled distribution with `AndroidManifest.xml`, `classes.dex`, `resources.arsc`, `META-INF/`, `lib/`, `res/`, and `assets/`, rather than an editable Cocos2d-x/C++ source project.
+- Finding: no declared GitHub license was reported; bundled game assets remain uncleared.
+- [x] Added the candidate classification, permission status, and next audit targets to `docs/MOD_RESEARCH.md` in commit `bc6f22531fa0c709043c462a5384518eacec3ecb`.
+- [ ] Compare the similar `wsnbbnbb/NarutoSenki1.17Mod` repository with this candidate to establish whether it is a duplicate/mirror.
+- [ ] Inspect `LeaderOnePro/NarutoSenki` editable source candidate in detail, including its source tree, Android build support, and license/asset notices.
+- [ ] Resolve V2 source and asset permission before import; then establish a real V2 build and begin controlled, verified merges.
+
+**Important:** this search pass did not produce a permission-cleared source base or a new APK. The latest successful CI still builds only the prototype scaffold, not Naruto Senki V2. No modded character has been counted as integrated or verified.
