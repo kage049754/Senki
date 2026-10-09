@@ -223,3 +223,11 @@ For every promising candidate, record the source URL, revision/release, engine, 
 - Verified artifact `naruto-senki-v2-candidate-debug-apk` (ID `11634177274`, 83,435,979-byte ZIP, expiry 2026-10-23). This is a CI-produced debug APK of the pinned `muhammadadilsyaputra08-alt/NarutoSenki-Custom` source, built in a temporary runner workspace. It is not yet the integrated modded game.
 - The isolation fix is in `.github/workflows/v2-source-smoke.yml`: install only required legacy packages under a clean `$RUNNER_TEMP/android-sdk` and set SDK environment variables for subsequent Gradle steps.
 - Next: compare the more feature-rich `sansaks-jpg/NarutoSenki-V2` source against the current pinned candidate; do not treat its expired prior artifact as downloadable. Keep the central candidate artifact build as a known-good build-environment baseline.
+
+
+## Sixth-pass source feature comparison and build — 2026-10-10
+### Feature-rich LAN-enhanced V2 candidate
+- Inspected `sansaks-jpg/NarutoSenki-V2` branches and commit diffs. Branch `fix/lan-multiplayer-audit-hardening` is pinned at `1751b7fb8f05a96ff6e85bc8a6c8e3fdcca3f74a`; its history includes LAN hotspot multiplayer, reliable battle/session ordering, rejoin fixes, app-background forfeit behavior, crash-safe overlay cleanup, and runtime UI localization. These are meaningful source changes, not just a renamed copy.
+- Added central diagnostic build workflow `.github/workflows/v2-lan-candidate.yml` (commit `6cc298c6791a42f00aa4a3ec968705255f95a4a7`) using the candidate's legacy NDK r17c / Java 8 build requirements.
+- Run `37967514487`: **SUCCESS**. Verified artifact `naruto-senki-v2-lan-candidate-apk`, ID `11633633661`, ZIP size 80,405,874 bytes, expiry 2026-10-23.
+- This candidate now has a verified central-CI APK artifact alongside the Android-clean candidate. The LAN-enabled branch is not yet selected as the central source base; compare source/resource deltas and keep optional LAN functionality isolated if offline-only gameplay is the target.
