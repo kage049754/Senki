@@ -28,6 +28,7 @@ jobs:
           echo "It is NOT the integrated/final game build."
           echo "Candidate: muhammadadilsyaputra08-alt/NarutoSenki-Custom"
           echo "Pinned revision: 279e85e73040558c84988a0eea310b6286eb77f0"
+          echo "Local patch series: patches/android-clean/*.patch"
           echo "The diagnostic APK will be retained as a short-lived Actions artifact for private testing; this is not a public release."
 
       - name: Fetch pinned candidate into temporary runner workspace
@@ -41,6 +42,22 @@ jobs:
           test -d projects/NarutoSenki/Classes
           test -d projects/NarutoSenki/Resources
           echo "Pinned source and expected Android project structure verified."
+
+      - name: Apply central Senki patches
+        shell: bash
+        run: |
+          set -euo pipefail
+          mapfile -t patches < <(find "$GITHUB_WORKSPACE/patches/android-clean" -maxdepth 1 -type f -name '*.patch' -print | sort)
+          if [[ ${#patches[@]} -eq 0 ]]; then
+            echo "No local patches found; refusing to build an unmodified candidate by accident."
+            exit 1
+          fi
+          for patch in "${patches[@]}"; do
+            echo "Checking and applying $patch"
+            git -C /tmp/narutosenki-candidate apply --check "$patch"
+            git -C /tmp/narutosenki-candidate apply "$patch"
+          done
+          echo "All central Senki patches applied."
 
       - name: Set up Java 17 for Android SDK provisioning
         uses: actions/setup-java@v4
