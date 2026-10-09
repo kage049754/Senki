@@ -132,3 +132,13 @@ Next implementation sequence:
 The Android-clean source is now built through a central patch pipeline. The first patch changes only the install identity/version/label; CI confirms the patch applied and checks the built APK metadata with `aapt`. Run `37968632537` succeeded and uploaded artifact `naruto-senki-v2-candidate-debug-apk` (ID `11634478692`, expires 2026-10-23).
 
 Next mod pass: inspect and redesign the existing V2 loading/menu/character-selection UI while preserving the Cocos2d-x battle, level/HP/skills, minions, and towers. Keep changes as small ordered patches against the pinned source, and require build + metadata/resource checks before treating a patch as done. Then test install and actual gameplay on the phone.
+
+
+## UI pass 1 complete in CI (2026-10-10)
+The custom launcher icon, loading background, and character-selection background are now part of the central patch pipeline. Existing character grid/selection logic and battle mechanics are preserved. Run `37971031426` succeeded; its artifact contains both custom UI background assets and passes package identity checks.
+
+### Next UI/gameplay work
+1. Install the current artifact on the target phone and check the actual rendered loading and selection screens before making assumptions about scaling.
+2. Adjust selection-screen grid spacing, preview placement, and touch targets only from observed behavior; preserve double-tap/confirm and mode-specific team selection.
+3. Redesign the main menu and skill/hero info presentation, then improve launcher splash transition without disturbing the battle scene.
+4. Run the APK build and archive checks after each patch; phone install/launch/battle checks remain a separate gate.
