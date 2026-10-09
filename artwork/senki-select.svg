@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#080d19"/><stop offset=".5" stop-color="#151d30"/><stop offset="1" stop-color="#090d17"/></linearGradient>
+    <linearGradient id="red" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ff4d32"/><stop offset="1" stop-color="#ff9a47"/></linearGradient>
+    <linearGradient id="blue" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#4fe2dc"/><stop offset="1" stop-color="#5577ff"/></linearGradient>
+    <pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse"><path d="M32 0H0V32" fill="none" stroke="#b6c9ff" stroke-opacity=".04"/></pattern>
+    <linearGradient id="panel" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#1b2740" stop-opacity=".86"/><stop offset="1" stop-color="#080d18" stop-opacity=".82"/></linearGradient>
+    <radialGradient id="leftGlow"><stop stop-color="#ff563b" stop-opacity=".22"/><stop offset="1" stop-color="#ff563b" stop-opacity="0"/></radialGradient>
+    <radialGradient id="rightGlow"><stop stop-color="#4fdfe4" stop-opacity=".18"/><stop offset="1" stop-color="#4fdfe4" stop-opacity="0"/></radialGradient>
+  </defs>
+  <rect width="1280" height="720" fill="url(#bg)"/>
+  <rect width="1280" height="720" fill="url(#grid)"/>
+  <circle cx="120" cy="520" r="330" fill="url(#leftGlow)"/>
+  <circle cx="1160" cy="280" r="360" fill="url(#rightGlow)"/>
+  <path d="M0 0H410L120 720H0Z" fill="url(#red)" opacity=".08"/>
+  <path d="M1280 0H1220L950 720H1280Z" fill="url(#blue)" opacity=".09"/>
+  <path d="M0 110H1280" stroke="#8293b6" stroke-opacity=".22"/>
+  <path d="M54 57H130" stroke="url(#red)" stroke-width="5" stroke-linecap="round"/>
+  <text x="54" y="87" fill="#f3f5fc" font-family="DejaVu Sans, sans-serif" font-size="26" font-weight="800" letter-spacing="5">SHINOBI SELECT</text>
+  <text x="1225" y="76" text-anchor="end" fill="#9ba9c5" font-family="DejaVu Sans, sans-serif" font-size="12" font-weight="700" letter-spacing="3">SENKI // BATTLE PREPARATION</text>
+  <rect x="30" y="138" width="264" height="535" rx="18" fill="url(#panel)" stroke="#ff8753" stroke-opacity=".4" stroke-width="2"/>
+  <path d="M52 168H150" stroke="url(#red)" stroke-width="4" stroke-linecap="round"/>
+  <text x="52" y="194" fill="#d9e0f1" font-family="DejaVu Sans, sans-serif" font-size="13" font-weight="700" letter-spacing="3">HERO PROFILE</text>
+  <path d="M54 226H270" stroke="#8293b6" stroke-opacity=".18"/>
+  <rect x="314" y="138" width="650" height="535" rx="18" fill="url(#panel)" stroke="#7b91b7" stroke-opacity=".32" stroke-width="2"/>
+  <path d="M336 168H425" stroke="url(#blue)" stroke-width="4" stroke-linecap="round"/>
+  <text x="336" y="194" fill="#d9e0f1" font-family="DejaVu Sans, sans-serif" font-size="13" font-weight="700" letter-spacing="3">ROSTER</text>
+  <text x="942" y="194" text-anchor="end" fill="#8493af" font-family="DejaVu Sans, sans-serif" font-size="11" letter-spacing="2">TAP A HERO TO PREVIEW</text>
+  <rect x="988" y="138" width="262" height="535" rx="18" fill="url(#panel)" stroke="#4fdfe4" stroke-opacity=".32" stroke-width="2"/>
+  <path d="M1010 168H1105" stroke="url(#blue)" stroke-width="4" stroke-linecap="round"/>
+  <text x="1010" y="194" fill="#d9e0f1" font-family="DejaVu Sans, sans-serif" font-size="13" font-weight="700" letter-spacing="3">BATTLE SETUP</text>
+  <path d="M1010 226H1228" stroke="#8293b6" stroke-opacity=".18"/>
+  <circle cx="1119" cy="330" r="92" fill="none" stroke="url(#blue)" stroke-width="2" stroke-dasharray="5 12" opacity=".65"/>
+  <circle cx="1119" cy="330" r="66" fill="none" stroke="url(#red)" stroke-width="2" stroke-dasharray="44 12" opacity=".65"/>
+  <path d="M1119 266L1137 312L1183 330L1137 348L1119 394L1101 348L1055 330L1101 312Z" fill="url(#red)" opacity=".72"/>
+  <path d="M1119 291L1131 319L1159 330L1131 341L1119 369L1107 341L1079 330L1107 319Z" fill="#111a2c"/>
+  <text x="1119" y="452" text-anchor="middle" fill="#b7c4de" font-family="DejaVu Sans, sans-serif" font-size="11" letter-spacing="2">SELECT • CONFIRM • FIGHT</text>
+  <path d="M30 690H1250" stroke="#7b8ba8" stroke-opacity=".2" stroke-width="2"/>
+  <path d="M30 690H330" stroke="url(#red)" stroke-width="3"/>
+  <text x="54" y="707" fill="#73829f" font-family="DejaVu Sans, sans-serif" font-size="10" letter-spacing="2">CHOOSE YOUR SHINOBI</text>
+</svg>
