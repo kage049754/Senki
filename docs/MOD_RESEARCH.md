@@ -267,3 +267,10 @@ For every promising candidate, record the source URL, revision/release, engine, 
 - Updated CI to render and verify `assets/senki_menu.png` inside the APK.
 - Run `37971712613`: **SUCCESS**. Verified artifact `naruto-senki-v2-candidate-debug-apk`, ID `11637705354`, 83,718,905-byte ZIP, expiry 2026-10-23. The APK archive contains `assets/senki_loading.png`, `assets/senki_select.png`, and `assets/senki_menu.png`; app identity assertions also pass.
 - Current custom UI coverage: launcher icon, main menu background, loading background, and character-selection background. Gameplay code and character selection mechanics remain from the V2-derived base.
+
+
+## Latest verified candidate — 2026-10-10
+- Updated character-selection guidance to state the existing tap-once preview / tap-again confirm interaction.
+- Run `37972501198`: **SUCCESS**, artifact `naruto-senki-v2-candidate-debug-apk` (ID `11637936223`, 83,729,869-byte ZIP, expires 2026-10-23).
+- The archive contains `assets/senki_loading.png`, `assets/senki_select.png`, and `assets/senki_menu.png`; package ID/version/label checks passed.
+- No phone runtime test is claimed.
