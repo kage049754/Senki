@@ -47,9 +47,11 @@ The repo previously received a native Kotlin/Canvas prototype scaffold. It is no
 5. Keep CI reporting explicit about whether a run builds the prototype scaffold or the real V2 source.
 
 ## CI and APK status
-- Latest observed Actions run: https://github.com/kage049754/Senki/actions/runs/37961789724
-- Status: completed, conclusion success (prototype scaffold only).
-- Artifact: senki-debug-apk, 823,056 bytes; not the selected V2 release and not a modded V2 build.
+- Latest run after workflow-label/shell fix: https://github.com/kage049754/Senki/actions/runs/37963389348
+- Last observed state: in progress at Gradle setup; no final conclusion or artifact verified yet.
+- The preceding run https://github.com/kage049754/Senki/actions/runs/37963343679 failed because the first prototype-only audit step had an escaped `find` expression that caused a shell syntax error. That expression was corrected in commit 296ff49517f525641930644cf6b4cedb03a8af70; the newer run has passed the audit/inspection steps so far.
+- Earlier successful artifact `senki-debug-apk` (823,056 bytes) was the prototype scaffold only, not the selected V2 release and not a modded V2 build.
+- Workflow/artifact labels now explicitly identify prototype-only builds.
 - Unified mod APK artifact: not verified.
 - Physical-device installation/gameplay: not verified.
 
