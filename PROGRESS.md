@@ -3,50 +3,48 @@
 Last updated: 2026-10-10
 
 ## Absolute project direction
-**Modding and merging existing Naruto Senki projects only. Do not create a new game.**
+**Mod and merge the existing Naruto Senki: V2 game only. Do not create a new game.**
 
 - Central integration repository: https://github.com/kage049754/Senki
-- Goal: choose one existing Senki game as the base, then merge compatible modded content into that game.
-- Final deliverable: one unified modded game and one verified APK.
-- Preserve the selected base's engine/core gameplay wherever practical.
-- Do not continue building the standalone Kotlin/Canvas prototype as a new game while base selection is unresolved.
+- User-selected game target: Naruto Senki: V2.
+- Release listing: https://github.com/Naruto-Senki/files/releases
+- Selected reference release: https://github.com/Naruto-Senki/files/releases/tag/v2.1.6-fix
+- Release APK asset: NSV2_2.1.6-fix_Android.apk (about 159 MB), hosted by the original release repository.
+- All future mod changes that are approved and actually integrated must be committed into this central repo.
+- Important: the release host contains packaged release assets and is not, by itself, editable source. Source import and license/asset terms remain unverified.
+- Do not continue building the standalone Kotlin/Canvas prototype as a separate game while the selected base is being verified.
 
-## Current verified repository state
-- The repository contains planning/research docs, an Android build workflow, and a native Kotlin/Canvas prototype scaffold from earlier work.
-- The prototype scaffold is **not confirmed as the correct foundation** and is not the intended final game.
-- Existing Senki source candidates have been listed in `docs/MOD_RESEARCH.md`, but the best base has not yet been selected through a complete comparative audit.
-- CI status and APK artifact: MUST be checked from the latest Actions run before any claim. Historical/pending status must not be reused as current verification.
-- Physical-device install/gameplay: NOT VERIFIED unless a new documented device test proves it.
+## Current verified status
+- [x] README identifies Naruto Senki V2 as the chosen target and links to the release.
+- [x] Created docs/BASE_GAME.md documenting the target, source requirements, and status.
+- [x] Updated AGENTS.md and ROADMAP.md to record the chosen target.
+- [ ] Verify the editable V2 source project and exact revision corresponding to/compatible with v2.1.6-fix.
+- [ ] Verify code license and asset-specific reuse permissions.
+- [ ] Import/adapt the existing V2 source into this repo with provenance preserved.
+- [ ] Build the imported base before integrating mods.
+- [ ] Integrate requested mods/characters in verified batches.
+- [ ] Verify a unified modded APK artifact and device behavior separately.
 
-## Documentation changes
-- [x] README explicitly states this is a mod-merging workspace, not a new-game project.
-- [x] AGENTS.md makes “do not create a new game” the overriding instruction.
-- [x] ROADMAP.md replaced greenfield development phases with source audit, base selection, integration, and merged-build verification.
-- [ ] Update Copilot instructions to repeat the same rule.
-- [ ] Continue the actual source candidate audit and record evidence in docs/MOD_RESEARCH.md.
+## Current project contents and cautions
+The repo previously received a native Kotlin/Canvas prototype scaffold. That scaffold is not the intended final foundation. No claim is made that the V2 source has been imported or that the release APK has been copied into this repository. Keep the original release page linked as a reference; do not commit large packaged binaries as a substitute for editable source.
 
-## Candidate/base decision
-- Selected existing base: **NOT SELECTED YET**.
-- Strong candidate to inspect first: `Zx-Akito/NarutoSenki-V2` (candidate only; not approved until source, buildability, upstream relationship, and rights are verified).
-- Other candidates and their known limits are documented in `docs/MOD_RESEARCH.md`.
-- Do not begin major content merges until one base is selected.
+## Next actions
+1. Inspect the source repository linked by the V2 documentation and verify actual source/build files.
+2. Check the source's current license and any separate asset terms.
+3. Determine whether the source revision can be built in the current Android toolchain and how it relates to the v2.1.6-fix release.
+4. Import the existing game source into this central repo only after the source and permission decision is documented.
+5. Build/verify the base, then start merging mods.
 
-## Next actions — in order
-1. Finish updating repository-wide Copilot instructions with the non-negotiable no-new-game rule.
-2. Inspect the latest GitHub Actions run and artifact state, but do not confuse prototype build success with the final goal.
-3. Audit candidate source repositories and compare actual code/build files, history/forks, engine, and license/asset terms.
-4. Select one existing Senki base and document the evidence.
-5. Decide whether/how to migrate or replace the prototype scaffold only after base selection.
-6. Build the selected base in this central repository, then merge compatible mods in tested batches.
+## CI and APK status
+- Latest workflow: must be checked live before reporting.
+- Latest workflow conclusion: not verified in this documentation update.
+- Unified mod APK artifact: not verified.
+- Physical-device installation/gameplay: not verified.
 
-## Build / QA record
-- Latest run: verify live Actions state before reporting.
-- Last verified workflow conclusion: NOT RECORDED HERE; re-check actual run.
-- APK artifact: NOT VERIFIED HERE; re-check the actual artifact list.
-- Physical-device installation: NOT VERIFIED HERE.
+## Session log
+- Updated README, AGENTS.md, ROADMAP.md, and this tracker to make the user's selected Naruto Senki V2 target explicit.
+- Added docs/BASE_GAME.md with release reference and a clear distinction between packaged APK and editable source.
+- The public release API identifies v2.1.6-fix as a release with an Android APK asset. The APK itself was not copied into this repository, and no mod integration has been claimed.
 
-## Required session log
-For every session, record changed files, commit SHA, repositories actually inspected, integration status, latest workflow run/conclusion, artifact name/link, device-test status, blockers, and exact next step. Never copy stale or pending status as verified fact.
-
-## Reminder for every future AI session
-**Do not build a new Naruto-inspired game. Mod and merge an existing Naruto Senki project. The base has to be selected from real source repositories first.**
+## Reminder
+**Every session: work on Naruto Senki V2 in kage049754/Senki. If adding a character/mod, integrate it into the existing V2 game here. No separate new game.**
