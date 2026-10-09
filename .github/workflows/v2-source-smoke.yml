@@ -106,6 +106,17 @@ jobs:
           test -n "$(find /tmp/narutosenki-candidate/projects/NarutoSenki/proj.android-studio -type f -path '*/build/outputs/apk/*/*.apk' -print -quit)"
           echo "Candidate APK exists and will be uploaded as a private-testing Actions artifact."
 
+      - name: Verify patched package identity in APK
+        if: success()
+        shell: bash
+        run: |
+          set -euo pipefail
+          APK="$(find /tmp/narutosenki-candidate/projects/NarutoSenki/proj.android-studio -type f -path '*/build/outputs/apk/*/*.apk' -print -quit)"
+          test -n "$APK"
+          "$ANDROID_HOME/build-tools/31.0.0/aapt" dump badging "$APK" | tee /tmp/senki-apk-badging.txt
+          grep -F "name='com.senki.naruto.mod' versionCode='3' versionName='2.1.0-mod'" /tmp/senki-apk-badging.txt
+          grep -F "application-label:'Naruto Senki Mod'" /tmp/senki-apk-badging.txt
+
       - name: Upload candidate debug APK for private testing
         if: success()
         uses: actions/upload-artifact@v4
