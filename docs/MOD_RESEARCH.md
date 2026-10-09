@@ -3,7 +3,7 @@
 > **Project rule: this is research for modding and merging the user's selected Naruto Senki: V2 game, not creating a new game.** The release reference is https://github.com/Naruto-Senki/files/releases/tag/v2.1.6-fix. The goal is to obtain and verify its editable source base, then integrate compatible mod content into kage049754/Senki. See docs/BASE_GAME.md.
 
 **Last reviewed:** 2026-10-10  
-**Status:** Candidate inventory; no base is selected until the repository contents, buildability, and reuse terms have been verified.
+**Status:** User-selected target is Naruto Senki V2. The strongest source candidate has been structurally verified, but code/asset reuse permission remains unresolved; no source has been imported.
 
 ## Candidate classification
 - **Source candidate:** likely contains editable source; inspect the complete tree, build scripts, license, and assets.
@@ -27,8 +27,10 @@
 - Candidate: https://github.com/Zx-Akito/NarutoSenki-V2
 - Candidate fork: https://github.com/kuiyr0810/NarutoSenki-V2
 - Documentation: https://github.com/Zx-Akito/NarutoSenki-V2/blob/master/Doc/README_ZH.md
-- Prior notes indicate a Cocos2d-x/C++ project with Lua/UI scripts, resources, character directories, bullets, summons, towers, and Android project files. Re-open and verify those paths against the current repository before relying on the notes.
-- **Status:** strongest initial candidate to audit, not yet approved as the base. Verify current tree, branch, buildability, fork differences, code license, and separate asset permissions.
+- Verified on 2026-10-10: public Cocos2d-x/C++ project with Lua scripts, resources, engine/dependency directories, build scripts, and `projects/NarutoSenki/proj.android-studio` containing Gradle files and wrapper.
+- Default branch: `master`. The repository metadata reports it is a fork of `real-re/NarutoSenki-V2-old` (parent marked private); latest visible commits inspected were dated 2026-05-09.
+- No root `LICENSE` was found and GitHub metadata reports no declared license. Bundled game assets' separate rights are not established.
+- **Status:** technically credible source candidate, but `PERMISSION_REQUIRED`; do not copy wholesale into the central repo until code and asset permissions are resolved. Exact correspondence with release `v2.1.6-fix` is also unverified.
 
 ### Naruto Senki release history
 - https://github.com/Zx-Akito/NarutoSenki-Release
@@ -71,7 +73,7 @@ Record:
 8. Exact components actually integrated and their build/gameplay test evidence.
 
 ## Base selection rule
-Select **one existing, editable Naruto Senki project** as the foundation after a comparative audit. Preserve its engine and original gameplay wherever practical. Keep `kage049754/Senki` as the central integration workspace. Do not extend the Kotlin/Canvas prototype into a new game while the base is unresolved. After selection, document why the base won, what will be migrated, and how attribution/permissions are handled.
+The user has selected Naruto Senki V2 as the intended foundation. Continue validating the existing V2 source and permission status before importing it. Preserve its engine and original gameplay wherever practical. Keep `kage049754/Senki` as the central integration workspace. Do not extend the Kotlin/Canvas prototype into a new game while the base is unresolved. After selection, document why the base won, what will be migrated, and how attribution/permissions are handled.
 
 ## Merge rules
 - Merge compatible source changes/content in controlled batches; do not blindly combine whole repositories or APKs.
