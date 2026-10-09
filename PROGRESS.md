@@ -214,3 +214,11 @@ The repo previously received a native Kotlin/Canvas prototype scaffold. It is no
 - [x] Latest run `37971712613`: **SUCCESS**. Patch application, SVG rendering, Gradle build, package identity verification, and APK archive checks all passed.
 - [x] Verified artifact `naruto-senki-v2-candidate-debug-apk`, artifact ID `11637705354`, ZIP size 83,718,905 bytes, expires 2026-10-23. Download from the [successful main-menu build](https://github.com/kage049754/Senki/actions/runs/37971712613).
 - [ ] Physical phone validation remains outstanding. The CI archive now contains all three custom screens, but visual placement, button overlap, and touch behavior still need a real device check.
+
+
+## Latest verification — selection instructions and complete custom UI asset set (2026-10-10)
+- [x] Updated the selection background's instruction text to make the existing interaction explicit: tap once to preview, tap again to confirm.
+- [x] Latest run `37972501198`: **SUCCESS** on commit `ca54dc7f7b199ce85d3c5dceffe81493cc09a3f0`.
+- [x] Verified artifact `naruto-senki-v2-candidate-debug-apk`, ID `11637936223`, ZIP size 83,729,869 bytes, expires 2026-10-23.
+- [x] Confirmed the APK archive contains all three custom screen backgrounds and that package identity checks pass.
+- [ ] On-device install, visual layout, actual touch behavior, and battle regression tests remain unverified.
