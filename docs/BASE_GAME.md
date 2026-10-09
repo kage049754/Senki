@@ -57,3 +57,7 @@ Do not describe the base as imported, built, or modded until those steps have ac
 `Wilykun/NarutoSenki-V2` is a candidate fork of `hitlabmodv2/NarutoSenki-V2`, with 15 commits ahead of that parent at the inspected comparison. It includes a successful Android CI workflow and a Spectate mode. Its own Actions run `37911640387` produced `NarutoSenki-debug-apk`; this artifact is evidence of the fork's build only, not of a build in the central repository or physical-device testing.
 
 This may be a stronger technical base candidate than the previously inspected unbuilt V2 source fork, but the exact match to the selected `v2.1.6-fix` release is unverified and its repository has no declared license. Do not import or redistribute its code/assets until rights are clarified. The target remains the existing Naruto Senki V2 game.
+
+
+## Android-only V2-derived candidate
+`muhammadadilsyaputra08-alt/NarutoSenki-Custom` describes itself as an Android-only V2 source base and has a successful build run `34331260360` with artifact `narutosenki-debug-apk`. Its build uses legacy AGP 3.3.3, JDK 8 for Gradle, and NDK r21e. It may simplify Android baseline setup, but exact correspondence to the selected v2.1.6-fix release is unverified and the repo has no declared license. It remains a technical candidate only until code and asset rights are established.
