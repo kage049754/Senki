@@ -84,3 +84,9 @@ No external source is approved for copying solely by virtue of appearing in the 
 - Technical evidence: its own GitHub Actions run `34331260360` built and uploaded `narutosenki-debug-apk`.
 - Rights/provenance: no declared GitHub license; README says extracted from original V2, but inherited code and Naruto assets are not thereby cleared.
 - Status: **PERMISSION_REQUIRED**. Do not import or redistribute until source and asset permissions are established.
+
+
+### `likill/NarutoSenki-master` — local PvP/co-op reference
+- Source: legacy Cocos2d-x 2.2.2 / Visual Studio 2010, Windows-oriented package; no declared GitHub license.
+- Potential content: local PvP/co-op plan and UI/control customization changes.
+- Status: **PERMISSION_REQUIRED / REFERENCE_ONLY**; no code/assets approved for reuse and no Android build path verified.
