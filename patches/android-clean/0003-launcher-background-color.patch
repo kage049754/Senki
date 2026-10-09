@@ -1,0 +1,9 @@
+diff --git a/projects/NarutoSenki/proj.android-studio/app/res/values/ic_launcher_background.xml b/projects/NarutoSenki/proj.android-studio/app/res/values/ic_launcher_background.xml
+--- a/projects/NarutoSenki/proj.android-studio/app/res/values/ic_launcher_background.xml
++++ b/projects/NarutoSenki/proj.android-studio/app/res/values/ic_launcher_background.xml
+@@ -1,3 +1,3 @@
+ <?xml version="1.0" encoding="utf-8"?>
+ <resources>
+-    <color name="ic_launcher_background">#ECE342</color>
++    <color name="ic_launcher_background">#10172A</color>
+ </resources>
