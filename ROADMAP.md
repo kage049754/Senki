@@ -102,3 +102,16 @@
 The selected game remains Naruto Senki V2. New audits found two V2-derived Android source candidates with their own successful CI artifacts: `Wilykun/NarutoSenki-V2` (Spectate mode/build fixes) and `muhammadadilsyaputra08-alt/NarutoSenki-Custom` (Android-only source snapshot). Both currently lack a declared license and cleared asset permissions, so neither has been imported. Older Cocos2d-x 2.2.2 repositories were classified as reference-only rather than interchangeable bases.
 
 **Current gate:** finish source/provenance comparison and obtain appropriate permission for code and bundled assets. Then choose exactly one base, bring up its build in this central repo, verify the APK, and only then start merging additional mods. The existing prototype CI remains unrelated to the target game.
+
+## User-prioritized personal modding workflow — added 2026-10-10
+The user has explicitly directed us to keep searching for Senki characters, skills, animations, effects, stages, UI, and other useful components even when source repositories do not expressly grant reuse permission, because the current goal is personal-use development/testing. Missing license metadata is not a reason to stop research or private build-feasibility tests.
+
+1. Search GitHub forks, mod repositories, release archives, mirrors, and other publicly accessible sources for complete Senki/V2 builds and individual mod features.
+2. Record each candidate's URL, revision/version, Android project structure, engine/toolchain, features, and actual build evidence.
+3. Prefer complete, buildable Android V2-derived sources; compare them before selecting a base.
+4. Test candidates in isolated workspaces first; do not let an unverified mod break the central project.
+5. Integrate the selected game and compatible components incrementally; build and inspect logs after each change.
+6. Continue the fail → inspect actual logs → fix → commit → rerun → verify loop until CI build succeeds, then separately verify installation and gameplay on the user's phone.
+7. Keep provenance notes so source and assets can be traced. Do not make unsupported claims about licenses or redistribution rights. Public release is not the current milestone; a working personal test build is.
+
+Current evidence: central diagnostic run 37965165366 succeeded in compiling the pinned muhammadadilsyaputra08-alt/NarutoSenki-Custom candidate in a temporary runner workspace. Its APK was not uploaded and the source is not yet integrated into the central repository. This is build-feasibility evidence, not a device test.
