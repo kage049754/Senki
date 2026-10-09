@@ -156,3 +156,15 @@ These may be useful for technical comparison only; this metadata result does not
 - Repository metadata reports **no declared license**. Naruto character artwork, sprites, audio, animation, and inherited code/dependencies are not cleared by the successful build. The README credits the parent project, but attribution alone is not a license.
 - Classification: **top technical candidate for a V2-derived base pending code/asset permission review and exact comparison with the user's v2.1.6-fix reference**. Do not import/redistribute its source/assets or publish its APK through this project until permission is established.
 - Next technical checks: inspect its full build docs and source provenance; compare its changes against the selected release and other forks; document permission evidence; then, once approved, adopt one base and bring up CI in the central repository before merging additional mods.
+
+
+### Android-only V2 clean base candidate: `muhammadadilsyaputra08-alt/NarutoSenki-Custom`
+- Repository: https://github.com/muhammadadilsyaputra08-alt/NarutoSenki-Custom
+- README describes an Android-only working base extracted from Naruto Senki V2, with Cocos2d-x 2.2.6, C++ gameplay, Lua/LuaJIT, Android Studio/Gradle/NDK, and `projects/NarutoSenki/proj.android-studio`.
+- The root contains engine/source/resource directories (`cocos2dx/`, `CocosDenshion/`, `extensions/`, `external/`, `scripting/`, and `projects/`) and an Android-focused workflow.
+- Latest inspected commit: `279e85e73040558c84988a0eea310b6286eb77f0` (“fix bug & nerf”, 2026-09-09).
+- Its Actions run `34331260360` completed **successfully**; SDK/NDK provisioning, `assembleDebug`, APK discovery, and artifact upload passed. Artifact `narutosenki-debug-apk` exists (83,468,934 bytes; SHA-256 `5704b77cdd63369b83e74febc03d640628220e4512d43f12832063522ce72271`; expires 2026-12-08). This is the candidate's artifact, not a build from the central Senki repo and not physical-device verification.
+- The workflow intentionally uses JDK 17 for SDK provisioning then JDK 8 for legacy AGP 3.3.3, and pins NDK r21e; this is useful evidence for recreating a compatible build environment.
+- GitHub metadata reports no declared license. The README says the source was extracted from original V2, but that statement alone does not establish permission for code or bundled Naruto assets.
+- Classification: **strong Android build candidate for technical comparison, pending permission/provenance review and exact comparison to the user's v2.1.6-fix reference**. Do not import or redistribute until rights are established.
+- Decision: retain the selected target (existing Naruto Senki V2); evaluate this clean Android snapshot against the Wilykun fork before choosing one technical base. Do not merge two full source trees.
