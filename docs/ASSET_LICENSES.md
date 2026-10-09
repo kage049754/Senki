@@ -70,3 +70,10 @@ No external source is approved for copying solely by virtue of appearing in the 
 - The root tree of the original is package/decompiled-distribution oriented (`classes.dex`, `AndroidManifest.xml`, `assets/`, `lib/`, `res/`) rather than an editable source project.
 - The second repository is a fork with matching inspected commit history; it is not an independent mod.
 - Permission status: **PERMISSION_REQUIRED**; APK/package contents are not approved for extraction, redistribution, or reuse.
+
+
+### `Wilykun/NarutoSenki-V2` — V2-derived fork with working CI
+- Source lineage: fork of `hitlabmodv2/NarutoSenki-V2`; 15 commits ahead at the inspected comparison.
+- Code and inherited assets: no declared GitHub license; separate permissions not established.
+- Observed fork CI success and artifact do not grant permission to copy, redistribute, or repackage its code/assets.
+- Status: **PERMISSION_REQUIRED**. Technical review may continue; import/release remains blocked pending terms.
