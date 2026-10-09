@@ -115,3 +115,7 @@ This is still a CI-built candidate, not phone-verified. See `PROGRESS.md` and `R
 
 ### Latest main-menu build
 The main menu background has now been redesigned too. The existing game-mode carousel and menu callbacks are preserved. [Download the newest candidate artifact from successful Actions run 37971712613](https://github.com/kage049754/Senki/actions/runs/37971712613) — artifact `naruto-senki-v2-candidate-debug-apk`, 83,718,905-byte ZIP, expires 2026-10-23. CI confirms that the APK contains all three custom backgrounds and has the expected `Naruto Senki Mod` package identity. Device/gameplay testing is not yet confirmed.
+
+
+### Newest verified artifact (2026-10-10)
+The latest successful run is [37972501198](https://github.com/kage049754/Senki/actions/runs/37972501198), artifact `naruto-senki-v2-candidate-debug-apk` (ID `11637936223`, 83,729,869-byte ZIP, expires 2026-10-23). It includes the custom launcher icon and three custom screen backgrounds; CI verifies those assets and the app identity. The on-device visual/gameplay test is still pending.
