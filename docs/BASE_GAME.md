@@ -8,6 +8,7 @@ The user's chosen game target is **Naruto Senki: V2**, using the official public
 - **Current release found during audit:** `v2.1.6-fix`, published 2024-01-22.
 - **Android release asset:** `NSV2_2.1.6-fix_Android.apk` (binary release asset, about 159 MB).
 - **Specific release page:** https://github.com/Naruto-Senki/files/releases/tag/v2.1.6-fix
+- **Direct Android APK:** https://github.com/Naruto-Senki/files/releases/download/v2.1.6-fix/NSV2_2.1.6-fix_Android.apk
 - **V2 source documentation candidate:** https://github.com/Zx-Akito/NarutoSenki-V2/blob/master/Doc/README_ZH.md
 
 The releases repository is described as a **file host** and the inspected release assets are packaged binaries (Android APK, iOS IPA, Linux archive). This release page is therefore a download/reference point, not by itself an editable Android source project. Do not treat the APK as source code.
