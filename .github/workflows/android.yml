@@ -41,7 +41,9 @@ jobs:
           echo "Repository root:"
           ls -la
           echo "Android project candidates:"
-          find . -maxdepth 4 \\( -name settings.gradle -o -name settings.gradle.kts -o -name build.gradle -o -name build.gradle.kts -o -name gradlew \\) -print
+          find . -maxdepth 4 -name 'settings.gradle*' -print
+          find . -maxdepth 4 -name 'build.gradle*' -print
+          find . -maxdepth 4 -name gradlew -print
 
       - name: Inspect repository state
         run: |
