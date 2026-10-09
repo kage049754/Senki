@@ -241,3 +241,11 @@ For every promising candidate, record the source URL, revision/release, engine, 
 - Practical direction: **use the successfully built Android-clean source as the current lead candidate** for an Android/offline-first mod base because it is smaller and preserves the unique Kabuto content. Treat LAN-enhanced V2 as a source for selective crash fixes and optional networking research, not a wholesale replacement. Do not copy all 58 changed files at once; review and port individual fixes with tests.
 - This is a provisional engineering recommendation based on tree/build evidence, not yet the final source import. Both candidates have successful central CI artifacts; neither has been tested on the user's phone.
 
+
+
+## First central patch verified inside the APK — 2026-10-10
+- Added `patches/android-clean/0001-custom-app-identity.patch` to give the candidate a distinct install identity and version/label: `com.senki.naruto.mod`, `2.1.0-mod`, code 3, `Naruto Senki Mod`.
+- Updated the central Android-clean candidate workflow to apply all ordered `patches/android-clean/*.patch` files to the pinned source and refuse to build if the patch series is empty.
+- Added a post-build `aapt dump badging` check for package ID, version, and app label.
+- Run `37968632537`: **SUCCESS**; patch application, Gradle build, APK existence, package identity checks, and artifact upload all passed.
+- Verified artifact `naruto-senki-v2-candidate-debug-apk`, ID `11634478692`, 83,447,929-byte ZIP, expiry 2026-10-23. This confirms a centrally maintained patch can alter the real V2-derived APK while retaining the existing game engine; it is not yet a gameplay/UI redesign or phone-tested release.
