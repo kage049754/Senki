@@ -259,3 +259,11 @@ For every promising candidate, record the source URL, revision/release, engine, 
 - The first color patch attempt failed because its unified-diff hunk was malformed. That failure was inspected, the bad patch file was removed, and the color is now set explicitly in the artwork-render step; subsequent build succeeded.
 - Run `37971031426`: **SUCCESS**. Verified artifact `naruto-senki-v2-candidate-debug-apk`, ID `11636815575`, 83,466,499-byte ZIP, expires 2026-10-23. The job's archive inspection found both custom backgrounds inside the APK; `aapt` verified `com.senki.naruto.mod`, version `2.1.0-mod`, code 3, and label `Naruto Senki Mod`.
 - The APK is still a CI candidate. No phone installation or visual/gameplay test has been recorded.
+
+
+## Main menu redesign — 2026-10-10
+- Added `artwork/senki-menu.svg` and `patches/android-clean/0005-custom-main-menu-background.patch`.
+- Replaced the old main-menu bars/clouds/title decoration in `StartMenu.cpp` with the custom Senki background; existing game-mode carousel and menu callbacks are untouched.
+- Updated CI to render and verify `assets/senki_menu.png` inside the APK.
+- Run `37971712613`: **SUCCESS**. Verified artifact `naruto-senki-v2-candidate-debug-apk`, ID `11637705354`, 83,718,905-byte ZIP, expiry 2026-10-23. The APK archive contains `assets/senki_loading.png`, `assets/senki_select.png`, and `assets/senki_menu.png`; app identity assertions also pass.
+- Current custom UI coverage: launcher icon, main menu background, loading background, and character-selection background. Gameplay code and character selection mechanics remain from the V2-derived base.
