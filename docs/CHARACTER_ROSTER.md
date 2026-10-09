@@ -1,7 +1,9 @@
-# Senki Character Roster and Verification Tracker
+# Senki Modded Roster and Verification Tracker
+
+> **This tracker is for content merged into one selected existing Naruto Senki base. Do not create a new game or replacement roster engine. First select the base, then record compatible mod content ported into its native systems.**
 
 ## Purpose
-Track character discovery, implementation, rights review, and gameplay verification separately. The architecture must support 70+ playable characters and remain expandable without a hardcoded maximum.
+Track character discovery, implementation, rights review, and gameplay verification separately. The chosen game's existing roster may be expanded toward 70+ verified playable characters where feasible. Extend its native systems only as needed; roster size is not a reason to build a new engine.
 
 ## Status definitions
 - DISCOVERED — a name or implementation lead has been found.
