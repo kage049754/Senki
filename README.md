@@ -104,3 +104,10 @@ Both are **candidate APKs built in CI**, not yet integrated into one central sou
 
 ### Source comparison result
 A direct recursive-tree comparison found 1,828 identical files across the two successful candidates. The Android-clean candidate uniquely includes a redesigned Kabuto character, clone logic, sprite/audio assets and projectile data; the LAN-enhanced branch does not contain that character. For the offline-first mod, Android-clean is therefore the provisional lead base, while LAN-enhanced changes will be reviewed as selective bug-fix patches rather than merged wholesale. This is a provisional engineering choice pending source integration and phone testing.
+
+
+## Latest verified custom UI candidate (2026-10-10)
+
+The latest successful build includes a new original Senki launcher icon, loading-screen background, and character-selection HUD background, while preserving the existing Cocos2d-x game and its selection logic. CI verifies both custom backgrounds are inside the APK and checks the package identity. [Open the successful build and download the artifact](https://github.com/kage049754/Senki/actions/runs/37971031426) — artifact `naruto-senki-v2-candidate-debug-apk`, 83,466,499-byte ZIP, expires 2026-10-23.
+
+This is still a CI-built candidate, not phone-verified. See `PROGRESS.md` and `ROADMAP.md` for the exact status and remaining checks.
