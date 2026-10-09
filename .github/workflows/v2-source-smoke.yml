@@ -141,7 +141,11 @@ jobs:
         run: |
           find /tmp/narutosenki-candidate/projects/NarutoSenki/proj.android-studio -type f -path '*/build/outputs/apk/*/*.apk' -print
           test -n "$(find /tmp/narutosenki-candidate/projects/NarutoSenki/proj.android-studio -type f -path '*/build/outputs/apk/*/*.apk' -print -quit)"
-          echo "Candidate APK exists and will be uploaded as a private-testing Actions artifact."
+          APK="$(find /tmp/narutosenki-candidate/projects/NarutoSenki/proj.android-studio -type f -path '*/build/outputs/apk/*/*.apk' -print -quit)"
+          test -n "$APK"
+          unzip -l "$APK" | grep -F "assets/senki_loading.png"
+          unzip -l "$APK" | grep -F "assets/senki_select.png"
+          echo "Candidate APK exists and both custom UI backgrounds are packaged inside it."
 
       - name: Verify patched package identity in APK
         if: success()
