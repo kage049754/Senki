@@ -205,3 +205,12 @@ The repo previously received a native Kotlin/Canvas prototype scaffold. It is no
 - [x] Latest run `37971031426`: **SUCCESS**. All patches applied, art rendered, Gradle build passed, both custom backgrounds were found inside the APK, package identity checks passed, and the artifact uploaded.
 - [x] Verified artifact `naruto-senki-v2-candidate-debug-apk`, ID `11636815575`, ZIP size 83,466,499 bytes, expires 2026-10-23. Download from the [successful custom-UI build](https://github.com/kage049754/Senki/actions/runs/37971031426).
 - [ ] Still required: install on the phone and inspect the loading screen, character-selection layout, touch targets, portrait/landscape behavior, and actual battle flow. CI proves packaging and asset presence, not visual/runtime correctness.
+
+
+## Main menu redesign build — 2026-10-10
+- [x] Added editable main menu artwork `artwork/senki-menu.svg` and `patches/android-clean/0005-custom-main-menu-background.patch`.
+- [x] The existing main menu now uses the custom Senki background while retaining the original game-mode carousel, button actions, credits/training/exit callbacks, and menu flow.
+- [x] The workflow renders and verifies `senki_menu.png` alongside the loading and selection backgrounds.
+- [x] Latest run `37971712613`: **SUCCESS**. Patch application, SVG rendering, Gradle build, package identity verification, and APK archive checks all passed.
+- [x] Verified artifact `naruto-senki-v2-candidate-debug-apk`, artifact ID `11637705354`, ZIP size 83,718,905 bytes, expires 2026-10-23. Download from the [successful main-menu build](https://github.com/kage049754/Senki/actions/runs/37971712613).
+- [ ] Physical phone validation remains outstanding. The CI archive now contains all three custom screens, but visual placement, button overlap, and touch behavior still need a real device check.
