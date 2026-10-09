@@ -11,6 +11,21 @@ A public repository or downloadable APK is not automatically permission to reuse
 - REFERENCE_ONLY
 - EXCLUDED
 
+## Naruto Senki V2 source candidate — Zx-Akito/NarutoSenki-V2
+- Canonical URL: https://github.com/Zx-Akito/NarutoSenki-V2
+- Material: C++/Lua game source, Cocos2d-x engine/dependencies, Android project, game resources and bundled assets
+- Verified source structure: includes projects/NarutoSenki/proj.android-studio and source/resource directories described in the repository documentation.
+- Repository metadata: public fork; parent listed as real-re/NarutoSenki-V2-old, which is private in the returned metadata.
+- Code license: no root LICENSE found; GitHub metadata reports no declared license.
+- Asset-specific license: not verified.
+- Attribution requirements: unknown for game code/assets; third-party engine components may have separate notices.
+- Modification/redistribution permission: not established.
+- Permission evidence: none identified during the 2026-10-10 audit.
+- Approved scope: reference/audit only; do not copy source/assets into this central repo or package them in a build until permission is established.
+- Status: **PERMISSION_REQUIRED**
+- Review date: 2026-10-10
+- Notes: the source appears technically suitable for deeper build investigation, but public availability is not a license. The selected v2.1.6-fix APK is a separate binary release reference and is not source.
+
 ## Source review template
 - Source/repository or creator:
 - Canonical URL:
