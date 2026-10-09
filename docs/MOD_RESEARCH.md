@@ -193,3 +193,25 @@ These may be useful for technical comparison only; this metadata result does not
 Continue candidate discovery and technical evaluation even where a source repository does not include an explicit license. Search public forks, mod variants, archived releases, mirrors, and other accessible source/download pages. Look for complete Android V2 builds and useful character/skill/animation/effect/stage/UI additions. A missing license is not a reason to stop private build-feasibility testing.
 
 For every promising candidate, record the source URL, revision/release, engine, Android build path, included game components, unique mod features, and whether we actually built it. Test it in an isolated workspace before merging into kage049754/Senki. Keep attribution/provenance factual; do not invent permissions or license terms. The current priority is the user's personal working APK and device testing, not publishing or redistributing the candidate.
+
+
+## Fifth-pass V2 fork and build-artifact audit — 2026-10-10
+
+### Additional candidates found
+- `sansaks-jpg/NarutoSenki-V2` — public repository described by its owner as a personal-development mirror. It has the expected full Cocos2d-x/C++/Lua V2 tree and a GitHub Actions workflow with 59 recorded runs; its latest visible run (2026-09-15, run 35014823951) completed successfully. Recent history includes LAN multiplayer fixes, so this is a meaningful additional candidate to diff against the simpler V2-derived bases rather than assuming it is just a byte-for-byte mirror. No declared GitHub license was found. Inspect its changed files, Android output and feature stability before choosing it.
+- `SILXNTRAY/NarutoSenki-V2` — public full-tree upload, but only two recent “Add files via upload” commits were visible; no Actions runs were found. Treat as a possible source mirror, not an independently verified mod.
+- `hitlabmodv2/NarutoSenki-V2` — fork of SILXNTRAY's repository; no Actions runs found. Do not count as an independent mod without a meaningful diff.
+- `kuiyr0810/NarutoSenki-V2` — fork of `Zx-Akito/NarutoSenki-V2`, labelled as an early open-source version; source size is smaller and its history diverges. Keep as a compatibility/history candidate.
+- `BF667/NarutoSenki-V2` — fork of the early-version mirror, last source push in 2021; lower priority.
+- `ZhReimu/NarutoSenki-V2` — older fork with last source push in 2021; lower priority.
+- `rikudousennin22/NarutoSenki-V2` — fork of the already inspected Zx-Akito source; no independent feature claim established yet.
+
+### Build workflow improvement
+- Updated `.github/workflows/v2-source-smoke.yml` in commit `fe22f50b802b798802a06c383b8e91e726dd2e09` so a successful candidate build uploads `naruto-senki-v2-candidate-debug-apk` as a 14-day Actions artifact for private testing. This changes artifact retention only; it does not import the candidate source into the central repository or claim a final unified build.
+- The prior candidate compile succeeded in run `37965165366`, but that run predates the artifact-upload change and did not publish an APK. The new workflow revision has not yet been observed in a new Actions run; do not claim the new artifact exists until a new run succeeds and its artifact list is checked.
+
+### Next audit
+1. Diff the active `sansaks-jpg` source branch against the pinned, already build-tested Android candidate; identify its exact Android source commit and any LAN-specific modifications.
+2. Check its latest successful build artifact metadata and Android workflow configuration.
+3. Trigger/re-run the central candidate workflow when repository Actions permissions allow, then verify run conclusion and artifact metadata.
+4. Choose the source with the best reproducible Android build and feature baseline, then plan controlled integration into this central repository. Keep CI success and physical phone testing as separate gates.
