@@ -88,6 +88,7 @@ If a tool/session cannot continue polling after a response, state that limitatio
 
 ## Useful project documents
 
+- [Persistent progress tracker](PROGRESS.md)
 - [Mandatory AI/contributor rules](AGENTS.md)
 - [Milestone roadmap and acceptance criteria](ROADMAP.md)
 - [Naruto Senki/mod source research inventory](docs/MOD_RESEARCH.md)
