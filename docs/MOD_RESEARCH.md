@@ -168,3 +168,23 @@ These may be useful for technical comparison only; this metadata result does not
 - GitHub metadata reports no declared license. The README says the source was extracted from original V2, but that statement alone does not establish permission for code or bundled Naruto assets.
 - Classification: **strong Android build candidate for technical comparison, pending permission/provenance review and exact comparison to the user's v2.1.6-fix reference**. Do not import or redistribute until rights are established.
 - Decision: retain the selected target (existing Naruto Senki V2); evaluate this clean Android snapshot against the Wilykun fork before choosing one technical base. Do not merge two full source trees.
+
+
+### Additional candidate: `likill/NarutoSenki-master` — legacy local PvP/co-op work
+- Repository: https://github.com/likill/NarutoSenki-master
+- Description says the project focuses on local PvP/co-op. README and tree identify Cocos2d-x 2.2.2, Visual Studio 2010, `Classes/`, `Resources/`, and Windows project files; no Android Studio project was found in the root listing.
+- Recent commits include a local dual-player PvP plan, configurable UI sizing, and control-remapping work. The repository has a `V2` release containing a Windows `NarutoSenki.rar` package, not an Android APK.
+- GitHub metadata reports no declared license. Source and bundled game assets are not cleared.
+- Classification: **feature reference only for local PvP/co-op/control ideas; not a drop-in Android/V2 source base**. Do not merge its legacy implementation into V2 without a compatibility analysis and explicit rights.
+
+### Candidate comparison snapshot (2026-10-10)
+| Candidate | Source/build evidence | Potential value | Current blocker |
+| --- | --- | --- | --- |
+| `Wilykun/NarutoSenki-V2` | V2-derived; 15 commits ahead of parent; its Android Actions build and artifact verified | Spectate mode, mode UI, cross-platform build fixes | No declared license; inherited code/assets not cleared; exact release match unverified |
+| `muhammadadilsyaputra08-alt/NarutoSenki-Custom` | Android-only V2-derived source snapshot; its Android Actions build and artifact verified | Cleaner Android-only tree; documented JDK 8/NDK r21e setup | No declared license; extraction provenance/asset rights not cleared |
+| `Zx-Akito/NarutoSenki-V2` | Editable C++/Lua/Cocos2d-x Android project inspected; no build run in central repo | Broad V2 source tree/reference | No declared license; legacy toolchain; exact release match unverified |
+| `LeaderOnePro/NarutoSenki` | Editable legacy C++/resources; Cocos2d-x 2.2.2 / VS2010 | Older character/action implementation reference | No declared license; no verified Android build path |
+| `likill/NarutoSenki-master` | Legacy Cocos2d-x 2.2.2/VS2010; Windows package release | Local PvP/co-op and control/UI reference | No declared license; not a verified Android base |
+| `LeaderOnePro/NarutoSenki1.17Mod` | APK/package-oriented root tree | Historical 1.17 mod reference | No declared license; not editable game source |
+ 
+**Selection remains conditional:** prefer one V2-derived Android source tree after permission/provenance review. Do not combine entire forks; compare diffs and cherry-pick only compatible, permitted changes into the single selected base.
