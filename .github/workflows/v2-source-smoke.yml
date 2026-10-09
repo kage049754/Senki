@@ -75,6 +75,7 @@ jobs:
           grep -F '<color name="ic_launcher_background">#10172A</color>' "$APPRES/values/ic_launcher_background.xml"
           rsvg-convert -w 1280 -h 720 "$ART/senki-loading.svg" -o "$GAME/Resources/senki_loading.png"
           rsvg-convert -w 1280 -h 720 "$ART/senki-select.svg" -o "$GAME/Resources/senki_select.png"
+          rsvg-convert -w 1280 -h 720 "$ART/senki-menu.svg" -o "$GAME/Resources/senki_menu.png"
           for entry in "mdpi:48" "hdpi:72" "xhdpi:96" "xxhdpi:144" "xxxhdpi:192"; do
             density="${entry%%:*}"
             size="${entry##*:}"
@@ -91,9 +92,10 @@ jobs:
           done
           test -s "$GAME/Resources/senki_loading.png"
           test -s "$GAME/Resources/senki_select.png"
+          test -s "$GAME/Resources/senki_menu.png"
           test -s "$APPRES/mipmap-xxxhdpi/ic_launcher.png"
           test -s "$APPRES/mipmap-xxxhdpi/ic_launcher_foreground.png"
-          file "$GAME/Resources/senki_loading.png" "$GAME/Resources/senki_select.png" "$APPRES/mipmap-xxxhdpi/ic_launcher.png" "$APPRES/mipmap-xxxhdpi/ic_launcher_foreground.png"
+          file "$GAME/Resources/senki_loading.png" "$GAME/Resources/senki_select.png" "$GAME/Resources/senki_menu.png" "$APPRES/mipmap-xxxhdpi/ic_launcher.png" "$APPRES/mipmap-xxxhdpi/ic_launcher_foreground.png"
           echo "Rendered the editable loading screen and launcher icon into the candidate source tree."
 
       - name: Set up Java 17 for Android SDK provisioning
@@ -145,7 +147,8 @@ jobs:
           test -n "$APK"
           unzip -l "$APK" | grep -F "assets/senki_loading.png"
           unzip -l "$APK" | grep -F "assets/senki_select.png"
-          echo "Candidate APK exists and both custom UI backgrounds are packaged inside it."
+          unzip -l "$APK" | grep -F "assets/senki_menu.png"
+          echo "Candidate APK exists and all custom UI backgrounds are packaged inside it."
 
       - name: Verify patched package identity in APK
         if: success()
