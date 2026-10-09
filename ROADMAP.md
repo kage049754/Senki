@@ -126,3 +126,9 @@ Next implementation sequence:
 3. Create a reproducible central integration mechanism that applies tracked local patches to the pinned source, then builds the combined result.
 4. Add character/mod changes in small batches, checking roster identifiers, asset paths, skill/animation data, and Android build after each batch.
 5. Download the verified candidate APK to the user's phone and record install, launch, character selection, battle, skills, HP/level, minions, towers, and post-match results separately from CI success.
+
+
+## First verified local patch milestone (2026-10-10)
+The Android-clean source is now built through a central patch pipeline. The first patch changes only the install identity/version/label; CI confirms the patch applied and checks the built APK metadata with `aapt`. Run `37968632537` succeeded and uploaded artifact `naruto-senki-v2-candidate-debug-apk` (ID `11634478692`, expires 2026-10-23).
+
+Next mod pass: inspect and redesign the existing V2 loading/menu/character-selection UI while preserving the Cocos2d-x battle, level/HP/skills, minions, and towers. Keep changes as small ordered patches against the pinned source, and require build + metadata/resource checks before treating a patch as done. Then test install and actual gameplay on the phone.
