@@ -110,3 +110,11 @@ The repo previously received a native Kotlin/Canvas prototype scaffold. It is no
 - [ ] Compare this Android-only source snapshot with `Wilykun/NarutoSenki-V2` and the selected v2.1.6-fix release.
 - [ ] Resolve code/asset rights and provenance before import.
 - [ ] Once approved, select one base, port it into `kage049754/Senki`, and make the central repo's own V2 build succeed before adding more mods.
+
+
+## Additional local PvP/co-op candidate — 2026-10-10
+- [x] Inspected `likill/NarutoSenki-master` README, metadata, root tree, recent commits, and release metadata.
+- Finding: legacy Cocos2d-x 2.2.2 / Visual Studio 2010 source with Windows-oriented release; recent work documents local PvP/co-op, UI sizing, and control remapping.
+- Classification: reference-only for feature research; not a verified Android/V2 source base and no declared license.
+- [x] Added a comparative candidate matrix to `docs/MOD_RESEARCH.md`.
+- [ ] Continue with permission/provenance review and a single-base decision; no full-repository merges or asset extraction.
