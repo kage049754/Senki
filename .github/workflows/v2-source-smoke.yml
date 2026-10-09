@@ -70,6 +70,9 @@ jobs:
           ART="$GITHUB_WORKSPACE/artwork"
           GAME="/tmp/narutosenki-candidate/projects/NarutoSenki"
           APPRES="$GAME/proj.android-studio/app/res"
+          # The upstream XML has line-ending differences in some clones; patch the exact color value robustly here.
+          sed -i 's/#ECE342/#10172A/' "$APPRES/values/ic_launcher_background.xml"
+          grep -F '<color name="ic_launcher_background">#10172A</color>' "$APPRES/values/ic_launcher_background.xml"
           rsvg-convert -w 1280 -h 720 "$ART/senki-loading.svg" -o "$GAME/Resources/senki_loading.png"
           for entry in "mdpi:48" "hdpi:72" "xhdpi:96" "xxhdpi:144" "xxxhdpi:192"; do
             density="${entry%%:*}"
