@@ -20,6 +20,7 @@ Last updated: 2026-10-10
 - [x] Verified the V2 documentation describes Android Studio build steps and the C++/Lua/resource structure.
 - [x] Verified the source repo is a fork whose parent is real-re/NarutoSenki-V2-old (private in repository metadata); latest visible source commits inspected are from 2026-05-09.
 - [x] Checked for a root LICENSE; none was found, and GitHub repository metadata reports no license.
+- [x] Inspected Android build configuration: Android Gradle Plugin 3.3.3, Gradle 5.6.4, compile SDK 31, min SDK 21, and legacy NDK toolchain 4.9 request.
 - [ ] Establish permission/license terms for the game code and especially Naruto artwork, sprites, audio, animations, and other bundled assets.
 - [ ] Verify the exact source revision's relationship to the selected v2.1.6-fix release.
 - [ ] Import/adapt source into this central repo after rights and import strategy are resolved.
@@ -29,14 +30,20 @@ Last updated: 2026-10-10
 
 **Decision:** the V2 source candidate is technically credible and has the expected Android project, but it is not yet safe to copy wholesale into this repo because the repository has no declared license and asset permissions are not established. Keep it as a source/reference candidate until terms are clarified; do not infer permission from public visibility.
 
+## Fan-project license and build labeling
+- [x] Added root LICENSE scoped only to original contributions made for this repository.
+- [x] Added NOTICE.md explaining fan-made/non-commercial intent without claiming third-party rights.
+- [x] Added docs/V2_BUILD_AUDIT.md with source structure and Android toolchain risks.
+- [x] Renamed the existing Actions workflow/artifact so prototype success cannot be mistaken for a V2 build.
+
 ## Current project contents and cautions
 The repo previously received a native Kotlin/Canvas prototype scaffold. It is not the intended final foundation. The latest observed Actions run 37961789724 completed successfully on commit 90f01e26e2ffb3cc9e618b065fa1c1899c699e1e, and it produced an artifact named senki-debug-apk (823,056 bytes). This is the scaffold's debug APK, not a verified Naruto Senki V2 build or unified modded APK. It must not be represented as the requested final game.
 
 ## Next actions
-1. Resolve code and asset permission terms for the V2 source candidate or locate a source distribution with clear reuse terms.
-2. Compare its source revision with the selected release where possible.
-3. Import/adapt the existing V2 source into kage049754/Senki only when the source and permission decision is documented.
-4. Build/verify the original base, then start merging mods.
+1. Resolve code and asset permission terms for the V2 source candidate or locate a source distribution with clear reuse terms. Fan-made/non-commercial status does not itself remove this requirement.
+2. Verify source compatibility with the selected release where possible.
+3. After permission is resolved, import/adapt the existing V2 source into kage049754/Senki with provenance preserved.
+4. Establish a compatible legacy Android/NDK build environment, build/verify the original base, then merge mods.
 5. Keep CI reporting explicit about whether a run builds the prototype scaffold or the real V2 source.
 
 ## CI and APK status
