@@ -95,3 +95,19 @@ For each new candidate, record:
 ## Integration policy
 
 Do not combine entire repositories or APKs into one package. Use a single Senki architecture and port compatible mechanics/characters one at a time. Every imported component must pass provenance/permission review, fit the common character and skill interfaces, and pass selection/combat/death/respawn/AI tests. If reuse permission is absent or unclear, create an original implementation and original assets instead.
+
+
+## Roster scaling requirement
+
+Senki must be designed for **70+ playable characters and remain expandable beyond 70**, rather than inheriting a fixed roster size from a reference game.
+
+- The number 29 is a historical/reference roster size only, never a design limit.
+- Do not hardcode a character maximum or allocate fixed UI slots.
+- Use a dynamic character registry with stable unique IDs and data-driven definitions.
+- Build the roster screen from the registry; support scrolling/pagination, search, filters, and categories.
+- Load character art/animations on demand and release resources safely.
+- Share skill implementations where practical while preserving unique character behavior.
+- Keep alternate forms only when they have meaningful gameplay differences or are intentionally separate selectable entries.
+- Test the registry and UI with at least 75 synthetic entries before claiming scalability; synthetic test entries must not be counted as real playable characters.
+- Track discovered, planned, implemented, and verified playable counts separately in docs/CHARACTER_ROSTER.md.
+- The target is at least 70 genuinely playable and individually verified characters before claiming the 70+ milestone complete. The system must have no artificial code-level cap.
