@@ -14,8 +14,8 @@ Last updated: 2026-10-10
 Build one cohesive landscape-first Android 2D lane-battle game with a data-driven roster that supports 70+ playable characters and can expand beyond 70 without a hardcoded roster limit.
 
 ## Documentation status
-- [x] README updated with AI instructions and scalable 70+ roster target.
-- [x] AGENTS.md updated with no-hardcoded-cap rules.
+- [x] README updated with AI instructions, progress tracker link, and scalable 70+ roster target.
+- [x] AGENTS.md and .github/copilot-instructions.md updated with no-hardcoded-cap rules and mandatory tracker reads.
 - [x] ROADMAP.md updated with dynamic registry and 75-entry scalability test.
 - [x] Verified docs/MOD_RESEARCH.md contains the roster-scaling requirement.
 - [x] Created and verified docs/CHARACTER_ROSTER.md.
