@@ -125,3 +125,12 @@ The repo previously received a native Kotlin/Canvas prototype scaffold. It is no
 - [x] Updated the roadmap, base notes, mod inventory, and permission register with the candidate comparison.
 - [x] Rechecked the central repository's Actions list after the documentation updates. No newer central V2 build exists; the latest central workflow remains run `37963412816`, which builds only the prototype scaffold. Documentation-only commits did not trigger the prototype workflow's path filters.
 - [ ] The project is not at the final game stage: source/asset permission and provenance are still blocking actual base import, central V2 build, mod merges, and device verification.
+
+
+## Actual V2 source build attempt added — 2026-10-10
+- [x] Added `.github/workflows/v2-source-smoke.yml` in commit `6a39f56bae357e8720a506c22fbb7b8fceeddc5a`.
+- The workflow checks out a **pinned** revision of `muhammadadilsyaputra08-alt/NarutoSenki-Custom` into a temporary CI workspace, verifies the Android project structure, provisions the documented legacy SDK/NDK/JDK versions, and attempts `assembleDebug`.
+- It deliberately does **not** upload or release the candidate APK. It is a build-feasibility diagnostic, not the integrated central game build and not device testing.
+- Run `37965089554`: **in progress at last poll**. Source checkout was still running; no build result has been confirmed yet.
+- [ ] Wait for this run to finish; inspect actual failing step/logs and fix the workflow or candidate-build compatibility issue before retrying.
+- [ ] Keep source/assets permission unresolved until evidence is obtained; successful compilation would not grant redistribution rights.
