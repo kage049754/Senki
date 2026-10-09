@@ -110,3 +110,21 @@ A metadata pass on the older `NarutoSenki-cocos2dx` source family found no decla
 - `wuhewanxiang/NarutoSenki-cocos2dx` (fork of the candidate upstream).
 
 These may be useful for technical comparison only; this metadata result does not establish code or asset reuse rights. They do not currently provide a permission-cleared replacement for the selected V2 source.
+
+
+## Third-pass repository search — 2026-10-10
+
+### `LeaderOnePro/NarutoSenki1.17Mod` — APK/decompiled package, not a source base
+- Repository: https://github.com/LeaderOnePro/NarutoSenki1.17Mod
+- Description identifies it as a custom mod based on Naruto Senki 1.17.
+- GitHub metadata: public, non-fork repository; default branch `main`; repository size reported as 37,613 KB; no declared license.
+- Root tree inspection found Android package/decompiled distribution artifacts such as `AndroidManifest.xml`, `classes.dex`, `resources.arsc`, `META-INF/`, `lib/`, `res/`, and `assets/`; this is not an editable Cocos2d-x game source tree.
+- A similarly named `wsnbbnbb/NarutoSenki1.17Mod` appears in search results with the same reported repository size; treat it as a likely mirror/duplicate until commit/tree comparison proves otherwise.
+- Classification: **APK/package reference only; not a compatible source base at present.**
+- Reuse status: **PERMISSION_REQUIRED**; no license declared, and included Naruto/game assets are not cleared. Do not extract, copy, or redistribute its assets/binaries into the V2 project.
+- Use: metadata and public documentation may inform the inventory; do not count this as a source-level mod integrated into V2.
+
+### Search outcome and next audit targets
+- The search surfaced an explicit 1.17 mod repository, but its package-oriented tree does not solve the editable-source or permission blocker.
+- Continue auditing the older editable-source family `LeaderOnePro/NarutoSenki` and compare it with the existing V2 candidate by actual source structure, Android build support, provenance, and rights. Do not switch away from the user's selected V2 target merely because another repository is easier to find.
+- Search is ongoing and not exhaustive. Repository names/search snippets are leads, not evidence of unique content or permission.
