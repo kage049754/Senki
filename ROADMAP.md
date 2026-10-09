@@ -52,31 +52,39 @@ This roadmap is a living plan. The checked status must reflect repository eviden
 
 **Exit checks:** a complete match has a clear winner, can be restarted repeatedly, and has no stuck waves or immortal objectives.
 
-## Phase 4 — Character framework and first roster
+## Phase 4 — Scalable character framework and starter roster
 **Status: Not started**
 
 - [ ] Define data-driven character stats and skill metadata.
+- [ ] Define a dynamic character registry/catalog with stable string IDs; no fixed roster capacity.
 - [ ] Define animation/state contracts: idle, move, attack, cast, hit, death, respawn.
 - [ ] Standardize skill interface: input, cooldown, targeting, hitbox/projectile, effects, damage, duration.
-- [ ] Build roster select with portrait/name/stats and locked/unlocked states if needed.
+- [ ] Build responsive roster selection with portrait/name/stats and locked/unlocked states if needed.
+- [ ] Support scrolling/pagination, search, and useful filters/categories.
 - [ ] Add a small balanced starter roster with genuinely distinct move sets.
 - [ ] Ensure bots use the same battle/skill rules as players where appropriate.
+- [ ] Add validation for missing IDs, resources, animations, and skill references.
+- [ ] Add a test fixture with at least 75 synthetic/test entries to prove the catalog/UI is not capped at 29 or 70; these test entries must not be presented as real playable characters.
 
-**Exit checks:** adding a character does not require rewriting the core battle engine; roster selection reliably spawns the selected fighter.
+**Exit checks:** adding a character does not require rewriting the core battle engine; roster selection reliably spawns the selected fighter; the catalog handles at least 75 test entries without a fixed-capacity limit.
 
-## Phase 5 — Research-driven roster expansion
+## Phase 5 — Research-driven roster expansion (target: 70+ playable characters, expandable beyond)
 **Status: Not started**
 
 - [ ] Continue searching GitHub for Naruto Senki source repositories, forks, mod repositories, release changelogs, and compatible character implementations.
-- [ ] Inspect each candidate's code/resources and record the exact findings in docs/MOD_RESEARCH.md.
+- [ ] Inspect each candidate's code/resources and record exact findings in docs/MOD_RESEARCH.md.
 - [ ] Separate actual game source from APK-only distributions, file hosts, documentation sites, translations, and unrelated Naruto mods.
 - [ ] Map characters, alternate forms, skills, summons, animations, effects, and balance ideas.
 - [ ] Review license/terms and provenance before reuse.
 - [ ] Port only compatible, permitted implementations; otherwise implement original equivalents from high-level gameplay observations.
 - [ ] Consolidate duplicate characters; keep forms only when gameplay is meaningfully different.
-- [ ] Add characters in batches and test each batch for crashes, animation errors, and balance.
+- [ ] Add characters in manageable batches and test each batch for crashes, animation errors, and balance.
+- [ ] Track discovered, planned, implemented, tested, and verified counts separately.
+- [ ] Keep roster size data-driven; do not add a hardcoded upper bound.
+- [ ] Lazy-load resources and test memory use as the roster grows.
+- [ ] Ensure selection, AI, save/unlock data, and battle spawning work with the full catalog.
 
-**Exit checks:** every imported code/asset has recorded provenance and permission basis; each character passes selection, battle, skills, death, respawn, and AI checks.
+**Exit checks:** at least 70 distinct playable characters are implemented and individually verified before claiming the 70+ target is met; no artificial code-level roster ceiling; every imported code/asset has recorded provenance and permission basis; each character passes selection, battle, skills, death, respawn, and applicable AI checks. Continue to allow expansion beyond 70.
 
 ## Phase 6 — Modes, polish, and performance
 **Status: Not started**
@@ -87,6 +95,7 @@ This roadmap is a living plan. The checked status must reflect repository eviden
 - [ ] Optimize memory, texture sizes, loading time, and frame pacing for mid-range Android phones.
 - [ ] Test different screen sizes and Android versions.
 - [ ] Add automated tests for game-state transitions and core combat calculations where possible.
+- [ ] Test a large roster without loading every character's heavy assets into memory simultaneously.
 
 **Exit checks:** stable repeated matches, no major UI clipping, no obvious memory leaks, and acceptable performance on target devices.
 
@@ -105,6 +114,7 @@ This roadmap is a living plan. The checked status must reflect repository eviden
 
 ## Working rules
 
+- Do not jump to a huge roster before one complete battle works, but design the roster architecture for 70+ from the beginning.
 - Do not jump to a huge roster before one complete battle works.
 - Do not merge entire projects blindly. Port systems into a single consistent architecture.
 - Do not assume a source repository grants permission to redistribute its code or assets.
