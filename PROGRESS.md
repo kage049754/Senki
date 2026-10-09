@@ -100,3 +100,13 @@ The repo previously received a native Kotlin/Canvas prototype scaffold. It is no
 - [ ] Verify the fork's exact relationship to the selected v2.1.6-fix release and inspect full build documentation.
 - [ ] Resolve source and asset permissions before adopting/copying the fork into the central repo.
 - [ ] Once permitted, build the chosen V2 base inside `kage049754/Senki`; do not count another repository's successful artifact as this repo's build.
+
+
+## Android-only V2 clean-base candidate — 2026-10-10
+- [x] Inspected `muhammadadilsyaputra08-alt/NarutoSenki-Custom` README and root tree; it describes an Android-only V2-derived Cocos2d-x 2.2.6/C++/Lua base.
+- [x] Verified its latest inspected Actions run `34331260360` succeeded through SDK/NDK setup, `assembleDebug`, APK discovery, and artifact upload.
+- [x] Verified artifact `narutosenki-debug-apk` exists (83,468,934 bytes; SHA-256 `5704b77cdd63369b83e74febc03d640628220e4512d43f12832063522ce72271`; expires 2026-12-08).
+- [x] Added the candidate and CI evidence to `docs/MOD_RESEARCH.md`.
+- [ ] Compare this Android-only source snapshot with `Wilykun/NarutoSenki-V2` and the selected v2.1.6-fix release.
+- [ ] Resolve code/asset rights and provenance before import.
+- [ ] Once approved, select one base, port it into `kage049754/Senki`, and make the central repo's own V2 build succeed before adding more mods.
