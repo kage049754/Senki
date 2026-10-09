@@ -11,8 +11,9 @@ Senki is a landscape-first Android 2D lane-battle game project inspired by the f
 2. Read [AGENTS.md](AGENTS.md) for mandatory workflow and coding rules.
 3. Read [ROADMAP.md](ROADMAP.md) for current priorities and acceptance criteria.
 4. Read [docs/MOD_RESEARCH.md](docs/MOD_RESEARCH.md) before adding outside Naruto Senki code, assets, character concepts, or dependencies.
-5. Inspect the current files and latest GitHub Actions run before making changes. Never assume the project structure, build status, or stage.
-6. Update the roadmap/research log when work changes the plan or a source is verified.
+5. Read [docs/CHARACTER_ROSTER.md](docs/CHARACTER_ROSTER.md) and [docs/ROSTER_SCALABILITY.md](docs/ROSTER_SCALABILITY.md) before roster/character work.
+6. Inspect the current files and latest GitHub Actions run before making changes. Never assume the project structure, build status, or stage.
+7. Update the roadmap/research/progress records when work changes the plan or a source is verified.
 
 These instructions are repository guidance, not a technical mechanism that can force every AI to obey. They are placed in prominent, conventional files so repository-aware agents can discover them. An agent that ignores repository instructions cannot be guaranteed to read them automatically.
 
@@ -24,7 +25,9 @@ These instructions are repository guidance, not a technical mechanism that can f
 - **Combat:** movement, basic attack, skill buttons, cooldowns, HP, damage, hit reactions, death/respawn.
 - **Progression:** experience/leveling and skill unlock or upgrade rules where appropriate.
 - **Lane combat:** allied/enemy minions, towers/base objectives, waves, and match win/loss conditions.
-- **Roster:** distinct characters/forms with individual stats, attack timing, skill kits, effects, portraits, and animation states.
+- **Roster:** data-driven catalog designed for **70+ playable characters with no artificial hardcoded maximum**. Each entry may have distinct stats, attack timing, skill kits, effects, portraits, and animation states. This is a design target; it is not a claim that 70 characters are already implemented.
+- **Scalable selection:** search/filter/category and scrolling or pagination; do not create one fixed button per character.
+- **Performance:** lazy-load character resources and release them safely so the whole roster does not need to remain in memory at once.
 - **Offline-first:** the core single-player battle must not require an account or internet connection.
 - **Quality:** no blank screen after engine splash, no invisible menu, no dead buttons, no crash on launch, and no invalid APK package.
 
@@ -51,9 +54,9 @@ The ordered phases and their acceptance checks are in [ROADMAP.md](ROADMAP.md). 
 2. Reliable landscape launch, menu, mode select, and character select.
 3. One complete playable battle loop.
 4. Minions, towers, leveling, win/loss, and restart.
-5. Character framework and initial roster.
-6. Research-driven roster expansion and effects.
-7. UI/audio/performance polish and device testing.
+5. Data-driven character framework and a starter roster.
+6. Roster expansion to 70+ playable entries, with no fixed cap, after the battle architecture is stable.
+7. Additional modes, UI/audio/performance polish, and device testing.
 8. Release build, APK artifact verification, and documented known issues.
 
 A phase is not complete because code was written. It is complete only after its acceptance checks pass.
@@ -80,13 +83,16 @@ If a tool/session cannot continue polling after a response, state that limitatio
 - [ ] Establish reproducible CI build and APK artifact.
 - [ ] Fix launch-to-menu flow and landscape behavior.
 - [ ] Implement the first complete battle loop.
-- [ ] Expand roster after source and permission review.
+- [ ] Implement a data-driven roster registry with no fixed character cap.
+- [ ] Expand roster in verified batches toward 70+ playable entries.
 
 ## Useful project documents
 
 - [Mandatory AI/contributor rules](AGENTS.md)
 - [Milestone roadmap and acceptance criteria](ROADMAP.md)
 - [Naruto Senki/mod source research inventory](docs/MOD_RESEARCH.md)
+- [Character implementation tracker](docs/CHARACTER_ROSTER.md)
+- [Large-roster architecture rules](docs/ROSTER_SCALABILITY.md)
 
 ## Disclaimer
 
