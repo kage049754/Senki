@@ -131,9 +131,10 @@ The repo previously received a native Kotlin/Canvas prototype scaffold. It is no
 - [x] Added `.github/workflows/v2-source-smoke.yml` in commit `6a39f56bae357e8720a506c22fbb7b8fceeddc5a`.
 - The workflow checks out a **pinned** revision of `muhammadadilsyaputra08-alt/NarutoSenki-Custom` into a temporary CI workspace, verifies the Android project structure, provisions the documented legacy SDK/NDK/JDK versions, and attempts `assembleDebug`.
 - It deliberately does **not** upload or release the candidate APK. It is a build-feasibility diagnostic, not the integrated central game build and not device testing.
-- Run `37965089554`: **in progress at last poll**. Source checkout was still running; no build result has been confirmed yet.
-- [ ] Wait for this run to finish; inspect actual failing step/logs and fix the workflow or candidate-build compatibility issue before retrying.
-- [ ] Keep source/assets permission unresolved until evidence is obtained; successful compilation would not grant redistribution rights.
+- Run `37965089554` failed before compilation because setup-android tried to install the obsolete `tools` SDK package; that provisioning error was fixed in `b6b9f83913f14445df1e5fbf558e42a5cf03a0a3`.
+- [x] Run `37965165366` completed **successfully** on 2026-10-09. The pinned candidate's Android project built with `assembleDebug`, and the workflow verified that an APK existed in the temporary runner workspace.
+- This confirms build feasibility for the candidate revision only. The APK was **not uploaded**, the candidate source was **not merged** into `kage049754/Senki`, and no physical-device test was performed.
+- Rights/provenance remains a distribution consideration; it is not being used as a reason to stop researching or running private build diagnostics.
 
 
 ## First V2 smoke-test failure and fix — 2026-10-10
@@ -143,3 +144,8 @@ The repo previously received a native Kotlin/Canvas prototype scaffold. It is no
 - [x] New run `37965165366` triggered for the fix.
 - Last poll: run is still **in progress** while setting up Java 17; no second-run build result confirmed yet.
 - [ ] Continue polling; if provisioning succeeds, inspect the actual Gradle build result. If it fails, read the next failure log and repair the actual cause before rerunning.
+
+
+## User direction — continue broader Senki source search — 2026-10-10
+- [x] User clarified they want us to continue looking for other Naruto Senki sources/mods, including repositories outside GitHub, rather than repeatedly stopping at the permission caveat.
+- [ ] Compare additional candidates by Android buildability, game version, mod features, source completeness, and documented permissions. Keep candidates separate until a practical base is chosen; do not claim public visibility alone grants redistribution rights.
