@@ -249,3 +249,13 @@ For every promising candidate, record the source URL, revision/release, engine, 
 - Added a post-build `aapt dump badging` check for package ID, version, and app label.
 - Run `37968632537`: **SUCCESS**; patch application, Gradle build, APK existence, package identity checks, and artifact upload all passed.
 - Verified artifact `naruto-senki-v2-candidate-debug-apk`, ID `11634478692`, 83,447,929-byte ZIP, expiry 2026-10-23. This confirms a centrally maintained patch can alter the real V2-derived APK while retaining the existing game engine; it is not yet a gameplay/UI redesign or phone-tested release.
+
+
+## Custom UI artwork and package verification — 2026-10-10
+- Added source-controlled vector artwork: `artwork/senki-launcher.svg`, `artwork/senki-launcher-foreground.svg`, `artwork/senki-loading.svg`, and `artwork/senki-select.svg`.
+- The workflow renders the launcher icon to all Android density folders, renders the loading and selection backgrounds to 1280×720 PNGs, applies the background-color update, and then builds the APK.
+- `0002-custom-loading-screen.patch` replaces the old loading bars/title/clouds with the custom background while keeping the existing tips and animated loading indicator.
+- `0004-custom-character-select-background.patch` replaces old decorative background/chrome only. It leaves character buttons, grid/paging, hero portrait/name, selection logic, and start-game behavior intact.
+- The first color patch attempt failed because its unified-diff hunk was malformed. That failure was inspected, the bad patch file was removed, and the color is now set explicitly in the artwork-render step; subsequent build succeeded.
+- Run `37971031426`: **SUCCESS**. Verified artifact `naruto-senki-v2-candidate-debug-apk`, ID `11636815575`, 83,466,499-byte ZIP, expires 2026-10-23. The job's archive inspection found both custom backgrounds inside the APK; `aapt` verified `com.senki.naruto.mod`, version `2.1.0-mod`, code 3, and label `Naruto Senki Mod`.
+- The APK is still a CI candidate. No phone installation or visual/gameplay test has been recorded.
