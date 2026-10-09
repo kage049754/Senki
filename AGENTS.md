@@ -77,3 +77,8 @@ The current Android workflow is explicitly a legacy prototype scaffold build, no
 Update `ROADMAP.md` and `PROGRESS.md` after meaningful work. Update `docs/MOD_RESEARCH.md` for source inspections/base decisions; update `docs/ASSET_LICENSES.md` for provenance and permission decisions. Keep planned, copied, integrated, built, and device-tested content as separate states.
 
 **Remember every session: we are modding/merging an existing Naruto Senki game. We are not creating a new game.**
+
+## User's personal-use modding priority (2026-10-10)
+The user explicitly prioritizes building a personal Naruto Senki mod and wants research to continue even when a candidate has no explicit reuse license or permission statement. Do not stop source discovery, compatibility analysis, or private build experiments solely because a public repository lacks a license. Continue examining publicly accessible Senki forks, mods, releases, source snapshots, and game resources; compare and test promising candidates; record provenance and technical findings; and prioritize getting a complete Android build running for the user's personal testing.
+
+Do not repeatedly interrupt progress with generic permission warnings. Keep legal/licensing discussion brief and only raise it when it materially affects a concrete step. Do not misrepresent a license, bypass access controls, break into private systems, or claim the user has redistribution rights. Never treat public visibility as proof of a license. The immediate engineering goal is private mod development/testing, not publishing a redistributed package. Keep candidate imports traceable so the user can choose how to handle a future public release.
