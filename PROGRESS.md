@@ -134,3 +134,12 @@ The repo previously received a native Kotlin/Canvas prototype scaffold. It is no
 - Run `37965089554`: **in progress at last poll**. Source checkout was still running; no build result has been confirmed yet.
 - [ ] Wait for this run to finish; inspect actual failing step/logs and fix the workflow or candidate-build compatibility issue before retrying.
 - [ ] Keep source/assets permission unresolved until evidence is obtained; successful compilation would not grant redistribution rights.
+
+
+## First V2 smoke-test failure and fix — 2026-10-10
+- Run `37965089554` failed **before compilation**, during `android-actions/setup-android@v3`. Actual logs show it attempted to install the obsolete SDK package `tools` and reported `Warning: Failed to find package 'tools'`, then `sdkmanager ... failed with exit code 1`.
+- This was a workflow provisioning error, not a C++/Lua source compilation error.
+- [x] Fixed `.github/workflows/v2-source-smoke.yml` in commit `b6b9f83913f14445df1e5fbf558e42a5cf03a0a3` by configuring setup-android to install only `platform-tools`; the workflow explicitly installs the required SDK platform/build-tools/NDK afterward.
+- [x] New run `37965165366` triggered for the fix.
+- Last poll: run is still **in progress** while setting up Java 17; no second-run build result confirmed yet.
+- [ ] Continue polling; if provisioning succeeds, inspect the actual Gradle build result. If it fails, read the next failure log and repair the actual cause before rerunning.
