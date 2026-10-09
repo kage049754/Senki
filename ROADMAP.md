@@ -115,3 +115,14 @@ The user has explicitly directed us to keep searching for Senki characters, skil
 7. Keep provenance notes so source and assets can be traced. Do not make unsupported claims about licenses or redistribution rights. Public release is not the current milestone; a working personal test build is.
 
 Current evidence: central diagnostic run 37965165366 succeeded in compiling the pinned muhammadadilsyaputra08-alt/NarutoSenki-Custom candidate in a temporary runner workspace. Its APK was not uploaded and the source is not yet integrated into the central repository. This is build-feasibility evidence, not a device test.
+
+
+## Current base-selection evidence (2026-10-10)
+Two source candidates now have successful central CI APK artifacts. The lead candidate for the requested offline-first Android mod is the Android-clean V2-derived source at `muhammadadilsyaputra08-alt/NarutoSenki-Custom@279e85e73040558c84988a0eea310b6286eb77f0`. A recursive tree comparison found it uniquely contains a redesigned Kabuto character, clone logic, sprites, audio, and projectile data that are absent from the LAN-enhanced branch. It also avoids hundreds of desktop-only paths. The LAN-enhanced candidate at `sansaks-jpg/NarutoSenki-V2@1751b7fb8f05a96ff6e85bc8a6c8e3fdcca3f74a` is valuable for selective crash fixes and optional networking, but should not replace the lead base wholesale.
+
+Next implementation sequence:
+1. Keep the Android-clean candidate as the provisional lead; preserve its unique Kabuto source and assets.
+2. Review the 58 differing shared paths file-by-file and cherry-pick only clearly beneficial crash/stability fixes from the LAN-enhanced branch.
+3. Create a reproducible central integration mechanism that applies tracked local patches to the pinned source, then builds the combined result.
+4. Add character/mod changes in small batches, checking roster identifiers, asset paths, skill/animation data, and Android build after each batch.
+5. Download the verified candidate APK to the user's phone and record install, launch, character selection, battle, skills, HP/level, minions, towers, and post-match results separately from CI success.
