@@ -194,3 +194,14 @@ The repo previously received a native Kotlin/Canvas prototype scaffold. It is no
 - [x] Run `37968632537`: **SUCCESS** on commit `c07abc442d8b2e5ceab542fe999c67fecb09dddd`. The patch-application step passed, Gradle reported `BUILD SUCCESSFUL`, APK existence passed, and package identity assertions passed.
 - [x] Verified artifact `naruto-senki-v2-candidate-debug-apk`, artifact ID `11634478692`, ZIP size 83,447,929 bytes, expires 2026-10-23. Download from the [successful patched candidate run](https://github.com/kage049754/Senki/actions/runs/37968632537).
 - This is the first central patch applied to the pinned existing V2-derived source and verified in the resulting APK. The upstream source is still fetched into a temporary CI workspace rather than fully vendored into this repo; the game has not yet been installed or tested on the user's phone.
+
+
+## Custom launcher, loading screen, and character-selection pass — 2026-10-10
+- [x] Added editable vector art in `artwork/senki-launcher.svg`, `artwork/senki-launcher-foreground.svg`, `artwork/senki-loading.svg`, and `artwork/senki-select.svg`.
+- [x] Added `patches/android-clean/0002-custom-loading-screen.patch`: the existing Cocos2d-x loading layer now uses the custom 16:9 loading artwork while retaining the original character tips and loading animation.
+- [x] Added `patches/android-clean/0004-custom-character-select-background.patch`: the character-pick screen now uses a custom dark HUD layout, but preserves the existing character grid, hero preview/name, paging, selection rules, skill/ranking buttons, and start-game action.
+- [x] The workflow renders SVG sources into game PNG assets and Android launcher densities; it also uses a dark navy adaptive-icon background.
+- [x] Strengthened CI to verify the actual APK archive contains both `assets/senki_loading.png` and `assets/senki_select.png`, and checks the package ID/version/app label.
+- [x] Latest run `37971031426`: **SUCCESS**. All patches applied, art rendered, Gradle build passed, both custom backgrounds were found inside the APK, package identity checks passed, and the artifact uploaded.
+- [x] Verified artifact `naruto-senki-v2-candidate-debug-apk`, ID `11636815575`, ZIP size 83,466,499 bytes, expires 2026-10-23. Download from the [successful custom-UI build](https://github.com/kage049754/Senki/actions/runs/37971031426).
+- [ ] Still required: install on the phone and inspect the loading screen, character-selection layout, touch targets, portrait/landscape behavior, and actual battle flow. CI proves packaging and asset presence, not visual/runtime correctness.
