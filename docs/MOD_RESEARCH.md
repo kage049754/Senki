@@ -215,3 +215,11 @@ For every promising candidate, record the source URL, revision/release, engine, 
 2. Check its latest successful build artifact metadata and Android workflow configuration.
 3. Trigger/re-run the central candidate workflow when repository Actions permissions allow, then verify run conclusion and artifact metadata.
 4. Choose the source with the best reproducible Android build and feature baseline, then plan controlled integration into this central repository. Keep CI success and physical phone testing as separate gates.
+
+
+## Candidate APK artifact verification — 2026-10-10
+- The first artifact-enabled run (`37966549532`) started but Gradle hit legacy Android SDK repository metadata parsing errors; a follow-up workflow revision isolated the SDK root.
+- Successful run: `kage049754/Senki` Actions run `37966861114`, commit `fcccc784c39f0f33c041c4d00bb39b3408ccaef9`.
+- Verified artifact `naruto-senki-v2-candidate-debug-apk` (ID `11634177274`, 83,435,979-byte ZIP, expiry 2026-10-23). This is a CI-produced debug APK of the pinned `muhammadadilsyaputra08-alt/NarutoSenki-Custom` source, built in a temporary runner workspace. It is not yet the integrated modded game.
+- The isolation fix is in `.github/workflows/v2-source-smoke.yml`: install only required legacy packages under a clean `$RUNNER_TEMP/android-sdk` and set SDK environment variables for subsequent Gradle steps.
+- Next: compare the more feature-rich `sansaks-jpg/NarutoSenki-V2` source against the current pinned candidate; do not treat its expired prior artifact as downloadable. Keep the central candidate artifact build as a known-good build-environment baseline.
