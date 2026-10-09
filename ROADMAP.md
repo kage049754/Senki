@@ -1,6 +1,6 @@
 # Senki Mod-Merging Roadmap
 
-**Project rule: mod and merge existing Naruto Senki projects only. Do not create a new game.** This roadmap supersedes older plans that treated this repository as a greenfield game-development project.
+**Project rule: mod and merge existing Naruto Senki projects only. Do not create a new game.** The user-selected target is Naruto Senki: V2, with the v2.1.6-fix release as reference. See docs/BASE_GAME.md. This roadmap supersedes older greenfield plans.
 
 ## Phase 0 — Audit and freeze conflicting work
 **Status: In progress**
@@ -13,12 +13,15 @@
 
 **Exit checks:** current repo state and all candidates are honestly documented; no further new-game systems are added while base selection is unresolved.
 
-## Phase 1 — Select one existing Senki base
-**Status: Not started**
+## Phase 1 — Verify and import the selected Naruto Senki V2 base
+**Status: In progress — target selected, source import not verified**
 
-- [ ] Compare the strongest existing source candidates against Android buildability, engine compatibility, code/resource completeness, mod support, and maintenance.
+- [x] Record the user's selected game target: Naruto Senki: V2, release reference v2.1.6-fix.
+- [ ] Inspect the editable V2 source repository and confirm it matches/is compatible with the selected release. The release host contains packaged binaries, not editable source.
+- [ ] Compare source candidates against Android buildability, engine compatibility, code/resource completeness, mod support, and maintenance.
 - [ ] Check code licenses and separate asset/content permissions.
-- [ ] Select one existing game as the foundation; document why it was selected and what cannot be reused.
+- [x] Record the user-selected existing game as the intended foundation.
+- [ ] Verify source repository, exact revision, and rights before importing it.
 - [ ] Decide what to do with the current prototype scaffold only after the base decision; do not mistake it for the final game.
 
 **Exit checks:** one existing Senki source base is selected with evidence, build instructions, known blockers, and documented permission status.
