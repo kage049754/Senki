@@ -149,3 +149,13 @@ The repo previously received a native Kotlin/Canvas prototype scaffold. It is no
 ## User direction — continue broader Senki source search — 2026-10-10
 - [x] User clarified they want us to continue looking for other Naruto Senki sources/mods, including repositories outside GitHub, rather than repeatedly stopping at the permission caveat.
 - [ ] Compare additional candidates by Android buildability, game version, mod features, source completeness, and documented permissions. Keep candidates separate until a practical base is chosen; do not claim public visibility alone grants redistribution rights.
+
+
+## Continued work — additional V2 candidates and artifact pipeline (2026-10-10)
+
+- [x] Updated the central candidate-build workflow in commit `fe22f50b802b798802a06c383b8e91e726dd2e09` to upload the compiled V2-derived debug APK as a 14-day Actions artifact after a successful build.
+- [x] Expanded source discovery and found the additional `sansaks-jpg/NarutoSenki-V2` candidate. Its public history shows an Android-capable Cocos2d-x V2 source tree, 59 recorded Actions runs, a latest visible successful run on 2026-09-15, and newer LAN multiplayer fixes worth diffing. Its license remains undeclared.
+- [x] Classified `SILXNTRAY` and `hitlabmodv2` as likely mirror/fork lineage pending diff, and identified older Zx-Akito-derived forks as lower-priority comparison candidates.
+- [ ] Verify a new central Actions run for commit `fe22f50b802b798802a06c383b8e91e726dd2e09` and confirm the uploaded artifact is actually present. The existing successful run `37965165366` predates this workflow change and had no artifact upload.
+- [ ] Compare `sansaks-jpg`'s changes against the pinned build-tested source and decide which Android base is strongest.
+- [ ] No source has yet been imported into the central repo; no unified modded APK or phone gameplay has been verified.
