@@ -88,3 +88,15 @@ The user has selected Naruto Senki V2 as the intended foundation. Continue valid
 
 ## Roster growth
 Expand the selected game's existing roster with compatible and permitted content. A target of 70+ characters is desirable if the base/content support it, but this target must never justify starting a new engine. Track discovered, planned, integrated, build-verified, and device-tested counts separately. Alternate forms should be distinct entries only when appropriate and meaningfully different.
+
+
+## Second-pass fork/license metadata check (2026-10-10)
+A fresh metadata check of the following additional or previously identified V2 forks found no declared GitHub license in each repository's metadata:
+- `SILXNTRAY/NarutoSenki-V2` (fork lineage not shown by metadata response).
+- `sansaks-jpg/NarutoSenki-V2` (fork lineage not shown by metadata response).
+- `hitlabmodv2/NarutoSenki-V2` (fork of `SILXNTRAY/NarutoSenki-V2`).
+- `ZhReimu/NarutoSenki-V2` (fork of `Fansirsqi/NarutoSenki-V2`).
+- `roktra4/NarutoSenki-V2` (fork of `Zx-Akito/NarutoSenki-V2`).
+- `dont-cry-522/NarutoSenki-V2` (fork of `Zx-Akito/NarutoSenki-V2`).
+
+This metadata check does not prove that no separate permission statement exists elsewhere, but none of these mirrors resolves the licensing issue by itself. Do not infer a license from fork activity, recent updates, or public accessibility.
