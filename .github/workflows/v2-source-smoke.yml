@@ -6,6 +6,8 @@ on:
     branches: [ main ]
     paths:
       - '.github/workflows/v2-source-smoke.yml'
+      - 'patches/android-clean/**'
+      - 'artwork/**'
 
 permissions:
   contents: read
