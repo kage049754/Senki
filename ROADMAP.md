@@ -1,123 +1,90 @@
-# Senki Development Roadmap
+# Senki Mod-Merging Roadmap
 
-This roadmap is a living plan. The checked status must reflect repository evidence, not intention. Update it whenever a milestone is completed or the plan changes.
+**Project rule: mod and merge existing Naruto Senki projects only. Do not create a new game.** This roadmap supersedes older plans that treated this repository as a greenfield game-development project.
 
-## Phase 0 — Repository foundation and audit
+## Phase 0 — Audit and freeze conflicting work
 **Status: In progress**
 
-- [x] Create README entrypoint and mandatory AI instructions.
-- [x] Establish source-research and rights/provenance rules.
-- [ ] Inspect all files and determine whether any game implementation exists.
-- [ ] Choose/confirm the Android engine and build toolchain based on the actual repository state.
-- [ ] Add a reproducible GitHub Actions Android build.
-- [ ] Make CI upload the APK as an artifact.
-- [ ] Record baseline build result and known issues.
+- [x] Clarify in README that Senki is a mod-merging workspace.
+- [x] Make no-new-game rule explicit in AI instructions.
+- [ ] Inspect current Kotlin/Canvas prototype and classify it as temporary tooling/prototype, not the target foundation.
+- [ ] Audit candidate Senki source repositories and identify real editable source, engine/version, buildability, forks, and rights.
+- [ ] Record the evidence and unknowns for each candidate in `docs/MOD_RESEARCH.md`.
 
-**Exit checks:** project structure is documented; build can be reproduced; latest CI run is green; APK artifact is confirmed.
+**Exit checks:** current repo state and all candidates are honestly documented; no further new-game systems are added while base selection is unresolved.
 
-## Phase 1 — Startup and landscape shell
+## Phase 1 — Select one existing Senki base
 **Status: Not started**
 
-- [ ] Android app installs with a valid package/application ID.
-- [ ] Configure landscape orientation and handle common phone aspect ratios/safe areas.
-- [ ] Show a loading state and then a visible main menu after startup.
-- [ ] Add menu navigation: Play, Mode, Characters, Settings, Exit/back behavior.
-- [ ] Add touch target sizing and basic sound/music toggles.
-- [ ] Add crash logging and a graceful error screen instead of a blank screen.
+- [ ] Compare the strongest existing source candidates against Android buildability, engine compatibility, code/resource completeness, mod support, and maintenance.
+- [ ] Check code licenses and separate asset/content permissions.
+- [ ] Select one existing game as the foundation; document why it was selected and what cannot be reused.
+- [ ] Decide what to do with the current prototype scaffold only after the base decision; do not mistake it for the final game.
 
-**Exit checks:** cold launch, back navigation, menu taps, and orientation behavior are verified; no blank screen after splash.
+**Exit checks:** one existing Senki source base is selected with evidence, build instructions, known blockers, and documented permission status.
 
-## Phase 2 — Playable battle vertical slice
+## Phase 2 — Establish the chosen base in the central repository
 **Status: Not started**
 
-- [ ] One arena/map with ground/lane and both bases.
-- [ ] Player character movement and facing.
-- [ ] Basic attack with hit detection, animation timing, damage, and hit reaction.
-- [ ] HP/death/respawn.
-- [ ] At least two skills with cooldowns and visible feedback.
-- [ ] Simple enemy AI.
-- [ ] Pause/restart/quit battle flow.
+- [ ] Bring or adapt the chosen base into `kage049754/Senki` using a documented, provenance-preserving method.
+- [ ] Preserve original engine/game loop and existing behavior wherever practical.
+- [ ] Resolve dependencies and Android build issues without replacing the engine with a new implementation.
+- [ ] Establish CI for the chosen base and verify its actual APK artifact.
+- [ ] Confirm install/launch separately on a device when possible.
 
-**Exit checks:** player can enter a match, move, attack, use skills, take damage, die/respawn, pause, and return to the menu without crashing.
+**Exit checks:** the selected existing Senki game builds and launches from the central repo before major mod merges begin.
 
-## Phase 3 — Lane combat systems
+## Phase 3 — Inventory and prepare mod content
 **Status: Not started**
 
-- [ ] Allied and enemy minion wave spawning.
-- [ ] Minion pathing, targeting, attacks, HP, and death.
-- [ ] Towers/base objectives with target range and damage.
-- [ ] Experience/level progression and agreed stat/skill upgrades.
-- [ ] Victory/defeat conditions and result screen.
-- [ ] Match reset restores all state without stale units or timers.
+- [ ] Continue researching existing Senki mods, source forks, release histories, and compatible resources.
+- [ ] Compare forks to upstream and identify meaningful changes.
+- [ ] Inventory characters/forms, skills, animation states, effects, summons, maps, UI changes, balance edits, and bug fixes.
+- [ ] Record exact paths, source links, license/permission, compatibility, and whether content is source-editable or APK-only.
+- [ ] Deduplicate content and resolve conflicting IDs/names.
+- [ ] Exclude content whose reuse rights are absent or unclear.
 
-**Exit checks:** a complete match has a clear winner, can be restarted repeatedly, and has no stuck waves or immortal objectives.
+**Exit checks:** each planned merge has source evidence, a compatibility plan, and a permission/provenance decision.
 
-## Phase 4 — Scalable character framework and starter roster
+## Phase 4 — Merge in verified batches
 **Status: Not started**
 
-- [ ] Define data-driven character stats and skill metadata.
-- [ ] Define a dynamic character registry/catalog with stable string IDs; no fixed roster capacity.
-- [ ] Define animation/state contracts: idle, move, attack, cast, hit, death, respawn.
-- [ ] Standardize skill interface: input, cooldown, targeting, hitbox/projectile, effects, damage, duration.
-- [ ] Build responsive roster selection with portrait/name/stats and locked/unlocked states if needed.
-- [ ] Support scrolling/pagination, search, and useful filters/categories.
-- [ ] Add a small balanced starter roster with genuinely distinct move sets.
-- [ ] Ensure bots use the same battle/skill rules as players where appropriate.
-- [ ] Add validation for missing IDs, resources, animations, and skill references.
-- [ ] Add a test fixture with at least 75 synthetic/test entries to prove the catalog/UI is not capped at 29 or 70; these test entries must not be presented as real playable characters.
+- [ ] Port compatible changes into the chosen game's existing architecture.
+- [ ] Integrate content in small batches with clear commit messages and attribution.
+- [ ] Preserve existing engine, input, combat, minions, towers, menus, and save/config behavior unless a specific merge requires changes.
+- [ ] Resolve collisions in IDs, resources, scripts, animations, dependencies, and balance.
+- [ ] Build and test each batch; verify affected characters and skills in actual gameplay.
+- [ ] Track imported, adapted, built, and device-tested content separately.
 
-**Exit checks:** adding a character does not require rewriting the core battle engine; roster selection reliably spawns the selected fighter; the catalog handles at least 75 test entries without a fixed-capacity limit.
+**Exit checks:** each integrated batch builds, launches, and passes the relevant gameplay checks; no unverified merge is labelled complete.
 
-## Phase 5 — Research-driven roster expansion (target: 70+ playable characters, expandable beyond)
+## Phase 5 — Unified roster and polish
 **Status: Not started**
 
-- [ ] Continue searching GitHub for Naruto Senki source repositories, forks, mod repositories, release changelogs, and compatible character implementations.
-- [ ] Inspect each candidate's code/resources and record exact findings in docs/MOD_RESEARCH.md.
-- [ ] Separate actual game source from APK-only distributions, file hosts, documentation sites, translations, and unrelated Naruto mods.
-- [ ] Map characters, alternate forms, skills, summons, animations, effects, and balance ideas.
-- [ ] Review license/terms and provenance before reuse.
-- [ ] Port only compatible, permitted implementations; otherwise implement original equivalents from high-level gameplay observations.
-- [ ] Consolidate duplicate characters; keep forms only when gameplay is meaningfully different.
-- [ ] Add characters in manageable batches and test each batch for crashes, animation errors, and balance.
-- [ ] Track discovered, planned, implemented, tested, and verified counts separately.
-- [ ] Keep roster size data-driven; do not add a hardcoded upper bound.
-- [ ] Lazy-load resources and test memory use as the roster grows.
-- [ ] Ensure selection, AI, save/unlock data, and battle spawning work with the full catalog.
+- [ ] Expand the chosen base's roster using compatible and permitted mod content.
+- [ ] Keep the roster expandable beyond 70 where feasible, without replacing the existing game engine just to meet a number.
+- [ ] Test character selection, skills, animations, hitboxes, effects, AI, death/respawn, and balance.
+- [ ] Fix merge-related crashes, missing resources, blank screens, and UI conflicts.
+- [ ] Retain the selected base's core gameplay identity.
 
-**Exit checks:** at least 70 distinct playable characters are implemented and individually verified before claiming the 70+ target is met; no artificial code-level roster ceiling; every imported code/asset has recorded provenance and permission basis; each character passes selection, battle, skills, death, respawn, and applicable AI checks. Continue to allow expansion beyond 70.
+**Exit checks:** the merged roster and content work together in one game; only individually tested characters are counted as playable.
 
-## Phase 6 — Modes, polish, and performance
+## Phase 6 — Final build and verification
 **Status: Not started**
 
-- [ ] Add more maps and modes only after the core battle is stable.
-- [ ] Add effects, sounds, hit flashes, camera feedback, and readable skill telegraphs.
-- [ ] Add pause/settings and control customization if justified.
-- [ ] Optimize memory, texture sizes, loading time, and frame pacing for mid-range Android phones.
-- [ ] Test different screen sizes and Android versions.
-- [ ] Add automated tests for game-state transitions and core combat calculations where possible.
-- [ ] Test a large roster without loading every character's heavy assets into memory simultaneously.
+- [ ] Inspect latest Actions run and fix real failures through the log-driven loop in AGENTS.md.
+- [ ] Confirm final workflow completed successfully.
+- [ ] Verify the exact APK artifact and record the run/artifact link.
+- [ ] Install and test the unified APK on a physical Android device when possible.
+- [ ] Document remaining compatibility issues and release notes.
 
-**Exit checks:** stable repeated matches, no major UI clipping, no obvious memory leaks, and acceptable performance on target devices.
+**Exit checks:** one verified unified mod APK; CI and physical-device results are reported separately.
 
-## Phase 7 — Release candidate
-**Status: Not started**
+## Rules that override older plans
 
-- [ ] Run clean release build and inspect logs.
-- [ ] Confirm application ID, version, signing setup, orientation, permissions, and package integrity.
-- [ ] Confirm final GitHub Actions run is completed and successful.
-- [ ] Verify the exact APK artifact and provide the artifact/run link.
-- [ ] Install and launch on a physical Android phone.
-- [ ] Test first launch, character select, battle, skills, minions, towers, result, and restart on device.
-- [ ] Document known issues and release notes.
-
-**Exit checks:** CI success and APK artifact are verified; device installation and launch are separately verified; no unresolved blocker prevents the planned release.
-
-## Working rules
-
-- Do not jump to a huge roster before one complete battle works, but design the roster architecture for 70+ from the beginning.
-- Do not jump to a huge roster before one complete battle works.
-- Do not merge entire projects blindly. Port systems into a single consistent architecture.
-- Do not assume a source repository grants permission to redistribute its code or assets.
-- Keep the game landscape-first and core gameplay offline.
-- After each code milestone, follow the full failure-inspection/fix/rebuild/verify loop in AGENTS.md.
-- Mark a task complete only after its stated exit checks have evidence.
+- Do not create a new game or replacement engine.
+- Do not add new-game features to the Kotlin/Canvas prototype while the existing base is unresolved.
+- Do not assume a candidate source or its assets are reusable without evidence.
+- Do not merge whole APKs/repositories blindly.
+- Do not call a source “merged” until the unified build and relevant gameplay have been tested.
+- Do not claim success without a completed CI result and confirmed artifact.
