@@ -66,6 +66,12 @@ For every integration milestone:
 
 If the current tool session cannot keep polling in the background, report the exact last verified state; never pretend work continued.
 
+## License and fan-project rule
+
+The user may choose to describe this as a fan-made/non-commercial project, but that does not waive external source licenses or third-party asset rights. The repository root LICENSE covers only original contributions made for this repository; it must not be presented as a license for external Naruto Senki source/assets. Keep unlicensed source/assets as reference-only until terms or permission are established. Read NOTICE.md and docs/V2_BUILD_AUDIT.md.
+
+The current Android workflow is explicitly a legacy prototype scaffold build, not a Naruto Senki V2 build. Never report its success as completion of the target game.
+
 ## Documentation duties
 
 Update `ROADMAP.md` and `PROGRESS.md` after meaningful work. Update `docs/MOD_RESEARCH.md` for source inspections/base decisions; update `docs/ASSET_LICENSES.md` for provenance and permission decisions. Keep planned, copied, integrated, built, and device-tested content as separate states.
