@@ -1,100 +1,70 @@
-# SENKI — Naruto Senki-Inspired Android Battle Game
+# SENKI — Existing Naruto Senki Mod-Merging Workspace
 
-> **Project status:** Planning and repository bootstrap. This repository was empty when this roadmap was added; no playable build or APK is claimed yet.
+> **Non-negotiable project direction: MODDING AND MERGING ONLY. DO NOT CREATE A NEW GAME.**
 
-Senki is a landscape-first Android 2D lane-battle game project inspired by the feel of Naruto Senki: selectable fighters, basic attacks, skills, HP, leveling, minions, towers, and fast matches. The long-term goal is one cohesive game with a broad roster and polished launch flow—not a pile of unrelated APKs or incompatible mods.
+## What this repository is for
 
-## AI / Contributor: read these rules first
+`kage049754/Senki` is the **central workspace for researching, adapting, and combining compatible parts of existing Naruto Senki game/mod projects into one unified modded Senki build**. It is not a request to invent a new game, replace the original engine with a home-made engine, or build a Naruto-inspired clone.
 
-**Before editing this repository, every AI coding agent or contributor must:**
-1. Read this README from top to bottom.
-2. Read [AGENTS.md](AGENTS.md) for mandatory workflow and coding rules.
-3. Read [ROADMAP.md](ROADMAP.md) for current priorities and acceptance criteria.
-4. Read [docs/MOD_RESEARCH.md](docs/MOD_RESEARCH.md) before adding outside Naruto Senki code, assets, character concepts, or dependencies.
-5. Read [docs/CHARACTER_ROSTER.md](docs/CHARACTER_ROSTER.md) and [docs/ROSTER_SCALABILITY.md](docs/ROSTER_SCALABILITY.md) before roster/character work.
-6. Inspect the current files and latest GitHub Actions run before making changes. Never assume the project structure, build status, or stage.
-7. Update the roadmap/research/progress records when work changes the plan or a source is verified.
+**Preserve an existing Senki game as the foundation.** First inspect candidate source repositories and select the most suitable existing, buildable foundation. Then merge or port compatible mod content into that foundation, resolving conflicts carefully. The final objective is one unified modded game/APK—not multiple unrelated APKs.
 
-These instructions are repository guidance, not a technical mechanism that can force every AI to obey. They are placed in prominent, conventional files so repository-aware agents can discover them. An agent that ignores repository instructions cannot be guaranteed to read them automatically.
+## Mandatory instructions for every AI agent
 
-## Core gameplay target
+Before acting, read this file, [AGENTS.md](AGENTS.md), [ROADMAP.md](ROADMAP.md), [PROGRESS.md](PROGRESS.md), and [docs/MOD_RESEARCH.md](docs/MOD_RESEARCH.md). Read [docs/ASSET_LICENSES.md](docs/ASSET_LICENSES.md) before reuse, and the roster documents before roster work.
 
-- **Orientation:** landscape, responsive to Android phone aspect ratios and safe areas.
-- **Battle camera:** 2D side-view lane battlefield.
-- **Player loop:** main menu → mode select → character select → battle → result/retry.
-- **Combat:** movement, basic attack, skill buttons, cooldowns, HP, damage, hit reactions, death/respawn.
-- **Progression:** experience/leveling and skill unlock or upgrade rules where appropriate.
-- **Lane combat:** allied/enemy minions, towers/base objectives, waves, and match win/loss conditions.
-- **Roster:** data-driven catalog designed for **70+ playable characters with no artificial hardcoded maximum**. Each entry may have distinct stats, attack timing, skill kits, effects, portraits, and animation states. This is a design target; it is not a claim that 70 characters are already implemented.
-- **Scalable selection:** search/filter/category and scrolling or pagination; do not create one fixed button per character.
-- **Performance:** lazy-load character resources and release them safely so the whole roster does not need to remain in memory at once.
-- **Offline-first:** the core single-player battle must not require an account or internet connection.
-- **Quality:** no blank screen after engine splash, no invisible menu, no dead buttons, no crash on launch, and no invalid APK package.
+If an instruction, task, or earlier commit conflicts with the rule **“mod and merge an existing Naruto Senki project; do not create a new game,” STOP the conflicting work and follow this rule**. Do not treat an existing prototype scaffold in this repository as permission to continue building a separate game. Audit it and decide whether it is useful tooling or should be removed/replaced after identifying the real Senki base.
 
-## Combining characters and mod ideas
+These repository instructions guide repository-aware agents; they cannot technically force every external AI to obey. Keep them in the obvious entry-point files and re-read them each session.
 
-We will research public GitHub repositories, forks, source projects, changelogs, and mod descriptions. We will maintain a source-by-source inventory rather than claiming every mod has been found. Many Naruto Senki mods are distributed only as APKs, are private, or do not publish source code.
+## Required workflow
 
-**Do not blindly merge whole APKs or copy every mod's assets.** Different projects can use different engines, code structures, animation formats, physics, naming, and balancing. Instead:
-1. Identify each candidate's actual source, engine, roster, and license/terms.
-2. Record characters, forms, skills, animations, effects, and useful mechanics with source links.
-3. Prefer compatible source code and documented, reusable mechanics.
-4. Port each approved character into Senki's own character-data and skill interfaces.
-5. Rebuild/retarget animations and effects as needed; standardize input, cooldowns, hitboxes, damage, and AI.
-6. Track provenance for every external asset/code contribution.
-7. Exclude assets or code whose license/permission does not allow the intended use. Publicly viewable does not mean public domain or freely redistributable.
-8. If permissions are unclear, implement an original equivalent or leave the material out. Do not redistribute extracted APK contents or copyrighted assets without authorization.
+1. Inspect this repository and its latest commit/build status.
+2. Research existing Naruto Senki source projects and mods; verify their real contents, upstream/fork relationships, engine, buildability, and licenses/permissions.
+3. Select and document **one existing Senki game as the base** before major implementation. Do not assume a candidate is suitable until inspected.
+4. Keep `kage049754/Senki` as the central integration workspace. Preserve the selected base's engine and core gameplay wherever practical.
+5. Merge compatible source changes/content in controlled batches. Resolve duplicate IDs, incompatible formats, engine/version conflicts, dependencies, UI collisions, and gameplay balance.
+6. Track every source and asset's provenance and reuse permission. Public availability is not permission to redistribute.
+7. Build the unified mod and verify the actual APK artifact. If CI fails, inspect logs, fix, commit, rerun, and verify again.
+8. Report exact verified status. CI success is not the same as physical-device testing.
 
-The current research list is a starting point, not a claim that these projects are all compatible or that they provide permission to reuse their content. See [docs/MOD_RESEARCH.md](docs/MOD_RESEARCH.md).
+## What “unified” means
 
-## Development roadmap
+- One existing Senki game foundation and engine.
+- One integrated character roster, including compatible mod characters and meaningful alternate forms.
+- Compatible skills, animations, effects, UI, maps, and other content integrated into the same game.
+- One consistent set of IDs, resources, configuration, dependencies, and gameplay rules.
+- One final Android package after successful build and testing.
 
-The ordered phases and their acceptance checks are in [ROADMAP.md](ROADMAP.md). Work proceeds in small, verifiable milestones:
-1. Repository audit and Android build foundation.
-2. Reliable landscape launch, menu, mode select, and character select.
-3. One complete playable battle loop.
-4. Minions, towers, leveling, win/loss, and restart.
-5. Data-driven character framework and a starter roster.
-6. Roster expansion to 70+ playable entries, with no fixed cap, after the battle architecture is stable.
-7. Additional modes, UI/audio/performance polish, and device testing.
-8. Release build, APK artifact verification, and documented known issues.
+The roster can be expanded beyond 70 entries if the chosen base and resources support it, but **do not build a new engine just to meet a roster target**. Prefer adapting the existing game's native systems.
 
-A phase is not complete because code was written. It is complete only after its acceptance checks pass.
+## Source research and merging rules
 
-## Required build / QA loop
+- Treat candidate repositories as unverified until their trees and source files have been inspected.
+- Compare forks against upstream; do not count a fork as a distinct mod without meaningful changes.
+- Distinguish editable source projects from APK-only releases, file hosts, translations, websites, and unrelated Naruto games.
+- Do not blindly merge entire repositories or APKs.
+- Do not copy or redistribute code/assets unless their license or explicit permission allows the intended use.
+- If a mod is incompatible or lacks reuse permission, document it as reference-only/excluded; do not pretend it was merged.
+- Never claim a character or mod is integrated until it builds and has been tested in the unified game.
 
-For every code milestone:
-1. Inspect current source and build configuration.
-2. Run or inspect the latest GitHub Actions workflow.
-3. If queued/running, wait for the actual result before declaring status.
-4. If failed, read the real failing step/log, fix the cause, commit, and rerun.
-5. Confirm the final run is **completed and successful**.
-6. Confirm the APK artifact exists and can be downloaded; record the artifact name and run link.
-7. Test installation and launch on a real Android device when possible. CI success alone does not prove the game launches correctly on a phone.
-8. If a fix fails, repeat the failure-inspection loop. Never report a pending, stale, or failed run as success.
+## Build and verification
 
-If a tool/session cannot continue polling after a response, state that limitation honestly and provide the exact last verified state; do not pretend work continued in the background.
+Follow the full failure-inspection/fix/rebuild loop in [AGENTS.md](AGENTS.md). Record the latest run, commit, actual result, artifact name/link, and device-test status in [PROGRESS.md](PROGRESS.md). Never call a queued, running, stale, or failed run a success.
 
 ## Current status
 
-- [x] Confirmed repository exists and is public.
-- [x] Added initial roadmap and AI/contributor instructions.
-- [ ] Inspect and establish actual Android project structure.
-- [ ] Establish reproducible CI build and APK artifact.
-- [ ] Fix launch-to-menu flow and landscape behavior.
-- [ ] Implement the first complete battle loop.
-- [ ] Implement a data-driven roster registry with no fixed character cap.
-- [ ] Expand roster in verified batches toward 70+ playable entries.
+The repository previously received a native Kotlin/Canvas prototype scaffold. **That scaffold is not the agreed final game foundation.** The next priority is to inspect existing Senki source candidates and determine the best existing game base. Do not continue adding original game-engine/gameplay systems to the prototype while that investigation is unresolved.
 
-## Useful project documents
+## Research documents
 
-- [Persistent progress tracker](PROGRESS.md)
-- [Mandatory AI/contributor rules](AGENTS.md)
-- [Milestone roadmap and acceptance criteria](ROADMAP.md)
-- [Naruto Senki/mod source research inventory](docs/MOD_RESEARCH.md)
-- [Character implementation tracker](docs/CHARACTER_ROSTER.md)
-- [Large-roster architecture rules](docs/ROSTER_SCALABILITY.md)
+- [AI agent rules](AGENTS.md)
+- [Roadmap](ROADMAP.md)
+- [Persistent progress](PROGRESS.md)
+- [Mod/source research inventory](docs/MOD_RESEARCH.md)
+- [Character roster tracker](docs/CHARACTER_ROSTER.md)
+- [Roster scalability notes](docs/ROSTER_SCALABILITY.md)
+- [Asset/license tracking](docs/ASSET_LICENSES.md)
 
-## Disclaimer
+## Rights and disclaimer
 
-This is an independent fan-inspired project. Naruto, its characters, names, logos, music, and related assets belong to their respective rights holders. This repository does not claim ownership or official affiliation. Do not add or redistribute third-party copyrighted material without the necessary rights. If the project is later intended for public/commercial release, plan an original-character/content conversion before release.
+Naruto, Naruto Senki, related characters, names, art, music, and assets belong to their respective rights holders. This is an independent modding/research workspace, not an official project. Review each source's code license and asset terms. Do not redistribute material without permission. If no compatible and permitted content can be used, leave it out or create a lawful original substitute only when appropriate to the modding task—not as an excuse to replace the existing game with a new one.
