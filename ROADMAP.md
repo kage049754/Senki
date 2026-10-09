@@ -148,3 +148,6 @@ The custom launcher icon, loading background, and character-selection background
 The main menu now uses the new Senki artwork while preserving the original mode carousel and callbacks. The latest successful APK archive contains the custom launcher icon plus loading, main-menu, and character-selection backgrounds. See run `37971712613`.
 
 Next work should focus on the visible controls and interaction layer: confirm menu button placement, improve selected-mode feedback, refine character portrait/selection highlights and team-pick status, and retain all existing selection rules. Device visual checks are still required before making coordinate changes.
+
+
+The newest artifact and CI evidence are tracked in `PROGRESS.md`; on-device visual and gameplay checks remain the next validation gate.
