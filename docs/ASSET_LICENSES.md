@@ -77,3 +77,10 @@ No external source is approved for copying solely by virtue of appearing in the 
 - Code and inherited assets: no declared GitHub license; separate permissions not established.
 - Observed fork CI success and artifact do not grant permission to copy, redistribute, or repackage its code/assets.
 - Status: **PERMISSION_REQUIRED**. Technical review may continue; import/release remains blocked pending terms.
+
+
+### `muhammadadilsyaputra08-alt/NarutoSenki-Custom` — Android-only V2-derived source
+- Material: Android engine/source/resource snapshot, C++/Lua gameplay and Android Gradle project.
+- Technical evidence: its own GitHub Actions run `34331260360` built and uploaded `narutosenki-debug-apk`.
+- Rights/provenance: no declared GitHub license; README says extracted from original V2, but inherited code and Naruto assets are not thereby cleared.
+- Status: **PERMISSION_REQUIRED**. Do not import or redistribute until source and asset permissions are established.
