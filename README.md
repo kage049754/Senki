@@ -77,3 +77,14 @@ The user has selected **Naruto Senki: V2** as the game to mod. The original rele
 **All future authorized modding work is centralized in this repository, `kage049754/Senki`.** Changes to characters, skills, animations, fixes, and other content must be integrated into the selected existing Senki V2 base here, not built as a separate new game.
 
 Important: the linked release page is a file host with packaged release assets, including an APK; it is not itself editable source code. The V2 source project and its license/asset terms still need to be verified and imported before actual source-level modding can be completed. See [docs/BASE_GAME.md](docs/BASE_GAME.md). The APK is linked as a reference and is not claimed to be copied into this repository.
+
+
+## Latest source research status (2026-10-10)
+
+Two V2-derived Android source candidates have now been found with their **own** successful GitHub Actions APK builds:
+- [Wilykun/NarutoSenki-V2](https://github.com/Wilykun/NarutoSenki-V2) — includes a documented AI-vs-AI Spectate mode and build fixes.
+- [muhammadadilsyaputra08-alt/NarutoSenki-Custom](https://github.com/muhammadadilsyaputra08-alt/NarutoSenki-Custom) — documents an Android-only V2-derived C++/Lua source tree and a reproducible legacy Android build setup.
+
+These are technical candidates, **not imported into this repository**. Both currently report no declared GitHub license, and the permissions for inherited source and Naruto/game assets remain unresolved. Their CI artifacts are not builds from `kage049754/Senki`. See [the source comparison inventory](docs/MOD_RESEARCH.md), [the permission register](docs/ASSET_LICENSES.md), and [the base-game notes](docs/BASE_GAME.md).
+
+The next milestone is to establish source provenance and obtain appropriate code/asset permissions, then choose exactly one V2 base and build it in this central repository. The current prototype-only CI success does not satisfy that milestone. No unified mod APK or device-tested game has been completed yet.
