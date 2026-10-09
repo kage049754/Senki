@@ -55,3 +55,18 @@ A public repository or downloadable APK is not automatically permission to reuse
 
 ## Initial status
 No external source is approved for copying solely by virtue of appearing in the research inventory. Review each candidate and each asset set before integration.
+
+
+## Additional audited repositories — 2026-10-10
+
+### `LeaderOnePro/NarutoSenki` (older editable source)
+- Code: public repository, no declared GitHub license found in metadata.
+- Assets: `Resources/` contains Naruto/game resource bundles; individual rights and dependency notices are not established.
+- Technical classification: reference-only; Cocos2d-x 2.2.2 / Visual Studio 2010 setup, with no verified Android build path from the inspected root.
+- Permission status: **PERMISSION_REQUIRED** for source and bundled assets. Do not import/package.
+
+### `LeaderOnePro/NarutoSenki1.17Mod` and fork `wsnbbnbb/NarutoSenki1.17Mod`
+- Both repositories report no declared license.
+- The root tree of the original is package/decompiled-distribution oriented (`classes.dex`, `AndroidManifest.xml`, `assets/`, `lib/`, `res/`) rather than an editable source project.
+- The second repository is a fork with matching inspected commit history; it is not an independent mod.
+- Permission status: **PERMISSION_REQUIRED**; APK/package contents are not approved for extraction, redistribution, or reuse.
