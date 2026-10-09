@@ -186,3 +186,11 @@ The repo previously received a native Kotlin/Canvas prototype scaffold. It is no
 - Practical direction: **use the successfully built Android-clean source as the current lead candidate** for an Android/offline-first mod base because it is smaller and preserves the unique Kabuto content. Treat LAN-enhanced V2 as a source for selective crash fixes and optional networking research, not a wholesale replacement. Do not copy all 58 changed files at once; review and port individual fixes with tests.
 - This is a provisional engineering recommendation based on tree/build evidence, not yet the final source import. Both candidates have successful central CI artifacts; neither has been tested on the user's phone.
 
+
+
+## First central source patch successfully built — 2026-10-10
+- [x] Added `patches/android-clean/0001-custom-app-identity.patch` (commit `e7afac52b3f1ee838e96a3705d8891b7e63b4e42`). It changes the Android application ID to `com.senki.naruto.mod`, version to `2.1.0-mod` / code 3, and launcher label to `Naruto Senki Mod`.
+- [x] Updated `.github/workflows/v2-source-smoke.yml` to require and apply the ordered central patch series before building, then inspect the actual APK with `aapt dump badging` and assert the custom package/version/label.
+- [x] Run `37968632537`: **SUCCESS** on commit `c07abc442d8b2e5ceab542fe999c67fecb09dddd`. The patch-application step passed, Gradle reported `BUILD SUCCESSFUL`, APK existence passed, and package identity assertions passed.
+- [x] Verified artifact `naruto-senki-v2-candidate-debug-apk`, artifact ID `11634478692`, ZIP size 83,447,929 bytes, expires 2026-10-23. Download from the [successful patched candidate run](https://github.com/kage049754/Senki/actions/runs/37968632537).
+- This is the first central patch applied to the pinned existing V2-derived source and verified in the resulting APK. The upstream source is still fetched into a temporary CI workspace rather than fully vendored into this repo; the game has not yet been installed or tested on the user's phone.
