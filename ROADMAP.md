@@ -96,3 +96,9 @@
 - Do not merge whole APKs/repositories blindly.
 - Do not call a source “merged” until the unified build and relevant gameplay have been tested.
 - Do not claim success without a completed CI result and confirmed artifact.
+
+
+### Updated base-research decision (2026-10-10)
+The selected game remains Naruto Senki V2. New audits found two V2-derived Android source candidates with their own successful CI artifacts: `Wilykun/NarutoSenki-V2` (Spectate mode/build fixes) and `muhammadadilsyaputra08-alt/NarutoSenki-Custom` (Android-only source snapshot). Both currently lack a declared license and cleared asset permissions, so neither has been imported. Older Cocos2d-x 2.2.2 repositories were classified as reference-only rather than interchangeable bases.
+
+**Current gate:** finish source/provenance comparison and obtain appropriate permission for code and bundled assets. Then choose exactly one base, bring up its build in this central repo, verify the APK, and only then start merging additional mods. The existing prototype CI remains unrelated to the target game.
