@@ -91,3 +91,9 @@ Do not repeatedly interrupt progress with generic permission warnings. Keep lega
 - After any failure, inspect actual logs, correct the cause, rerun, and verify the final run/artifact. Do not call a build successful while queued/running/failed/cancelled.
 - CI success is not proof of a correct visual layout, touch behavior, installation, or gameplay. Track phone testing separately and do not claim it happened unless confirmed.
 - For the next screen work, preserve the existing hero roster, character selection mechanics, battle scene, skills/HP/level, minions, and towers. UI changes must not replace the underlying Naruto Senki V2 gameplay with a new prototype.
+
+
+## Current UI work status
+- Source-controlled editable artwork now covers launcher icon, main menu, loading screen, and character selection.
+- Build workflow renders the SVG artwork, applies patches in filename order, builds the pinned V2-derived source, and verifies the generated background assets inside the APK.
+- Preserve the original mode carousel, hero roster/grid/paging, selection behavior, and battle mechanics. Make coordinate/touch changes only after observing the actual device layout; don't assume CI proves visuals are correct.
