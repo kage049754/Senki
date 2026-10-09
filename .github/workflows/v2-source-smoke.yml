@@ -1,0 +1,86 @@
+name: V2 Source Build Smoke Test (No APK Distribution)
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ main ]
+    paths:
+      - '.github/workflows/v2-source-smoke.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: v2-source-smoke-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-v2-candidate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - name: Checkout integration repository
+        uses: actions/checkout@v4
+
+      - name: Record target and pinned source revision
+        run: |
+          echo "This is a technical smoke test of an external V2-derived candidate."
+          echo "It is NOT the integrated/final game build."
+          echo "Candidate: muhammadadilsyaputra08-alt/NarutoSenki-Custom"
+          echo "Pinned revision: 279e85e73040558c84988a0eea310b6286eb77f0"
+          echo "No APK will be uploaded or released by this workflow."
+
+      - name: Fetch pinned candidate into temporary runner workspace
+        run: |
+          git clone https://github.com/muhammadadilsyaputra08-alt/NarutoSenki-Custom.git /tmp/narutosenki-candidate
+          cd /tmp/narutosenki-candidate
+          git checkout --detach 279e85e73040558c84988a0eea310b6286eb77f0
+          test "$(git rev-parse HEAD)" = "279e85e73040558c84988a0eea310b6286eb77f0"
+          test -f projects/NarutoSenki/proj.android-studio/gradlew
+          test -f projects/NarutoSenki/proj.android-studio/app/build.gradle
+          test -d projects/NarutoSenki/Classes
+          test -d projects/NarutoSenki/Resources
+          echo "Pinned source and expected Android project structure verified."
+
+      - name: Set up Java 17 for Android SDK provisioning
+        uses: actions/setup-java@v4
+        with:
+          distribution: zulu
+          java-version: '17'
+
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Install pinned legacy Android SDK and NDK
+        run: |
+          yes | sdkmanager --licenses > /dev/null || true
+          sdkmanager "platforms;android-31" "build-tools;31.0.0" "platform-tools" "ndk;21.4.7075529"
+
+      - name: Configure SDK and NDK paths
+        working-directory: /tmp/narutosenki-candidate/projects/NarutoSenki/proj.android-studio
+        run: |
+          printf 'sdk.dir=%s\nndk.dir=%s/ndk/21.4.7075529\n' "$ANDROID_HOME" "$ANDROID_HOME" > local.properties
+          chmod +x gradlew
+
+      - name: Set up Java 8 for legacy Android Gradle Plugin
+        uses: actions/setup-java@v4
+        with:
+          distribution: zulu
+          java-version: '8'
+
+      - name: Build V2 candidate (diagnostic only)
+        working-directory: /tmp/narutosenki-candidate/projects/NarutoSenki/proj.android-studio
+        run: ./gradlew --no-daemon assembleDebug --stacktrace
+
+      - name: Verify candidate APK exists without publishing it
+        if: success()
+        run: |
+          find /tmp/narutosenki-candidate/projects/NarutoSenki/proj.android-studio -type f -path '*/build/outputs/apk/*/*.apk' -print
+          test -n "$(find /tmp/narutosenki-candidate/projects/NarutoSenki/proj.android-studio -type f -path '*/build/outputs/apk/*/*.apk' -print -quit)"
+          echo "Candidate compiled in this CI runner. APK intentionally not uploaded."
+
+      - name: Print build diagnostics on failure
+        if: failure()
+        run: |
+          echo "Build failed. Inspect Gradle/NDK error above before changing the pinned candidate."
+          find /tmp/narutosenki-candidate/projects/NarutoSenki/proj.android-studio -type f \( -name '*.log' -o -name 'hs_err_pid*.log' \) -print 2>/dev/null || true
