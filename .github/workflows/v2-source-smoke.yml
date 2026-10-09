@@ -53,10 +53,18 @@ jobs:
         with:
           packages: platform-tools
 
-      - name: Install pinned legacy Android SDK and NDK
+      - name: Install pinned legacy Android SDK and NDK into an isolated SDK root
+        shell: bash
         run: |
-          yes | sdkmanager --licenses > /dev/null || true
-          sdkmanager "platforms;android-31" "build-tools;31.0.0" "platform-tools" "ndk;21.4.7075529"
+          set -euo pipefail
+          SDKMANAGER="$(command -v sdkmanager)"
+          CLEAN_ANDROID_HOME="$RUNNER_TEMP/android-sdk"
+          mkdir -p "$CLEAN_ANDROID_HOME"
+          yes | "$SDKMANAGER" --sdk_root="$CLEAN_ANDROID_HOME" --licenses > /dev/null || true
+          "$SDKMANAGER" --sdk_root="$CLEAN_ANDROID_HOME" "platforms;android-31" "build-tools;31.0.0" "platform-tools" "ndk;21.4.7075529"
+          echo "ANDROID_HOME=$CLEAN_ANDROID_HOME" >> "$GITHUB_ENV"
+          echo "ANDROID_SDK_ROOT=$CLEAN_ANDROID_HOME" >> "$GITHUB_ENV"
+          echo "Installed only the pinned legacy SDK packages into an isolated root to avoid incompatible preinstalled platform metadata."
 
       - name: Configure SDK and NDK paths
         working-directory: /tmp/narutosenki-candidate/projects/NarutoSenki/proj.android-studio
