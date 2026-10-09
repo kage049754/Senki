@@ -4,7 +4,7 @@
 
 **THIS PROJECT IS FOR MODDING AND MERGING EXISTING NARUTO SENKI PROJECTS. DO NOT CREATE A NEW GAME.**
 
-The central repository is `kage049754/Senki`. It is the integration workspace, not a mandate to invent a new engine or build a separate Naruto-inspired clone. The intended result is one unified modded version of an existing Naruto Senki game.
+The central repository is `kage049754/Senki`. The user selected Naruto Senki: V2 as the target game. Use https://github.com/Naruto-Senki/files/releases and the v2.1.6-fix reference at https://github.com/Naruto-Senki/files/releases/tag/v2.1.6-fix; see docs/BASE_GAME.md. This repository is the integration workspace, not a mandate to invent a new engine. Release assets are packaged binaries, not editable source; verify and import actual source before source-level modding. The intended result is one unified modded version of an existing Naruto Senki game.
 
 If older instructions, roadmap entries, issues, or code encourage building a game from scratch, these rules override them. Pause new-game development. Inspect the existing Kotlin/Canvas prototype scaffold, but do not extend it as the final engine. First identify and verify the most suitable existing Senki source/base. Only decide what to retain, replace, or remove after the source audit.
 
