@@ -1,113 +1,79 @@
 # Naruto Senki / Mod Research Inventory
 
+> **Project rule: this is research for modding and merging an existing Naruto Senki game, not creating a new game.** The goal is to select one existing source base and integrate compatible mod content into it.
+
 **Last reviewed:** 2026-10-10  
-**Purpose:** identify source projects and mod ideas worth evaluating for Senki. This is an evolving public-GitHub research list, not a claim that every mod has been found or that all listed content is reusable.
+**Status:** Candidate inventory; no base is selected until the repository contents, buildability, and reuse terms have been verified.
 
-## How candidates are classified
-
-- **Source candidate:** code and resources appear to be present; inspect the full tree, build files, license, and content before use.
-- **Release/changelog reference:** useful for roster and mechanic research, but not necessarily a source-code repository.
-- **Fork:** must compare against upstream; do not count it as an independent mod unless it has meaningful original changes.
-- **Support repository:** translations, files, docs, or website; not a separate playable game implementation.
-- **Unverified:** name/search result suggests a mod, but owner, source contents, license, or compatibility still need confirmation.
-- **Unrelated engine/game mod:** Naruto content exists, but it is not Naruto Senki and should not be treated as drop-in code.
+## Candidate classification
+- **Source candidate:** likely contains editable source; inspect the complete tree, build scripts, license, and assets.
+- **Release/changelog reference:** helps research characters/features but is not necessarily editable source.
+- **Fork:** compare with upstream; do not count as independent without meaningful changes.
+- **Support repository:** files, translations, docs, or website; not necessarily a playable implementation.
+- **Unverified:** name/search result alone is not enough to confirm its identity or contents.
+- **Unrelated game/mod:** not a drop-in Senki implementation.
 
 ## Candidate repositories
 
-### 1. Naruto Senki V2 source family
-- **Upstream source candidate:** https://github.com/Zx-Akito/NarutoSenki-V2
-- **Known fork:** https://github.com/kuiyr0810/NarutoSenki-V2
-- **Documentation:** https://github.com/Zx-Akito/NarutoSenki-V2/blob/master/Doc/README_ZH.md
-- **What is known:** the V2 project documentation describes a Cocos2d-x codebase with C++ gameplay systems, Lua/UI scripts, resources, character directories, bullets, summons, towers, and Android project files. The documented tree includes `Classes/Core/Shinobi`, `Warrior`, `Bullet`, `Guardian`, `Kuchiyose`, `Tower`, `lua`, `Resources`, and `proj.android-studio`.
-- **Research value:** high. This is the strongest candidate to study for the lane-battle architecture, character/skill systems, minions/towers, and Android build setup.
-- **Caution:** the kuiyr0810 repository identifies itself as a fork of Zx-Akito's repository. Count it as a fork, not an independent mod, until a diff shows meaningful original work. V2 code/asset terms still need explicit review before reuse.
+### Naruto Senki V2 source family
+- Candidate: https://github.com/Zx-Akito/NarutoSenki-V2
+- Candidate fork: https://github.com/kuiyr0810/NarutoSenki-V2
+- Documentation: https://github.com/Zx-Akito/NarutoSenki-V2/blob/master/Doc/README_ZH.md
+- Prior notes indicate a Cocos2d-x/C++ project with Lua/UI scripts, resources, character directories, bullets, summons, towers, and Android project files. Re-open and verify those paths against the current repository before relying on the notes.
+- **Status:** strongest initial candidate to audit, not yet approved as the base. Verify current tree, branch, buildability, fork differences, code license, and separate asset permissions.
 
-### 2. Naruto Senki release and changelog history
-- **Release repository:** https://github.com/Zx-Akito/NarutoSenki-Release
-- **What is known:** public release notes include v1.24, v1.25, and v1.26 beta series. Notes mention characters such as Jirobo, Tayuya, Anko, Kurenai, Guy, Yamato, Sasori, Zetsu, Iruka, Shizune, Hashirama, Rin, Sakon & Ukon, Juzo, and Jonin Minato; they also mention training modes, a Mugen mode, aiming/dragging skill direction, AI improvements, and bug fixes.
-- **Research value:** high for feature/roster history, alternate forms, and testing edge cases.
-- **Caution:** release notes are not the same as source code or reuse permission. Inspect individual release assets only as references unless rights allow otherwise.
+### Naruto Senki release history
+- https://github.com/Zx-Akito/NarutoSenki-Release
+- Prior notes identify release/changelog history around v1.24–v1.26 beta and various characters/modes/bug fixes.
+- Use as a feature/roster reference unless editable source and reuse rights are verified. Release notes are not permission to copy assets.
 
-### 3. Original/older Cocos2d-x source candidate
-- **Repository:** https://github.com/LeaderOnePro/NarutoSenki
-- **What is known:** repository lists `Classes`, `Resources`, and `proj.win32`, and its README says Cocos2d-x 2.2.2 / Visual Studio 2010. It describes the content as Naruto Senki source code.
-- **Research value:** medium-high for older architecture and historical implementations.
-- **Caution:** old engine/toolchain and project structure may not directly build in a modern Android pipeline. Verify license and actual files before reuse.
+### Older Naruto Senki source candidate
+- https://github.com/LeaderOnePro/NarutoSenki
+- Prior notes indicate `Classes`, `Resources`, `proj.win32`, Cocos2d-x 2.2.2 / Visual Studio 2010.
+- Audit current contents, Android build support, history, license, and asset terms before deciding whether it is a viable base or source of specific compatible fixes.
 
-### 4. Naruto Senki V2 file host
-- **Repository:** https://github.com/Naruto-Senki/files
-- **What is known:** the Naruto-Senki GitHub organization describes it as a V2 file host.
-- **Research value:** supporting reference for release files and related project resources.
-- **Caution:** a file host is not automatically a source-code implementation. Review each file and its terms; do not treat binaries as editable source.
+### Supporting repositories
+- V2 file host: https://github.com/Naruto-Senki/files
+- Localization: https://github.com/Naruto-Senki/localization
+- Website/docs: https://github.com/real-re/nsv2-website
+- Treat these as supporting references unless actual editable game source is verified.
 
-### 5. Naruto Senki localization
-- **Repository:** https://github.com/Naruto-Senki/localization
-- **What is known:** repository description says it contains translations for Naruto Senki V2.
-- **Research value:** language strings and UI terminology reference.
-- **Caution:** not a character/engine mod; translation licensing does not grant rights to the game or its assets.
+### Unverified search lead
+- https://github.com/search?q=NarutoSenki1.17Mod&type=repositories
+- Prior search did not reliably identify the owner/full repository or enough source-tree details. Find the exact repository, inspect it, compare its fork parent/history, and check terms before treating it as a candidate.
 
-### 6. Naruto Senki V2 website/documentation
-- **Repository:** https://github.com/real-re/nsv2-website
-- **What is known:** public repository described as the Naruto Senki V2 website/docs.
-- **Research value:** documentation and feature history only.
-- **Caution:** not the battle engine or a standalone mod.
-
-### 7. NarutoSenki1.17Mod search result — unverified
-- **Search reference:** https://github.com/search?q=NarutoSenki1.17Mod&type=repositories
-- **What is known:** GitHub repository search returned a repository name `NarutoSenki1.17Mod` on branch `main`, but the available search result did not reliably provide the owner/full repository name or enough source-tree details.
-- **Next step:** identify the exact owner/repository, inspect the tree, establish whether it contains source or only binaries, compare its history/fork parent, and inspect license/terms.
-- **Status:** do not use or claim it as an independent source until verified.
-
-## Additional searches / discovery pages
-
-These are search starting points, not proof that every result is a compatible Senki mod:
-
+## Search starting points
 - https://github.com/topics/naruto-senki
 - https://github.com/topics/naruto-game
 - https://github.com/search?q=NarutoSenki&type=repositories
 - https://github.com/search?q=Naruto+Senki+mod&type=repositories
-- https://github.com/search?q=%E7%81%AB%E5%BD%B1%E6%88%98%E8%AE%B0&type=repositories
+- https://github.com/search?q=%E7%81%AB%E5%BD%B1%E6%88%98%E记&type=repositories
 
-Searches so far have also returned general Naruto game/mod projects for other engines (for example Minecraft or RimWorld). These may provide high-level ideas but are **not** drop-in Naruto Senki character implementations.
+Search results are not proof that all mods have been found. Some are private, deleted, renamed, APK-only, mirrors, or unrelated Naruto games. Do not claim completeness.
 
-## Research findings and limits
+## Required source audit for every candidate
+Record:
+1. Canonical repository URL, owner, default branch, latest relevant commit.
+2. Original/fork/mirror status, upstream, and meaningful changes compared with upstream.
+3. Actual engine/language, build system, dependencies, and Android build feasibility.
+4. Exact source paths inspected; whether editable character, skill, animation, effects, minion/tower, UI, and map implementations exist.
+5. Useful mod differences and known conflicts with the chosen base.
+6. License file, third-party notices, asset-specific terms, and permission decision.
+7. Classification: candidate base, compatible source for selected content, reference-only, or excluded.
+8. Exact components actually integrated and their build/gameplay test evidence.
 
-- Public GitHub searches found only a small number of clearly identifiable Senki code/source families; several search results are forks, release mirrors, documentation, or support repositories.
-- Many community mods appear to be shared through APKs or file-hosting pages rather than source repositories. APK-only projects cannot be merged as source code, and their extracted assets should not be redistributed without permission.
-- Search results can omit owners or fail to reveal whether a repository is original. Every candidate needs direct inspection.
-- Do not say “all mods have been found.” Public search cannot guarantee completeness; private, deleted, renamed, or APK-only mods may not be indexed.
-- No repository listed here is approved for copying merely because it is public.
+## Base selection rule
+Select **one existing, editable Naruto Senki project** as the foundation after a comparative audit. Preserve its engine and original gameplay wherever practical. Keep `kage049754/Senki` as the central integration workspace. Do not extend the Kotlin/Canvas prototype into a new game while the base is unresolved. After selection, document why the base won, what will be migrated, and how attribution/permissions are handled.
 
-## Per-repository review checklist
+## Merge rules
+- Merge compatible source changes/content in controlled batches; do not blindly combine whole repositories or APKs.
+- Keep one unified game and one final APK.
+- Adapt characters, skills, animations, effects, maps, and UI to the selected base's existing systems rather than inventing a replacement engine.
+- Compare forks before using their changes; avoid duplicate content.
+- Do not extract and redistribute APK contents without permission.
+- Public visibility does not mean public domain.
+- If terms are unclear, do not import/redistribute the content; mark it reference-only/excluded until resolved.
+- Never label a component “merged” until the unified project builds and the relevant in-game behavior is tested.
 
-For each new candidate, record:
-1. Canonical repository URL and owner.
-2. Original repository vs fork/mirror; upstream and meaningful changes.
-3. Main branch, latest commit date, engine/language, build system.
-4. Actual source directories and whether character/skill implementation is present.
-5. Roster/forms and distinct skills documented in source or changelog.
-6. License file and any separate asset/third-party terms.
-7. Android build feasibility and dependency age.
-8. Whether content is approved for reuse, reference-only, or excluded.
-9. Exact files inspected and a short evidence note.
-10. Whether any port has been integrated and tested in Senki.
-
-## Integration policy
-
-Do not combine entire repositories or APKs into one package. Use a single Senki architecture and port compatible mechanics/characters one at a time. Every imported component must pass provenance/permission review, fit the common character and skill interfaces, and pass selection/combat/death/respawn/AI tests. If reuse permission is absent or unclear, create an original implementation and original assets instead.
-
-
-## Roster scaling requirement
-
-Senki must be designed for **70+ playable characters and remain expandable beyond 70**, rather than inheriting a fixed roster size from a reference game.
-
-- The number 29 is a historical/reference roster size only, never a design limit.
-- Do not hardcode a character maximum or allocate fixed UI slots.
-- Use a dynamic character registry with stable unique IDs and data-driven definitions.
-- Build the roster screen from the registry; support scrolling/pagination, search, filters, and categories.
-- Load character art/animations on demand and release resources safely.
-- Share skill implementations where practical while preserving unique character behavior.
-- Keep alternate forms only when they have meaningful gameplay differences or are intentionally separate selectable entries.
-- Test the registry and UI with at least 75 synthetic entries before claiming scalability; synthetic test entries must not be counted as real playable characters.
-- Track discovered, planned, implemented, and verified playable counts separately in docs/CHARACTER_ROSTER.md.
-- The target is at least 70 genuinely playable and individually verified characters before claiming the 70+ milestone complete. The system must have no artificial code-level cap.
+## Roster growth
+Expand the selected game's existing roster with compatible and permitted content. A target of 70+ characters is desirable if the base/content support it, but this target must never justify starting a new engine. Track discovered, planned, integrated, build-verified, and device-tested counts separately. Alternate forms should be distinct entries only when appropriate and meaningfully different.
