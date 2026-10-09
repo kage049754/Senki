@@ -89,3 +89,14 @@ The repo previously received a native Kotlin/Canvas prototype scaffold. It is no
 - [ ] Resolve code and asset rights for the selected V2 source before import; build the real V2 base and then start verified merges.
 
 **Decision unchanged:** `LeaderOnePro/NarutoSenki` is reference-only due its older Windows-focused build path and unresolved rights. The selected target remains Naruto Senki V2. No external code/assets were imported, no character was merged, and no final V2 APK was produced in this pass.
+
+
+## V2-derived fork with real CI — 2026-10-10
+- [x] Found and inspected `Wilykun/NarutoSenki-V2`, a V2-derived fork of `hitlabmodv2/NarutoSenki-V2`.
+- [x] Compared its history to its parent: 15 commits ahead, including changes to game-mode logic/UI, Spectate mode, resources, and Android build workflow.
+- [x] Verified the fork's own Actions run `37911640387` completed successfully; JDK/SDK/NDK setup, `assembleDebug`, and artifact upload all passed.
+- [x] Verified fork artifact `NarutoSenki-debug-apk` exists (86,137,495 bytes; SHA-256 `9400c4d1db9b3f09630824a27656160e737876e3383ad234340a87082c3585e6`; expires 2027-01-07).
+- [x] Recorded the technical candidate in `docs/MOD_RESEARCH.md` (commit `f8c637f50fc95cd19e1131e41dc31a740d075599`).
+- [ ] Verify the fork's exact relationship to the selected v2.1.6-fix release and inspect full build documentation.
+- [ ] Resolve source and asset permissions before adopting/copying the fork into the central repo.
+- [ ] Once permitted, build the chosen V2 base inside `kage049754/Senki`; do not count another repository's successful artifact as this repo's build.
