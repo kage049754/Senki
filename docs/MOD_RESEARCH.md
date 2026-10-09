@@ -31,6 +31,7 @@
 - Default branch: `master`. The repository metadata reports it is a fork of `real-re/NarutoSenki-V2-old` (parent marked private); latest visible commits inspected were dated 2026-05-09.
 - No root `LICENSE` was found and GitHub metadata reports no declared license. Bundled game assets' separate rights are not established.
 - **Status:** technically credible source candidate, but `PERMISSION_REQUIRED`; do not copy wholesale into the central repo until code and asset permissions are resolved. Exact correspondence with release `v2.1.6-fix` is also unverified.
+- Additional mirrors/forks checked: `kuiyr0810/NarutoSenki-V2`, `SILXNTRAY/NarutoSenki-V2`, `sansaks-jpg/NarutoSenki-V2`, `hitlabmodv2/NarutoSenki-V2`, `BF667/NarutoSenki-V2`, `rikudousennin22/NarutoSenki-V2`, and `dont-cry-522/NarutoSenki-V2`. Their repository metadata also reports no declared license, so they do not resolve the permission blocker. Several are mirrors/forks rather than independent sources.
 
 ### Naruto Senki release history
 - https://github.com/Zx-Akito/NarutoSenki-Release
