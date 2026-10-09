@@ -118,3 +118,10 @@ The repo previously received a native Kotlin/Canvas prototype scaffold. It is no
 - Classification: reference-only for feature research; not a verified Android/V2 source base and no declared license.
 - [x] Added a comparative candidate matrix to `docs/MOD_RESEARCH.md`.
 - [ ] Continue with permission/provenance review and a single-base decision; no full-repository merges or asset extraction.
+
+
+## Latest documentation pass — 2026-10-10
+- [x] Updated `README.md` with the current V2 source-candidate findings and clear separation between external candidate artifacts and this repo's prototype artifact. README commit: `7da15f308ab4a3bf0486f062b9242e76d0c0b5a7`.
+- [x] Updated the roadmap, base notes, mod inventory, and permission register with the candidate comparison.
+- [x] Rechecked the central repository's Actions list after the documentation updates. No newer central V2 build exists; the latest central workflow remains run `37963412816`, which builds only the prototype scaffold. Documentation-only commits did not trigger the prototype workflow's path filters.
+- [ ] The project is not at the final game stage: source/asset permission and provenance are still blocking actual base import, central V2 build, mod merges, and device verification.
