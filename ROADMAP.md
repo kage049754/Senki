@@ -8,7 +8,8 @@
 - [x] Clarify in README that Senki is a mod-merging workspace.
 - [x] Make no-new-game rule explicit in AI instructions.
 - [ ] Inspect current Kotlin/Canvas prototype and classify it as temporary tooling/prototype, not the target foundation.
-- [ ] Audit candidate Senki source repositories and identify real editable source, engine/version, buildability, forks, and rights.
+- [x] Audit the V2 source candidate's real editable source structure, engine/version, Android Gradle configuration, and fork history.
+- [x] Record build compatibility risks and unresolved code/asset permission status.
 - [ ] Record the evidence and unknowns for each candidate in `docs/MOD_RESEARCH.md`.
 
 **Exit checks:** current repo state and all candidates are honestly documented; no further new-game systems are added while base selection is unresolved.
@@ -17,8 +18,12 @@
 **Status: In progress — target selected, source import not verified**
 
 - [x] Record the user's selected game target: Naruto Senki: V2, release reference v2.1.6-fix.
-- [ ] Inspect the editable V2 source repository and confirm it matches/is compatible with the selected release. The release host contains packaged binaries, not editable source.
-- [ ] Compare source candidates against Android buildability, engine compatibility, code/resource completeness, mod support, and maintenance.
+- [x] Inspect an editable V2 source candidate and verify its C++/Lua/Cocos2d-x structure and Android Gradle project.
+- [x] Inspect legacy Android Gradle/SDK/NDK configuration; see docs/V2_BUILD_AUDIT.md.
+- [ ] Verify it matches/is compatible with the selected release. The release host contains packaged binaries, not editable source.
+- [ ] Resolve code and separate asset permissions, or obtain a source distribution with clear reuse terms.
+- [ ] Test actual source buildability in a suitable environment after permission is resolved.
+- [ ] Compare source candidates against engine compatibility, code/resource completeness, mod support, and maintenance.
 - [ ] Check code licenses and separate asset/content permissions.
 - [x] Record the user-selected existing game as the intended foundation.
 - [ ] Verify source repository, exact revision, and rights before importing it.
