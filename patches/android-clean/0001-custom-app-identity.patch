@@ -1,0 +1,27 @@
+diff --git a/projects/NarutoSenki/proj.android-studio/app/build.gradle b/projects/NarutoSenki/proj.android-studio/app/build.gradle
+--- a/projects/NarutoSenki/proj.android-studio/app/build.gradle
++++ b/projects/NarutoSenki/proj.android-studio/app/build.gradle
+@@ -8,11 +8,11 @@ android {
+     buildToolsVersion "31.0.0"
+ 
+     defaultConfig {
+-        applicationId "net.zakume.game"
++        applicationId "com.senki.naruto.mod"
+         minSdkVersion 21
+         //noinspection ExpiredTargetSdkVersion
+         targetSdkVersion 31
+-        versionCode 2
+-        versionName "2.1"
++        versionCode 3
++        versionName "2.1.0-mod"
+ 
+         externalNativeBuild {
+             if (PROP_BUILD_TYPE == 'ndk-build') {
+diff --git a/projects/NarutoSenki/proj.android-studio/app/res/values/strings.xml b/projects/NarutoSenki/proj.android-studio/app/res/values/strings.xml
+--- a/projects/NarutoSenki/proj.android-studio/app/res/values/strings.xml
++++ b/projects/NarutoSenki/proj.android-studio/app/res/values/strings.xml
+@@ -1,3 +1,3 @@
+ <resources>
+-    <string name="app_name">NarutoSenki</string>
++    <string name="app_name">Naruto Senki Mod</string>
+ </resources>
