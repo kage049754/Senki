@@ -68,3 +68,12 @@ The repository previously received a native Kotlin/Canvas prototype scaffold. **
 ## Rights and disclaimer
 
 Naruto, Naruto Senki, related characters, names, art, music, and assets belong to their respective rights holders. This is an independent modding/research workspace, not an official project. Review each source's code license and asset terms. Do not redistribute material without permission. If no compatible and permitted content can be used, leave it out or create a lawful original substitute only when appropriate to the modding task—not as an excuse to replace the existing game with a new one.
+
+
+## Selected base game: Naruto Senki V2
+
+The user has selected **Naruto Senki: V2** as the game to mod. The original release listing is the reference point: [Naruto-Senki/files releases](https://github.com/Naruto-Senki/files/releases), with the [v2.1.6-fix release page](https://github.com/Naruto-Senki/files/releases/tag/v2.1.6-fix) currently identified.
+
+**All future authorized modding work is centralized in this repository, `kage049754/Senki`.** Changes to characters, skills, animations, fixes, and other content must be integrated into the selected existing Senki V2 base here, not built as a separate new game.
+
+Important: the linked release page is a file host with packaged release assets, including an APK; it is not itself editable source code. The V2 source project and its license/asset terms still need to be verified and imported before actual source-level modding can be completed. See [docs/BASE_GAME.md](docs/BASE_GAME.md). The APK is linked as a reference and is not claimed to be copied into this repository.
