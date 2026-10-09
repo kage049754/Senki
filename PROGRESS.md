@@ -37,7 +37,7 @@ Last updated: 2026-10-10
 - [x] Renamed the existing Actions workflow/artifact so prototype success cannot be mistaken for a V2 build.
 
 ## Current project contents and cautions
-The repo previously received a native Kotlin/Canvas prototype scaffold. It is not the intended final foundation. The latest observed Actions run 37961789724 completed successfully on commit 90f01e26e2ffb3cc9e618b065fa1c1899c699e1e, and it produced an artifact named senki-debug-apk (823,056 bytes). This is the scaffold's debug APK, not a verified Naruto Senki V2 build or unified modded APK. It must not be represented as the requested final game.
+The repo previously received a native Kotlin/Canvas prototype scaffold. It is not the intended final foundation. The successful Actions run 37963412816 completed on commit 3b10909d5cc66b6348f2f3308ccf42e5f238bc96 and uploaded `senki-prototype-scaffold-debug-apk` (823,054 bytes; SHA-256 reported by GitHub for the ZIP: bc67abc87ae1bf7889f7b2c4aca4385b3cb6c40e529dbb7e4fb8ff7f496d9af5). This is a prototype scaffold debug APK, not a verified Naruto Senki V2 build or unified modded APK. It must not be represented as the requested final game.
 
 ## Next actions
 1. Resolve code and asset permission terms for the V2 source candidate or locate a source distribution with clear reuse terms. Fan-made/non-commercial status does not itself remove this requirement.
@@ -47,19 +47,20 @@ The repo previously received a native Kotlin/Canvas prototype scaffold. It is no
 5. Keep CI reporting explicit about whether a run builds the prototype scaffold or the real V2 source.
 
 ## CI and APK status
-- Latest run after workflow-label/shell fix: https://github.com/kage049754/Senki/actions/runs/37963389348
-- Last observed state: in progress at Gradle setup; no final conclusion or artifact verified yet.
-- The preceding run https://github.com/kage049754/Senki/actions/runs/37963343679 failed because the first prototype-only audit step had an escaped `find` expression that caused a shell syntax error. That expression was corrected in commit 296ff49517f525641930644cf6b4cedb03a8af70; the newer run has passed the audit/inspection steps so far.
-- Earlier successful artifact `senki-debug-apk` (823,056 bytes) was the prototype scaffold only, not the selected V2 release and not a modded V2 build.
-- Workflow/artifact labels now explicitly identify prototype-only builds.
-- Unified mod APK artifact: not verified.
+- Run 37963412816: **SUCCESS** — https://github.com/kage049754/Senki/actions/runs/37963412816
+- Job `inspect-and-build`: completed successfully. The configuration validation, debug APK build, APK existence check, and artifact upload all succeeded.
+- Artifact `senki-prototype-scaffold-debug-apk`: verified present, 823,054 bytes, artifact ID 11631953325, expires 2026-10-23.
+- This successful run builds only the existing prototype scaffold. It is **not** Naruto Senki V2, not a merged mod, and not a device-tested final game.
+- Run 37963389348 was cancelled by the newer run because workflow concurrency cancels an older run on the same branch. It did not produce an artifact.
+- Unified mod APK artifact: not built or verified.
 - Physical-device installation/gameplay: not verified.
 
 ## Session log
 - Updated project documentation to make Naruto Senki V2 the explicit target.
 - Audited Zx-Akito/NarutoSenki-V2: verified C++/Lua/Cocos2d-x layout and Android Gradle project; confirmed no declared repository license.
 - Identified that copying source/assets into this central repo requires resolving permissions first.
-- Rechecked latest known workflow run and artifact; success is only for the existing prototype scaffold.
+- Rechecked the latest workflow and verified its result/artifact; success applies only to the prototype scaffold, not the V2 target.
+- Rechecked the latest source build files: the old Gradle/AGP and NDK settings require a compatible legacy build environment once a permitted source copy is available.
 
 ## Reminder
 **Every session: work toward Naruto Senki V2 in kage049754/Senki. If adding a character/mod, integrate it into the existing V2 game here. No separate new game. Never call a prototype build the final Senki build.**
