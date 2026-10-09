@@ -1,6 +1,6 @@
 # Naruto Senki / Mod Research Inventory
 
-> **Project rule: this is research for modding and merging an existing Naruto Senki game, not creating a new game.** The goal is to select one existing source base and integrate compatible mod content into it.
+> **Project rule: this is research for modding and merging the user's selected Naruto Senki: V2 game, not creating a new game.** The release reference is https://github.com/Naruto-Senki/files/releases/tag/v2.1.6-fix. The goal is to obtain and verify its editable source base, then integrate compatible mod content into kage049754/Senki. See docs/BASE_GAME.md.
 
 **Last reviewed:** 2026-10-10  
 **Status:** Candidate inventory; no base is selected until the repository contents, buildability, and reuse terms have been verified.
@@ -12,6 +12,14 @@
 - **Support repository:** files, translations, docs, or website; not necessarily a playable implementation.
 - **Unverified:** name/search result alone is not enough to confirm its identity or contents.
 - **Unrelated game/mod:** not a drop-in Senki implementation.
+
+## User-selected release reference (not editable source)
+
+- Release listing: https://github.com/Naruto-Senki/files/releases
+- Selected reference: https://github.com/Naruto-Senki/files/releases/tag/v2.1.6-fix
+- The GitHub release API lists NSV2_2.1.6-fix_Android.apk (about 159 MB), plus iOS and Linux packaged assets.
+- Repository metadata describes Naruto-Senki/files as a V2 File Host and reports no repository license. The release page is the selected game/reference, but its APK is a binary and cannot serve as the editable source tree. Do not assume the absence of a license grants redistribution/modification rights.
+- Status: user-selected target; source import and rights review pending. Keep this release link in the main README and docs/BASE_GAME.md.
 
 ## Candidate repositories
 
