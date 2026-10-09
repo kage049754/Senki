@@ -159,3 +159,11 @@ The repo previously received a native Kotlin/Canvas prototype scaffold. It is no
 - [ ] Verify a new central Actions run for commit `fe22f50b802b798802a06c383b8e91e726dd2e09` and confirm the uploaded artifact is actually present. The existing successful run `37965165366` predates this workflow change and had no artifact upload.
 - [ ] Compare `sansaks-jpg`'s changes against the pinned build-tested source and decide which Android base is strongest.
 - [ ] No source has yet been imported into the central repo; no unified modded APK or phone gameplay has been verified.
+
+
+### Candidate build loop result — 2026-10-10
+- Run `37966549532` was superseded/cancelled after its Gradle build began printing repeated legacy SDK repository XML parse errors (including invalid `api-level` values such as `34x` and unsupported `base-extension` / `extension-level` elements). No artifact was produced by that attempt.
+- Fixed the runner setup in commit `fcccc784c39f0f33c041c4d00bb39b3408ccaef9`: install the required legacy Android SDK/NDK packages into an isolated SDK root, then point `ANDROID_HOME` and `ANDROID_SDK_ROOT` at that root so preinstalled/newer platform metadata does not break the old Gradle plugin.
+- Run `37966861114`: **SUCCESS** on commit `fcccc784c39f0f33c041c4d00bb39b3408ccaef9`. All steps passed: pinned source checkout, isolated SDK provisioning, Gradle build, APK existence check, and artifact upload.
+- Verified artifact: `naruto-senki-v2-candidate-debug-apk`, artifact ID `11634177274`, ZIP size 83,435,979 bytes, expires 2026-10-23. Open the [successful Actions run](https://github.com/kage049754/Senki/actions/runs/37966861114) and download the artifact card.
+- Scope: this is a successfully compiled debug APK of the pinned external V2-derived candidate in CI. It is not yet source-integrated into this repo and has not been physically installed or gameplay-tested on the user's phone.
