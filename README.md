@@ -53,7 +53,7 @@ Follow the full failure-inspection/fix/rebuild loop in [AGENTS.md](AGENTS.md). R
 
 ## Current status
 
-The repository previously received a native Kotlin/Canvas prototype scaffold. **That scaffold is not the agreed final game foundation.** The next priority is to inspect existing Senki source candidates and determine the best existing game base. Do not continue adding original game-engine/gameplay systems to the prototype while that investigation is unresolved.
+The repository previously received a native Kotlin/Canvas prototype scaffold. **That scaffold is not the agreed final game foundation.** The V2 source candidate and Android build configuration have now been inspected; see [docs/V2_BUILD_AUDIT.md](docs/V2_BUILD_AUDIT.md). The candidate uses legacy Android tooling, and code/asset reuse permissions remain unresolved. Do not continue adding original game-engine/gameplay systems to the prototype as a substitute for the existing game.
 
 ## Research documents
 
@@ -67,7 +67,7 @@ The repository previously received a native Kotlin/Canvas prototype scaffold. **
 
 ## Rights and disclaimer
 
-Naruto, Naruto Senki, related characters, names, art, music, and assets belong to their respective rights holders. This is an independent modding/research workspace, not an official project. Review each source's code license and asset terms. Do not redistribute material without permission. If no compatible and permitted content can be used, leave it out or create a lawful original substitute only when appropriate to the modding task—not as an excuse to replace the existing game with a new one.
+This is an independent fan-made, non-commercial modding/research workspace. Fan-made/non-commercial status does not automatically grant rights to third-party code or assets. The root LICENSE covers only original contributions authored for this repository by contributors who can license them; it does not override external source terms or rights held by Naruto/Naruto Senki owners. See NOTICE.md, docs/ASSET_LICENSES.md, and docs/V2_BUILD_AUDIT.md. Do not redistribute material without permission.
 
 
 ## Selected base game: Naruto Senki V2
