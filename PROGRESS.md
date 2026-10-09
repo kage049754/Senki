@@ -6,7 +6,7 @@ Last updated: 2026-10-10
 - GitHub repository: https://github.com/kage049754/Senki
 - Default branch: main
 - Current engine/build state: NOT YET VERIFIED IN THIS TRACKER
-- Latest CI result: GitHub Actions API returned 0 workflow runs on 2026-10-10; no run available to verify
+- Latest CI result: No workflow runs existed before setup. Added .github/workflows/android.yml on 2026-10-10; trigger/result still needs verification.
 - APK artifact: NOT CHECKED IN THIS SESSION
 - Physical-device installation/gameplay: NOT VERIFIED IN THIS SESSION
 
@@ -21,8 +21,8 @@ Build one cohesive landscape-first Android 2D lane-battle game with a data-drive
 - [x] Created and verified docs/CHARACTER_ROSTER.md.
 - [x] Created and verified docs/ROSTER_SCALABILITY.md.
 - [x] Created and verified docs/ASSET_LICENSES.md.
-- [ ] Inspect actual game source/build structure.
-- [ ] Inspect actual workflow files and establish CI; Actions API currently returns zero runs and no APK artifact is verified.
+- [x] Inspected the complete repository tree: it contains documentation only; no Android app source, Gradle project, or game engine files exist yet.
+- [x] Added .github/workflows/android.yml to validate/build a Gradle Android project and upload an APK. No successful run or APK artifact is verified yet.
 
 ## Roster metrics
 - Discovered leads: NOT YET COUNTED
@@ -34,26 +34,26 @@ Build one cohesive landscape-first Android 2D lane-battle game with a data-drive
 - Artificial roster cap: PROHIBITED
 - 75-entry synthetic architecture test: REQUIRED, NOT YET RUN
 
+- [x] Created GitHub Issue #1 for the first playable Android battle prototype: https://github.com/kage049754/Senki/issues/1
+
 ## Session log
 
-### 2026-10-10 — Scalable roster documentation
-Planned/implemented documentation changes:
-- Strengthen AI rules and README for a 70+ character dynamic roster.
-- Expand roadmap acceptance criteria.
-- Add persistent roster, scalability, licensing, and progress trackers.
-- Keep implementation/build/device-test statuses conservative until inspected.
+### 2026-10-10 — Start implementation and establish CI
+Verified repository audit:
+- The full main-branch tree contains documentation only: README, AGENTS, ROADMAP, PROGRESS, and docs; no Gradle project, Android source, assets, or engine implementation exists yet.
+- Added an Android APK GitHub Actions workflow; it will fail clearly until the project scaffold exists. Workflow trigger and result are not yet verified.
+- Created Issue #1 defining the first implementation milestone.
 
-Actual game code changes: NOT PERFORMED BY THIS DOCUMENTATION CHANGE.
-Build/gameplay tests: NOT RUN OR CLAIMED BY THIS DOCUMENTATION CHANGE.
+Game code implementation: NOT YET PERFORMED.
+Build/gameplay tests: NOT RUN OR CLAIMED.
 
 ## Next actions
-1. Verify all new/updated documentation files on GitHub.
-2. Inspect the actual repository tree and determine current engine/build setup.
-3. Inspect latest GitHub Actions workflow and logs/artifacts.
-4. Implement or confirm the dynamic character registry and selection UI.
-5. Add the 75-entry synthetic scalability test.
-6. Establish a playable vertical slice before expanding real characters in batches.
-7. Track every character through the verification checklist.
+1. Create a real Android Gradle project scaffold and select/confirm engine/toolchain.
+2. Trigger and verify the new Actions workflow; fix any actual build errors.
+3. Implement a landscape startup/loading/main menu.
+4. Implement one complete playable battle loop.
+5. Implement the data-driven roster registry and 75-entry synthetic scalability test.
+6. Expand real characters in tested batches after rights/provenance review.
 
 ## Required end-of-session record
 Record actual files changed, commit IDs, test results, workflow/run IDs, APK artifact state, device-test state, blockers, and the exact next task. Never copy example or pending statuses as if they were verified results.
