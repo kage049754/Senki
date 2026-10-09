@@ -144,3 +144,15 @@ These may be useful for technical comparison only; this metadata result does not
 ### Duplicate check: `wsnbbnbb/NarutoSenki1.17Mod`
 - GitHub metadata marks it as a fork of `LeaderOnePro/NarutoSenki1.17Mod`; both report the same repository size and the same two commits (initial commit and README update) in the inspected history.
 - Classification: **duplicate fork/mirror, not an independent mod**. Do not count it as a separate content source or merge candidate.
+
+
+### Newly identified stronger technical candidate: `Wilykun/NarutoSenki-V2`
+- Canonical repository: https://github.com/Wilykun/NarutoSenki-V2
+- GitHub metadata identifies it as a fork of `hitlabmodv2/NarutoSenki-V2`; that parent is itself in the Naruto Senki V2 source family. It is therefore a V2-derived project, not a separate replacement game.
+- The fork is 15 commits ahead of its parent at the comparison inspected on 2026-10-10. The diff includes an Android APK build workflow, changelog/readme updates, C++ game-loop/mode changes, a new AI-vs-AI Spectate mode, mode UI changes, and a few Lua/UI/resource changes.
+- Its changelog describes Spectate as AI-vs-AI matches from 1v1 through 5v5, camera tracking, live team/fighter statistics, and visual/menu changes. This is a fork author's own changelog, not independent gameplay verification by this project.
+- The GitHub Actions run `37911640387` completed **successfully** on commit `527e7766a26484cfc3cbe6748cf41fb469720e41`; the build, APK existence/upload steps passed. Artifact `NarutoSenki-debug-apk` is present (86,137,495 bytes; SHA-256 `9400c4d1db9b3f09630824a27656160e737876e3383ad234340a87082c3585e6`; expires 2027-01-07). This is the fork's own artifact, not an artifact built in `kage049754/Senki` and not a device test performed here.
+- Its workflow uses JDK 17 and installs Android platform 34, build-tools 34.0.0, and NDK 21.4.7075529, then runs `./gradlew assembleDebug` in `projects/NarutoSenki/proj.android-studio`. This is a stronger observed CI signal than the previously inspected unbuilt V2 candidate.
+- Repository metadata reports **no declared license**. Naruto character artwork, sprites, audio, animation, and inherited code/dependencies are not cleared by the successful build. The README credits the parent project, but attribution alone is not a license.
+- Classification: **top technical candidate for a V2-derived base pending code/asset permission review and exact comparison with the user's v2.1.6-fix reference**. Do not import/redistribute its source/assets or publish its APK through this project until permission is established.
+- Next technical checks: inspect its full build docs and source provenance; compare its changes against the selected release and other forks; document permission evidence; then, once approved, adopt one base and bring up CI in the central repository before merging additional mods.
