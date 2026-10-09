@@ -111,3 +111,7 @@ A direct recursive-tree comparison found 1,828 identical files across the two su
 The latest successful build includes a new original Senki launcher icon, loading-screen background, and character-selection HUD background, while preserving the existing Cocos2d-x game and its selection logic. CI verifies both custom backgrounds are inside the APK and checks the package identity. [Open the successful build and download the artifact](https://github.com/kage049754/Senki/actions/runs/37971031426) — artifact `naruto-senki-v2-candidate-debug-apk`, 83,466,499-byte ZIP, expires 2026-10-23.
 
 This is still a CI-built candidate, not phone-verified. See `PROGRESS.md` and `ROADMAP.md` for the exact status and remaining checks.
+
+
+### Latest main-menu build
+The main menu background has now been redesigned too. The existing game-mode carousel and menu callbacks are preserved. [Download the newest candidate artifact from successful Actions run 37971712613](https://github.com/kage049754/Senki/actions/runs/37971712613) — artifact `naruto-senki-v2-candidate-debug-apk`, 83,718,905-byte ZIP, expires 2026-10-23. CI confirms that the APK contains all three custom backgrounds and has the expected `Naruto Senki Mod` package identity. Device/gameplay testing is not yet confirmed.
