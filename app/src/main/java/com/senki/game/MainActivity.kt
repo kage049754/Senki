@@ -16,7 +16,7 @@ class MainActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         window.decorView.systemUiVisibility = 5894 or 1024 or 512 or 4096
-        setContentView(SenkiView())
+        setContentView(SenkiView(this))
     }
 }
 
@@ -32,9 +32,7 @@ object FighterRegistry {
     )
 }
 
-class SenkiView : View(context = throw IllegalStateException("Use secondary constructor")) {
-    private constructor(activity: Activity, marker: Unit = Unit) : this(activity) 
-    constructor() : this(context as Activity)
+class SenkiView(context: android.content.Context) : View(context) {
     private val p = Paint(Paint.ANTI_ALIAS_FLAG)
     private enum class Screen { MENU, SELECT, BATTLE, RESULT }
     private var screen = Screen.MENU
