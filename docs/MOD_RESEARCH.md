@@ -188,3 +188,8 @@ These may be useful for technical comparison only; this metadata result does not
 | `LeaderOnePro/NarutoSenki1.17Mod` | APK/package-oriented root tree | Historical 1.17 mod reference | No declared license; not editable game source |
  
 **Selection remains conditional:** prefer one V2-derived Android source tree after permission/provenance review. Do not combine entire forks; compare diffs and cherry-pick only compatible, permitted changes into the single selected base.
+
+## Search directive: personal-use mod development (2026-10-10)
+Continue candidate discovery and technical evaluation even where a source repository does not include an explicit license. Search public forks, mod variants, archived releases, mirrors, and other accessible source/download pages. Look for complete Android V2 builds and useful character/skill/animation/effect/stage/UI additions. A missing license is not a reason to stop private build-feasibility testing.
+
+For every promising candidate, record the source URL, revision/release, engine, Android build path, included game components, unique mod features, and whether we actually built it. Test it in an isolated workspace before merging into kage049754/Senki. Keep attribution/provenance factual; do not invent permissions or license terms. The current priority is the user's personal working APK and device testing, not publishing or redistributing the candidate.
