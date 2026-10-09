@@ -128,3 +128,19 @@ These may be useful for technical comparison only; this metadata result does not
 - The search surfaced an explicit 1.17 mod repository, but its package-oriented tree does not solve the editable-source or permission blocker.
 - Continue auditing the older editable-source family `LeaderOnePro/NarutoSenki` and compare it with the existing V2 candidate by actual source structure, Android build support, provenance, and rights. Do not switch away from the user's selected V2 target merely because another repository is easier to find.
 - Search is ongoing and not exhaustive. Repository names/search snippets are leads, not evidence of unique content or permission.
+
+
+### Detailed audit: `LeaderOnePro/NarutoSenki` — older editable source, not the selected V2 base
+- Canonical repository: https://github.com/LeaderOnePro/NarutoSenki
+- Description: “火影战记源代码” (Naruto Senki source code); default branch `master`; repository metadata reports no declared license.
+- README identifies Cocos2d-x 2.2.2 and Visual Studio 2010 as the framework/build environment and points to a Windows-era setup. It does not document a maintained Android Studio/Gradle project.
+- Tree inspection verified editable C++ files under `Classes/`, including `Characters.cpp`, `ActionManager.cpp`, `GameLayer.cpp`, `HudLayer.cpp`, `JoyStick.cpp`, `LoadLayer.cpp`, and other game systems. `Resources/` includes game resource bundles such as audio, effects, element data, maps, menu assets, and other packaged game content.
+- Technical value: useful as a reference for legacy character/action/skill architecture and comparison of the original 1.x-style Cocos2d-x implementation.
+- Limitations: Windows/VS2010-oriented setup; no verified Android build path from the inspected root; its architecture/version is not shown to be compatible with V2's Cocos2d-x/C++/Lua Android project.
+- Rights: no declared repository license; source and Naruto/game assets have not been cleared for reuse.
+- Classification: **reference-only; not selected as the V2 foundation and not approved for source/assets import.**
+- Decision: do not switch the user-selected V2 target to this older project simply because it exposes C++ files. Reconsider only if the user explicitly changes the target and code/asset permissions are established.
+
+### Duplicate check: `wsnbbnbb/NarutoSenki1.17Mod`
+- GitHub metadata marks it as a fork of `LeaderOnePro/NarutoSenki1.17Mod`; both report the same repository size and the same two commits (initial commit and README update) in the inspected history.
+- Classification: **duplicate fork/mirror, not an independent mod**. Do not count it as a separate content source or merge candidate.
