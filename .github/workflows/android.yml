@@ -1,4 +1,4 @@
-name: Android APK Build
+name: Legacy Prototype Scaffold Build (NOT Naruto Senki V2)
 
 on:
   push:
@@ -32,6 +32,16 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+
+      - name: Mark this workflow as prototype-only
+        run: |
+          echo "::notice::This workflow builds the legacy Kotlin/Canvas prototype scaffold only."
+          echo "::notice::It does NOT build Naruto Senki V2 and must not be reported as the final game build."
+          echo "Commit: $GITHUB_SHA"
+          echo "Repository root:"
+          ls -la
+          echo "Android project candidates:"
+          find . -maxdepth 4 \\( -name settings.gradle -o -name settings.gradle.kts -o -name build.gradle -o -name build.gradle.kts -o -name gradlew \\) -print
 
       - name: Inspect repository state
         run: |
@@ -77,7 +87,7 @@ jobs:
       - name: Upload debug APK
         uses: actions/upload-artifact@v4
         with:
-          name: senki-debug-apk
+          name: senki-prototype-scaffold-debug-apk
           path: "**/build/outputs/apk/**/*.apk"
           if-no-files-found: error
           retention-days: 14
