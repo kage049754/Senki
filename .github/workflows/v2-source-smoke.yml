@@ -184,7 +184,7 @@ jobs:
         run: |
           set -euo pipefail
           SELECT=/tmp/narutosenki-candidate/projects/NarutoSenki/lua/ui/SelectLayer.lua
-          grep -F 'self.pageNum = math.max(1, math.ceil(#charactersList / 21))' "$SELECT"
+          grep -F 'self.pageNum = math.max(5, math.ceil(#charactersList / 21))' "$SELECT"
           grep -F 'ui.newImageMenuItem' "$SELECT"
           grep -F 'if i <= 3 then' "$SELECT"
           grep -F "senki_page' .. tostring(i) .. '_off.png" "$SELECT"
