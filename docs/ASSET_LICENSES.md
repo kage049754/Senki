@@ -97,3 +97,14 @@ For each character/form, record provenance and permission status separately for:
 
 The character manifest in `docs/CHARACTER_ROSTER.md` must link each asset category to its exact source path and source revision where known. Mark absent categories as missing/not-applicable with evidence, and mark unknown rights as `PERMISSION_REQUIRED` or `UNREVIEWED`; do not silently treat public visibility, an APK extraction, or attribution as redistribution permission. Technical private testing and source discovery may continue while permission is being investigated, but public release claims must not overstate the rights status.
 
+
+
+### `LeaderOnePro/NarutoSenki-cocos2dx` — modernized legacy C++ source reference
+- Canonical URL: https://github.com/LeaderOnePro/NarutoSenki-cocos2dx
+- Material: Cocos2d-x 2.2.6 framework, older Naruto Senki C++ game code, Android/Windows/macOS projects, bundled game assets.
+- Repository metadata: no declared game-source license found in the inspected metadata. The `licenses/` directory contains dependency/framework license texts; these are not evidence of permission for the Naruto Senki game code or Naruto franchise assets.
+- Asset-specific terms: not established.
+- Approved scope: technical research and compatibility inspection only; no game code/assets copied to the central repository.
+- Status: **REFERENCE_ONLY / PERMISSION_REQUIRED**
+- Review date: 2026-10-10
+- Notes: the Android project documents an armeabi-v7a-only legacy build path. It is a reference source, not a directly compatible V2 character package.
