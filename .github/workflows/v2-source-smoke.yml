@@ -61,6 +61,15 @@ jobs:
           done
           echo "All central Senki patches applied."
 
+      - name: Verify landscape and rotation-stability settings
+        shell: bash
+        run: |
+          set -euo pipefail
+          MANIFEST=/tmp/narutosenki-candidate/projects/NarutoSenki/proj.android-studio/app/AndroidManifest.xml
+          grep -F 'android:screenOrientation="sensorLandscape"' "$MANIFEST"
+          grep -F 'android:configChanges="orientation|screenSize"' "$MANIFEST"
+          echo "Landscape orientation and screen-size change handling are present."
+
       - name: Render central Senki artwork
         shell: bash
         run: |
@@ -160,6 +169,8 @@ jobs:
           "$ANDROID_HOME/build-tools/31.0.0/aapt" dump badging "$APK" | tee /tmp/senki-apk-badging.txt
           grep -F "name='com.senki.naruto.mod' versionCode='3' versionName='2.1.0-mod'" /tmp/senki-apk-badging.txt
           grep -F "application-label:'Naruto Senki Mod'" /tmp/senki-apk-badging.txt
+          "$ANDROID_HOME/build-tools/31.0.0/aapt" dump xmltree "$APK" AndroidManifest.xml | tee /tmp/senki-apk-manifest.txt
+          grep -F 'android:screenOrientation' /tmp/senki-apk-manifest.txt | grep -F '0x6'
 
       - name: Upload candidate debug APK for private testing
         if: success()
