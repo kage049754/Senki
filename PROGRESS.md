@@ -110,3 +110,15 @@ The user explicitly requested these six characters for the external Senki charac
 6. Rin (Nohara)
 
 Treat these as priority candidates to investigate in editable Senki mod source. This list is **not** evidence that they have been added. For each one, record the actual source/revision, selectable-character implementation, sprite/animation and skill/effect dependencies, portrait/skill/profile UI, audio/voice where available, AI/player controls, and code/art/audio provenance. Prefer a candidate with inspectable compatible source and a clear permission path; do not claim completion until integrated and tested through the character completion gate in README.md and ROADMAP.md.
+
+
+## Latest run #240 failure — root cause and correction
+
+- Run: https://github.com/kage049754/Senki/actions/runs/38050986420
+- Commit tested: 86249b8f649fa7e8d92c0befb9f58658200dd84d
+- Failure point: legacy release character importer, before Lua validation or Android build.
+- Actual error: all 12 candidates were missing the expected character XML/plist/texture package in the release APK ZIP layout. The release changelog proves the names were announced, but not that the APK contains editable source packages in the format this importer expects.
+- Correction: removed APK-download/import as a required build step. The workflow now records release-note names as research leads only and does not extract or transplant APK resources. This avoids repeatedly failing the whole build on an invalid source assumption.
+- Character count is unchanged by this correction: **1 external mod variant (Two Sage Toads), 0 external characters verified playable on device, 37 distinct base characters**. Kurenai, Might Guy, Yamato, Shizune, Hashirama, and Rin are still requested source-level port targets, not yet integrated.
+- Next: locate inspectable compatible source/assets for a target, map all character dependencies, implement the complete source-level port, then build and verify.
+
