@@ -458,3 +458,22 @@ The inspected `Fansirsqi/NarutoSenki-V2`, `ZhReimu/NarutoSenki-V2`, `sansaks-jpg
 - The README says “open source,” but the repository metadata has no declared SPDX license and no explicit license file was identified in the prior audit. Record as **REFERENCE_ONLY / PERMISSION_REQUIRED** pending explicit terms. Private technical investigation can continue, but no source/assets from this repository have been integrated.
 - Cross-check against the current V2-derived candidate: all six names above also have existing native form enums/classes and form XML/plist resources there. Those forms have now been exposed as selectable entries by the central candidate patch; this did **not** copy or port code/assets from the older C++ repository. Their actual runtime selection and combat behavior remain untested. The remaining old-source entities are reference leads only. Next action: test the six candidate forms in-game, then map additional legacy-source content only if a concrete compatible port path is found.
 
+
+
+### `LeaderOnePro/NarutoSenki-cocos2dx` — modernized legacy C++ reference (audited 2026-10-10)
+
+- Repository: https://github.com/LeaderOnePro/NarutoSenki-cocos2dx
+- README describes a Cocos2d-x 2.2.6 C++ migration/rebuild with Windows, Android and macOS projects. Android project path is `projects/NarutoSenki/proj.android`; Gradle file declares AGP 8.5.2, compile SDK 34, and an externally built legacy native library. The README says only `armeabi-v7a` is supported.
+- Inspected `projects/NarutoSenki/Classes/SelectLayer.cpp`: it still uses a fixed three-page, 63-slot selection list and has 36 unique non-placeholder names. It does not provide a larger directly usable V2 roster. Its `Characters.cpp` contains the same older AI/form families seen in `Zx-Akito/NarutoSenki`.
+- It may be useful as a reference for legacy Cocos2d-x Android build fixes, original C++ AI, skill/XML behavior, and resource dependencies. It is not a drop-in source for the selected V2 Lua/C++ candidate.
+- Root tree contains framework dependency licenses under `licenses/`, but no root game-source license was identified in the metadata inspected. Dependency licenses do not automatically license the game code or Naruto assets.
+- Status: **REFERENCE_ONLY / PERMISSION_REQUIRED**. No code/assets copied; no build was run from this repository in the central workspace.
+
+### Additional V2 fork roster comparison — 2026-10-10
+
+Inspected `lua/class/basic.lua` in `Fansirsqi/NarutoSenki-V2`, `ZhReimu/NarutoSenki-V2`, `sansaks-jpg/NarutoSenki-V2`, `SILXNTRAY/NarutoSenki-V2`, `kuiyr0810/NarutoSenki-V2`, `rikudousennin22/NarutoSenki-V2`, `dont-cry-522/NarutoSenki-V2`, `hitlabmodv2/NarutoSenki-V2`, `BF667/NarutoSenki-V2`, `Wilykun/NarutoSenki-V2`, `tomtam/NarutoSenki-V2`, `4399erbai/NarutoSenki-V2`, `wsnbbnbb/NarutoSenki-V2`, and `LeaderOnePro/NarutoSenki-V2-old`.
+
+- The inspected default-branch roster tables in these V2-derived repositories contain 36 unique selectable names and 63 slots; none of these snapshots adds a new selectable name beyond the common roster.
+- The current Android-only `muhammadadilsyaputra08-alt/NarutoSenki-Custom` snapshot includes Kabuto as an extra selectable entry, so it has 37 unique roster names before the central six-form exposure patch.
+- These repositories are mostly fork/mirror descendants, not independent character sources. This comparison did not identify a ready-to-port source for filling page five.
+- Next search targets are genuinely different mod lineages or editable source packages for the release-note leads (Shizune, Hashirama, Rin, Sakon & Ukon, Juzo, Kurenai). APK-only/decompiled packages remain research leads, not editable character implementations.
