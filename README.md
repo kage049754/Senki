@@ -261,3 +261,19 @@ When a character is added or ported, the goal is to bring over and connect **the
 ### Automated character package inventory
 
 The CI workflow now runs `scripts/audit_character_packages.py` against the pinned source and uploads a `senki-character-package-audit` report with the debug APK. It inventories source-level clues for each of the 37 selectable names: native class/header presence, character-named Lua files, unit/resource files, audio folders, packed selection-frame names, and recognizable AI-registration patterns. The report is intentionally conservative: it is a triage tool, not a character-completeness verdict. Every character still needs a manual per-skill/animation/audio/AI review and in-game verification. A successful build or a row of detected files does not add a character to the verified roster.
+
+
+## Current technical checkpoint — 2026-10-10
+
+The central CI workflow now builds a pinned V2-derived diagnostic candidate and applies the source-controlled changes in isolation. Latest successful workflow: [run #126](https://github.com/kage049754/Senki/actions/runs/38028647795), exact workflow commit `9aa276227fa118e89246eef561aa318209d3c60a`. Its APK artifact is `naruto-senki-v2-candidate-debug-apk`, artifact ID `11660439960`, SHA-256 `865afbe5def724a1f0c0da37ad9aec845d12ccac4ed56a14411c156e6ce3b76c`. See PROGRESS.md for the complete artifact record.
+
+Current candidate changes verified by CI include:
+- Original main-menu and character-selection backgrounds are retained; retired custom background replacement patches are excluded.
+- Character-selection pagination remains image-based. Generated page 4/5 normal and selected button assets are checked against the original artwork.
+- Character search/filter code and a visible missing-skill-description fallback are packaged in the APK.
+- Six existing native transformation forms are exposed as entries on page four with safe UI aliases and dedicated form portraits.
+- Character package audit now reports the gap to 70 distinct declared entries without pretending to measure gameplay-verified characters.
+
+The candidate currently declares **43 distinct selectable names/forms** against the desired 70-entry target. The static audit does not prove that all 43 are playable. Page four is currently populated with six extra forms; page-five controls are prepared but are not displayed because there are only 84 roster slots (four pages).
+
+**Still not finished:** no physical-device/emulator gameplay validation has been completed; the six form entries need in-game checks; 27 more distinct entries are needed to reach 70 declared names; the candidate source is still fetched into a temporary CI workspace rather than vendored as an editable source tree; source/asset permissions remain unresolved. The artifact is a short-lived diagnostic candidate, not the final unified release.
