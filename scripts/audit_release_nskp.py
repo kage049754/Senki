@@ -24,6 +24,16 @@ PATH_RE = re.compile(
     rb"\.(?:ogg|mp3|xml|plist|png|pvr\.ccz|ccz)"
 )
 
+def matches_target(path: str, aliases: tuple[str, ...]) -> bool:
+    parts = path.lower().split("/")
+    filename = parts[-1]
+    return any(
+        alias.lower() in parts
+        or filename.startswith(alias.lower() + "_")
+        or filename.startswith(alias.lower() + ".")
+        for alias in aliases
+    )
+
 def scan_apk(apk_path: Path) -> dict[str, set[str]]:
     found: dict[str, set[str]] = {name: set() for name in TARGETS}
     with zipfile.ZipFile(apk_path) as apk:
@@ -37,19 +47,18 @@ def scan_apk(apk_path: Path) -> dict[str, set[str]]:
                 continue
             for raw in PATH_RE.findall(blob):
                 path = raw.decode("ascii", "replace")
-                path_parts = path.lower().split("/")
                 for character, aliases in TARGETS.items():
-                    if any(alias.lower() in path_parts for alias in aliases):
+                    if matches_target(path, aliases):
                         found[character].add(path)
     return found
 
 def classify(paths: set[str], aliases: tuple[str, ...]) -> dict[str, bool]:
-    char_paths = [p for p in paths if any(alias.lower() in p.lower().split("/") for alias in aliases)]
+    char_paths = [p for p in paths if matches_target(p, aliases)]
     return {
         "model_xml": any(p.startswith("Element/") and p.endswith(".xml") for p in char_paths),
         "sprite_atlas": any(p.startswith("Element/") and p.endswith((".plist", ".png", ".pvr.ccz", ".ccz")) for p in char_paths),
         "audio": any(p.startswith("Audio/") for p in char_paths),
-        "skill_art": any("/Skills/" in p or "_Skill" in p for p in char_paths),
+        "skill_art": any(p.startswith("Element/Skills/") and "_Skill" in p for p in char_paths),
     }
 
 def main() -> int:
