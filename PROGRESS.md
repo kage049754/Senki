@@ -513,3 +513,12 @@ GitHub API confirms `kage049754/Senki` is currently **public**. Therefore, the s
 - [ ] Physically install and test all six form selections, preview portraits, skill screen, character spawn, AI, movement, attacks, transformations, and death/respawn. CI verifies source packaging only, not in-game behavior.
 - [ ] Page four now has six extra form entries. Page-five normal/selected button assets are generated and packaged, but page five is not displayed yet because the current roster has 84 slots (four pages). More verified character implementations are needed before page five should be enabled.
 - [ ] Newly exposed forms are **not yet counted as verified playable characters**. This is roster/UI exposure of existing native implementations, not a port of new external assets or code.
+
+
+## Latest roster/resource validation build — 2026-10-10
+
+- [x] Strengthened the form regression test to parse each form's atlas plist metadata and verify the referenced texture file actually exists. This handles the candidate's mixed texture naming/extensions (for example, some form atlases reference `.pvr.ccz`, while Nagato references `.png`).
+- [x] Latest GitHub Actions run #121 completed successfully on `7a1aa062dc306a9c0180a551b91753ef55604416`: https://github.com/kage049754/Senki/actions/runs/38027680983
+- [x] The run passed the selectable-form source checks, full Lua syntax validation, character package audit, Android build, APK roster-packaging checks, signature/ABI checks, and artifact upload.
+- [x] Latest APK artifact: `naruto-senki-v2-candidate-debug-apk`, ID `11660673063`, size 83,313,937 bytes, digest `sha256:cfeca041cc20e0c6a423f492fcab286b38bc802ee8cd4de82c1b528c388341c1`; expires 2026-10-24.
+- [ ] Install and test the exact artifact on an Android device/emulator. No physical-device results are available in this session.
