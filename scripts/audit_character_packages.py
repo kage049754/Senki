@@ -286,12 +286,13 @@ with OUT.open("w", encoding="utf-8") as f:
     # Image-label frame coverage and runtime text fallback coverage are separate:
     # Kabuto intentionally has no label sprites, but patched SkillLayer supplies
     # five descriptions so the UI can still explain its skills.
-    fallback_block = re.search(r"local skillDescriptionFallbacks\s*=\s*\{([\s\S]*?)\n\}\n\nlocal transformList", skill_source)
+    fallback_start = skill_source.find("local skillDescriptionFallbacks")
+    fallback_end = skill_source.find("local transformList", fallback_start) if fallback_start >= 0 else -1
+    fallback_text = skill_source[fallback_start:fallback_end] if fallback_start >= 0 and fallback_end > fallback_start else ""
     kabuto_fallback_count = 0
-    if fallback_block:
-        kabuto_block = re.search(r"Kabuto\s*=\s*\{([\s\S]*?)\n\s{4}\}", fallback_block.group(1))
-        if kabuto_block:
-            kabuto_fallback_count = len(re.findall(r"\[\d+\]\s*=\s*\"", kabuto_block.group(1)))
+    kabuto_block = re.search(r"Kabuto\\s*=\\s*\\{([\\s\\S]*?)\\n\\s{4}\\}", fallback_text)
+    if kabuto_block:
+        kabuto_fallback_count = len(re.findall(r"\\[\\d+\\]\\s*=\\s*\\\"", kabuto_block.group(1)))
     f.write(f"- Kabuto runtime skill-description text fallbacks: **{kabuto_fallback_count}/5 detected in patched SkillLayer.lua** (separate from image-label frame coverage).\n")
     frame_complete = sum(1 for row in detail_rows if row[4].startswith("0 "))
     missing_frame_ref_rows = [(row[0], row[4]) for row in detail_rows if not row[4].startswith("0 ")]
