@@ -289,3 +289,7 @@ The candidate currently declares **43 distinct selectable names/forms** against 
 - Do not count a character as added/playable until its permitted assets, selection portrait/name, sprites/animations, attacks/skills/icons/descriptions, effects, audio/voice where available, AI/player behavior, and battle/death/kill-profile references are integrated and tested.
 - Only after pages 1–3 have been populated with the first verified batch should work continue to page 4 and then page 5. Page 4/5 must not be padded with forms merely to demonstrate pagination.
 - Current build success means the pinned V2-derived diagnostic candidate packaged; it does not mean new external characters were integrated or that phone behavior was tested. See PROGRESS.md and docs/CHARACTER_ROSTER.md.
+
+
+## Required portrait for every new character
+Every added roster entry must show that character's own matching avatar/portrait in its assigned character-select slot—not just a display name, empty slot, unrelated art, or placeholder. Record the slot, stable ID, portrait file/frame, asset provenance/license, and validation status in docs/CHARACTER_ROSTER.md. Validate that the image renders correctly in the selection screen and that supported profile, skill-selection, and kill/death displays use the correct character identity. Missing or mismatched portrait assets mean the character is incomplete and must not be counted as playable. This requirement does not mean example portraits have already been imported; each asset still needs verified compatibility and reuse rights.
