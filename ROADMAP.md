@@ -426,3 +426,12 @@ The character package audit now reports `HeroEnum` entries that are not present 
 
 ### Mandatory acceptance check: character portraits
 For every new character on pages 1–3, confirm a real matching portrait/avatar appears in the exact assigned selection slot with the correct display name and valid atlas/frame reference. Record page + slot + stable ID + portrait resource + provenance/license + test result in docs/CHARACTER_ROSTER.md. Check supported skill/profile and kill/death portrait displays too. Blank, unrelated, placeholder, or broken images fail acceptance; the character remains incomplete and is not counted playable. Do not move priority to pages 4–5 until the initial distinct-character batch and its portraits are validated.
+
+
+### Latest verified CI checkpoint — run #203 (2026-10-10)
+
+- Run [#203](https://github.com/kage049754/Senki/actions/runs/38039686618) completed **SUCCESS** on commit `f70e617977f175b74ae417a04283c4abbb36554f`.
+- APK artifact: `naruto-senki-v2-candidate-debug-apk`, artifact ID `11665148893`, ZIP size 83,320,489 bytes, digest `sha256:837a3bc327ec046cc4b41fb6a45843740ec4c411fffe1d75ed74d939989e025e`, expires 2026-10-24. Audit artifact: `senki-character-package-audit`, ID `11665043752`.
+- The audit still reports **43 selectable entries / 37 distinct base characters** (six known alternate forms excluded), 84 slots across four pages, and nine enum-only leads needing manual classification. Selection-art check: 37/43 complete; kill-feed portrait frame pairs: 43/43; XML-to-atlas frame names: 43/43; skill-description label frames: 42/43, with Kabuto's five text fallbacks detected.
+- Pagination and reserved page-empty-state checks pass, but page 5 remains empty. The roster target and actual playable-verified count are not met/measured. No physical-device installation or gameplay verification is claimed.
+- **Next priority:** pages 1–3 first. Continue searching and inspecting complete, compatible distinct Senki characters; map available slots and asset needs; do not import external code/assets without resolved permission. Do not promote Han/Roshi guardian packages or enum-only entries into the playable count without full Hero lifecycle integration and testing.
