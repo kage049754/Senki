@@ -122,7 +122,11 @@ for name in names:
     animation_status = "XML_FOUND" if unit_xml.is_file() else "XML_MISSING"
     atlas_status = "PLIST+TEXTURE_FOUND" if plist_exact and texture_ok else ("PLIST_FOUND_TEXTURE_MISSING" if plist_exact else "PLIST_MISSING")
     audio_events = len(re.findall(r"""<e\s+type=['"]setSound['"]>\s*Audio/[^<]+""", xml_text, re.IGNORECASE))
-    detail_rows.append((name, animation_status, atlas_status, f"{audio_events} audio event refs", f"{len(audio)} exact-name audio files", "YES" if enum_refs else "NO", "YES" if ai_refs else "MANUAL"))
+    xml_frames = set(re.findall(r"<f>\s*([^<]+?)\s*</f>", xml_text, re.IGNORECASE))
+    plist_frames = set(re.findall(r"<key>([^<]+)</key>\s*<dict>", plist_exact_text, re.IGNORECASE)) if plist_exact else set()
+    missing_frame_refs = sorted(xml_frames - plist_frames)
+    frame_coverage = f"{len(xml_frames - set(missing_frame_refs))}/{len(xml_frames)}" if xml_frames else "NO_XML_FRAMES"
+    detail_rows.append((name, animation_status, atlas_status, frame_coverage, f"{len(missing_frame_refs)} missing frame refs", f"{audio_events} audio event refs", f"{len(audio)} exact-name audio files", "YES" if enum_refs else "NO", "YES" if ai_refs else "MANUAL"))
 
 portrait_complete = sum(1 for row in rows if row[8] == "2/2")
 missing_portrait_names = [row[0] for row in rows if row[8] != "2/2"]
@@ -158,13 +162,14 @@ with OUT.open("w", encoding="utf-8") as f:
     for row in rows:
         f.write("| " + " | ".join(fmt(x) for x in row) + " |\n")
     f.write("\n## Detailed animation, atlas, audio, and AI checks\n\n")
-    f.write("| Character | Animation/config XML | Sprite atlas + texture | Audio event references in XML | Exact-name audio files | Enum reference | AI registration clue |\n")
-    f.write("|---|---|---|---:|---:|---|---|\n")
+    f.write("| Character | Animation/config XML | Sprite atlas + texture | XML frame refs resolved in atlas | Missing XML frame refs | Audio event references in XML | Exact-name audio files | Enum reference | AI registration clue |\n")
+    f.write("|---|---|---|---:|---:|---:|---:|---|---|\n")
     for row in detail_rows:
         f.write("| " + " | ".join(fmt(x) for x in row) + " |\n")
     f.write("\n## Interpretation rules\n\n")
     f.write("- A `NO/MONOLITHIC` header result means the code may be in a shared C++ file; it is not proof the character is absent. Unit/resource counts are broad filename matches and do not prove the correct frames load.\n")
     f.write("- Missing skill icon or description-label frame names require manual investigation. A missing label can make the skill-view UI request a nonexistent frame; this audit does not test runtime handling or invent replacement descriptions. Some forms may share assets/classes and some skill UI may be assembled indirectly.\n")
+    f.write("- XML frame-reference coverage compares every <f> frame name in the character XML against keys in that character's plist. Missing names are reported for manual investigation; this does not verify animation timing, atlas loading, or visual correctness.\n")
     f.write("- Audio counts are path matches only and do not distinguish voice from effects or prove event triggers.\n")
     f.write("- A selection art result is based on finding expected frame names in `Select.plist` or standalone files; runtime selection still needs testing.\n- Kill-feed portrait count checks `<Name>_rp.png` and `<Name>_rpf.png` in `Resources/Report.plist`; it does not prove killer/victim attribution or on-screen rendering works at runtime.\n")
     f.write("- Do not promote any entry to implemented or verified based on this report alone. Record voice lines, SFX triggers, skills, resource paths, AI behavior, provenance, and rights separately.\n")
