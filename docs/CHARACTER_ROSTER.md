@@ -128,3 +128,40 @@ Source inventory links and compatibility notes are recorded in docs/MOD_RESEARCH
 - [ ] Page controls for 4+ must be redesigned as image-based controls with matching normal/selected visuals. The current implementation uses numbered text menu items for pages beyond 3, so it does **not** yet meet the acceptance requirement.
 - [ ] Device-test page navigation and confirm original page 1–3 controls, preview/tap-again confirmation, and character spawn behavior remain intact.
 - The source-level roster remains 37 selectable names. Verified playable count remains unmeasured; pagination does not add characters.
+
+
+## Required per-character asset and AI manifest
+
+Add this manifest to every planned or integrated character entry. Fill in exact paths/references; do not use a generic “assets complete” statement.
+
+- Selection display name and stable character/form ID:
+- Selection portrait/avatar path:
+- Selection button/thumbnail normal + selected assets:
+- Selection preview art/model/sprite path and preview test:
+- Skill viewer: skill names / icons / descriptions / order / cooldown-cost fields:
+- Main sprite/model and atlas/texture/plist paths:
+- Animation states: idle / move / attack / cast-skill / hit / knockback / death / transform / other:
+- Voice clips/voice lines (paths, triggers, or documented not-applicable reason):
+- Attack/skill/hit/summon/transformation sound effects (paths and event references):
+- Per-skill logic, projectile/summon, effects, hitbox, damage, cooldown, costs:
+- Character class/script/XML/config and all referenced resource paths:
+- Player selection/control tests:
+- AI roster/selection/spawn registration path:
+- AI behavior tests (move, basic attack, each skill, range/state/cooldown, summon/transform):
+- Resource manifest state per category: FOUND / ADAPTED / CREATED / NOT APPLICABLE / MISSING / BLOCKED:
+- Source commit/version and provenance/permission record:
+- Missing items and completion impact:
+- Test evidence and status:
+
+### Full-completion checklist (all applicable items required)
+- [ ] Correct display name, unique ID, selection avatar/portrait, button states, and preview.
+- [ ] Skill viewer correctly shows every actual skill's name, icon, and description.
+- [ ] All required sprite/model, atlas/plist, and animation states are present and load.
+- [ ] Voice clips/voice lines are inventoried; supplied/required clips play at the correct events, or absence is explicitly documented and classified.
+- [ ] Skill, attack, hit, summon, transformation audio and visual effects map to the intended actions.
+- [ ] Player selection, movement, basic attack, every skill, hit detection/damage, cooldowns, and death/respawn work.
+- [ ] Existing game AI can select/spawn this character in supported modes and use its valid attacks/skills without resource errors.
+- [ ] All resource/config references resolve and IDs do not collide with existing fighters.
+- [ ] Manifest, provenance, missing assets, and runtime evidence are recorded.
+
+A character with missing required assets or unverified AI remains partial/incomplete/blocked. Do not count it as VERIFIED based on its name, portrait, a successful build, or player-only selection. The current 37 roster names are only source-level selectable entries; the number with complete asset packages and verified AI is not yet measured.
