@@ -401,3 +401,13 @@ The v1.26 Beta 1 changelog publicly names Shizune, Hashirama, Rin, Sakon & Ukon,
 - **Not playable characters by default:** Han/Roshi Guardian resources, Pain-path implementation classes, clones, and other summons do not satisfy the user's external playable-character priority unless a mod source explicitly implements them as independently selectable fighters.
 
 Current external-mod additions integrated: **0**. Current external-mod additions verified playable: **0**. The next batch must target available slots on pages 1–3 before any page 4/5 expansion.
+
+
+## External source comparison checkpoint — 2026-10-10
+
+The latest external-source comparison found **no eligible new playable character package to port yet**:
+- The v1.24–v1.26 release host provides changelog evidence for mod characters but its repository tree contains only a README, not editable character source.
+- The inspected legacy Cocos2d-x source has a selectable roster matching the core cast and no independent selectable implementation for the external release-note candidates.
+- The Wilykun V2 fork has no distinct selectable roster additions versus the pinned candidate.
+
+Do not count these as integrations. Keep the target gap at 33 distinct base characters based on the current source-level roster inventory; verified-playable count remains unmeasured. The next milestone must identify an editable external character package and resolve code/art/audio permissions before porting it into pages 1–3.

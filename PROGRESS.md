@@ -894,3 +894,8 @@ External leads rechecked:
 - [LeaderOnePro/NarutoSenki1.17Mod](https://github.com/LeaderOnePro/NarutoSenki1.17Mod) also exposes a package/resource layout rather than source-level V2 gameplay code and appears to share the same legacy asset lineage; it must not be treated as a separate mod without a meaningful-diff check.
 
 Latest verified CI remains run #204 (success) on the previous code commit. It only verifies the current diagnostic V2-derived build and package audit; it does not verify any external character integration. Next character batch must be external-source-first and must update pages 1–3, not pad later pages with internal forms.
+
+
+## External character sourcing checkpoint — 2026-10-10
+
+After the user's correction, the latest pass compared external release/source repositories and their actual selectable rosters. It confirmed that the v1.26 release host has changelogs only, the inspected legacy Cocos2d-x source has no selectable Jirobo/Tayuya/Hashirama/Shizune package, and the Wilykun V2 fork adds no distinct selectable characters versus the pinned candidate. No new character was integrated. The next step is to find an editable external character source and clear its rights, then port it into page 1–3 and run CI. Do not return to classifying V2-internal entities as roster additions.

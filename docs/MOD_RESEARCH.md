@@ -756,3 +756,15 @@ The roster expansion task is **not** to classify more entities already present i
 5. Build and audit the APK; count a character only at the appropriate discovery/ported/built/playable-verified stage.
 
 No external character has been integrated by this research pass.
+
+## External source comparison pass — 2026-10-10
+
+This pass explicitly compared candidate character lists and implementation trees rather than counting names from the selected V2 source:
+
+- **[Zx-Akito/NarutoSenki-Release](https://github.com/Zx-Akito/NarutoSenki-Release):** Git tree at `main` contains only `README.md`; new character evidence (Shizune, Hashirama, Rin, Sakon & Ukon, Juzo, Kurenai, Guy, Yamato, Zetsu, Iruka, Jirobo, Tayuya, Anko) is release-changelog evidence. It is not an editable character source repository.
+- **[LeaderOnePro/NarutoSenki-cocos2dx](https://github.com/LeaderOnePro/NarutoSenki-cocos2dx):** inspected `Classes/SelectLayer.cpp` and `Classes/Characters.cpp`. The selectable roster matches the familiar core cast; its AI function names include support entities and existing forms but no independently selectable Jirobo/Tayuya/Hashirama/Shizune packages. It is a different legacy source lineage, but the repository declares no game-code license and asset rights are unclear.
+- **[Wilykun/NarutoSenki-V2](https://github.com/Wilykun/NarutoSenki-V2):** compared its `lua/class/basic.lua` roster with the pinned Android-clean candidate. It adds no distinct selectable character; it omits Kabuto, which is already in the pinned candidate. It is not a valid external-character source for this task.
+- **[muhammadadilsyaputra08-alt/NarutoSenki-Custom](https://github.com/muhammadadilsyaputra08-alt/NarutoSenki-Custom):** its pinned `ns.CharactersLayout` contains the current V2 cast and six vacant/variant-related slots; it is the current build candidate, not an external mod source for new characters.
+
+### Decision
+No character code/assets were copied from these candidates. Current public evidence has not yielded an editable, permission-cleared implementation of a genuinely new external Senki character. The next search must prioritize modders' editable source/resource packages for the release-note candidates—not another stock V2 fork and not APK extraction. This is a real source/permission blocker, not an integration milestone.
