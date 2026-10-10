@@ -101,6 +101,16 @@ jobs:
                       print(f"PACK {path} string sample:", [s.decode("ascii", "replace") for s in ascii_strings[:15]])
           PY
           echo "Release APK inventory complete; source-style package availability will be checked before importing."
+          python3 "$GITHUB_WORKSPACE/scripts/test_audit_release_nskp.py"
+          python3 "$GITHUB_WORKSPACE/scripts/audit_release_nskp.py" /tmp/naruto-senki-v1.25.apk /tmp/naruto-senki-v1.26.apk
+
+      - name: Upload release character resource-name inventory
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-character-resource-inventory
+          path: release-character-resource-inventory.md
+          if-no-files-found: error
+          retention-days: 30
 
       - name: Attempt release character import when source packages are available
         shell: bash
