@@ -180,3 +180,11 @@ Treat these as priority candidates to investigate in editable Senki mod source. 
 - The dedicated SkillLayer fallback regression test passed, but the package inventory's separate count remained 0/5 due a mismatch in its source scan. This duplicate count was not a reliable gate.
 - Fix: the inventory now points to the dedicated regression test for the static fallback assertion instead of duplicating its string parsing. The standalone regression test remains mandatory in CI.
 - No gameplay or roster count change is claimed.
+
+
+## Latest run #263 failure — search test decoupled from pagination
+
+- Run: https://github.com/kage049754/Senki/actions/runs/38051733264
+- The roster audit passed after the fallback-test correction. The next failure was test_character_search.py, which was checking many pagination implementation details that are already covered by the dedicated dynamic-pagination and page-button tests.
+- Fix: narrowed the search test to the actual search contract: case-insensitive substring filtering, visibility updates, and empty/reserved-page feedback. Pagination stays independently tested by its own checks.
+- No character addition is claimed by this test cleanup.
