@@ -462,3 +462,13 @@ This is a successful **diagnostic candidate build**, not a final unified release
 - [x] Compared `wsnbbnbb/NarutoSenki1.17Mod`; it is a fork of the same repository with matching reported size/layout, not a separate source implementation.
 - [x] Recorded the lead as reference-only in `docs/MOD_RESEARCH.md`; no packaged APK assets were copied into Senki.
 - [ ] Find an editable, compatible Fukasaku/Shima implementation or a permission-cleared source; do not count it as integrated or playable in the V2 candidate.
+
+
+## Legacy source character research — Han and Roshi (2026-10-10)
+
+- [x] Inspected the legacy source at commit d847b113dfce486822768ef5a1c1c874b50fa3cd.
+- [x] Confirmed Han and Roshi each have animation XML/plist resources, audio, report portrait frames, and cut-in art; the XML includes attack/skill sequences and event metadata.
+- [x] Confirmed legacy Classes/Element.cpp contains special-case behavior for Han/Roshi; porting requires more than copying animation metadata.
+- [x] Confirmed the pinned V2 candidate has no Han/Roshi class/resource folders and neither character is in its selectable roster.
+- [x] Documented the source paths and compatibility gaps in docs/MOD_RESEARCH.md; no source/assets copied.
+- [ ] Map the legacy Han/Roshi behavior to the current V2 character interfaces before selecting one for a complete implementation.
