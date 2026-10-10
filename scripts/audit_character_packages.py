@@ -265,7 +265,7 @@ with OUT.open("w", encoding="utf-8") as f:
     target_gap = max(0, 70 - len(names))
     distinct_gap = max(0, 70 - len(distinct_base_names))
     f.write(f"- Unique selectable names found: **{len(names)}**\n")
-    f.write(f"- Duplicate selectable roster IDs: **{len(duplicate_roster_names)}**" + ((": " + ", ".join(f"`{name}`" for name in duplicate_roster_names)) if duplicate_roster_names else "") + ".\\n")
+    f.write(f"- Duplicate selectable roster IDs: **{len(duplicate_roster_names)}**" + ((": " + ", ".join(f"`{name}`" for name in duplicate_roster_names)) if duplicate_roster_names else "") + ".\n")
     f.write(f"- Explicit selection slots mapped: **{len(slot_tokens)}** across **{(len(slot_tokens) + 20) // 21} pages** (21 slots per page).\n")
     f.write(f"- Selectable-entry target: **{len(names)}/70 declared ({target_gap} more entries to reach 70; alternate forms are included in this UI-entry count).**\n")
     f.write(f"- Distinct base-character count (excluding {len(KNOWN_FORM_BASES)} known alternate forms): **{len(distinct_base_names)}/70 ({distinct_gap} additional distinct characters needed; gameplay completeness is not implied).**\n")
