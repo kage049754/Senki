@@ -215,3 +215,11 @@ Treat these as priority candidates to investigate in editable Senki mod source. 
 - Candidate APK archive: naruto-senki-v2-candidate-debug-apk, artifact ID 11670006075, 83,601,582 bytes, not expired at verification.
 - Audit archive: senki-character-package-audit, artifact ID 11669856214, 4,469 bytes, not expired at verification.
 - The build is a CI-verified candidate, not a phone-tested release. The six requested characters remain unintegrated; external mod variant count is still 1 (Two Sage Toads), distinct base roster 37, and external characters verified playable on device 0.
+
+
+## Latest run #278 failure — release APKs do not expose character source packages
+
+- Run: https://github.com/kage049754/Senki/actions/runs/38052921461
+- The source-based import attempt downloaded the public v1.25 Beta 1 and v1.26 Beta 1 APKs successfully, but the importer found no matching character XML/plist/texture package for any of the 12 release-note leads.
+- The first path inventory produced no matching character-name paths. This indicates the APKs do not expose the expected source-style resource layout; it does not prove the characters' assets are absent from the APK in every packed or encrypted form.
+- Fix/next diagnostic: print APK root entries and likely packed-resource containers, then determine whether resources are bundled, obfuscated, or server-loaded. No requested character was added by this failed attempt, and the candidate roster count remains unchanged.
