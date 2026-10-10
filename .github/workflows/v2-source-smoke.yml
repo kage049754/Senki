@@ -79,36 +79,26 @@ jobs:
           python3 - <<'PY'
           import zipfile
           from pathlib import Path
+          import re
           names = ("Kurenai", "Guy", "Yamato", "Shizune", "Hashirama", "Rin", "Sasori", "Zetsu", "Iruka", "Sakon", "Juzo", "Minato")
           for apk in (Path("/tmp/naruto-senki-v1.25.apk"), Path("/tmp/naruto-senki-v1.26.apk")):
               print(f"APK inventory: {apk} ({apk.stat().st_size} bytes)")
               with zipfile.ZipFile(apk) as zf:
                   entries = zf.namelist()
-              print("First 60 entries:", entries[:60])
-              matches = [p for p in entries if any(n.lower() in p.lower() for n in names)]
-              print("Character-name entries:", matches[:100])
-              containers = [p for p in entries if p.lower().endswith((".obb", ".pak", ".dat", ".bin", ".zip", ".car", ".ccz", ".pvr.ccz"))]
-              print("Likely resource containers:", containers[:80])
-              if "assets/nskp_packs.txt" in entries:
-                  with zipfile.ZipFile(apk) as zf:
-                      pack_list = zf.read("assets/nskp_packs.txt")
-                  print("nskp_packs.txt (first 6000 chars):", pack_list[:6000].decode("utf-8", "replace"))
-              for pack in [p for p in entries if p.startswith("assets/") and p.endswith(".nskp")]:
-                  with zipfile.ZipFile(apk) as zf:
-                      data = zf.read(pack)
-                  printable = "".join(chr(b) if 32 <= b < 127 else "." for b in data[:96])
-                  strings = [chunk.decode("utf-8", "ignore") for chunk in __import__("re").findall(rb"[\x20-\x7e]{5,}", data)]
-                  print(f"Pack header {pack}: size={len(data)} head={data[:64].hex()} printable={printable!r}")
-                  print(f"Pack strings {pack} (first 30):", strings[:30])
-                  targets = ("Kurenai", "Guy", "MightGuy", "Yamato", "Shizune", "Hashirama", "Rin", "Sakon", "Ukon", "Juzo", "Sasori", "Zetsu", "Iruka", "Minato")
-                  character_paths = [s for s in strings if any(t.lower() in s.lower() for t in targets) and (s.startswith("Element/") or s.startswith("Audio/"))]
-                  print(f"Character resource paths {pack}:", character_paths[:200])
-              native = [p for p in entries if p.endswith("libnaruto_senki.so")]
-              for lib in native:
-                  with zipfile.ZipFile(apk) as zf:
-                      data = zf.read(lib)
-                  strings = [chunk.decode("utf-8", "ignore") for chunk in __import__("re").findall(rb"[\x20-\x7e]{5,}", data)]
-                  print(f"Native library clues {lib}:", [s for s in strings if any(k in s.lower() for k in ("nskp", "pack", "encrypt", "decrypt", "game_00", "resource"))][:80])
+                  print("First 60 entries:", entries[:60])
+                  matches = [p for p in entries if any(n.lower() in p.lower() for n in names)]
+                  print("Character-name entries:", matches[:100])
+                  try:
+                      manifest = zf.read("assets/nskp_packs.txt")
+                      print("nskp_packs.txt preview:", manifest[:8000].decode("utf-8", "replace"))
+                  except KeyError:
+                      print("No assets/nskp_packs.txt")
+                  for path in (p for p in entries if p.endswith(".nskp")):
+                      blob = zf.read(path)
+                      ascii_strings = re.findall(rb"[\x20-\x7e]{5,}", blob)
+                      matched_strings = [s.decode("ascii", "replace") for s in ascii_strings if any(n.lower().encode() in s.lower() for n in names)]
+                      print(f"PACK {path}: bytes={len(blob)} header={blob[:32].hex()} ascii_strings={len(ascii_strings)} requested_character_strings={matched_strings[:40]}")
+                      print(f"PACK {path} string sample:", [s.decode("ascii", "replace") for s in ascii_strings[:15]])
           PY
           echo "Release APK inventory complete; source-style package availability will be checked before importing."
 
