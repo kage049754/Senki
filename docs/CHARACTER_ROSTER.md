@@ -221,3 +221,21 @@ The generated report for pinned candidate `279e85e73040558c84988a0eea310b6286eb7
 Evidence: [run #109](https://github.com/kage049754/Senki/actions/runs/38025803886). Audit report artifact: `senki-character-package-audit` (artifact ID `11659909978`, expires 2026-10-24).
 
 The filename/frame audit is a heuristic, not a runtime completeness proof. It does not establish that the five label frames are the only possible description mechanism, nor does it verify skill logic, animation, AI, audio, or device gameplay.
+
+
+## Legacy mod leads found by source comparison — 2026-10-10
+
+These are research leads from the older Cocos2d-x 2.2.2 source at `Zx-Akito/NarutoSenki`, not integrated V2 characters. Its fork `hendprw/NarutoSenki` has the same inspected tree SHA, so it is not a second independent source.
+
+| Lead | Evidence found | Status | Porting issue |
+|---|---|---|---|
+| Sage Jiraiya | AI dispatch branch plus Element atlas/XML and dedicated audio folder | DISCOVERED / RESOURCE_REVIEW | Legacy C++ combat logic and PVR atlas format need adaptation |
+| Immortal Sasuke | AI dispatch branch plus Element atlas/XML and multiple skill audio files | DISCOVERED / RESOURCE_REVIEW | Need map skills, transformations, and V2 state/resource IDs |
+| Sage Naruto | AI dispatch branch plus Element atlas/XML and skill audio | DISCOVERED / RESOURCE_REVIEW | Clone/AI behavior must be separated from selectable character behavior |
+| Rikudo Naruto | AI dispatch branch plus Element atlas/XML and skill audio | DISCOVERED / RESOURCE_REVIEW | Clone, Kurama and summon relationships need mapping |
+| Roshi | AI dispatch branch plus Element atlas/XML and audio | DISCOVERED / RESOURCE_REVIEW | Confirm it is a complete selectable hero, not only an AI dispatch entry |
+| Han | AI dispatch branch plus Element atlas/XML and audio | DISCOVERED / RESOURCE_REVIEW | Confirm selection and full battle initialization path |
+| MaskRaidon / MaskFudon / MaskKadon | AI dispatch branches and Element atlas/XML packages | DISCOVERED / ENTITY_REVIEW | Current evidence may indicate related summon/entity units, not standalone heroes |
+| Akamaru / Karasu / Saso / Parents / Sanshouuo / Slug / Centipede | AI dispatch and/or Element resource packages | DISCOVERED / ENTITY_REVIEW | Treat as summon/entity dependencies until hero-selection evidence exists |
+
+**Counts:** these are 6 high-priority character/form leads and 9 additional entity leads (some categories may overlap); **0** have been ported or gameplay-verified. See `docs/MOD_RESEARCH.md` for the source and compatibility details. Do not increase the verified roster count from this list.
