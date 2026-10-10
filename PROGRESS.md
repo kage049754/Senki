@@ -836,3 +836,16 @@ User requires every new character to have its own correct avatar/portrait in the
 - [x] Confirmed the reserved page-empty-state regression check passed in this run. Page 5 remains a navigation/empty-state test, not a populated character page.
 - [ ] Next work remains the user's roster priority: inspect open slots on pages 1–3, continue source research, and integrate only complete compatible distinct characters after provenance/permission is established. Han/Roshi remain guardian-resource research leads, not selectable fighters. Do not count forms or names as new playable characters.
 - [ ] Still not complete: no newly integrated distinct character has been gameplay-verified; no physical phone test is claimed; the final unified mod is not complete. CI success is a diagnostic candidate build only.
+
+
+## Continuation checkpoint — 2026-10-10
+
+- [x] Re-read README.md, AGENTS.md, ROADMAP.md, PROGRESS.md, docs/MOD_RESEARCH.md, docs/ASSET_LICENSES.md, docs/V2_BUILD_AUDIT.md, and the roster tracker before continuing.
+- [x] Rechecked the newest Actions runs: run #203 is the latest completed run and succeeded; run #202 was cancelled by concurrency, not a build failure. No newer run was found before this checkpoint.
+- [x] Inspected run #203 job steps: the pinned V2-derived source was cloned, central patches applied, Lua/source checks passed, the Android diagnostic APK was built, package identity and ABI/signature checks passed, and both artifacts uploaded.
+- [x] Verified artifact records: `naruto-senki-v2-candidate-debug-apk` (ID `11665148893`, 83,320,489-byte ZIP, SHA-256 `837a3bc327ec046cc4b41fb6a45843740ec4c411fffe1d75ed74d939989e025e`) and `senki-character-package-audit` (ID `11665043752`). Both expire 2026-10-24.
+- [x] Corrected the roster tracker math: 43 selectable entries include six known alternate forms, so the audited baseline is 37 distinct base characters and the target gap is 33—not 27.
+- [x] Rechecked external leads: the Naruto Senki v1.26 Beta 1 release notes list Shizune, Hashirama, Rin, Sakon & Ukon, and Juzo, but the public release is an APK/changelog reference rather than editable source. These remain research leads, not integrated characters.
+- [ ] Continue looking for editable character packages and map class/resource/AI/control paths before attempting the first new character batch. The current audit still flags nine enum-only identifiers for manual classification.
+- [ ] No new playable character has been added or verified in this continuation. Do not mislabel forms, guardians, portraits, or enum-only IDs as new playable characters.
+- [ ] Physical Android installation and in-game selection/combat checks remain unverified; CI success only proves the diagnostic candidate build and automated checks.
