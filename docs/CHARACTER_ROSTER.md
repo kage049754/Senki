@@ -440,3 +440,10 @@ Do not count these as integrations. Keep the target gap at 33 distinct base char
 - `Zx-Akito/NarutoSenki` (older Cocos2d-x 2.2.2 source) has editable C++ character AI and a small selectable roster, but the inspected selectable names (Naruto, Sakura, Sai, Itachi, Konan, Deidara, Sasuke, Karin, Jugo) are already represented in the V2 roster. It is not yet a source for a distinct new selectable character.
 - `LeaderOnePro/NarutoSenki1.17Mod` was confirmed by its root tree to be an APK/package extraction (`AndroidManifest.xml`, `classes.dex`, `assets/`, `res/`), not an editable source project; it cannot supply a source-level character port without relying on packaged binary extraction.
 - Decision: no new character port is justified by these comparisons. Continue searching for an external Senki mod with an independently selectable character implementation and complete source/resource package. Current integrated external characters remain **0**; do not count internal V2 forms or support entities.
+
+
+## New external-source audit checkpoint — 2026-10-10
+
+Checked additional C++/V2 repositories and compared their actual selection code. `LeaderOnePro/NarutoSenki` and `LeaderOnePro/NarutoSenki-cocos2dx` have editable C++ but their inspected selectable lists contain only characters already in the V2 base. Their AI routing for support entities/forms is not counted as a new selectable fighter. `sansaks-jpg/NarutoSenki-V2` is a stock-roster fork. `likill/NarutoSenki-master` lacks the expected V2 Lua roster path. No new, permission-cleared, complete external character package was identified.
+
+**Count remains unchanged:** external characters integrated **0**; external characters verified playable **0**. Release-note names remain candidates only until editable source/resources and reuse rights are confirmed. Do not fill character slots with placeholders and call them finished.
