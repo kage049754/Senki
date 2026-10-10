@@ -46,8 +46,12 @@
 ## Phase 3 — Inventory and prepare mod content
 **Status: In progress — fifth-pass research found additional legacy character/AI references, but no drop-in, permission-cleared V2 source with 27 verified new character packages.**
 
-- [ ] Continue researching existing Senki mods, source forks, release histories, and compatible resources.
-- [ ] Compare forks to upstream and identify meaningful changes.
+- [x] Continue researching existing Senki mods, source forks, release histories, and compatible resources; record the V2 custom-registry fork and mirror SHA comparisons in `docs/MOD_RESEARCH.md`.
+- [x] Verify that the inspected `SILXNTRAY/NarutoSenki-V2` custom registry is an architecture reference, not 70 ready-made characters: its custom character table is empty/commented examples and the inspected tree has no dedicated registry unit-test suite.
+- [x] Confirm that the inspected `ZhReimu/NarutoSenki-V2` `basic.lua` change does not add a new selectable roster beyond the stock list.
+- [ ] Identify at least 27 additional distinct character/form source packages beyond the current 43 declared names, and verify their XML/atlas/texture/audio/skill/AI files individually.
+- [x] Compare key files and tree paths across several V2 forks; record which forks are mirrors and which contain distinct architecture/UI changes.
+- [ ] Compare remaining meaningful fork diffs against the pinned Android-only candidate and determine whether any new character implementations are genuinely unique.
 - [ ] Inventory characters/forms, skills, animation states, effects, summons, maps, UI changes, balance edits, and bug fixes.
 - [ ] Record exact paths, source links, license/permission, compatibility, and whether content is source-editable or APK-only.
 - [ ] Deduplicate content and resolve conflicting IDs/names.
