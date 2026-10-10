@@ -30,7 +30,7 @@ REQUIRED = {
         "Exit gate",
     ],
     "PROGRESS.md": [
-        "External mod character packages integrated",
+        "External mod character variants integrated",
         "External character status",
         "Do not report a character as added",
     ],
