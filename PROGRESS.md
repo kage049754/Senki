@@ -719,3 +719,15 @@ GitHub API confirms `kage049754/Senki` is currently **public**. Therefore, the s
 - [ ] Declared roster remains **43**, with **27 more declared entries** to reach 70. The gameplay-verified playable count is still unmeasured; no character was added or promoted to VERIFIED by this audit.
 - [ ] The APK remains a diagnostic build of the pinned external V2-derived candidate in a temporary CI workspace. It is not yet the final unified mod or a physical-device-tested release.
 - [ ] Next: resolve code/art/audio permission status; manually inspect Kabuto's skill labels and the AI registration gaps; only then select a permission-cleared character package for a controlled native integration and gameplay verification.
+
+
+## Animation XML-to-atlas cross-check — 2026-10-10
+
+- [x] Added an audit that compares every distinct `<f>` animation-frame name in each character XML against frame keys in that character's sprite plist.
+- [x] Run #168 passed all 37 workflow steps and produced the diagnostic APK plus the expanded audit: https://github.com/kage049754/Senki/actions/runs/38033542630
+- [x] Run #168 static audit result: **39/43** declared entries have no XML-to-atlas frame-name mismatches.
+- [!] Four entries need review: **Asuma (12 missing frame names), Kimimaro (5), SageJiraiya (6), RockLee (55)**. These are name-level mismatches; some may be intentional shared/base-form references, so they are not automatically declared runtime defects.
+- [!] The Kimimaro XML references `Jugo_Skill05_14` through `Jugo_Skill05_18`; this looks like a cross-character frame-name mismatch and should be checked against the correct atlas/source before editing.
+- [x] Extended the report to include the first 12 missing frame names per affected character and added a regression assertion so the known Kimimaro-to-Jugo mismatch cannot silently disappear from the audit.
+- [ ] Awaiting final CI run for the expanded exception details and regression assertion. No source/assets have been imported from the external reference; permission status remains unresolved.
+- [ ] Next: inspect whether the four mismatch groups are intentional shared atlas dependencies or real references to absent frames. Only apply an authorized, evidence-based fix; then rerun the audit/build.
