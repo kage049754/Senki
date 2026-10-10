@@ -207,12 +207,13 @@ The newest artifact and CI evidence are tracked in `PROGRESS.md`; on-device visu
 
 
 ## Phase 5B — Restore original menu and character-selection backgrounds
-**Status: Implemented in the central build recipe; waiting for successful build verification and phone visual check**
+**Status: Build-verified in central CI; phone visual confirmation and explicit APK asset-absence check remain open**
 
 - [x] Stop applying the custom character-selection background patch.
 - [x] Stop applying the custom main-menu background patch for the Training / Network / Exit mode interface.
 - [x] Stop generating custom senki_select.png and senki_menu.png in the build workflow; keep the custom loading artwork separate.
-- [ ] Verify the new APK builds successfully and contains no custom menu/selection background replacement.
+- [x] Fresh V2-derived candidate APK build completed successfully in run `38019992304` on commit `e874e45d90f7e83082ff55b304bdb6f49f82fe65`; workflow no longer applies the retired menu/selection background patches.
+- [ ] Inspect the APK's packaged assets explicitly to confirm no custom `senki_menu.png` or `senki_select.png` replacement is present.
 - [ ] Check the main-menu and character-selection screens on the phone and confirm the original background/decorative layers are visible.
 
 ## Character profile and combat-event acceptance criteria
@@ -220,3 +221,8 @@ The newest artifact and CI evidence are tracked in `PROGRESS.md`; on-device visu
 Every added character must be treated as a full playable integration, not a roster label. Acceptance requires: correct portrait/avatar and display name; correct selection preview; accurate skill names/icons/descriptions where supported; connected sprite/model and animation states; working movement, basic attacks, hitboxes, skills/cooldowns, effects and sounds where available; correct player controls and AI; valid IDs/config/resource references; and tests for selection, combat, damage, death/respawn, and relevant modes.
 
 When supported by existing battle hooks, implement kill/death identity notifications showing the actual killer and victim portraits and names. Confirm events identify the real participants, including when an ally or AI character makes the kill. Add kill counts/streaks only where the existing mode supports them. A character is playable-verified only after runtime gameplay checks, not merely after a successful build or visible portrait.
+
+
+## Current authoritative CI checkpoint — 2026-10-10
+
+The latest run is [38019992304](https://github.com/kage049754/Senki/actions/runs/38019992304), run #64, commit `e874e45d90f7e83082ff55b304bdb6f49f82fe65`. It completed **SUCCESS** and uploaded `naruto-senki-v2-candidate-debug-apk` (artifact ID `11657109973`, ZIP size 83,344,194 bytes, SHA-256 `07c153b870d5a56f704dec61907278689cbd8325140b8a533fba9059b4eb9618`, expires 2026-10-24). All build, Lua syntax, search/filter, dynamic pagination, landscape, signature, native ABI, and artifact-upload steps passed. This is a V2-derived diagnostic candidate, not a finished merged roster or phone-tested game. The custom menu/selection patch files are absent from the current tree; the workflow also explicitly excludes them. The 4+ page control visuals remain a known requirement gap because current pages 4+ are text menu items.
