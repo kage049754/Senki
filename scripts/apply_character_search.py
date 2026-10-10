@@ -24,15 +24,15 @@ def replace_once(old: str, new: str, label: str) -> None:
 
 
 replace_once(
-    "    local charactersList = ns.CharactersLayout or {}\\n"
-    "    -- Keep page 5 reachable for the planned 70+ distinct-character roster.\\n"
-    "    -- It may be empty until a verified character batch is added there.\\n"
-    "    self.pageNum = math.max(5, math.ceil(#charactersList / 21))\\n",
-    "    local charactersList = ns.CharactersLayout or {}\\n"
-    "    -- Keep page 5 reachable for the planned 70+ distinct-character roster.\\n"
-    "    -- It may be empty until a verified character batch is added there.\\n"
-    "    self.pageNum = math.max(5, math.ceil(#charactersList / 21))\\n"
-    "    self.currentPage = 1\\n",
+    "    local charactersList = ns.CharactersLayout or {}\n"
+    "    -- Keep page 5 reachable for the planned 70+ distinct-character roster.\n"
+    "    -- It may be empty until a verified character batch is added there.\n"
+    "    self.pageNum = math.max(5, math.ceil(#charactersList / 21))\n",
+    "    local charactersList = ns.CharactersLayout or {}\n"
+    "    -- Keep page 5 reachable for the planned 70+ distinct-character roster.\n"
+    "    -- It may be empty until a verified character batch is added there.\n"
+    "    self.pageNum = math.max(5, math.ceil(#charactersList / 21))\n"
+    "    self.currentPage = 1\n",
     "initialize current page",
 )
 
