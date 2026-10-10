@@ -181,7 +181,7 @@ for kind in ("Ninja", "Guardian"):
         candidate_skill_icons = sum(
             1 for i in range(1, 6)
             if f"{candidate}_skill{i}.png".lower() in resource_names
-            or f"{candidate}_skill{i}.png".lower() in plist_text
+            or f"{candidate}_skill{i}.png".lower() in candidate_plist_text.lower()
         )
         candidate_audio = [rel for _, rel in relative if under_dir(rel, "Audio", candidate)]
         off_roster_candidates.append((
