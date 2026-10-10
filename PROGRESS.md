@@ -230,3 +230,13 @@ Treat these as priority candidates to investigate in editable Senki mod source. 
 - Run: https://github.com/kage049754/Senki/actions/runs/38053077014 — **SUCCESS**; the Android candidate APK artifact and character-package audit artifact were uploaded.
 - Release APK inventory found packed resources named `assets/game_00.nskp` through `game_06.nskp` (v1.25) and `game_00.nskp` through `game_03.nskp` (v1.26), plus `assets/nskp_packs.txt`. The previous importer only searched for unpacked XML/plist/texture files, so its failure is a layout mismatch rather than evidence that the requested characters are absent.
 - Next diagnostic now records pack manifests, headers, embedded readable strings, and requested-character string matches before attempting any import. No character is claimed ported yet; roster count remains unchanged until assets and gameplay wiring are integrated and verified.
+
+
+## Run #292 — NSKP resource-name audit and regression test passed
+
+- Run: https://github.com/kage049754/Senki/actions/runs/38054841853 — **SUCCESS**. The Android candidate APK, character package audit, and release resource-name inventory artifacts were uploaded.
+- Added `scripts/audit_release_nskp.py` and `scripts/test_audit_release_nskp.py`. The workflow now inventories visible names in the v1.25/v1.26 `.nskp` pack indexes, tests that model/atlas/audio/skill-art paths are detected, and publishes `release-character-resource-inventory.md` as an artifact.
+- The current inventory found visible model XML + atlas + audio names for Kurenai, Might Guy, Yamato, and Hashirama; only audio names were visible for Shizune and Rin. These are names in the packed indexes, not decoded asset files. The pack payloads are encrypted/packed and the importer correctly refused to write a partial character package.
+- Publicly inspectable V2/older source forks searched so far do not contain complete source packages for any of the six requested characters. No character has been falsely counted as ported; the selectable roster count remains unchanged.
+- Phase 3 checks now cover duplicate selectable IDs, missing resource references, XML-to-atlas frame names, selection/kill-feed art coverage, skill UI labels, the release-pack inventory, and Android build/APK checks. This does not replace runtime gameplay verification.
+- Next Phase 2 gate: obtain a source package with accessible model/animation/skill/effect resources and character behavior code, or create an original replacement implementation with independently created assets. Do not decrypt the release pack or label a resource-name-only result as a complete port.
