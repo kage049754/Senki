@@ -71,9 +71,14 @@ diff --git a/projects/NarutoSenki/lua/ui/SelectLayer.lua b/projects/NarutoSenki/
 +    -- Use the central custom landscape selection artwork while keeping the original
 +    -- roster grid, hero preview, page switching, and battle-selection logic intact.
 +    local bgSprite = display.newSprite('senki_select.png', 0, 0)
-+    bgSprite:setAnchorPoint(0, 0)
-+    bgSprite:fullScreen()
-+    self:addChild(bgSprite, -5)
++    if not bgSprite then
++        bgSprite = display.newSprite('blue_bg.png', 0, 0)
++    end
++    if bgSprite then
++        bgSprite:setAnchorPoint(0, 0)
++        bgSprite:fullScreen()
++        self:addChild(bgSprite, -5)
++    end
  
      local selectNameList = {}
      local selectButtons = {}
