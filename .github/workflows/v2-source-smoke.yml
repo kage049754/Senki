@@ -109,6 +109,7 @@ jobs:
             "$GITHUB_WORKSPACE/character-package-audit.md"
           sed -n '1,55p' "$GITHUB_WORKSPACE/character-package-audit.md"
           grep -F "Kill-feed portrait frames" "$GITHUB_WORKSPACE/character-package-audit.md"
+          grep -F "Kill-feed portrait atlas coverage:" "$GITHUB_WORKSPACE/character-package-audit.md"
           grep -E "^\\| Kabuto \\|.*\\| 2/2 \\|" "$GITHUB_WORKSPACE/character-package-audit.md"
           grep -E "^\\| Kiba \\|.*\\| 2/2 \\|" "$GITHUB_WORKSPACE/character-package-audit.md"
 
