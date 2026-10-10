@@ -32,12 +32,12 @@
 **Exit checks:** one existing Senki source base is selected with evidence, build instructions, known blockers, and documented permission status.
 
 ## Phase 2 — Establish the chosen base in the central repository
-**Status: In progress — central CI run #143 succeeded, including form-specific skill-label aliasing, missing-label fallback, page-button/background checks, and APK packaging verification; source vendoring, rights review, and phone validation remain open.**
+**Status: In progress — central CI run #152 succeeded, including base-form skill-label reuse, informative Kabuto skill descriptions, page-button/background checks, and APK packaging verification; source vendoring, rights review, and phone validation remain open.**
 
 - [ ] Bring or adapt the chosen base into `kage049754/Senki` using a documented, provenance-preserving method.
 - [ ] Preserve original engine/game loop and existing behavior wherever practical.
 - [ ] Resolve dependencies and Android build issues without replacing the engine with a new implementation.
-- [x] Establish central CI for the pinned Android-clean V2-derived candidate and verify its actual patched APK artifact (latest run #143: https://github.com/kage049754/Senki/actions/runs/38030471776; artifact ID 11661893046; SHA-256 `b7c57d7b60880c85109ae3dd0bf79fc78daa6a367589aa9a74954bbbf5a22145`).
+- [x] Establish central CI for the pinned Android-clean V2-derived candidate and verify its actual patched APK artifact (latest run #152: https://github.com/kage049754/Senki/actions/runs/38031233006; artifact ID 11661624590; SHA-256 `a14c09e7c0d646504ee9b775a23e415cd25c28cc9476bac754dc9ac934f05193`).
 - [ ] Vendor or otherwise preserve a reproducible, editable copy of the chosen source tree inside this repository; the current workflow still clones it into a temporary runner workspace.
 - [ ] Confirm install/launch separately on a device when possible.
 
@@ -381,3 +381,13 @@ The candidate now maps existing native forms to their base character's skill-des
 - APK artifact ID: `11661893046`, size 83,325,632 bytes, SHA-256: `b7c57d7b60880c85109ae3dd0bf79fc78daa6a367589aa9a74954bbbf5a22145`
 - Audit artifact ID: `11661603360`, SHA-256: `3397364510d2db1177a5ae6bc7f442fa329b10afd632a989c83e188f18799943`
 - Still open: physical-device UI/gameplay verification, source vendoring, permission review, and integration of additional characters.
+
+### Latest informative skill-description fallback — run #152 (2026-10-10)
+
+Existing native forms now use their base character's skill-description label frames. Kabuto's five expected label frames are absent in the pinned candidate, so the fallback now provides descriptions for Chakra Scalpel Activation, Nerve Strike Dash, Dead Soul Vault, Dead Soul Jutsu (Possession), and Nehan Shojo: Final Slash. CI passed source tests, Lua parsing, Android build, packaged-description/form-roster checks, APK signature/ABI checks, and artifact upload. This is not device-level visual/gameplay verification.
+
+- Run: https://github.com/kage049754/Senki/actions/runs/38031233006
+- Exact source SHA: `680ae6429e52e142ba10707ebd71d783525fc261`
+- APK artifact ID: `11661624590`, SHA-256: `a14c09e7c0d646504ee9b775a23e415cd25c28cc9476bac754dc9ac934f05193`
+- Audit artifact ID: `11662099251`, SHA-256: `fbd2915a317262947ba38b27dfe2f58db12efebbc827e85c656b6f8ceb52dead`
+- Remaining: physical-device testing, source vendoring, permissions/provenance, and actual additional character integrations.
