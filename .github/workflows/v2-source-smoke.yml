@@ -334,7 +334,9 @@ jobs:
           unzip -p "$APK" "$ENTRY" > /tmp/senki-packaged-SkillLayer.lua
           grep -F 'Skill description unavailable' /tmp/senki-packaged-SkillLayer.lua
           grep -F 'pcall(display.newSpriteFrame, imgPath)' /tmp/senki-packaged-SkillLayer.lua
-          echo "Safe missing-skill-description fallback is present in packaged SkillLayer.lua."
+          grep -F 'self._skillExplainClipper:removeFromParent()' /tmp/senki-packaged-SkillLayer.lua
+          grep -F 'self._skillExplainClipper = clipper' /tmp/senki-packaged-SkillLayer.lua
+          echo "Safe missing-skill-description fallback and whole-tooltip cleanup are present in packaged SkillLayer.lua."
 
       - name: Verify expanded form roster is packaged in the APK
         if: success()
