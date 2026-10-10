@@ -395,3 +395,14 @@ Existing native forms now use their base character's skill-description label fra
 - APK artifact ID: `11661624590`, SHA-256: `a14c09e7c0d646504ee9b775a23e415cd25c28cc9476bac754dc9ac934f05193`
 - Audit artifact ID: `11662099251`, SHA-256: `fbd2915a317262947ba38b27dfe2f58db12efebbc827e85c656b6f8ceb52dead`
 - Remaining: physical-device testing, source vendoring, permissions/provenance, and actual additional character integrations.
+
+
+### Latest non-roster enum inventory — run #159 (2026-10-10)
+
+The character package audit now reports `HeroEnum` entries that are not present in the visible selection list, with an explicit warning that enum identifiers may represent forms, clones, summons, or internal implementation types and must not be counted as playable. Regression checks for the inventory and known support identifiers passed. Run #159 successfully built and packaged the patched diagnostic candidate.
+
+- Run: https://github.com/kage049754/Senki/actions/runs/38031862251
+- Exact SHA: `3f6ac555fa5b9fb5a9f64c195679e0abe50da2aa`
+- APK artifact ID: `11662291624`; SHA-256: `f5529a7558f1e60fe8176c78f13a92364d866ce4e9e81a21092910118a3bef70`
+- Audit artifact ID: `11662461471`; SHA-256: `34caeb205755ca9d78516b1cdc0ed9991efe467ff414a4f8175e08a729bdcb52`
+- This is not roster expansion: the candidate still declares 43 distinct selection names, and gameplay-verified count remains unmeasured. The next task is classifying enum-only leads and locating complete compatible character packages.
