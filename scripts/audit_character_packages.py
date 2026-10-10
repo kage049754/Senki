@@ -63,7 +63,9 @@ for name in names:
     named_selection = [rel for _, rel in relative if Path(rel).name.lower() in {
         f"{low}_select.png", f"{low}_half.png", f"{low}_font.png"
     }]
+    enum_refs = [rel for rel, content in text_files if re.search(rf"HeroEnum::{re.escape(name)}\b", content, re.IGNORECASE)]
     ai_refs = [rel for rel, content in text_files if "setAIHandler" in content and re.search(rf"HeroEnum::{re.escape(name)}\b", content, re.IGNORECASE)]
+    skill_atlas = any(rel.lower().endswith(f"/{low}/{low}_skill.plist") for _, rel in relative)
     # Atlas-packed selection art may not exist as standalone PNG files.
     atlas = GAME / "Resources/Select.plist"
     atlas_text = atlas.read_text(encoding="utf-8", errors="replace") if atlas.is_file() else ""
@@ -91,7 +93,8 @@ with OUT.open("w", encoding="utf-8") as f:
         f.write("| " + " | ".join(fmt(x) for x in row) + " |\n")
     f.write("\n## Interpretation rules\n\n")
     f.write("- A `NO/MONOLITHIC` header result means the code may be in a shared C++ file; it is not proof the character is absent. Unit/resource counts are broad filename matches and do not prove the correct frames load.\n")
-    f.write("- Zero audio/unit files or no named AI registration requires manual investigation; shared assets and indirect registrations can create false negatives.\n")
+    f.write("- Missing skill atlas or enum reference requires manual investigation; some forms may share assets/classes and some skill UI may be assembled indirectly.\n")
+    f.write("- Audio counts are path matches only and do not distinguish voice from effects or prove event triggers.\n")
     f.write("- A selection art result is based on finding expected frame names in `Select.plist` or standalone files; runtime selection still needs testing.\n")
     f.write("- Do not promote any entry to implemented or verified based on this report alone. Record voice lines, SFX triggers, skills, resource paths, AI behavior, provenance, and rights separately.\n")
 print(f"Wrote {OUT}; audited {len(names)} unique selectable names.")
