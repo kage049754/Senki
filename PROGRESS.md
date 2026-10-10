@@ -304,3 +304,14 @@ The repo previously received a native Kotlin/Canvas prototype scaffold. It is no
 - [x] Run `38016671857`: **SUCCESS**, commit `c2820ec8449d3dedfb62c437ee647b82b20969e2`. Lua 5.1 syntax checks, dynamic pagination assertion, landscape manifest, Gradle build, package identity, signature, and both native ABIs passed.
 - [x] Latest artifact: `naruto-senki-v2-candidate-debug-apk`, ID `11655938596`, ZIP size 83,752,290 bytes, SHA-256 `7072d0a89ad6d41afe25e62ef12004cdd919cafffaf85d3ee5915a8a91603c1c`, expires 2026-10-24. [Run 38016671857](https://github.com/kage049754/Senki/actions/runs/38016671857).
 - [ ] Dynamic pagination is source/build verified, but actual page navigation and selecting characters still need phone runtime testing.
+
+
+## Search/filter selection UI built and packaged — 2026-10-10
+
+- [x] Added `scripts/apply_character_search.py` so the search enhancement is applied with exact, checked source replacements instead of a brittle large unified-diff hunk.
+- [x] Added a search field to the existing character-selection screen, case-insensitive name filtering, automatic navigation to the first page with a match, hiding empty pages during a search, and a “No characters found” message.
+- [x] Kept the selection cursor hidden when its character is filtered out and restored it when a visible character is selected. Moved the search field left so it does not overlap the ranking button.
+- [x] Added a final APK check that extracts the packaged `SelectLayer.lua` and asserts the filter method, no-results text, and corrected search-field position are really inside the APK.
+- [x] Run `38018448399`: **SUCCESS** on commit `f1d5efe0841d55c4c3e5f91edf4f5c5f403ca1b2`; Lua syntax, dynamic pagination, landscape, package identity, APK signature, native ABI, and packaged search code checks all passed.
+- [x] Verified artifact `naruto-senki-v2-candidate-debug-apk`, ID `11657656484`, ZIP size 83,699,768 bytes, SHA-256 `51faf000d5ff9ef9027f351db0915f5aed58590ccd57f698392a8e1b2b9a3305`, expires 2026-10-24. [Open run and artifact card](https://github.com/kage049754/Senki/actions/runs/38018448399).
+- [ ] Search/filter behavior and 4+ pages still need real-device testing. CI proves the code is packaged and parses; it cannot prove Android keyboard events or Cocos2d touch behavior.
