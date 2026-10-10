@@ -42,8 +42,39 @@ base_skill_plist = base / "Kankuro_Skill.plist"
 base_skill_png = next((base / n for n in ("Kankuro_Skill.png", "Kankuro_Skill.pvr.ccz", "Kankuro_Skill.ccz") if (base / n).is_file()), None)
 if not source_xml.is_file() or not base_skill_plist.is_file() or base_skill_png is None:
     raise SystemExit("Sasori source animations or V2-compatible skill UI template are incomplete")
-# Prefer Sasori's own action/frame data rather than reusing Kankuro's moves.
-(unit / "Sasori.xml").write_text(source_xml.read_text(encoding="utf-8").replace("Saso", "Sasori"), encoding="utf-8")
+# Convert the source mod's legacy XML vocabulary to the V2 native unit schema.
+# Keep the source action order, timing, damage/range metadata, event order, and frame names.
+legacy_root = ET.parse(source_xml).getroot()
+native_root = ET.Element("unit")
+for legacy_action in legacy_root.findall("action"):
+    action = ET.SubElement(native_root, "action", {"name": legacy_action.get("value", "")})
+    legacy_date = legacy_action.find("date")
+    if legacy_date is not None:
+        data_node = ET.SubElement(action, "data")
+        for field in list(legacy_date):
+            kind = field.get("type", "")
+            if field.tag == "coldName" or kind == "coldDown":
+                kind = "cd"
+            value_node = ET.SubElement(data_node, "p", {"type": kind})
+            value_node.text = (field.text or "").strip()
+    frame_node = ET.SubElement(action, "frame")
+    legacy_frame = legacy_action.find("frame")
+    if legacy_frame is not None:
+        for event in list(legacy_frame):
+            if event.tag == "frameName":
+                frame_name = (event.text or "").strip()
+                frame_name = re.sub(r"\\.png$", "", frame_name, flags=re.I)
+                frame_name = re.sub(r"^Saso(?=[_./-]|$)", "Sasori", frame_name)
+                ET.SubElement(frame_node, "f").text = frame_name
+            elif event.tag == "eventName":
+                event_node = ET.SubElement(frame_node, "e", {"type": event.get("type", "")})
+                event_node.text = (event.text or "").strip()
+    # The legacy idle action identifies its own fighter in attackType.
+    for p in action.findall("./data/p"):
+        if p.get("type") == "attackType" and p.text == "Saso":
+            p.text = "Sasori"
+ET.indent(native_root, space="\\t")
+(unit / "Sasori.xml").write_text(ET.tostring(native_root, encoding="unicode", xml_declaration=True), encoding="utf-8")
 shutil.copy2(base_skill_plist, unit / "Sasori_Skill.plist")
 skill_data = plistlib.loads((unit / "Sasori_Skill.plist").read_bytes())
 skill_data["frames"] = {
