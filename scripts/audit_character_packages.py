@@ -115,13 +115,13 @@ for name in names:
     texture_name = None
     if plist_exact:
         plist_exact_text = unit_plist.read_text(encoding="utf-8", errors="replace")
-        texture_match = re.search(r"<key>textureFileName</key>\\s*<string>([^<]+)</string>", plist_exact_text)
+        texture_match = re.search(r"<key>textureFileName</key>\s*<string>([^<]+)</string>", plist_exact_text)
         if texture_match:
             texture_name = texture_match.group(1)
     texture_ok = bool(texture_name and (unit_dir / texture_name).is_file())
     animation_status = "XML_FOUND" if unit_xml.is_file() else "XML_MISSING"
     atlas_status = "PLIST+TEXTURE_FOUND" if plist_exact and texture_ok else ("PLIST_FOUND_TEXTURE_MISSING" if plist_exact else "PLIST_MISSING")
-    audio_events = len(re.findall(r"<e\\s+type=['\\\"]setSound['\\\"]>\\s*Audio/[^<]+", xml_text, re.IGNORECASE))
+    audio_events = len(re.findall(r"""<e\s+type=['"]setSound['"]>\s*Audio/[^<]+""", xml_text, re.IGNORECASE))
     detail_rows.append((name, animation_status, atlas_status, f"{audio_events} audio event refs", f"{len(audio)} exact-name audio files", "YES" if enum_refs else "NO", "YES" if ai_refs else "MANUAL"))
 
 portrait_complete = sum(1 for row in rows if row[8] == "2/2")
