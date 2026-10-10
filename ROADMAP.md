@@ -32,12 +32,12 @@
 **Exit checks:** one existing Senki source base is selected with evidence, build instructions, known blockers, and documented permission status.
 
 ## Phase 2 — Establish the chosen base in the central repository
-**Status: In progress — central CI run #109 succeeded, including page-button artwork regression checks and packaged skill-description fallback verification; source vendoring, rights review, and phone validation remain open.**
+**Status: In progress — central CI run #141 succeeded, including the skill-description fallback, alias-aware audit, page-button/background checks, and APK packaging verification; source vendoring, rights review, and phone validation remain open.**
 
 - [ ] Bring or adapt the chosen base into `kage049754/Senki` using a documented, provenance-preserving method.
 - [ ] Preserve original engine/game loop and existing behavior wherever practical.
 - [ ] Resolve dependencies and Android build issues without replacing the engine with a new implementation.
-- [x] Establish central CI for the pinned Android-clean V2-derived candidate and verify its actual patched APK artifact (latest run #109: https://github.com/kage049754/Senki/actions/runs/38025803886; artifact ID 11660410133; SHA-256 `a48e46cf0467d0bab35717534aad02ecd8d6bfcaf0d6dd935fb6719c41264635`).
+- [x] Establish central CI for the pinned Android-clean V2-derived candidate and verify its actual patched APK artifact (latest run #141: https://github.com/kage049754/Senki/actions/runs/38030022200; artifact ID 11661692440; SHA-256 `3342575c632dee2a795af2207d510a97c3f70f6952eb68a536d31f6fa070bb13`).
 - [ ] Vendor or otherwise preserve a reproducible, editable copy of the chosen source tree inside this repository; the current workflow still clones it into a temporary runner workspace.
 - [ ] Confirm install/launch separately on a device when possible.
 
@@ -356,3 +356,8 @@ Run #136 passed both source-level checks and packaged-APK checks for the origina
 - Run: https://github.com/kage049754/Senki/actions/runs/38029520544
 - SHA: `9c4aa3dbd82c91cef8fb90297030b809ae0cdd42`
 - APK artifact ID: `11661441846`, SHA-256: `65a9116d9652b65a21eaf9f765ff709b3475aad45da3c2922522ad0253464a8f`
+
+
+### Latest skill-view resilience verification — run #141 (2026-10-10)
+
+The candidate now guards missing skill-description frame lookups and renders a visible fallback instead of blindly constructing a sprite from a missing frame. The tooltip clipper is tracked and cleaned up on skill switches. CI passed the source-level regression, Lua syntax validation, APK build, packaging checks, and artifact upload. Runtime visual behavior remains unverified on a device. No new characters were added by this change.
