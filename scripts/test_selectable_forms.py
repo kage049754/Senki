@@ -12,6 +12,7 @@ select = (game / "lua/ui/SelectLayer.lua").read_text(encoding="utf-8")
 skill = (game / "lua/ui/SkillLayer.lua").read_text(encoding="utf-8")
 enum = (game / "Classes/Enums/HeroEnum.h").read_text(encoding="utf-8")
 character_base = (game / "Classes/CharacterBase.cpp").read_text(encoding="utf-8")
+provider = (game / "Classes/Core/Provider.hpp").read_text(encoding="utf-8")
 forms = {
     "SageJiraiya": ("Jiraiya", "Sage Jiraiya", "Jiraiya"),
     "ImmortalSasuke": ("Sasuke", "Immortal Sasuke", "Sasuke"),
@@ -76,6 +77,19 @@ transformations = [
 for base_name, form_name in transformations:
     if base_name not in character_base or form_name not in character_base:
         raise SystemExit(f"Native transformation path is missing: {base_name} -> {form_name}")
+
+# Ensure each selectable form is dispatched to its existing native class.
+provider_patterns = [
+    r'is_or\("Jiraiya",\s*"SageJiraiya"\)\s*ptr\s*=\s*new Jiraiya\(\);',
+    r'is_or\("Sasuke",\s*"ImmortalSasuke"\)\s*ptr\s*=\s*new Sasuke\(\);',
+    r'is\("SageNaruto"\)\s*is_role\(Role::Clone\).*?else ptr = new Naruto\(\);',
+    r'is\("RikudoNaruto"\)\s*is_role\(Role::Clone\).*?else ptr = new Naruto\(\);',
+    r'is_or\("Lee",\s*"RockLee"\)\s*ptr\s*=\s*new Lee\(\);',
+    r'is_or\("Pain",\s*"Nagato"\)\s*ptr\s*=\s*new Pain\(\);',
+]
+for pattern in provider_patterns:
+    if not re.search(pattern, provider, re.DOTALL):
+        raise SystemExit(f"Native Provider dispatch is missing or changed: {pattern}")
 select_plist = (game / "Resources/Select.plist").read_text(encoding="utf-8", errors="replace")
 for name in forms:
     if f"<key>{name}_half.png</key>" not in select_plist:
