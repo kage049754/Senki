@@ -190,7 +190,8 @@ guardian_class_path = GAME / "Classes/Core/Guardian/Guardian.hpp"
 guardian_class_source = guardian_class_path.read_text(encoding="utf-8", errors="replace") if guardian_class_path.is_file() else ""
 guardian_ai_override_detected = "void perform() override" in guardian_class_source and "attack(" in guardian_class_source and "walk(" in guardian_class_source
 
-off_roster_candidates = []for kind in ("Ninja", "Guardian"):
+off_roster_candidates = []
+for kind in ("Ninja", "Guardian"):
     root = GAME / "Resources/Unit" / kind
     if not root.is_dir():
         continue
