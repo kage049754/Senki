@@ -44,7 +44,7 @@ diff --git a/projects/NarutoSenki/lua/ui/SelectLayer.lua b/projects/NarutoSenki/
 +        })
  
          self:addChild(pageLayer, 5)
-@@ -141,8 +153,7 @@
+@@ -141,8 +156,7 @@
          table.insert(self.pageLayers, pageLayer)
          table.insert(self.pageButtons, page_btn)
      end
