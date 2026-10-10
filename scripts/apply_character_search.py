@@ -58,7 +58,7 @@ replace_once(
     "            imagePressed = '#status_bar_bg.png',\n"
     "            imageDisabled = '#status_bar_bg.png',\n"
     "            size = CCSizeMake(156, 30),\n"
-    "            x = width - 100,\n"
+    "            x = width - 145,\n"
     "            y = height - 26,\n"
     "            listener = onCharacterSearch\n"
     "        })\n"
@@ -103,6 +103,7 @@ replace_once(
     "\n"
     "    local pageHasMatches = {}\n"
     "    local firstPage = nil\n"
+    "    local selectedVisible = false\n"
     "    local matchCount = 0\n"
     "\n"
     "    for _, btn in ipairs(self.selectButtons or {}) do\n"
@@ -112,11 +113,16 @@ replace_once(
     "                        (query == \"\" or string.find(name, query, 1, true) ~= nil)\n"
     "        btn:setVisible(matches)\n"
     "        if matches then\n"
+    "            if btn._charName == self.selectHero then selectedVisible = true end\n"
     "            local page = btn._pageIndex or 1\n"
     "            pageHasMatches[page] = true\n"
     "            firstPage = firstPage or page\n"
     "            matchCount = matchCount + 1\n"
     "        end\n"
+    "    end\n"
+    "\n"
+    "    if self._selectImg then\n"
+    "        self._selectImg:setVisible(selectedVisible)\n"
     "    end\n"
     "\n"
     "    for i, pageBtn in ipairs(self.pageButtons or {}) do\n"
@@ -135,6 +141,12 @@ replace_once(
     "\n"
     "function SelectLayer:setSelected(btn)\n",
     "add cross-page character filtering",
+)
+
+replace_once(
+    "    if self._selectImg then\n        self._selectImg:setPosition(",
+    "    if self._selectImg then\n        self._selectImg:setVisible(true)\n        self._selectImg:setPosition(",
+    "restore selection cursor after filtering",
 )
 
 target.write_text(source, encoding="utf-8")
