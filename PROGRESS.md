@@ -8,9 +8,9 @@ Mission: merge real external Naruto Senki mod characters into the existing V2 ga
 
 | Area | Verified state |
 |---|---|
-| V2-derived central CI candidate | Builds in GitHub Actions |
-| Latest verified run | [#225 — SUCCESS](https://github.com/kage049754/Senki/actions/runs/38050182005) |
-| Tested commit | [de44153c133a56482be4b8ff07f3e0368607cdf1](https://github.com/kage049754/Senki/commit/de44153c133a56482be4b8ff07f3e0368607cdf1) |
+| V2-derived central CI candidate | Builds in GitHub Actions (latest run #269) |
+| Latest verified run | [#269 — SUCCESS](https://github.com/kage049754/Senki/actions/runs/38051935208) |
+| Tested commit | [5ec7b525feeab3ccb57bcc10b1d9481611cc5f12](https://github.com/kage049754/Senki/commit/5ec7b525feeab3ccb57bcc10b1d9481611cc5f12) |
 | Pagination / page-button checks | Passed |
 | External mod character variants integrated | **1 — Two Sage Toads** |
 | External mod character packages integrated into the candidate | **1 package/variant; not a distinct base character** |
@@ -204,3 +204,14 @@ Treat these as priority candidates to investigate in editable Senki mod source. 
 - Root cause found while investigating the repeated search-test failure: the previous workflow edit accidentally removed the central patch application, search enhancement, skill fallback, selectable-form, and Two Sage Toads integration steps along with the obsolete APK-import block. The downstream tests were therefore testing an unpatched candidate.
 - Fix: restored all five required integration steps before background/Lua/pagination/audit/build verification. The APK import remains removed; release-note names are still discovery leads only.
 - This correction restores the existing tested baseline; it does not add Kurenai, Guy, Yamato, Shizune, Hashirama, or Rin.
+
+
+## Latest verified CI — Run #269 SUCCESS
+
+- Run: https://github.com/kage049754/Senki/actions/runs/38051935208
+- Tested commit: 5ec7b525feeab3ccb57bcc10b1d9481611cc5f12
+- Status: completed / success; all 41 job steps completed without failures.
+- Verified in this run: restored central patches, source-based Two Sage Toads integration, original backgrounds, Lua syntax, image-based page buttons, 37-entry package audit, character search, startup diagnostics, pagination, landscape configuration, Android build, APK existence/package/signature/ABI checks, and both artifact uploads.
+- Candidate APK archive: naruto-senki-v2-candidate-debug-apk, artifact ID 11670006075, 83,601,582 bytes, not expired at verification.
+- Audit archive: senki-character-package-audit, artifact ID 11669856214, 4,469 bytes, not expired at verification.
+- The build is a CI-verified candidate, not a phone-tested release. The six requested characters remain unintegrated; external mod variant count is still 1 (Two Sage Toads), distinct base roster 37, and external characters verified playable on device 0.
