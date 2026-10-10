@@ -9,8 +9,8 @@ Mission: merge real external Naruto Senki mod characters into the existing V2 ga
 | Area | Verified state |
 |---|---|
 | V2-derived central CI candidate | Builds in GitHub Actions |
-| Latest verified run | [#223 — SUCCESS](https://github.com/kage049754/Senki/actions/runs/38049878750) |
-| Tested commit | [9ad6ad5a8d6e2716d1a9735817c2f807c64b93d9](https://github.com/kage049754/Senki/commit/9ad6ad5a8d6e2716d1a9735817c2f807c64b93d9) |
+| Latest verified run | [#225 — SUCCESS](https://github.com/kage049754/Senki/actions/runs/38050182005) |
+| Tested commit | [de44153c133a56482be4b8ff07f3e0368607cdf1](https://github.com/kage049754/Senki/commit/de44153c133a56482be4b8ff07f3e0368607cdf1) |
 | Pagination / page-button checks | Passed |
 | External mod character variants integrated | **1 — Two Sage Toads** |
 | External mod characters verified playable on device | **0** |
@@ -20,16 +20,16 @@ Mission: merge real external Naruto Senki mod characters into the existing V2 ga
 | Full source vendored into this repo | Not complete; workflow uses a pinned external source checkout in temporary CI |
 | Source/art provenance | Two Sage Toads assets are from the linked public mod repository; this entry reuses native Choji combat/AI and is not a unique moveset |
 
-## Latest successful build — Run #223
+## Latest successful build — Run #225
 
 - Workflow: V2 Source Candidate Build (Private Testing Artifact).
-- Run: https://github.com/kage049754/Senki/actions/runs/38049878750
-- Commit: 9ad6ad5a8d6e2716d1a9735817c2f807c64b93d9
+- Run: https://github.com/kage049754/Senki/actions/runs/38050182005
+- Commit: de44153c133a56482be4b8ff07f3e0368607cdf1
 - Conclusion: **completed / success**.
 - Verified scope: source assertions, Lua validation, dynamic pagination/background checks, external character integration checks, complete XML-to-atlas frame-name resolution, Android candidate APK build, package identity/signature/ABI checks, and artifact upload.
-- Candidate APK archive: `naruto-senki-v2-candidate-debug-apk`, artifact ID `11668738659`, 83,635,245 bytes.
-- Audit archive: `senki-character-package-audit`, artifact ID `11668783626`, 4,372 bytes.
-- Download artifacts from the [Actions run page](https://github.com/kage049754/Senki/actions/runs/38049878750). APK archive API URL: https://api.github.com/repos/kage049754/Senki/actions/artifacts/11668738659/zip
+- Candidate APK archive: `naruto-senki-v2-candidate-debug-apk`, artifact ID `11669112048`, 83,575,756 bytes.
+- Audit archive: `senki-character-package-audit`, artifact ID `11669441632`, 4,380 bytes.
+- Download artifacts from the [Actions run page](https://github.com/kage049754/Senki/actions/runs/38050182005). APK archive API URL: https://api.github.com/repos/kage049754/Senki/actions/artifacts/11669112048/zip
 - This is a diagnostic/private-testing candidate, not a final release. CI verifies packaging and static integration, not physical-phone installation or live gameplay.
 
 
