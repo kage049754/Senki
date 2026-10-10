@@ -442,3 +442,19 @@ The inspected `Fansirsqi/NarutoSenki-V2`, `ZhReimu/NarutoSenki-V2`, `sansaks-jpg
 - The fork tree has 44 headers under `Classes/Core/Shinobi/`; the pinned custom candidate tree has 46, including `Kabuto.hpp` and `KabutoClone.hpp`. Header counts are not playable-character counts and do not establish completeness.
 - Classification: **V2-family comparison/reference candidate; no roster-expansion merge identified.** Keep the current pinned candidate for the next private diagnostic build because it already includes the Kabuto-specific implementation; do not merge the older/mirror tree wholesale.
 - Evidence checked: repository metadata, recursive tree, README, and `basic.lua` at each exact revision. This comparison does not prove exact correspondence to release v2.1.6-fix or establish reuse rights.
+
+
+## Additional legacy-source roster comparison — 2026-10-10
+
+### `Zx-Akito/NarutoSenki` and fork `hendprw/NarutoSenki`
+
+- Canonical source: https://github.com/Zx-Akito/NarutoSenki
+- Fork compared: https://github.com/hendprw/NarutoSenki
+- Both default to `master`; the inspected recursive trees each contained 1,199 entries and the same tree SHA `d847b113dfce486822768ef5a1c1c874b50fa3cd`. Treat the fork as a duplicate snapshot, not an independent mod.
+- The README identifies Cocos2d-x 2.2.2 / Visual Studio 2010. This is a legacy C++ source base, not a drop-in V2 Lua character package.
+- `Classes/Characters.cpp` contains AI dispatch branches for 60 distinct character/entity names. A comparison against the current Android-only V2 candidate's 37 unique selectable names found 25 names absent from the V2 roster list. **This is a discovery count, not a count of additional playable characters**: several are summons, paths, marks, walls, or other AI-controlled entities rather than selectable heroes.
+- High-priority form/character leads with separate resource and/or audio folders include `SageJiraiya`, `ImmortalSasuke`, `SageNaruto`, `RikudoNaruto`, `Roshi`, and `Han`. The old source also has resource directories for entities such as `MaskRaidon`, `MaskFudon`, `MaskKadon`, `Slug`, `Centipede`, `Akamaru`, `Karasu`, `Saso`, `Parents`, and `Sanshouuo`.
+- Sampled resource packages use legacy `.pvr.ccz` sprite atlases with matching `.plist` and `.xml` files. V2 compatibility is unverified; do not simply copy files or add names to `ns.CharactersLayout`. A port would need texture/animation conversion or a compatible loader, selection assets, character state/skill implementation, audio trigger mapping, AI and battle testing.
+- The README says “open source,” but the repository metadata has no declared SPDX license and no explicit license file was identified in the prior audit. Record as **REFERENCE_ONLY / PERMISSION_REQUIRED** pending explicit terms. Private technical investigation can continue, but no source/assets from this repository have been integrated.
+- Next action: inspect each high-priority candidate's implementation and resource package, compare actual skills/animation state names, and map one candidate's dependencies before deciding whether a port is feasible.
+
