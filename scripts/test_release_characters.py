@@ -29,7 +29,7 @@ expected = {
 }
 characters = {entry["id"]: entry for entry in manifest.get("characters", [])}
 assert set(characters) == set(expected), f"Imported character IDs differ: missing={sorted(set(expected)-set(characters))}, extra={sorted(set(characters)-set(expected))}"
-assert sum(1 for entry in characters.values() if entry.get("distinct")) == 10
+assert sum(1 for entry in characters.values() if entry.get("distinct")) == 11
 assert sum(1 for entry in characters.values() if not entry.get("distinct")) == 1
 
 enum_text = (game / "Classes/Enums/HeroEnum.h").read_text(encoding="utf-8")
