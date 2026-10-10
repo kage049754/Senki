@@ -9,28 +9,29 @@ Mission: merge real external Naruto Senki mod characters into the existing V2 ga
 | Area | Verified state |
 |---|---|
 | V2-derived central CI candidate | Builds in GitHub Actions |
-| Latest verified run | [#206 — SUCCESS](https://github.com/kage049754/Senki/actions/runs/38043294444) |
-| Tested commit | [3c3f7f25818dce5c9b966e53a755fd50d74ca04c](https://github.com/kage049754/Senki/commit/3c3f7f25818dce5c9b966e53a755fd50d74ca04c) |
-| Pagination / page-button checks | Passed in that CI run |
-| External-mod characters integrated | **0** |
-| External-mod characters verified playable | **0** |
+| Latest verified run | [#223 — SUCCESS](https://github.com/kage049754/Senki/actions/runs/38049878750) |
+| Tested commit | [9ad6ad5a8d6e2716d1a9735817c2f807c64b93d9](https://github.com/kage049754/Senki/commit/9ad6ad5a8d6e2716d1a9735817c2f807c64b93d9) |
+| Pagination / page-button checks | Passed |
+| External mod character variants integrated | **1 — Two Sage Toads** |
+| External mod characters verified playable on device | **0** |
+| Distinct base-character count | **37** (Two Sage Toads is a Choji replacement variant, not a new distinct base character) |
 | Goal of 70+ distinct playable characters | Not achieved |
 | Physical-phone install/start/gameplay | **Not verified** |
 | Full source vendored into this repo | Not complete; workflow uses a pinned external source checkout in temporary CI |
-| Third-party source/asset permissions | Unresolved for inspected candidates |
+| Source/art provenance | Two Sage Toads assets are from the linked public mod repository; this entry reuses native Choji combat/AI and is not a unique moveset |
 
-## Latest successful build — Run #206
+## Latest successful build — Run #223
 
 - Workflow: V2 Source Candidate Build (Private Testing Artifact).
-- Run: https://github.com/kage049754/Senki/actions/runs/38043294444
-- Commit: 3c3f7f25818dce5c9b966e53a755fd50d74ca04c
+- Run: https://github.com/kage049754/Senki/actions/runs/38049878750
+- Commit: 9ad6ad5a8d6e2716d1a9735817c2f807c64b93d9
 - Conclusion: **completed / success**.
-- Fix: corrected an over-escaped numeric regular expression in the atlas parser used by the original page-button asset regression check, after run #205 failed.
-- Verified scope: source assertions, Lua validation, character-package audit, Android candidate APK build, packaging/signature/native-library checks, and artifact upload.
-- Candidate APK archive: naruto-senki-v2-candidate-debug-apk, artifact ID 11666950333, 83,338,578 bytes.
-- Audit archive: senki-character-package-audit, artifact ID 11666955285, 4,336 bytes.
-- Download artifacts from the [Actions run page](https://github.com/kage049754/Senki/actions/runs/38043294444). APK archive API URL: https://api.github.com/repos/kage049754/Senki/actions/artifacts/11666950333/zip
-- This is a diagnostic/private-testing candidate, not a final release. The build does not contain a new external character and does not prove phone installation/gameplay.
+- Verified scope: source assertions, Lua validation, dynamic pagination/background checks, external character integration checks, complete XML-to-atlas frame-name resolution, Android candidate APK build, package identity/signature/ABI checks, and artifact upload.
+- Candidate APK archive: `naruto-senki-v2-candidate-debug-apk`, artifact ID `11668738659`, 83,635,245 bytes.
+- Audit archive: `senki-character-package-audit`, artifact ID `11668783626`, 4,372 bytes.
+- Download artifacts from the [Actions run page](https://github.com/kage049754/Senki/actions/runs/38049878750). APK archive API URL: https://api.github.com/repos/kage049754/Senki/actions/artifacts/11668738659/zip
+- This is a diagnostic/private-testing candidate, not a final release. CI verifies packaging and static integration, not physical-phone installation or live gameplay.
+
 
 ## Latest failure and fix
 
@@ -41,7 +42,7 @@ Mission: merge real external Naruto Senki mod characters into the existing V2 ga
 
 ## External character status
 
-No external character has been integrated. Release-note leads in [Zx-Akito/NarutoSenki-Release](https://github.com/Zx-Akito/NarutoSenki-Release/releases) include Shizune, Hashirama, Rin, Sakon & Ukon, Juzo, Kurenai, Might Guy, Yamato, Sasori, Zetsu, Iruka, Jirobo, Tayuya, and Anko. These are discovery leads, not source-level ports.
+One modded replacement variant (Two Sage Toads) has been integrated into the CI candidate, but no external character is yet gameplay-verified. The remaining distinct-character release-note leads in [Zx-Akito/NarutoSenki-Release](https://github.com/Zx-Akito/NarutoSenki-Release/releases) include Shizune, Hashirama, Rin, Sakon & Ukon, Juzo, Kurenai, Might Guy, Yamato, Sasori, Zetsu, Iruka, Jirobo, Tayuya, and Anko. These are discovery leads, not source-level ports.
 
 Several V2 forks and legacy Cocos2d-x sources were inspected. Many repeat the core selectable roster; some expose support/guardian/AI-only units rather than independent selectable fighters. APK-only repositories are not accepted as source-level port material. No distinct external character with a complete compatible source/resource package and a cleared provenance/permission path has been selected.
 
