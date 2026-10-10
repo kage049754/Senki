@@ -1,7 +1,7 @@
 diff --git a/projects/NarutoSenki/Classes/LoadLayer.cpp b/projects/NarutoSenki/Classes/LoadLayer.cpp
 --- a/projects/NarutoSenki/Classes/LoadLayer.cpp
 +++ b/projects/NarutoSenki/Classes/LoadLayer.cpp
-@@ -16,44 +16,15 @@
+@@ -16,44 +16,18 @@
  	if (!Layer::init())
  		return false;
  
