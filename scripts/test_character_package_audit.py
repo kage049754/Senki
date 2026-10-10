@@ -66,6 +66,15 @@ assert int(selection.group(1)) <= int(selection.group(2)) == expected_count, (
 assert "Selection image exceptions requiring manual review:" in report, (
     "Selection image exception list is missing"
 )
+
+slot_heading = "## Exact character-selection slot map"
+assert slot_heading in report, "Exact character-selection slot map is missing"
+slot_section = report.split(slot_heading, 1)[1].split("## Detailed animation", 1)[0]
+slot_rows = [line for line in slot_section.splitlines() if line.startswith("| ") and not line.startswith("|---") and "Character ID/name" not in line]
+assert len(slot_rows) == expected_count, (
+    f"Slot map has {len(slot_rows)} selectable entries; expected {expected_count}"
+)
+assert all("NOT_IN_AUDIT" not in line for line in slot_rows), "Slot map contains an un-audited character"
 labels = re.search(r"Skill-description label frame coverage: \*\*(\d+)/(\d+) roster entries", report)
 assert labels, "Skill-description label coverage summary is missing"
 assert int(labels.group(1)) <= int(labels.group(2)) == expected_count, (
