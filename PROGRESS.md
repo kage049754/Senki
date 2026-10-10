@@ -880,3 +880,17 @@ User requires every new character to have its own correct avatar/portrait in the
 - [x] Recorded the source-tree evidence and limitations in [docs/MOD_RESEARCH.md](docs/MOD_RESEARCH.md), including the no-license / unresolved asset-rights gate.
 - [ ] Han and Roshi remain research-only and are not counted as playable. Do not integrate or redistribute their assets until rights are verified and a real player-input/selection path is implemented and tested.
 - [ ] Next implementation phase: inspect the central build's source patch points for roster registration, selection-page slot wiring, player-control dispatch, and profile/skill UI; then integrate only a rights-cleared character package and add source-level + runtime checks.
+
+
+## Correction to roster work priority — 2026-10-10
+
+The previous pass over Pain-path classes, Guardian classes, and summoned Naruto clones was not progress toward the user's requested external-mod roster expansion. These are internal implementation entities or summons from the selected V2-derived source, not newly sourced playable characters from other Senki mods. Do not count them as roster additions or keep prioritizing this classification task.
+
+**Required next work:** inspect external Naruto Senki mod projects and their character packages; compare each candidate against the pinned V2 roster; then fill available slots on pages 1–3 with genuinely distinct external characters first. Pages 4–5 and alternate-form padding remain deferred. No new external character has yet been integrated by this correction pass.
+
+External leads rechecked:
+- [Zx-Akito/NarutoSenki-Release](https://github.com/Zx-Akito/NarutoSenki-Release/releases) changelogs list Shizune, Hashirama, Rin, Sakon & Ukon, Juzo, Kurenai, Guy, Yamato, Zetsu, Iruka, Jirobo, Tayuya, and Anko as characters added/updated in the v1.24–v1.26 line. This is release/changelog evidence, not editable implementation source; no source-level port has been made.
+- [Fansirsqi/NarutoSenki](https://github.com/Fansirsqi/NarutoSenki) contains a package/resource tree rather than an editable V2 character implementation. Its checked-in resources include assets/Element/Nagato/Nagato.xml and .plist, plus sprite/audio folders for Han, Roshi, Fukasaku, and other units. This is a resource lead only: the current V2 roster already includes Karin, so Karin is explicitly not a new-character candidate; Nagato's animation XML contains suspiciously large base attack values and needs validation. No assets or code were copied.
+- [LeaderOnePro/NarutoSenki1.17Mod](https://github.com/LeaderOnePro/NarutoSenki1.17Mod) also exposes a package/resource layout rather than source-level V2 gameplay code and appears to share the same legacy asset lineage; it must not be treated as a separate mod without a meaningful-diff check.
+
+Latest verified CI remains run #204 (success) on the previous code commit. It only verifies the current diagnostic V2-derived build and package audit; it does not verify any external character integration. Next character batch must be external-source-first and must update pages 1–3, not pad later pages with internal forms.

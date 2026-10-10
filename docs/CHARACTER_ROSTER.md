@@ -391,3 +391,13 @@ The v1.26 Beta 1 changelog publicly names Shizune, Hashirama, Rin, Sakon & Ukon,
 - The release host currently supplies packaged APK assets, not a source patch that can be applied to the selected V2 Lua/C++ project. Do not extract or transplant the APK to fabricate a character integration.
 - Next eligible batch: inspect a source repository or obtain creator permission and a source/resource package for one character. Map its selection portrait/button, XML/atlas/texture, animation/effects/audio, native class/AI/skill definitions, and selection/skill/death UI references against the pinned V2 candidate before editing.
 - Until that source/rights gate is cleared, keep the roster count at 43 declared selectable entries / 37 distinct base names in the current audited candidate, with runtime-verified playable count still unmeasured.
+
+
+## External-mod candidates — do not count as integrated
+
+- **Release-note leads:** Shizune, Hashirama, Rin, Sakon & Ukon, Juzo, Kurenai, Might Guy, Yamato, Zetsu, Iruka, Jirobo, Tayuya, and Anko are listed in [Zx-Akito/NarutoSenki-Release](https://github.com/Zx-Akito/NarutoSenki-Release/releases) changelogs. These are distinct external-mod candidates, but release notes alone do not supply editable implementation files.
+- **Legacy resource lead:** [Fansirsqi/NarutoSenki](https://github.com/Fansirsqi/NarutoSenki) contains a Nagato animation XML/atlas and other unit resources, but its tree is package-style rather than a V2 source implementation. Nagato is a candidate for further compatibility analysis only; the inspected XML has a suspicious attackValue=6000000 field and must not be ported blindly.
+- **Not a new addition:** Karin already exists in the pinned V2 roster. Do not count Karin from another resource pack as a new character.
+- **Not playable characters by default:** Han/Roshi Guardian resources, Pain-path implementation classes, clones, and other summons do not satisfy the user's external playable-character priority unless a mod source explicitly implements them as independently selectable fighters.
+
+Current external-mod additions integrated: **0**. Current external-mod additions verified playable: **0**. The next batch must target available slots on pages 1–3 before any page 4/5 expansion.

@@ -44,11 +44,14 @@
 **Exit checks:** the selected existing Senki game builds and launches from the central repo before major mod merges begin.
 
 ## Phase 3 — Inventory and prepare mod content
-**Status: In progress — fifth-pass research found additional legacy character/AI references, but no drop-in, permission-cleared V2 source with 27 verified new character packages.**
+**Status: In progress — external-mod character sourcing is the priority. Do not spend roster-expansion time classifying V2's own internal entities as additions.**
 
 - [x] Continue researching existing Senki mods, source forks, release histories, and compatible resources; record the V2 custom-registry fork and mirror SHA comparisons in `docs/MOD_RESEARCH.md`.
+- [x] Re-read the explicit user priority: external Senki-mod characters must be added to pages 1–3 before further page 4/5 work. Internal V2 enum/class audits are not character additions.
 - [x] Verify that the inspected `SILXNTRAY/NarutoSenki-V2` custom registry is an architecture reference, not 70 ready-made characters: its custom character table is empty/commented examples and the inspected tree has no dedicated registry unit-test suite.
 - [x] Confirm that the inspected `ZhReimu/NarutoSenki-V2` `basic.lua` change does not add a new selectable roster beyond the stock list.
+- [ ] Identify and port distinct playable characters from OTHER Naruto Senki mods into available page 1–3 slots first. Do not count characters already in the selected V2 roster, internal AI/Guardian classes, summons, or alternate forms as new additions.
+- [ ] Audit each external character package's selection portrait, sprite/atlas, animation schema, skills/effects, audio, player implementation, and AI implementation before selecting it for porting.
 - [ ] Identify at least 27 additional distinct character/form source packages beyond the current 43 declared names, and verify their XML/atlas/texture/audio/skill/AI files individually.
 - [x] Locate a complete older-schema Hokage Minato sprite/XML/audio package in `LeaderOnePro/NarutoSenki1.17Mod`; classify it as a resource lead only because it lacks V2-native class integration and reuse permission remains unresolved.
 - [ ] Evaluate whether the old Hokage Minato animation XML can be safely converted to V2's unit schema, and identify the required class/AI/selection UI changes without importing uncleared assets.

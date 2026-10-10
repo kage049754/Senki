@@ -736,3 +736,23 @@ A recursive tree inspection of the public V2-derived candidate found existing Ha
 - The inspected `Guardian` class implements autonomous target-seeking/attacks; the resource directory alone is not evidence of a player-controlled character-selection path.
 - The candidate repository has no declared GitHub license, and the provenance/reuse terms for game sprites, audio, and other assets remain unresolved. Do not copy these resources into the central repository or ship them as redistributed assets until permission/license terms are verified.
 - Next technical check: trace the candidate's character registration, selection UI, factory/class mapping, and player-input dispatch to determine whether Han/Roshi have any existing selectable form or would require a genuine control/character implementation. Keep both names as RESEARCH_ONLY until those checks and rights checks pass.
+
+
+## External-mod character sourcing correction — 2026-10-10
+
+The roster expansion task is **not** to classify more entities already present in the selected V2 source. Pain paths, clones, Guardians, summons, and alternate forms do not satisfy the user's instruction to source characters from OTHER Naruto Senki mods.
+
+### Concrete external leads reviewed
+- [Zx-Akito/NarutoSenki-Release](https://github.com/Zx-Akito/NarutoSenki-Release/releases) release notes document distinct character additions in the v1.24–v1.26 line: Jirobo, Tayuya, Anko, Kurenai, Guy, Yamato, Zetsu, Iruka, Shizune, Hashirama, Rin, Sakon & Ukon, and Juzo. The release host contains packaged releases, not editable character source, so these remain discovery leads until a source/resource implementation is found.
+- [Fansirsqi/NarutoSenki](https://github.com/Fansirsqi/NarutoSenki) has 1,427 tree entries, but its root is package-style (assets/, lib/, res/, META-INF/), not a native V2 source tree. Direct inspection confirms a legacy Nagato.xml animation definition and atlas plist, plus Han/Roshi/Fukasaku resources. These are not yet compatible with V2's Lua/C++ character registration and must not be treated as playable ports. The XML has a suspicious attackValue of 6000000 in its idle metadata, so validate source data before adaptation.
+- The pinned V2 roster already contains Karin; therefore Karin from the legacy resource set is not a new character and must not be counted.
+- LeaderOnePro/NarutoSenki1.17Mod has a similar package-style tree and no inspected source-level character implementation. Do not claim it is an independent character source without a meaningful content diff.
+
+### Immediate priority
+1. Stop spending roster work on V2-internal enum/class classification.
+2. Find an editable external Senki mod/source or complete character package for a character absent from the V2 roster.
+3. Trace that character's gameplay implementation and asset schema, then port it into the existing V2 native systems.
+4. Place the first genuinely new external characters into available slots on pages 1–3; preserve original entries and page-button behavior.
+5. Build and audit the APK; count a character only at the appropriate discovery/ported/built/playable-verified stage.
+
+No external character has been integrated by this research pass.
