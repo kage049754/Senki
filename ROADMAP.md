@@ -334,3 +334,6 @@ The pinned candidate now exposes six existing native forms on a fourth character
 - The workflow now inspects the APK itself to verify the six roster names and their UI aliases are packaged.
 - The roster contains 84 slots and currently computes four pages. Page 4 is populated by six forms; page 5 button art is prepared and packaged but is not displayed until the roster exceeds 84 slots.
 - Physical-device selection, battle, AI, skill, and transformation tests remain pending. Do not count these entries as verified playable until those checks pass.
+
+
+Latest verification refresh: run #121 succeeded after adding atlas-texture existence checks to the six-form roster regression test. See `PROGRESS.md` for artifact ID `11660673063` and its SHA-256 digest. Device gameplay verification remains pending.
