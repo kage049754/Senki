@@ -797,3 +797,17 @@ No character code/assets were copied from these candidates. Current public evide
 - `Zx-Akito/NarutoSenki` (older Cocos2d-x 2.2.2 source) has editable C++ character AI and a small selectable roster, but the inspected selectable names (Naruto, Sakura, Sai, Itachi, Konan, Deidara, Sasuke, Karin, Jugo) are already represented in the V2 roster. It is not yet a source for a distinct new selectable character.
 - `LeaderOnePro/NarutoSenki1.17Mod` was confirmed by its root tree to be an APK/package extraction (`AndroidManifest.xml`, `classes.dex`, `assets/`, `res/`), not an editable source project; it cannot supply a source-level character port without relying on packaged binary extraction.
 - Decision: no new character port is justified by these comparisons. Continue searching for an external Senki mod with an independently selectable character implementation and complete source/resource package. Current integrated external characters remain **0**; do not count internal V2 forms or support entities.
+
+
+## Additional external source audit — 2026-10-10 (continued)
+
+Additional repositories inspected after the prior checkpoint:
+
+- **[LeaderOnePro/NarutoSenki](https://github.com/LeaderOnePro/NarutoSenki)** — the README attributes it to the Chinese “超战记” source lineage and documents Cocos2d-x 2.2.2 / VS2010. Its editable `Classes/SelectLayer.cpp` selection list is only Naruto, Sakura, Sai, Itachi, Konan, Deidara, Sasuke, Karin, and Jugo; all are already represented in the selected V2 roster. `Classes/Characters.cpp` contains AI routes for support units/forms such as Nagato, Han, Roshi and Pain paths, but this inspection did not establish an independently selectable new fighter with a complete compatible package. No license was found at the checked root path.
+- **[LeaderOnePro/NarutoSenki-cocos2dx](https://github.com/LeaderOnePro/NarutoSenki-cocos2dx)** — the README describes a Cocos2d-x 2.2.6 C++ modernization, but the inspected selectable roster is still the same core V2 cast. The AI code references existing units and forms, not a verified complete external implementation for the release-note leads. No root license was found in the checked path.
+- **[sansaks-jpg/NarutoSenki-V2](https://github.com/sansaks-jpg/NarutoSenki-V2)** — its `projects/NarutoSenki/lua/class/basic.lua` layout shows the same stock V2 roster and empty slots, not new external characters. No root license was found in the checked path.
+- **[likill/NarutoSenki-master](https://github.com/likill/NarutoSenki-master)** — the README describes a Cocos2d-x 2.2.2 project and points to a game release; the expected V2 `basic.lua` path is absent and no root license was found in the checked path. It is not yet a confirmed source for a compatible new character.
+
+### Result and next action
+
+This search pass still found **zero permission-cleared, source-editable external character packages that can responsibly be integrated now**. Repositories with only changelogs, packaged releases, duplicate stock rosters, or unclear rights cannot be treated as character additions. I will not extract an APK or silently copy unlicensed sprites/audio/code just to inflate the count. The next valid step is to locate a source/resource package with explicit reuse permission, or obtain permission from its author, then port one character completely and validate it in-game. Current external additions integrated/playable remain **0/0**.
