@@ -366,3 +366,10 @@ The source inventory remains **37 visible selectable names / 43 after six existi
 - **Decision:** research-only; do not copy its bundled media into Senki or count any character as integrated based on this repository. It is not currently a suitable source for a complete, auditable playable-character port.
 - Other checked source repositories `LeaderOnePro/NarutoSenki`, `LeaderOnePro/NarutoSenki-cocos2dx`, `Zx-Akito/NarutoSenki-V2`, and `muhammadadilsyaputra08-alt/NarutoSenki-Custom` did not expose a repository license file or GitHub license metadata in the inspected default branches. Keep their source/assets blocked from import pending explicit permission or clearer licensing.
 - Next research target remains a complete source implementation whose own license and asset provenance are explicit, or direct permission from the relevant rights holders/contributors. Do not treat public GitHub visibility as permission.
+
+### Additional source comparison — 2026-10-10
+
+- **`kuiyr0810/NarutoSenki-V2`** has a full source tree and the same 43-entry visible roster pattern in `projects/NarutoSenki/lua/class/basic.lua`; the inspected visible layout did not reveal a new distinct playable character beyond the current candidate. No repository license file or GitHub license metadata was found, so no code/assets were imported.
+- **`likill/NarutoSenki-master`** and **`LeaderOnePro/NarutoSenki1.17Mod`** are additional public mod repositories; the inspected default branches expose no repository license metadata or top-level license file. Their presence is a research lead, not reuse permission.
+- **`Zx-Akito/NarutoSenki-Release`** is a release-only repository with no source tree in the inspected default branch; it cannot serve as an auditable character-code integration source by itself.
+- This comparison did not identify a new distinct character with both a complete compatible source package and clear reuse authorization. Roster count remains unchanged; do not fabricate progress by adding names without assets and working gameplay.
