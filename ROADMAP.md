@@ -435,3 +435,12 @@ For every new character on pages 1–3, confirm a real matching portrait/avatar 
 - The audit still reports **43 selectable entries / 37 distinct base characters** (six known alternate forms excluded), 84 slots across four pages, and nine enum-only leads needing manual classification. Selection-art check: 37/43 complete; kill-feed portrait frame pairs: 43/43; XML-to-atlas frame names: 43/43; skill-description label frames: 42/43, with Kabuto's five text fallbacks detected.
 - Pagination and reserved page-empty-state checks pass, but page 5 remains empty. The roster target and actual playable-verified count are not met/measured. No physical-device installation or gameplay verification is claimed.
 - **Next priority:** pages 1–3 first. Continue searching and inspecting complete, compatible distinct Senki characters; map available slots and asset needs; do not import external code/assets without resolved permission. Do not promote Han/Roshi guardian packages or enum-only entries into the playable count without full Hero lifecycle integration and testing.
+
+
+### Follow-up after run #204 — enum audit and source discovery
+
+- [x] Add a source-based classification table for the nine enum-only IDs so clone/support implementations are not mistaken for selectable characters.
+- [x] Validate the classification table with the character-audit regression test and complete the Android diagnostic build; [run #204 passed](https://github.com/kage049754/Senki/actions/runs/38041108524).
+- [x] Record the new `LeaderOnePro/NarutoSenki-cocos2dx` source lead. It contains C++/Cocos2d-x 2.2.6 source and an Android project, but is a legacy architecture and lacks a root license declaration.
+- [ ] Compare this legacy candidate's character implementations with the pinned V2-derived candidate and identify a distinct, complete package that can be adapted without blindly copying its old XML/resource schema.
+- [ ] Continue to prioritize a real new playable character on pages 1–3. Require selection portrait/name, V2-compatible resources, player controls, skills/effects/audio references, AI, kill/death display, and lifecycle tests before counting it.

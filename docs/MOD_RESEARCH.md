@@ -708,3 +708,13 @@ Decision: these are not 70-character bases and do not solve the additional-roste
 - The published changelog lists a Minato Bonds fix, directional skill-drag mechanic, Sasori awakened-buff fix, and global-chat auto-scroll fix. This metadata does not identify a new complete playable character package for direct porting.
 - Classification remains **REFERENCE_ONLY / APK_ONLY**. Do not extract and copy APK contents into the V2 candidate. The release repository has no declared license, and character art, audio, sprites, animation, and code reuse rights remain unresolved.
 - Consequence for the next roster milestone: do not claim Shizune, Hashirama, Rin, Juzo, or other release-note leads are integrated based on this APK. Continue looking for an editable, permission-cleared source or obtain explicit permission. In parallel, preserve the page 1–3 slot plan and audit the selected V2 candidate's native character/resource contracts without importing unlicensed content.
+
+
+### Ninth-pass legacy-source candidate — LeaderOnePro/NarutoSenki-cocos2dx (2026-10-10)
+
+- Repository: https://github.com/LeaderOnePro/NarutoSenki-cocos2dx
+- Metadata describes a C++ Naruto Senki source project based on Cocos2d-x 2.2.6, with Android, Windows, and macOS project files. Its README documents an Android build path using a Gradle 8.7 wrapper with the legacy NDK r10e toolchain; the Android project is under `projects/NarutoSenki/proj.android`, not the selected V2 candidate's `proj.android-studio` structure.
+- The root contains game source/resource projects and a `licenses/` directory for framework components, but no root `LICENSE` file or repository-level license declaration was found. The framework licenses do not establish rights for Naruto game code, sprites, sound, or animations.
+- The repository is not a direct V2-compatible source drop-in: it is a legacy Cocos2d-x 2.2.6 codebase with a different Android project layout and older monolithic character architecture. Treat it as a **legacy source/reference candidate**, not a replacement for the selected V2 base.
+- Potential research value: compare its original character class/resource implementations against the V2 candidate to locate useful mechanics or missing character leads, then map them to V2's Lua roster, `HeroEnum`, provider registration, XML/atlas schema, and AI/input lifecycle. Do not copy its code/assets into the central repository until provenance and applicable rights are resolved.
+- Status: **DISCOVERED / SOURCE_REVIEW / PERMISSION_REQUIRED**. No character is counted as integrated from this repository.

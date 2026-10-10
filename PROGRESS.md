@@ -849,3 +849,15 @@ User requires every new character to have its own correct avatar/portrait in the
 - [ ] Continue looking for editable character packages and map class/resource/AI/control paths before attempting the first new character batch. The current audit still flags nine enum-only identifiers for manual classification.
 - [ ] No new playable character has been added or verified in this continuation. Do not mislabel forms, guardians, portraits, or enum-only IDs as new playable characters.
 - [ ] Physical Android installation and in-game selection/combat checks remain unverified; CI success only proves the diagnostic candidate build and automated checks.
+
+
+## Latest audit-classification build — run #204 (2026-10-10)
+
+- Commit: `e794b9c529b589b73b5ba5ab67fb3ec208937327` — [enum-only classification audit](https://github.com/kage049754/Senki/commit/e794b9c529b589b73b5ba5ab67fb3ec208937327).
+- Workflow: [run #204](https://github.com/kage049754/Senki/actions/runs/38041108524) — **SUCCESS**.
+- The audit now labels Pain-path IDs, Naruto clone IDs, and Guardian as preliminary support/summon/AI leads with inspected source paths; regression checks passed. These labels explicitly do not prove runtime player control.
+- Audit report artifact: `senki-character-package-audit`, ID `11666525725`, 4,336-byte ZIP, SHA-256 `6f67b0580db6ee505af9a86f318952c580d495af7a7d19904942c16db60face2`, expires 2026-10-24.
+- Diagnostic APK artifact: `naruto-senki-v2-candidate-debug-apk`, ID `11666361120`, 83,340,076-byte ZIP, SHA-256 `b2d3ee4ac4efc698b53dac676d324096cc6c7c694cf8ece87f4941745eb42cab`, expires 2026-10-24.
+- The Android build reported `BUILD SUCCESSFUL in 3m 12s`; package identity, signature, native ABI, audit-report structure, Lua/source checks, and artifact uploads passed. This remains a diagnostic candidate build, not phone-install or gameplay proof.
+- Latest source audit still has 43 selectable entries / 37 distinct base characters. No new playable character was added in this batch.
+- Next research lead: `LeaderOnePro/NarutoSenki-cocos2dx` is an editable legacy Cocos2d-x source candidate, but not a direct V2 drop-in and has no root license declaration. It is now recorded as reference-only pending code/asset rights and compatibility review.

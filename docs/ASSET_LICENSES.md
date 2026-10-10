@@ -126,3 +126,15 @@ The character manifest in `docs/CHARACTER_ROSTER.md` must link each asset catego
 - `Fansirsqi/NarutoSenki` includes a root Mulan PSL v2 license, but its inspected tree is an Android package/resource distribution rather than an editable V2 source tree. Its README identifies some content as extracted package assets and references original asset creators. Do not assume the repository license clears bundled Naruto Senki sprites, animation frames, audio, or other third-party content; provenance must be checked asset by asset.
 - `likill/NarutoSenki-master`, `RieyuXhen/NarutoSenki`, and `Zx-Akito/NarutoSenki` are legacy Cocos2d-x 2.2.2 source references with no root license found in the inspected trees. Their character/AI code and resource files are not approved for copying into the V2 candidate. Treat as reference-only until both code rights and asset rights are documented.
 - No new third-party character assets were copied into this repository by this research pass.
+
+
+## Legacy source candidate — LeaderOnePro/NarutoSenki-cocos2dx
+- Canonical URL: https://github.com/LeaderOnePro/NarutoSenki-cocos2dx
+- Material: legacy C++ Naruto Senki game source, Cocos2d-x 2.2.6 framework, Android/Windows/macOS project files, and game resources.
+- Observed repository state: root `licenses/` directory exists for framework/dependency notices, but no root `LICENSE` file or repository-level license declaration was found in the inspected root.
+- Game-code license: not established.
+- Naruto character art, sprite, animation, audio, and other game-asset permissions: not established by framework license files.
+- Compatibility: not a drop-in for the selected V2 Lua roster/Android Studio source; use for read-only technical comparison unless a reviewed integration path is approved.
+- Approved scope: source structure, history, and compatibility research only; no code/assets copied into this central repo.
+- Status: **PERMISSION_REQUIRED / REFERENCE_ONLY**
+- Review date: 2026-10-10
