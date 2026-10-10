@@ -57,5 +57,9 @@ assert int(labels.group(1)) <= int(labels.group(2)) == expected_count, (
 assert "Skill-description label exceptions requiring manual review:" in report, (
     "Skill-label exception summary is missing"
 )
+assert "after applying SkillLayer UI aliases" in report, "Skill UI alias handling is not documented"
+assert "`RockLee` → `Lee`" in report, "Known RockLee-to-Lee skill UI alias is not reported"
+assert "`Kabuto` (0/5)" in report, "Known missing Kabuto labels should remain flagged for manual review"
+assert "`RockLee` (0/5)" not in report, "A base-art alias should not be reported as missing skill labels"
 assert "does not prove a character is complete" in report, "Required audit limitation warning is missing"
 print(f"Character audit report is well-formed: {len(header_cells)} columns, {len(rows)} rows, portrait coverage {coverage.group(1)}/{coverage.group(2)}, skill-label coverage {labels.group(1)}/{labels.group(2)}.")
