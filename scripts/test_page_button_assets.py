@@ -1,0 +1,50 @@
+#!/usr/bin/env python3
+"""Verify generated page 4+ buttons retain the original button rim/artwork."""
+from pathlib import Path
+import sys
+from PIL import Image
+
+if len(sys.argv) != 2:
+    raise SystemExit("usage: test_page_button_assets.py PATH_TO_Resources")
+
+resources = Path(sys.argv[1])
+
+def read(name: str) -> Image.Image:
+    path = resources / name
+    if not path.is_file():
+        raise SystemExit(f"Missing generated pagination asset: {path}")
+    image = Image.open(path).convert("RGBA")
+    if image.size != (40, 40):
+        raise SystemExit(f"Expected 40x40 page button {name}, got {image.size}")
+    return image
+
+def outside_center_matches(original: Image.Image, generated: Image.Image) -> bool:
+    src = original.load()
+    dst = generated.load()
+    # The generator is allowed to repaint the central numeral disk only.
+    for y in range(40):
+        for x in range(40):
+            inside_disk = ((x - 20) / 8) ** 2 + ((y - 20) / 8) ** 2 <= 1
+            if not inside_disk and src[x, y] != dst[x, y]:
+                return False
+    return True
+
+for page in (4, 5):
+    for state in ("off", "on"):
+        original_name = f"page1_{state}.png"
+        generated_name = f"senki_page{page}_{state}.png"
+        original = read(original_name)
+        generated = read(generated_name)
+        if not outside_center_matches(original, generated):
+            raise SystemExit(
+                f"{generated_name} changed pixels outside the numeral disk; "
+                "the original page-button rim/state artwork was not preserved."
+            )
+        if generated.getbbox() is None:
+            raise SystemExit(f"Generated button is fully transparent: {generated_name}")
+    off = read(f"senki_page{page}_off.png")
+    on = read(f"senki_page{page}_on.png")
+    if list(off.getdata()) == list(on.getdata()):
+        raise SystemExit(f"Page {page} normal and selected button artwork are identical")
+
+print("Page 4 and 5 normal/selected controls are 40x40, visible, distinct, and preserve original page-button artwork outside the numeral disk.")
