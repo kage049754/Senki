@@ -60,6 +60,21 @@ enum_source = HERO_ENUM.read_text(encoding="utf-8", errors="replace") if HERO_EN
 enum_names = list(dict.fromkeys(re.findall(r"mk_const\(([^)]+)\)", enum_source)))
 unlisted_enum_names = [name for name in enum_names if name not in names]
 
+# Manual source-level classifications for enum-only identifiers. These are
+# research classifications, not a claim that any ID is impossible to control;
+# each is excluded from the playable count until it has a roster entry and tests.
+ENUM_LEAD_CLASSIFICATIONS = {
+    "AnimalPath": ("Pain path / AI-controlled support entity", "Classes/Core/Shinobi/AnimalPath.hpp"),
+    "AsuraPath": ("Pain path / AI-controlled support entity", "Classes/Core/Shinobi/AsuraPath.hpp"),
+    "HumanPath": ("Pain path / implementation entity; control path needs runtime review", "Classes/Core/Shinobi/HumanPath.hpp"),
+    "PertaPath": ("Pain path / implementation entity; spelling follows source ID", "Classes/Core/Shinobi/PertaPath.hpp"),
+    "NarakaPath": ("Pain path / implementation entity; control path needs runtime review", "Classes/Core/Shinobi/NarakaPath.hpp"),
+    "NarutoClone": ("Summoned clone AI unit", "Classes/Core/Shinobi/Bunshin/NarutoClone.hpp"),
+    "SageNarutoClone": ("Summoned clone AI unit", "Classes/Core/Shinobi/Bunshin/SageNarutoClone.hpp"),
+    "RikudoNarutoClone": ("Summoned clone AI unit", "Classes/Core/Shinobi/Bunshin/RikudoNarutoClone.hpp"),
+    "Guardian": ("Guardian AI class; Han/Roshi resources are off-roster leads", "Classes/Core/Guardian/Guardian.hpp"),
+}
+
 all_files = [p for p in GAME.rglob("*") if p.is_file()]
 relative = [(p, p.relative_to(GAME).as_posix()) for p in all_files]
 text_files = []
@@ -250,6 +265,13 @@ with OUT.open("w", encoding="utf-8") as f:
         f.write("- Non-roster enum leads: " + ", ".join(chr(96) + name + chr(96) for name in unlisted_enum_names) + ".\n")
     else:
         f.write("- Non-roster enum leads: none found.\n")
+    f.write("\n## Enum-only ID classification (research aid)\n\n")
+    f.write("These source-level labels help distinguish summon/support implementations from missing roster entries. They are not runtime-control proof; keep every ID out of the playable count until selection, player control, and battle lifecycle are tested.\n\n")
+    f.write("| Enum ID | Preliminary classification | Inspected source path |\n")
+    f.write("|---|---|---|\n")
+    for enum_name in unlisted_enum_names:
+        classification = ENUM_LEAD_CLASSIFICATIONS.get(enum_name, ("UNCLASSIFIED — inspect before roster planning", "not mapped"))
+        f.write("| " + " | ".join(fmt(value) for value in (enum_name, *classification)) + " |\n")
     f.write(f"- Kill-feed portrait atlas coverage: **{portrait_complete}/{len(rows)} roster entries have both frames.**\n")
     f.write(f"- Character-selection image coverage: **{selection_complete}/{len(rows)} roster entries have all three expected selection frames/files.**\n")
     if missing_selection_names:

@@ -49,6 +49,11 @@ assert "Gameplay-verified playable count: **not measured by this static audit.**
 enum_leads = re.search(r"HeroEnum entries absent from the visible selection list: \*\*(\d+) requiring manual classification", report)
 assert enum_leads, "Non-roster HeroEnum audit summary is missing"
 assert "Non-roster enum leads:" in report, "Non-roster enum lead list is missing"
+assert "## Enum-only ID classification (research aid)" in report, "Enum-only IDs need a source-based classification section"
+assert "Summoned clone AI unit" in report, "Clone IDs should be identified as summoned AI units rather than new playable characters"
+assert "Pain path / AI-controlled support entity" in report, "Pain-path IDs need to remain classified as support entities"
+assert "Guardian AI class" in report, "Guardian enum ID should be classified separately from selectable roster characters"
+assert "not runtime-control proof" in report, "Enum classifications must not be presented as proof of playable controls"
 assert "not counted as playable" in report, "Non-roster enum warning must prevent false playable counts"
 assert "`AnimalPath`" in report and "`Guardian`" in report, (
     "Known summon/support enum entries should be surfaced for manual classification"
