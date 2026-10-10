@@ -55,14 +55,15 @@ See [ROADMAP.md](ROADMAP.md) for task lists and exit gates.
 
 ## Current honest status (2026-10-10)
 
-- Latest verified central Actions run: [#208 — SUCCESS](https://github.com/kage049754/Senki/actions/runs/38044462856), commit [a5480d1](https://github.com/kage049754/Senki/commit/a5480d1454ead8de8ec36cf1c23455cb759ea9cf).
-- Run #208 checked external-character priority/evidence gates, source/Lua assertions, pagination/background checks, Android candidate build/package checks, and artifact upload.
-- External-mod characters integrated: **0**. External-mod characters verified playable: **0**.
-- Source-level inventory: **37 distinct base names / 43 selectable entries** after exposing six existing native forms; this is not a gameplay-verified count. See `docs/CHARACTER_ROSTER.md`.
-- The last inspected external candidates have not yet yielded a distinct, permission-cleared, complete character package. The next milestone is a real character port—not another documentation-only checkpoint.
-- Page 4/5 image-style pagination is groundwork, not roster progress.
-- Physical-phone install, startup, and gameplay have **not** been verified.
-- Source and third-party asset permissions remain unresolved for inspected candidates. The full V2 source tree is not yet vendored here.
+- Latest verified central Actions run: [#223 — SUCCESS](https://github.com/kage049754/Senki/actions/runs/38049878750), commit [9ad6ad5](https://github.com/kage049754/Senki/commit/9ad6ad5a8d6e2716d1a9735817c2f807c64b93d9).
+- Run #223 passed source assertions, Lua validation, animation-frame audit, pagination/background checks, Android candidate build, APK package/signature/ABI checks, and artifact upload.
+- External mod character packages integrated into the candidate: **1 variant — Two Sage Toads**. Gameplay-verified external characters: **0**; physical-device testing is still required.
+- The Two Sage Toads entry uses the mod's Choji-replacement artwork/atlas from [LeaderOnePro/NarutoSenki1.17Mod](https://github.com/LeaderOnePro/NarutoSenki1.17Mod), while reusing the native Choji combat/AI and skill behavior as a compatibility baseline. It is a selectable mod variant, **not a unique moveset and not a new distinct base character**.
+- Source-level inventory: **37 distinct base characters / 44 selectable entries** (six native alternate forms plus the Two Sage Toads mod variant); not a gameplay-verified count. See `docs/CHARACTER_ROSTER.md`.
+- Run #223 APK artifact: [download from the Actions run](https://github.com/kage049754/Senki/actions/runs/38049878750) (artifact ID `11668738659`, 83,635,245 bytes). Audit artifact ID: `11668783626`.
+- The next substantive milestone is a distinct external character with its own appropriate combat/skill behavior, followed by successful build and gameplay verification—not more pagination-only work.
+- Page 4/5 image-style pagination remains navigation groundwork.
+- Physical-phone install, startup, and gameplay have **not** been verified. The full V2 source tree is not yet vendored here.
 
 ## Reference docs
 
