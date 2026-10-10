@@ -52,6 +52,8 @@ Target: at least 70 verified playable characters. The registry itself must not h
 ## Current verified roster
 **Verified playable character count: NOT YET MEASURED.**
 
+**Source inventory (not runtime-verified):** the pinned Android-clean candidate defines 37 unique selectable names in `lua/class/basic.lua`. The five Pain-path C++ headers are implementation classes, not separate selectable roster entries. See `docs/MOD_RESEARCH.md` for the exact 37-name list and source comparison.
+
 No individual character is marked VERIFIED by this initial tracker. Populate entries only after inspecting the actual project and testing the character.
 
 ## Batch verification checklist
@@ -73,3 +75,13 @@ No individual character is marked VERIFIED by this initial tracker. Populate ent
 
 ## Historical/possible character leads
 Names mentioned in source release notes or mod descriptions belong in research records first. They must not be treated as implemented until individually ported and verified. Refer to docs/MOD_RESEARCH.md for sources and evidence.
+
+
+## Source baseline inventory — 2026-10-10
+
+- [x] Inspected `lua/class/basic.lua` in Android-clean candidate commit `279e85e73040558c84988a0eea310b6286eb77f0`.
+- [x] Counted 37 unique selectable character names in `ns.CharactersLayout`.
+- [x] Inspected the C++ `Classes/Core/Shinobi/` folder: 42 headers total, five of which are Pain-path implementation classes rather than standalone selectable characters.
+- [x] Identified Kabuto as a custom redesigned character unique to the Android-clean candidate compared with the LAN-enhanced candidate.
+- [ ] Test each selectable character in battle before counting it as verified playable.
+- [ ] Audit every character's class, XML/config, sprite/plist, animation/effects/audio, skill IDs, and selection portrait/button assets.
