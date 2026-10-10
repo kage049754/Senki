@@ -172,3 +172,11 @@ Treat these as priority candidates to investigate in editable Senki mod source. 
 - The audit continued to report 0/5 even though the dedicated SkillLayer test verifies all five exact strings. The fallback marker-position condition was unnecessary and made the report brittle.
 - Fix: count the five exact tested descriptions directly in the audited SkillLayer source. The dedicated regression test remains responsible for confirming the fallback table and UI behavior.
 - No character integration is claimed from this test correction.
+
+
+## Latest run #260 failure — duplicate fallback assertion removed
+
+- Run: https://github.com/kage049754/Senki/actions/runs/38051675042
+- The dedicated SkillLayer fallback regression test passed, but the package inventory's separate count remained 0/5 due a mismatch in its source scan. This duplicate count was not a reliable gate.
+- Fix: the inventory now points to the dedicated regression test for the static fallback assertion instead of duplicating its string parsing. The standalone regression test remains mandatory in CI.
+- No gameplay or roster count change is claimed.
