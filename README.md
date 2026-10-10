@@ -172,3 +172,8 @@ The latest successful build is [run 38016671857](https://github.com/kage049754/S
 Additional release-note research found potential character leads in [Zx-Akito's Naruto Senki release line](https://github.com/Zx-Akito/NarutoSenki-Release/releases): Shizune, Hashirama, Rin, Sakon & Ukon, Juzo, Kurenai, Might Guy, Yamato, Sasori, Zetsu, Iruka, Jirobo, Tayuya, Anko, and others. These are discovery leads only; the latest v1.26 release is APK-only and reports server-side processing, so it is not a direct offline V2 source base. The lead list is tracked in `docs/CHARACTER_ROSTER.md` and the compatibility notes in `docs/MOD_RESEARCH.md`.
 
 The selected V2-derived base still has 37 unique selectable names. Pagination groundwork is built, but no additional character from those release leads has been ported or verified. The next goal is to locate editable source/resource sets and add compatible characters incrementally without replacing existing roster entries.
+
+
+### Dynamic roster pagination — build verified
+
+The current source patch removes the fixed three-page character-selection limit. The page count is calculated from the roster list (21 character slots per page), and the page controls use numbered text instead of depending on only three fixed page-sprite pairs. CI run [38016671857](https://github.com/kage049754/Senki/actions/runs/38016671857) passed the source assertions, Lua syntax validation, Android build, package/landscape checks, APK signature validation, and native ABI checks. This does not substitute for testing the selection UI on a phone.
