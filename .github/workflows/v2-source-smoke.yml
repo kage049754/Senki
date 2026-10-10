@@ -345,6 +345,8 @@ jobs:
           fi
           unzip -p "$APK" "$ENTRY" > /tmp/senki-packaged-SkillLayer.lua
           grep -F 'Skill description unavailable' /tmp/senki-packaged-SkillLayer.lua
+          grep -F 'local skillLabelHero = skillUiAlias[self.selectHero] or self.selectHero' /tmp/senki-packaged-SkillLayer.lua
+          grep -F "imgPath = skillLabelHero .. '_label' .. (buttonType - 2) .. '.png'" /tmp/senki-packaged-SkillLayer.lua
           grep -F 'pcall(display.newSpriteFrame, imgPath)' /tmp/senki-packaged-SkillLayer.lua
           grep -F 'self._skillExplainClipper:removeFromParent()' /tmp/senki-packaged-SkillLayer.lua
           grep -F 'self._skillExplainClipper = clipper' /tmp/senki-packaged-SkillLayer.lua
