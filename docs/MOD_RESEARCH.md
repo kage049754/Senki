@@ -861,3 +861,14 @@ Decision: **REFERENCE_ONLY / PERMISSION_REQUIRED**; do not copy its code or bund
 ### Result
 
 This source is useful for understanding legacy roster/resource wiring but **does not qualify as the first external character port**: its selectable names are already present in the current base and its code/assets lack a declared reuse license. No files were copied. Continue searching for genuinely distinct, permission-cleared characters such as the release-note leads, or obtain permission and an editable package from the relevant mod author.
+
+## User-priority candidate check — LeaderOnePro package inspection (2026-10-10)
+
+- Repository: https://github.com/LeaderOnePro/NarutoSenki1.17Mod
+- Repository metadata and indexed files identify this as an APK/package-style tree (including `AndroidManifest.xml`, `classes.dex`, `META-INF/`, and packaged `assets/`), not an editable game-source project with native character classes and integration/build tests.
+- Targeted file searches for **Kurenai**, **Might Guy**, **Yamato**, **Shizune**, and **Hashirama** returned no matching character implementation in the indexed tree. A search for **Rin** matched only substrings in **Karin** resource paths (for example `assets/Element/Karin/Karin.xml` and Karin skill/audio resources); this is a false positive, not Rin Nohara.
+- The repository does expose Karin XML/atlas/audio resource names, but Karin is already represented in the existing V2 roster and therefore is not a new addition for this task.
+- No declared license or verified rights for the bundled Naruto art/audio were established during this inspection.
+- **Decision:** PACKAGE_REFERENCE_ONLY / PERMISSION_REQUIRED. Do not extract or transplant packaged APK resources. This source does not qualify any of the six requested characters for a safe, auditable source-level port.
+- Next step remains finding editable character source plus an authorized asset/provenance path, or obtaining a direct authorized source/resource package from a contributor. The six requested character statuses remain unchanged; external characters integrated **0**, verified playable **0**.
+
