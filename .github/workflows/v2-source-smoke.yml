@@ -65,6 +65,31 @@ jobs:
           test -s assets/Element/Skills/Choji_Skill.plist
           echo "Pinned external mod source/assets verified at 8c800efe09f8e5489f37ee3314596b329f533225."
 
+      - name: Cache pinned Naruto Senki v1.25/v1.26 release APKs
+        uses: actions/cache@v4
+        with:
+          path: /tmp/narutosenki-release-apks
+          key: narutosenki-release-apks-v1.25-c384188d9632ab44-v1.26-8bda3dcec136c315
+
+      - name: Fetch and verify legacy release APKs for character porting
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/narutosenki-release-apks
+          V125=/tmp/narutosenki-release-apks/NarutoSenki-v1.25-beta-1.apk
+          V126=/tmp/narutosenki-release-apks/NarutoSenki-v1.26-beta-1.apk
+          if [[ ! -s "$V125" ]]; then
+            curl --fail --location --retry 3 --retry-delay 2 \
+              "https://github.com/Zx-Akito/NarutoSenki-Release/releases/download/v1.25-beta-1/NarutoSenki-v1.25-beta-1.apk" -o "$V125"
+          fi
+          if [[ ! -s "$V126" ]]; then
+            curl --fail --location --retry 3 --retry-delay 2 \
+              "https://github.com/Zx-Akito/NarutoSenki-Release/releases/download/v1.26-beta-1/NarutoSenki-v1.26-beta-1.apk" -o "$V126"
+          fi
+          echo "c384188d9632ab44a530308da0ab114980df01fd43d4e3f3ca79267c761614af  $V125" | sha256sum --check -
+          echo "8bda3dcec136c315d1b67e5f289c4376b626cf9142eb9fe6eb8c210e0746142d  $V126" | sha256sum --check -
+          echo "Pinned v1.25/v1.26 character-resource containers verified."
+
       - name: Apply central Senki patches
         shell: bash
         run: |
@@ -119,6 +144,21 @@ jobs:
           python3 "$GITHUB_WORKSPACE/scripts/apply_two_sage_toads.py" "$GAME" /tmp/narutosenki-toad-mod
           python3 "$GITHUB_WORKSPACE/scripts/test_two_sage_toads.py" "$GAME"
           echo "The additive Two Sage Toads integration is source-checked; runtime gameplay still requires device validation."
+
+      - name: Import v1.25/v1.26 release characters into the V2 candidate
+        shell: bash
+        run: |
+          set -euo pipefail
+          if ! command -v ffmpeg >/dev/null 2>&1; then
+            sudo apt-get update
+            sudo apt-get install -y ffmpeg
+          fi
+          GAME=/tmp/narutosenki-candidate/projects/NarutoSenki
+          python3 "$GITHUB_WORKSPACE/scripts/apply_release_characters.py" \
+            "$GAME" \
+            /tmp/narutosenki-release-apks/NarutoSenki-v1.25-beta-1.apk \
+            /tmp/narutosenki-release-apks/NarutoSenki-v1.26-beta-1.apk
+          python3 "$GITHUB_WORKSPACE/scripts/test_release_characters.py" "$GAME"
 
       - name: Verify original character-selection and mode-menu backgrounds
         shell: bash
