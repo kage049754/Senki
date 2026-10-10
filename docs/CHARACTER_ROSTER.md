@@ -358,3 +358,11 @@ Each new entry must have its own matching portrait/avatar rendered in its assign
 - **Rights:** source repository and asset terms are not declared in the inspected metadata. Keep this as a research lead; do not vendor or redistribute its binary/art files until provenance and applicable permissions are resolved.
 
 The source inventory remains **37 visible selectable names / 43 after six existing native forms are exposed by the CI patch**. Han and Roshi do not increase either count. Gameplay-verified playable count remains unmeasured.
+
+### Additional source/license triage — 2026-10-10
+
+- **Repository inspected:** `Fansirsqi/NarutoSenki` (default branch `main`). GitHub reports repository-level license metadata as **Mulan PSL v2** and the repository contains a `LICENSE` file.
+- **Important scope limit:** the inspected tree is an APK-style extracted package (root includes `AndroidManifest.xml`, `META-INF/`, and bundled `assets/` audio), not an editable game source tree with character class implementations and integration tests. A repository license can cover contributors' software contributions; it does not by itself establish permission to reuse third-party Naruto character art, voices, music, or other franchise assets bundled in the package.
+- **Decision:** research-only; do not copy its bundled media into Senki or count any character as integrated based on this repository. It is not currently a suitable source for a complete, auditable playable-character port.
+- Other checked source repositories `LeaderOnePro/NarutoSenki`, `LeaderOnePro/NarutoSenki-cocos2dx`, `Zx-Akito/NarutoSenki-V2`, and `muhammadadilsyaputra08-alt/NarutoSenki-Custom` did not expose a repository license file or GitHub license metadata in the inspected default branches. Keep their source/assets blocked from import pending explicit permission or clearer licensing.
+- Next research target remains a complete source implementation whose own license and asset provenance are explicit, or direct permission from the relevant rights holders/contributors. Do not treat public GitHub visibility as permission.
