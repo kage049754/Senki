@@ -408,3 +408,17 @@ The character package audit now reports `HeroEnum` entries that are not present 
 - APK artifact ID: `11662291624`; SHA-256: `f5529a7558f1e60fe8176c78f13a92364d866ce4e9e81a21092910118a3bef70`
 - Audit artifact ID: `11662461471`; SHA-256: `34caeb205755ca9d78516b1cdc0ed9991efe467ff414a4f8175e08a729bdcb52`
 - This is not roster expansion: the candidate still declares 43 distinct selection names, and gameplay-verified count remains unmeasured. The next task is classifying enum-only leads and locating complete compatible character packages.
+
+
+## User-priority subphase — populate pages 1–3 before pages 4–5
+**Status: Required next roster milestone; no new external character is currently verified as integrated.**
+
+- [ ] Inspect the actual current character order and all selectable slots on pages 1–3; record which slots are available and which original characters must remain untouched.
+- [ ] Research distinct characters implemented in other Naruto Senki mods; compare source history/forks and record exact source revisions and asset/code permission.
+- [ ] Choose the first compatible, permission-cleared batch of distinct characters and place them in available/approved slots on pages 1–3 before expanding later pages.
+- [ ] For every character, integrate complete resources and gameplay: selection name/portrait, sprite/model, animation frames, movement/attacks/skills, skill icons/names/descriptions, effects, available sound/voice, AI/player behavior, and battle/death/kill profile references.
+- [ ] Run resource/ID/frame audits and test character selection, battle spawn, basic attacks, every skill, AI behavior, death/respawn, and performance.
+- [ ] Update the verified roster counts only after the full test set passes; keep discovery/planned/blocked counts separate.
+- [ ] Once the first distinct-character batch is verified on pages 1–3, proceed to page 4, then page 5. Do not use existing forms as filler to claim this milestone complete.
+
+**Important current limitation:** external source and asset reuse permission remains unresolved for the current V2 candidate and research leads. Research and slot planning can proceed, but external assets must not be copied into the build until reuse is authorized or a clearly licensed source is found.
