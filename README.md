@@ -132,3 +132,15 @@ The latest central candidate build is [Actions run 38015483353](https://github.c
 - Hardened the custom loading/menu/selection backgrounds with original-background fallbacks to reduce the risk of a blank screen if a custom image fails to load.
 
 **Important scope:** the workflow clones the pinned Android-clean V2-derived source into a temporary CI workspace, applies this repository's ordered patches, builds the APK, and uploads it. The full external game source is not yet vendored into the central repo, and no physical-phone installation/gameplay has been verified. This is a real V2-derived candidate APK build, not the old Kotlin/Canvas prototype artifact and not a completed unified mod roster.
+
+
+### Latest packaging verification — 2026-10-10
+
+A further check was added specifically because an earlier APK was reported as invalid during installation. [Run 38015857617](https://github.com/kage049754/Senki/actions/runs/38015857617) completed **SUCCESS** after building the patched V2-derived APK and verifying its signature plus native Android libraries.
+
+- Artifact: `naruto-senki-v2-candidate-debug-apk`, ID `11656381799`, ZIP size 83,732,890 bytes, SHA-256 `c9114464e52be0cefe7ad2c4a273e6f40441649a32d4a19a8e3137733fc3f9ff`, expires 2026-10-24.
+- Android APK Signature Scheme v1 and v2: verified.
+- Native libraries: `arm64-v8a` and `armeabi-v7a` both present.
+- Sensor-landscape orientation, custom screen assets, and package identity checks: passed.
+
+This removes some packaging-related uncertainty, but the APK still must be installed and tested on the actual phone before we can say the earlier install or blank-screen issue is fixed.
