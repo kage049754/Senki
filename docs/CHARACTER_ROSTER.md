@@ -379,3 +379,15 @@ The source inventory remains **37 visible selectable names / 43 after six existi
 - The inspected fork includes Han/Roshi unit animation XML, sprite atlases/textures, audio paths, and kill/death portrait frames. Its `GameLayer::initGard()` creates a generic `Hero`, assigns either `Roshi` or `Han` with role `Com`, sets the guardian spawn point, and calls `doAI()`; `Characters.cpp` routes both names to `AI_Guardian()`.
 - Han/Roshi were not found in the fork's visible character-select layout or select-layer code search. This supports the current classification as **AI-spawned guardian units, not selectable player characters** in that source. It does not mean they could never be adapted; it means a player-controlled selection/lifecycle path would need to be implemented and tested.
 - This repository has no license metadata/license file in the inspected default branch. Its Han/Roshi files are useful architectural research only; no code or assets were copied into Senki.
+
+
+## Next integration batch decision — 2026-10-10
+
+### Candidate screen
+The v1.26 Beta 1 changelog publicly names Shizune, Hashirama, Rin, Sakon & Ukon, and Juzo as added characters; the later Beta 2 release is primarily a fix release. See https://github.com/Zx-Akito/NarutoSenki-Release/releases.
+
+- Classification: DISCOVERED / REFERENCE_ONLY until editable source, exact per-character files, provenance, and reuse permission are verified.
+- None of these five is counted as integrated, implemented, or playable in the selected V2 candidate based on release notes alone.
+- The release host currently supplies packaged APK assets, not a source patch that can be applied to the selected V2 Lua/C++ project. Do not extract or transplant the APK to fabricate a character integration.
+- Next eligible batch: inspect a source repository or obtain creator permission and a source/resource package for one character. Map its selection portrait/button, XML/atlas/texture, animation/effects/audio, native class/AI/skill definitions, and selection/skill/death UI references against the pinned V2 candidate before editing.
+- Until that source/rights gate is cleared, keep the roster count at 43 declared selectable entries / 37 distinct base names in the current audited candidate, with runtime-verified playable count still unmeasured.
