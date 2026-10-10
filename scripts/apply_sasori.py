@@ -90,7 +90,8 @@ for p in base_audio.iterdir():
     if p.is_file():
         shutil.copy2(p, audio / re.sub("Kankuro", "Sasori", p.name, flags=re.I))
 xml_text = (unit / "Sasori.xml").read_text(encoding="utf-8")
-xml_text = re.sub(r"Audio/Kankuro/", "Audio/Sasori/", xml_text)
+xml_text = re.sub(r"Audio/Kankuro/", "Audio/Sasori/", xml_text, flags=re.I)
+xml_text = re.sub(r"Kankuro", "Sasori", xml_text, flags=re.I)
 (unit / "Sasori.xml").write_text(xml_text, encoding="utf-8")
 
 # Clone the native controller and register a new identity without replacing Kankuro.
