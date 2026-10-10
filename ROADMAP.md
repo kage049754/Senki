@@ -285,3 +285,8 @@ Maintain a per-character manifest in `docs/CHARACTER_ROSTER.md`. Mark unavailabl
 ### Latest verification note — 2026-10-10
 
 Central CI run #98 passed source checks, character-audit report validation, Android diagnostic build, APK identity/search/signature/ABI checks, and artifact upload. This verifies the pinned patched candidate can be packaged by CI. It does **not** establish that the APK installs or plays correctly on the user's phone, that every character is complete, or that external source/assets are cleared for redistribution. Kabuto's expected skill-description labels remain a manual UI issue; no character was added in this pass.
+
+
+### Skill-description missing-frame guard — 2026-10-10
+
+A safe UI fallback was added in central CI for characters whose expected `<Character>_labelN.png` frame is absent. The patch checks the sprite-frame cache and shows `Skill description unavailable` when missing. Run #101 passed, including the Android candidate build and artifact verification: https://github.com/kage049754/Senki/actions/runs/38024966443 (APK artifact ID 11659082992). This is a guard against a missing-frame UI failure, not a replacement for the missing skill-description art/content and not proof of runtime appearance. Physical-device testing remains open.
