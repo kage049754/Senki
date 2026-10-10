@@ -262,7 +262,7 @@ with OUT.open("w", encoding="utf-8") as f:
     f.write(f"- Explicit selection slots mapped: **{len(slot_tokens)}** across **{(len(slot_tokens) + 20) // 21} pages** (21 slots per page).\n")
     f.write(f"- Selectable-entry target: **{len(names)}/70 declared ({target_gap} more entries to reach 70; alternate forms are included in this UI-entry count).**\n")
     f.write(f"- Distinct base-character count (excluding {len(KNOWN_FORM_BASES)} known alternate forms): **{len(distinct_base_names)}/70 ({distinct_gap} additional distinct characters needed; gameplay completeness is not implied).**\n")
-    f.write("- Known alternate forms excluded from the distinct-character count: " + ", ".join(f"`{name}` → `{base}`" for name, base in KNOWN_FORM_BASES.items() if name in names) + ".\n")
+    f.write("- Known alternate form mappings (only forms present in the roster are excluded from the distinct-character count): " + "; ".join(f"`{name}` → `{base}`" + (" (present in roster)" if name in names else " (not in visible roster; not counted as a roster entry)") for name, base in KNOWN_FORM_BASES.items()) + ".\n")
     f.write("- Gameplay-verified playable count: **not measured by this static audit.**\n")
     f.write(f"- HeroEnum entries absent from the visible selection list: **{len(unlisted_enum_names)} requiring manual classification** (not counted as playable).\n")
     if unlisted_enum_names:
