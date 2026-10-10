@@ -121,7 +121,7 @@ with OUT.open("w", encoding="utf-8") as f:
     f.write("- Gameplay-verified playable count: **not measured by this static audit.**\n")
     f.write(f"- HeroEnum entries absent from the visible selection list: **{len(unlisted_enum_names)} requiring manual classification** (not counted as playable).\n")
     if unlisted_enum_names:
-        f.write("- Non-roster enum leads: " + ", ".join(f"\`{name}\`" for name in unlisted_enum_names) + ".\n")
+        f.write("- Non-roster enum leads: " + ", ".join(chr(96) + name + chr(96) for name in unlisted_enum_names) + ".\n")
     else:
         f.write("- Non-roster enum leads: none found.\n")
     f.write(f"- Kill-feed portrait atlas coverage: **{portrait_complete}/{len(rows)} roster entries have both frames.**\n")
