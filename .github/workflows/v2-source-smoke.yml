@@ -51,6 +51,20 @@ jobs:
           test -d projects/NarutoSenki/Resources
           echo "Pinned source and expected Android project structure verified."
 
+      - name: Fetch pinned external Two Sage Toads mod source/assets
+        shell: bash
+        run: |
+          set -euo pipefail
+          git clone https://github.com/LeaderOnePro/NarutoSenki1.17Mod.git /tmp/narutosenki-toad-mod
+          cd /tmp/narutosenki-toad-mod
+          git checkout --detach 8c800efe09f8e5489f37ee3314596b329f533225
+          test "$(git rev-parse HEAD)" = "8c800efe09f8e5489f37ee3314596b329f533225"
+          test -s assets/Element/Choji/Choji.png
+          test -s assets/Element/Choji/Choji.plist
+          test -s assets/Element/Skills/Choji_Skill.png
+          test -s assets/Element/Skills/Choji_Skill.plist
+          echo "Pinned external mod source/assets verified at 8c800efe09f8e5489f37ee3314596b329f533225."
+
       - name: Apply central Senki patches
         shell: bash
         run: |
@@ -96,6 +110,15 @@ jobs:
           GAME=/tmp/narutosenki-candidate/projects/NarutoSenki
           python3 "$GITHUB_WORKSPACE/scripts/apply_selectable_forms.py" "$GAME"
           python3 "$GITHUB_WORKSPACE/scripts/test_selectable_forms.py" "$GAME"
+
+      - name: Integrate Two Sage Toads as the first external mod character
+        shell: bash
+        run: |
+          set -euo pipefail
+          GAME=/tmp/narutosenki-candidate/projects/NarutoSenki
+          python3 "$GITHUB_WORKSPACE/scripts/apply_two_sage_toads.py" "$GAME" /tmp/narutosenki-toad-mod
+          python3 "$GITHUB_WORKSPACE/scripts/test_two_sage_toads.py" "$GAME"
+          echo "The additive Two Sage Toads integration is source-checked; runtime gameplay still requires device validation."
 
       - name: Verify original character-selection and mode-menu backgrounds
         shell: bash
