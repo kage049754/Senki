@@ -9,7 +9,7 @@ diff --git a/projects/NarutoSenki/lua/ui/SelectLayer.lua b/projects/NarutoSenki/
 +    self.pageNum = math.max(1, math.ceil(#charactersList / 21))
  
      self._comLabel1 = nil
-@@ -120,12 +121,14 @@
+@@ -120,11 +121,14 @@
      for i = 1, self.pageNum do
          -- initial page list
          local index = i
