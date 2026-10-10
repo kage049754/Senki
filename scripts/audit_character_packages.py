@@ -288,7 +288,7 @@ with OUT.open("w", encoding="utf-8") as f:
     # five descriptions so the UI can still explain its skills.
     fallback_start = skill_source.find("local skillDescriptionFallbacks")
     fallback_end = skill_source.find("local transformList", fallback_start) if fallback_start >= 0 else -1
-    fallback_text = skill_source[fallback_start:fallback_end] if fallback_start >= 0 and fallback_end > fallback_start else ""
+    fallback_text = skill_source[fallback_start:fallback_end] if fallback_start >= 0 and fallback_end > fallback_start else (skill_source[fallback_start:] if fallback_start >= 0 else "")
     kabuto_fallback_count = 0
     kabuto_block = re.search(r"Kabuto\s*=\s*\{([\s\S]*?)\n\s{4}\}", fallback_text)
     if kabuto_block:
