@@ -10,24 +10,17 @@ if len(sys.argv) != 2:
 source = Path(sys.argv[1]).read_text(encoding="utf-8")
 
 required = [
-    "function SelectLayer:onPageButtonClick(index)",
-    "pageBtn:selected()",
-    "pageBtn:unselected()",
-    "pageLayer:show()",
-    "pageLayer:hide()",
-    "pageLayer:setPositionY(0)",
-    "pageLayer:setPositionY(10000)",
-    "local pageListener = function()",
-    "return self:onPageButtonClick(index)",
-    "if i <= 3 then",
-    "ui.newImageMenuItem",
-    "senki_page\' .. tostring(i) .. \'_off.png",
-    "senki_page\' .. tostring(i) .. \'_on.png",
-    "self.pageNum = math.max(5, math.ceil(#charactersList / 21))",
-    "self.currentPage = 1",
-    "More characters coming soon",
-    "local emptyReservedPage = query == \"\" and not pageHasMatches[self.currentPage]",
+    "function SelectLayer:filterCharacters(query)",
+    "query = string.lower(tostring(query or \"\"))",
+    "string.find(name, query, 1, true) ~= nil",
+    "btn:setVisible(matches)",
+    "local matchCount = 0",
+    "matchCount = matchCount + 1",
     "self.searchEmptyLabel:setVisible(matchCount == 0 or emptyReservedPage)",
+    "No characters found",
+    "More characters coming soon",
+    "self.searchBox = searchBox",
+    "box:setPlaceHolder(\"Search character\")",
 ]
 missing = [fragment for fragment in required if fragment not in source]
 if missing:
@@ -39,4 +32,4 @@ if "ui.newTTFLabelMenuItem" in source:
 if "self.pageNum = 3" in source:
     raise SystemExit("The fixed three-page limit is still present.")
 
-print("Character page controls retain image-based normal/selected states, dynamic page count, and the original page visibility/selection handler.")
+print("Character search filters selectable names across the roster and shows explicit empty/reserved-page feedback.")
