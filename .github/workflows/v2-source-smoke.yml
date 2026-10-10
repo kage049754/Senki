@@ -293,6 +293,7 @@ jobs:
           unzip -Z1 "$APK" | grep -F "assets/blue_bg.png"
           unzip -Z1 "$APK" | grep -F "assets/menu_bar2.png"
           unzip -Z1 "$APK" | grep -F "assets/menu_bar3.png"
+          python3 "$GITHUB_WORKSPACE/scripts/test_packaged_background_assets.py" "$APK" /tmp/narutosenki-candidate/projects/NarutoSenki/Resources
           if unzip -Z1 "$APK" | grep -E 'assets/senki_(menu|select)[.]png$'; then
             echo "Retired custom menu/selection background replacement is still packaged."
             exit 1
