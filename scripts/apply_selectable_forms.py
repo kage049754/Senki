@@ -26,7 +26,7 @@ forms = [
 source = basic.read_text(encoding="utf-8")
 marker = "-- SENKI_EXTRA_SELECTABLE_FORMS"
 if marker not in source:
-    old = "        -- },\n}"
+    old = "    -- },\n}"
     new = """        -- },
     -- SENKI_EXTRA_SELECTABLE_FORMS: expose existing native form implementations.
     -- Page Four: these forms already have enum/class/resource implementations.
