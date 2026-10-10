@@ -154,7 +154,7 @@ if "'TwoSageToads'" not in basic_text:
     if start < 0:
         raise SystemExit("Could not locate ns.CharactersLayout")
     prefix, roster = basic_text[:start], basic_text[start:]
-    roster, count = re.subn(r"(?<![\\w])_None(?![\\w])", "'TwoSageToads'", roster, count=1)
+    roster, count = re.subn(r"(?<![\w])_None(?![\w])", "'TwoSageToads'", roster, count=1)
     if count != 1:
         raise SystemExit("No empty roster slot available for TwoSageToads")
     basic_path.write_text(prefix + roster, encoding="utf-8")
@@ -163,19 +163,19 @@ if "'TwoSageToads'" not in basic_text:
 select_path = game / "lua/ui/SelectLayer.lua"
 select_text = select_path.read_text(encoding="utf-8")
 for table_name, entries in [
-    ("selectionAssetAlias", "    TwoSageToads = 'Choji',\\n"),
-    ("selectionDisplayName", "    TwoSageToads = 'Two Sage Toads',\\n"),
+    ("selectionAssetAlias", "    TwoSageToads = 'Choji',\n"),
+    ("selectionDisplayName", "    TwoSageToads = 'Two Sage Toads',\n"),
 ]:
     close = "local " + table_name + " = {"
     pos = select_text.find(close)
     if pos < 0:
         raise SystemExit(f"Missing {table_name}; selection patch order is incorrect")
-    end = select_text.find("\\n}", pos)
+    end = select_text.find("\n}", pos)
     if end < 0:
         raise SystemExit(f"Could not find end of {table_name}")
     table_text = select_text[pos:end]
     if "TwoSageToads = " not in table_text:
-        select_text = select_text[:end] + "\\n" + entries.rstrip("\\n") + select_text[end:]
+        select_text = select_text[:end] + "\n" + entries.rstrip("\n") + select_text[end:]
 select_path.write_text(select_text, encoding="utf-8")
 
 # Route the selected portrait to the aliased frame and render a true display name.
