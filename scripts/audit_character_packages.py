@@ -136,6 +136,8 @@ portrait_complete = sum(1 for row in rows if row[8] == "2/2")
 missing_portrait_names = [row[0] for row in rows if row[8] != "2/2"]
 label_complete = sum(1 for row in rows if row[4] == "5/5")
 missing_label_names = [(row[0], row[4]) for row in rows if row[4] != "5/5"]
+selection_complete = sum(1 for row in rows if row[7] == "ALL_3_FRAMES_FOUND")
+missing_selection_names = [row[0] for row in rows if row[7] != "ALL_3_FRAMES_FOUND"]
 
 OUT.parent.mkdir(parents=True, exist_ok=True)
 with OUT.open("w", encoding="utf-8") as f:
@@ -152,6 +154,11 @@ with OUT.open("w", encoding="utf-8") as f:
     else:
         f.write("- Non-roster enum leads: none found.\n")
     f.write(f"- Kill-feed portrait atlas coverage: **{portrait_complete}/{len(rows)} roster entries have both frames.**\n")
+    f.write(f"- Character-selection image coverage: **{selection_complete}/{len(rows)} roster entries have all three expected selection frames/files.**\\n")
+    if missing_selection_names:
+        f.write("- Selection image exceptions requiring manual review: " + ", ".join(f"`{name}`" for name in missing_selection_names) + ".\\n")
+    else:
+        f.write("- Selection image exceptions requiring manual review: none detected by filename/frame-name audit.\\n")
     f.write(f"- Skill-description label frame coverage: **{label_complete}/{len(rows)} roster entries have all five expected frames after applying SkillLayer UI aliases.**\n")
     frame_complete = sum(1 for row in detail_rows if row[4].startswith("0 "))
     missing_frame_ref_rows = [(row[0], row[4]) for row in detail_rows if not row[4].startswith("0 ")]
