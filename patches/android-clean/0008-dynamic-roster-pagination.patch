@@ -1,0 +1,37 @@
+diff --git a/projects/NarutoSenki/lua/ui/SelectLayer.lua b/projects/NarutoSenki/lua/ui/SelectLayer.lua
+--- a/projects/NarutoSenki/lua/ui/SelectLayer.lua
++++ b/projects/NarutoSenki/lua/ui/SelectLayer.lua
+@@ -19,5 +19,6 @@
+     self.enableHardCore = false
+ 
+-    self.pageNum = 3
++    local charactersList = ns.CharactersLayout or {}
++    self.pageNum = math.max(1, math.ceil(#charactersList / 21))
+ 
+     self._comLabel1 = nil
+@@ -120,11 +121,13 @@
+     for i = 1, self.pageNum do
+         -- initial page list
+         local index = i
+         local pageLayer = TouchGroup:create() -- display.newLayer()
+-        local page_btn = ui.newImageMenuItem({
+-            image = '#page' .. tostring(i) .. '_off.png',
+-            imageSelected = '#page' .. tostring(i) .. '_on.png',
++        local page_btn = ui.newTTFLabelMenuItem({
++            text = tostring(i),
++            font = ui.DEFAULT_TTF_FONT,
++            size = 18,
++            color = ccc3(245, 245, 245),
+             listener = function()
+                 return self:onPageButtonClick(index)
+             end
+         })
+@@ -141,8 +144,7 @@
+         table.insert(self.pageLayers, pageLayer)
+         table.insert(self.pageButtons, page_btn)
+     end
+ 
+-    local charactersList = ns.CharactersLayout
+     local pageNum = #self.pageLayers
+ 
+     for i = 1, #charactersList do
