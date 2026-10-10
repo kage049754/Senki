@@ -163,18 +163,21 @@ if "'TwoSageToads'" not in basic_text:
 select_path = game / "lua/ui/SelectLayer.lua"
 select_text = select_path.read_text(encoding="utf-8")
 for table_name, entries in [
-    ("selectionAssetAlias", "    TwoSageToads = 'Choji',\n"),
-    ("selectionDisplayName", "    TwoSageToads = 'Two Sage Toads',\n"),
+    ("selectionAssetAlias", "    TwoSageToads = 'Choji',\\n"),
+    ("selectionDisplayName", "    TwoSageToads = 'Two Sage Toads',\\n"),
 ]:
-    if f"TwoSageToads = " not in select_text:
-        close = "local " + table_name + " = {"
-        pos = select_text.find(close)
-        if pos < 0:
-            raise SystemExit(f"Missing {table_name}; selection patch order is incorrect")
-        end = select_text.find("\n}", pos)
-        if end < 0:
-            raise SystemExit(f"Could not find end of {table_name}")
-        select_text = select_text[:end] + "\n" + entries.rstrip("\n") + select_text[end:]
+    close = "local " + table_name + " = {"
+    pos = select_text.find(close)
+    if pos < 0:
+        raise SystemExit(f"Missing {table_name}; selection patch order is incorrect")
+    end = select_text.find("\\n}", pos)
+    if end < 0:
+        raise SystemExit(f"Could not find end of {table_name}")
+    table_text = select_text[pos:end]
+    if "TwoSageToads = " not in table_text:
+        select_text = select_text[:end] + "\\n" + entries.rstrip("\\n") + select_text[end:]
+select_path.write_text(select_text, encoding="utf-8")
+
 # Route the selected portrait to the aliased frame and render a true display name.
 old_half = "        self._heroHalfImage = display.newSprite(charName .. '_half.png', 10, 10)"
 new_half = "        local selectAssetName = selectionAssetAlias[btn._charName] or btn._charName\n        self._heroHalfImage = display.newSprite('#' .. selectAssetName .. '_half.png', 10, 10)"
