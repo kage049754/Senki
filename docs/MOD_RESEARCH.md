@@ -579,3 +579,32 @@ The pinned candidate's native class and resource inventory was checked against i
 - The inventory therefore does not reveal a hidden pool of 27 ready-to-select characters. Do not inflate the 70+ count by exposing summons, clones, support entities, or duplicate forms as independent fighters without implementing the complete character-selection, combat, AI, and resource package.
 
 **Next roster step:** port one real additional character at a time from an inspectable mod source, starting with a complete candidate package (class/skill logic, sprites/animation XML/plist/texture, skill icons and labels, selection portrait/name, audio/effects, AI registration, native enum/Provider dispatch, and provenance notes). Run source/resource tests and an APK build after each port; gameplay verification remains a separate requirement.
+
+
+## Fifth-pass character-source search — 2026-10-10
+
+### `Fansirsqi/NarutoSenki` — packaged/decompiled resource distribution, not a V2 source base
+
+- Repository: https://github.com/Fansirsqi/NarutoSenki
+- The inspected repository tree begins with Android package material (`AndroidManifest.xml`, `META-INF/`, `assets/`) and contains no V2 Lua roster source, native V2 character headers, or editable Android Gradle game project.
+- Its `Readme.md` documents numerous modded characters/forms and abilities, including Nagato, Hiruzen, war Sakura, Kiba, and others. Several entries explicitly describe the art as extracted/package resources and refer to original asset creators.
+- A root `LICENSE` contains Mulan PSL v2 text. This is **not enough to establish that every bundled Naruto Senki character sprite, sound, animation, or other third-party game asset was licensed by its actual owner**. The repository's package/resource contents must be treated separately from original contributions covered by that license.
+- Classification: `FEATURE_REFERENCE_ONLY / RESOURCE_PROVENANCE_UNRESOLVED`. Useful for discovering candidate character names and skill behavior; not selected as the base, and no assets were copied.
+
+### `likill/NarutoSenki-master` — older Cocos2d-x 2.2.2 source with a local-PvP implementation plan
+
+- Repository: https://github.com/likill/NarutoSenki-master
+- Inspected tree: 1,172 entries; includes monolithic C++ source under `Classes/` and a dated `2026-07-06-local-pvp-dual-player.md` design/implementation plan.
+- `Classes/Characters.cpp` contains 58 distinct `AI_*` method identifiers, including forms and summons such as Sage Naruto, Rikudo Naruto, Sage Jiraiya, Immortal Sasuke, Akamaru, and others. This count is **AI method names in one source file**, not a count of verified playable characters or complete packages.
+- The local-PvP plan describes Windows keyboard-hook integration and Cocos2d-x 2.2.2. The inspected tree did not show the selected V2 Lua `basic.lua` roster or the V2 Android Gradle project path. No root license was found in the inspected tree.
+- Classification: `LEGACY_SOURCE_REFERENCE_ONLY / PORT_RESEARCH_REQUIRED`. Potential reference for old AI/combat behavior, but it is not a drop-in V2 character source. Do not copy code/assets until rights and technical compatibility are resolved.
+
+### Duplicate-source check: `RieyuXhen/NarutoSenki` and `Zx-Akito/NarutoSenki`
+
+- Both contain the same broad legacy Cocos2d-x 2.2.2 layout. Their inspected `Classes/Characters.cpp` files each expose the same 58 distinct `AI_*` method identifiers as `likill/NarutoSenki-master`.
+- This is evidence of a shared legacy source family, not three independent roster expansions. The files differ in byte size and blob SHA, so they should not be called byte-for-byte identical; a full history/diff is required before attributing any unique fix.
+- Classification: `LEGACY_FAMILY / FEATURE_DIFF_REQUIRED`.
+
+### Outcome and next step
+
+This search found additional legacy character/AI references but **no permission-cleared, drop-in V2 source containing 27 verified new character packages**. Do not inflate the roster by counting AI method names, summons, resource folders, or README descriptions. Continue per-character source/provenance audits; only count a character after selection assets, skills, animations, AI/control behavior, effects/audio where available, and unified-game tests are complete.
