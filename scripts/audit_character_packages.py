@@ -46,6 +46,7 @@ KNOWN_FORM_BASES = {
     # This is an external modded replacement/variant of Choji, not a distinct
     # base character toward the 70+ distinct-character target.
     "TwoSageToads": "Choji",
+    "JoninMinato": "Minato",
 }
 distinct_base_names = [name for name in names if name not in KNOWN_FORM_BASES]
 
