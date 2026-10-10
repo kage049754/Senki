@@ -292,8 +292,11 @@ jobs:
           for asset in red_bg.png blue_bg.png menu_bar2.png menu_bar3.png; do
             unzip -Z1 "$APK" | grep -E "assets/${asset}$"
           done
-          if unzip -Z1 "$APK" | grep -E 'assets/senki_(menu|select)[.]png
-          echo "Candidate APK contains the loading art and generated image-based page controls; retired custom menu/selection replacements are absent."
+          if unzip -Z1 "$APK" | grep -E 'assets/senki_(menu|select)[.]png$'; then
+            echo "Retired custom menu/selection background replacement is still packaged."
+            exit 1
+          fi
+          echo "Candidate APK contains original background textures and generated image-based page controls; retired custom menu/selection replacements are absent."
 
       - name: Verify patched package identity in APK
         if: success()
