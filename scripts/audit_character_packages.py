@@ -21,7 +21,7 @@ SKILL_LAYER = GAME / "lua/ui/SkillLayer.lua"
 skill_source = SKILL_LAYER.read_text(encoding="utf-8", errors="replace") if SKILL_LAYER.is_file() else ""
 alias_match = re.search(r"local skillUiAlias\s*=\s*\{([\s\S]*?)\n\}", skill_source)
 skill_ui_aliases = dict(
-    re.findall(r"([A-Za-z0-9_]+)\s*=\s*['"]([^'"]+)['"]", alias_match.group(1))
+    re.findall(r"([A-Za-z0-9_]+)\s*=\s*'([^']+)'", alias_match.group(1))
 ) if alias_match else {}
 match = re.search(r"ns\.CharactersLayout\s*=\s*\{([\s\S]*?)\n\}", source)
 if not match:
