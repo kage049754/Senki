@@ -88,7 +88,7 @@ jobs:
             echo "Character-name path matches:"
             unzip -Z1 "$apk" | grep -Ei '(Kurenai|Guy|Yamato|Shizune|Hashirama|Rin|Sasori|Zetsu|Iruka|Sakon|Juzo|Minato)' | head -n 100 || true
             echo "Likely packed resource containers:"
-            unzip -Z1 "$apk" | grep -Ei '\.(obb|pak|dat|bin|zip|car|ccz|pvr\.ccz)          echo "Release notes identify character leads, but the importer will only accept packages whose source assets can be found and validated."
+            unzip -Z1 "$apk" | grep -Ei '\.(obb|pak|dat|bin|zip|car|ccz|pvr\.ccz)$' | head -n 80 || true
 
       - name: Import release character packages into the V2 candidate
         shell: bash
