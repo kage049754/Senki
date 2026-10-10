@@ -50,6 +50,8 @@
 - [x] Verify that the inspected `SILXNTRAY/NarutoSenki-V2` custom registry is an architecture reference, not 70 ready-made characters: its custom character table is empty/commented examples and the inspected tree has no dedicated registry unit-test suite.
 - [x] Confirm that the inspected `ZhReimu/NarutoSenki-V2` `basic.lua` change does not add a new selectable roster beyond the stock list.
 - [ ] Identify at least 27 additional distinct character/form source packages beyond the current 43 declared names, and verify their XML/atlas/texture/audio/skill/AI files individually.
+- [x] Locate a complete older-schema Hokage Minato sprite/XML/audio package in `LeaderOnePro/NarutoSenki1.17Mod`; classify it as a resource lead only because it lacks V2-native class integration and reuse permission remains unresolved.
+- [ ] Evaluate whether the old Hokage Minato animation XML can be safely converted to V2's unit schema, and identify the required class/AI/selection UI changes without importing uncleared assets.
 - [x] Compare key files and tree paths across several V2 forks; record which forks are mirrors and which contain distinct architecture/UI changes.
 - [ ] Compare remaining meaningful fork diffs against the pinned Android-only candidate and determine whether any new character implementations are genuinely unique.
 - [ ] Inventory characters/forms, skills, animation states, effects, summons, maps, UI changes, balance edits, and bug fixes.
