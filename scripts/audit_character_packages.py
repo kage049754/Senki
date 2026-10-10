@@ -129,8 +129,12 @@ for name in names:
     texture_ok = bool(texture_name and (unit_dir / texture_name).is_file())
     animation_status = "XML_FOUND" if unit_xml.is_file() else "XML_MISSING"
     atlas_status = "PLIST+TEXTURE_FOUND" if plist_exact and texture_ok else ("PLIST_FOUND_TEXTURE_MISSING" if plist_exact else "PLIST_MISSING")
-    audio_events = len(re.findall(r"""<e\s+type=['"]setSound['"]>\s*Audio/[^<]+""", xml_text, re.IGNORECASE))
-    xml_frames = set(re.findall(r"<f>\s*([^<]+?)\s*</f>", xml_text, re.IGNORECASE))
+    # XML comments sometimes retain abandoned animations that reference frames
+    # from another character's atlas. Ignore those examples: they are not runtime
+    # actions and must not be reported as broken frame references.
+    active_xml_text = re.sub(r"<!--.*?-->", "", xml_text, flags=re.DOTALL)
+    audio_events = len(re.findall(r"""<e\s+type=['"]setSound['"]>\s*Audio/[^<]+""", active_xml_text, re.IGNORECASE))
+    xml_frames = set(re.findall(r"<f>\s*([^<]+?)\s*</f>", active_xml_text, re.IGNORECASE))
     plist_frames = set(re.findall(r"<key>([^<]+)</key>\s*<dict>", plist_exact_text, re.IGNORECASE)) if plist_exact else set()
     missing_frame_refs = sorted(xml_frames - plist_frames)
     frame_coverage = f"{len(xml_frames - set(missing_frame_refs))}/{len(xml_frames)}" if xml_frames else "NO_XML_FRAMES"
