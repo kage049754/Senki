@@ -108,3 +108,14 @@ The character manifest in `docs/CHARACTER_ROSTER.md` must link each asset catego
 - Status: **REFERENCE_ONLY / PERMISSION_REQUIRED**
 - Review date: 2026-10-10
 - Notes: the Android project documents an armeabi-v7a-only legacy build path. It is a reference source, not a directly compatible V2 character package.
+
+
+### `dogoo110/Naruto-godot` — Godot conversion reference
+- Canonical URL: https://github.com/dogoo110/Naruto-godot
+- Repository metadata declares MIT for the repository code. The repository also contains Naruto/Naruto Senki sprites, character portraits, audio, and other franchise materials.
+- Code license: MIT metadata reported.
+- Asset-specific license: not established; do not assume the code license clears franchise art/audio.
+- Approved scope: inspect source structure and identify compatibility leads only; no files copied or packaged from this repository.
+- Status: **REFERENCE_ONLY / ASSET_PERMISSION_REQUIRED**
+- Review date: 2026-10-10
+- Notes: the `HokageMinato` files found are a partial visual/audio lead, not proof of a complete playable character.
