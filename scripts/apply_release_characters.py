@@ -72,7 +72,7 @@ def replace_prefix(value, source_names, new_id):
         return value
     for source_name in sorted(source_names, key=len, reverse=True):
         value = re.sub(
-            r"(?<![A-Za-z0-9])" + re.escape(source_name) + r"(?=[_./\\\\-]|$)",
+            r"(?<![A-Za-z0-9])" + re.escape(source_name) + r"(?=[_./-]|$)",
             new_id,
             value,
         )
@@ -488,7 +488,7 @@ skill_text = skill_path.read_text(encoding="utf-8")
 anchor = "    TwoSageToads = 'Choji',\n}"
 if anchor not in skill_text:
     raise RuntimeError("Could not find TwoSageToads skillUiAlias anchor")
-skill_text = skill_text.replace(anchor, anchor[:-2] + "".join(f"    {key} = '{value}',\n" for key, value in skill_alias_entries) + "}", 1)
+skill_text = skill_text.replace(anchor, anchor[:-2] + "\n" + "".join(f"    {key} = '{value}',\n" for key, value in skill_alias_entries) + "}", 1)
 skill_path.write_text(skill_text, encoding="utf-8")
 
 add_ui_aliases(base_to_new)
