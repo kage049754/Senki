@@ -124,9 +124,9 @@ Source inventory links and compatibility notes are recorded in docs/MOD_RESEARCH
 
 ## Latest pagination acceptance status — 2026-10-10
 
-- [x] Dynamic page count and current pagination patch passed the central CI build in [run 38019992304](https://github.com/kage049754/Senki/actions/runs/38019992304).
-- [ ] Page controls for 4+ must be redesigned as image-based controls with matching normal/selected visuals. The current implementation uses numbered text menu items for pages beyond 3, so it does **not** yet meet the acceptance requirement.
-- [ ] Device-test page navigation and confirm original page 1–3 controls, preview/tap-again confirmation, and character spawn behavior remain intact.
+- [x] Dynamic page count and image-based pagination patch passed central CI build [run 38020781870](https://github.com/kage049754/Senki/actions/runs/38020781870).
+- [x] Pages 1–3 retain their original image controls; pages 4+ use generated normal/selected image states styled from the original page-button art. CI confirms page 4/5 image assets are packaged and the retired custom menu/selection backgrounds are absent.
+- [ ] Device-test the visual match, page navigation, original page 1–3 controls, preview/tap-again confirmation, and character spawn behavior.
 - The source-level roster remains 37 selectable names. Verified playable count remains unmeasured; pagination does not add characters.
 
 
