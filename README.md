@@ -177,3 +177,14 @@ The selected V2-derived base still has 37 unique selectable names. Pagination gr
 ### Dynamic roster pagination — build verified
 
 The current source patch removes the fixed three-page character-selection limit. The page count is calculated from the roster list (21 character slots per page), and the page controls use numbered text instead of depending on only three fixed page-sprite pairs. CI run [38016671857](https://github.com/kage049754/Senki/actions/runs/38016671857) passed the source assertions, Lua syntax validation, Android build, package/landscape checks, APK signature validation, and native ABI checks. This does not substitute for testing the selection UI on a phone.
+
+
+### Character search/filter verified in the APK — 2026-10-10
+
+[Run 38018448399](https://github.com/kage049754/Senki/actions/runs/38018448399) completed **SUCCESS**. The APK build now includes the dynamic page-count change plus a search field that filters character IDs/names across pages, jumps to the first matching page, hides pages with no results while searching, and shows a “No characters found” message when needed.
+
+CI extracted `SelectLayer.lua` from the built APK and verified the search/filter code is packaged. The APK also passed Lua syntax, landscape manifest, package identity, signature, and native ABI checks.
+
+- Artifact: `naruto-senki-v2-candidate-debug-apk`, ID `11657656484`, ZIP size 83,699,768 bytes, SHA-256 `51faf000d5ff9ef9027f351db0915f5aed58590ccd57f698392a8e1b2b9a3305`, expires 2026-10-24.
+- Current roster inventory remains 37 unique selectable names. This is UI groundwork for expansion, not a claim that the game now has 70+ characters.
+- Search typing, selection, and 4+ pages still need real-phone validation; the successful CI build does not replace device testing.
