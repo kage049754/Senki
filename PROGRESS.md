@@ -792,3 +792,12 @@ User requires every new character to have its own correct avatar/portrait in the
 - [x] XML-to-atlas name coverage remains **43/43** after shared/skill atlas resolution; roster remains 43 declared entries, 27 below the 70-entry target.
 - [ ] Next: audit the actual skill-label fallback behavior and source art needs, then continue the priority of integrating distinct characters into open slots on pages 1–3. Public repository presence alone is not a license grant; no new external character is counted until its source/reuse permission and runtime integration are validated.
 - [ ] This is still a diagnostic build from a pinned external source in a temporary CI workspace, not the final unified game release and not a substitute for physical-device gameplay testing.
+
+## Continued-work update — run #192 (2026-10-10)
+
+- [x] Rechecked run #192 through terminal **SUCCESS** after fixing the regex failure from run #191: https://github.com/kage049754/Senki/actions/runs/38037457581
+- [x] Verified the run produced the diagnostic APK artifact `naruto-senki-v2-candidate-debug-apk` (83,345,639 bytes; artifact ID `11663773527`; GitHub artifact digest `sha256:8b1d535723ae346b1ed3bcb6a67735499fcef21d2c761ce74dc9ba91ed245e08`; expires 2026-10-24).
+- [x] Downloaded and inspected audit artifact `senki-character-package-audit` (artifact ID `11664488112`; digest `sha256:b27e6daa23bf705c2c16edddebf9c91a2c194834db29f02aad4d1577edd4c71b`). Audit reports 43 selectable UI entries but only **37 entries after excluding six known alternate forms**; **33 additional distinct characters** are needed to reach the 70-distinct-character target.
+- [x] The audit still finds selection-art gaps for six current entries, 42/43 skill-description label frames (Kabuto uses a 5/5 text fallback), and 43/43 XML-to-atlas name coverage. These are static checks, not runtime playability proof.
+- [ ] Next: investigate character-selection slot wiring and the Guardian/Han/Roshi lifecycle further, while keeping unlicensed external assets out of the build. Find a complete distinct-character source with explicit reuse terms or prepare a permission-safe implementation plan before roster integration.
+- [ ] No new distinct character has been integrated or gameplay-verified. Device testing remains separate from CI build/artifact verification.
