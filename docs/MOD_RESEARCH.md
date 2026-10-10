@@ -431,3 +431,14 @@ The inspected `Fansirsqi/NarutoSenki-V2`, `ZhReimu/NarutoSenki-V2`, `sansaks-jpg
 - The currently pinned V2 candidate does not include Classes/Core/Shinobi/Han.hpp, Roshi.hpp, Resources/Unit/Ninja/Han/, or Roshi/; neither name appears in its selectable roster. These are potential roster-expansion targets, not already implemented characters.
 - Classification: LEGACY SOURCE REFERENCE. Useful for mapping desired behavior and identifying all resource categories; not a drop-in port because the engine/character architecture differs from the pinned V2 candidate. No files/assets were copied.
 - Next port gate: inspect the corresponding legacy character branches and current V2 Shinobi interfaces; build a complete mapping for selection assets, five skills, XML/animation frames, effects, audio triggers, combat values, and AI before implementing either character. Keep provenance/permission status attached to each component.
+
+
+### Fresh audit: `kuiyr0810/NarutoSenki-V2` — no additive roster gain
+
+- Repository: https://github.com/kuiyr0810/NarutoSenki-V2
+- GitHub metadata checked 2026-10-10: default branch `master`; pushed 2026-06-24; parent `Zx-Akito/NarutoSenki-V2`; source repository metadata points to `real-re/NarutoSenki-V2-old`; no declared GitHub license.
+- The recursive tree contains an editable Cocos2d-x/C++/Lua project and Android Gradle project, so it is technically inspectable. Its code/assets are not permission-cleared.
+- Its `projects/NarutoSenki/lua/class/basic.lua` contains 36 unique selectable character names. The currently pinned Android-clean custom candidate contains those same base names plus Kabuto (37 unique names), so this fork does **not** add a new selectable character relative to the current candidate.
+- The fork tree has 44 headers under `Classes/Core/Shinobi/`; the pinned custom candidate tree has 46, including `Kabuto.hpp` and `KabutoClone.hpp`. Header counts are not playable-character counts and do not establish completeness.
+- Classification: **V2-family comparison/reference candidate; no roster-expansion merge identified.** Keep the current pinned candidate for the next private diagnostic build because it already includes the Kabuto-specific implementation; do not merge the older/mirror tree wholesale.
+- Evidence checked: repository metadata, recursive tree, README, and `basic.lua` at each exact revision. This comparison does not prove exact correspondence to release v2.1.6-fix or establish reuse rights.
