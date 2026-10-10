@@ -274,9 +274,9 @@ Current candidate changes verified by CI include:
 - Six existing native transformation forms are exposed as entries on page four with safe UI aliases and dedicated form portraits.
 - Character package audit now reports the gap to 70 distinct declared entries without pretending to measure gameplay-verified characters.
 
-The candidate currently declares **43 distinct selectable names/forms** against the desired 70-entry target. The static audit does not prove that all 43 are playable. Page four is currently populated with six extra forms; page-five controls are prepared but are not displayed because there are only 84 roster slots (four pages).
+The candidate currently declares **43 selectable UI entries**, but only **37 distinct base characters** after excluding six known alternate forms, against the desired 70-distinct-character target. The static audit does not prove that all 43 are playable. Page four is currently populated with six extra forms; page-five controls are prepared but are not displayed because there are only 84 roster slots (four pages).
 
-**Still not finished:** no physical-device/emulator gameplay validation has been completed; the six form entries need in-game checks; 27 more distinct entries are needed to reach 70 declared names; the candidate source is still fetched into a temporary CI workspace rather than vendored as an editable source tree; source/asset permissions remain unresolved. The artifact is a short-lived diagnostic candidate, not the final unified release.
+**Still not finished:** no physical-device/emulator gameplay validation has been completed; the six form entries need in-game checks; 33 additional distinct characters are needed to reach 70 distinct characters (27 more raw UI entries would reach 70 entries only if forms were counted); the candidate source is still fetched into a temporary CI workspace rather than vendored as an editable source tree; source/asset permissions remain unresolved. The artifact is a short-lived diagnostic candidate, not the final unified release.
 
 
 ## Roster expansion order — user priority (2026-10-10)
