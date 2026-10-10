@@ -61,6 +61,17 @@ jobs:
           done
           echo "All central Senki patches applied."
 
+      - name: Validate patched Lua scripts
+        shell: bash
+        run: |
+          set -euo pipefail
+          sudo apt-get update
+          sudo apt-get install -y lua5.1
+          GAME=/tmp/narutosenki-candidate/projects/NarutoSenki
+          test -s "$GAME/lua/ui/SelectLayer.lua"
+          find "$GAME/lua" -type f -name '*.lua' -print0 | xargs -0 -n1 luac5.1 -p
+          echo "All game Lua scripts parse successfully, including the patched character-selection UI."
+
       - name: Verify landscape and rotation-stability settings
         shell: bash
         run: |
