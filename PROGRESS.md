@@ -240,3 +240,38 @@ Treat these as priority candidates to investigate in editable Senki mod source. 
 - Publicly inspectable V2/older source forks searched so far do not contain complete source packages for any of the six requested characters. No character has been falsely counted as ported; the selectable roster count remains unchanged.
 - Phase 3 checks now cover duplicate selectable IDs, missing resource references, XML-to-atlas frame names, selection/kill-feed art coverage, skill UI labels, the release-pack inventory, and Android build/APK checks. This does not replace runtime gameplay verification.
 - Next Phase 2 gate: obtain a source package with accessible model/animation/skill/effect resources and character behavior code, or create an original replacement implementation with independently created assets. Do not decrypt the release pack or label a resource-name-only result as a complete port.
+
+
+## User directive: integrate all resource-audit leads and every additional viable character — 2026-10-10
+
+The user has directed that the six requested characters and any additional genuinely addable Senki characters should all be pursued, not just inventoried. The resource-name table below is an audit of **visible strings inside packed release indexes**, not proof that files can be imported.
+
+| Candidate | Model/XML name | Atlas name | Audio name | Skill-art name | Current conclusion |
+|---|---|---|---|---|---|
+| Kurenai Yūhi | Found | Found | Found | Found | Names visible only; no complete editable package imported |
+| Might Guy | Found | Found | Found | Found | Names visible only; not playable yet |
+| Yamato | Found | Found | Found | Found | Names visible only; no complete editable package imported |
+| Hashirama Senju | Found | Found | Found | Not confirmed | Names visible only; skill-art unresolved |
+| Shizune | Not confirmed | Found | Found | Not confirmed | Incomplete visible inventory; not importable as a complete package |
+| Rin Nohara | Not confirmed | Found | Found | Not confirmed | Incomplete visible inventory; not importable as a complete package |
+
+### Additional release-note leads queued for source inspection
+
+Sasori, Zetsu, Iruka, Sakon & Ukon, Juzo, Jonin Minato, Jirobo, Tayuya, and Anko. Also inspect any other distinct selectable fighters discovered in public Senki mod source trees. Release notes, APKs, portraits, AI-only entities, summons, clones and alternate forms are not complete character ports.
+
+### Current verified CI checkpoint
+
+- Latest verified run: [#295 — SUCCESS](https://github.com/kage049754/Senki/actions/runs/38055125607).
+- Commit: [3a9fa15ab6f6768385581743d3047a6eccafaaab](https://github.com/kage049754/Senki/commit/3a9fa15ab6f6768385581743d3047a6eccafaaab).
+- The run is a candidate build and static/package verification only. It does not establish that Kurenai, Guy, Yamato, Hashirama, Shizune or Rin are integrated.
+- Current external mod variant: 1 (Two Sage Toads, Choji-based); distinct external character ports verified playable: 0; physical-phone gameplay: not verified.
+- The current importer preflight prevents partial writes when complete source-style character packages are missing. Do not bypass that guard by extracting/decrypting the packed release payload or relabeling resource-name references as assets.
+
+### Next implementation loop
+
+1. Continue source discovery across all release-note leads and public Senki mod/fork trees, inspecting actual source paths and resource dependencies.
+2. For the first viable character, map unique ID/slot, selection portrait, sprite/atlas and frame names, animations, movement/attacks/skills/effects, audio, AI/input, skill/profile/kill-feed UI, death/respawn and cleanup.
+3. If a complete source package remains unavailable, create an original compatible implementation with independently created assets and native V2 combat integration. Clearly label it as an original implementation, not a port of the release character.
+4. Add automated checks for duplicate IDs, missing resource references, broken animation frames, incomplete skill UI and missing death/selection art.
+5. Commit the actual implementation, wait for the exact Actions run, inspect/fix failures, rerun until success, verify the APK artifact, then keep phone testing separate.
+6. Repeat for every additional candidate that can be genuinely integrated; target 70+ distinct playable characters without placeholders or false counts.
