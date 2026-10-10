@@ -1,296 +1,70 @@
-# SENKI — Existing Naruto Senki Mod-Merging Workspace
-> **PRIMARY PRIORITY — EXTERNAL SENKI MOD CHARACTERS:** Find characters that are actually implemented in OTHER Naruto Senki mods, then integrate those implementations into this existing Naruto Senki V2 project. Do not spend roster-expansion work auditing, recounting, renaming, or exposing characters/forms/summons already present in the current V2 source. Existing V2 content may be checked only as needed to confirm compatibility and avoid duplicates. Prioritize genuine external-mod characters and their complete implementation (selection portrait/name, sprites/animations, skills/effects/audio, player controls, AI, profile/skill display, and kill/death UI). Work on available slots on pages 1–3 first; preserve the original image-based page buttons and touch behavior. Do not claim an addition until the character is integrated and tested.
+# SENKI — Naruto Senki V2 Mod Integration Workspace
 
-> **Non-negotiable project direction: MODDING AND MERGING ONLY. DO NOT CREATE A NEW GAME.**
+> **MAIN MISSION:** Find genuinely new playable characters implemented by other Naruto Senki mods and integrate them into this existing Naruto Senki V2 game. Do not build a separate game. Do not count existing V2 forms, summons, clones, or support units as new characters.
 
-## What this repository is for
+## Read these first
 
-`kage049754/Senki` is the **central workspace for researching, adapting, and combining compatible parts of existing Naruto Senki game/mod projects into one unified modded Senki build**. It is not a request to invent a new game, replace the original engine with a home-made engine, or build a Naruto-inspired clone.
+Every AI/developer session must read README.md, AGENTS.md, ROADMAP.md, PROGRESS.md, docs/MOD_RESEARCH.md, docs/ASSET_LICENSES.md, and docs/CHARACTER_ROSTER.md before changing code, assets, or roster records. If documents conflict, follow AGENTS.md and correct the conflicting documents.
 
-**Preserve an existing Senki game as the foundation.** First inspect candidate source repositories and select the most suitable existing, buildable foundation. Then merge or port compatible mod content into that foundation, resolving conflicts carefully. The final objective is one unified modded game/APK—not multiple unrelated APKs.
+## The actual goal
 
-## Mandatory instructions for every AI agent
+- Keep one existing Naruto Senki game and its native Cocos2d-x/C++/Lua systems as the foundation.
+- Bring compatible, distinct playable characters from other Senki mods into that game.
+- Target **70+ distinct playable characters** if compatible source and resources can support it.
+- Work on available slots on character-select pages **1, 2, and 3 first**. Never silently replace an existing character.
+- Preserve the original character-selection, training/network/exit, and mode-menu backgrounds unless the user explicitly requests a change.
+- Preserve original image-based page buttons 1–3 and their touch behavior. Pages 4 and 5 must use matching image-style normal/selected buttons, not text-only controls.
+- Integrate each character completely: selection identity, sprite/model and animation data, movement, attacks, skills/effects, available audio/voice, player controls, AI, skill/profile display, and kill/death UI.
+- Produce one unified Android APK. Report CI and physical-phone testing separately.
 
-Before acting, read this file, [AGENTS.md](AGENTS.md), [ROADMAP.md](ROADMAP.md), [PROGRESS.md](PROGRESS.md), and [docs/MOD_RESEARCH.md](docs/MOD_RESEARCH.md). Read [docs/ASSET_LICENSES.md](docs/ASSET_LICENSES.md) before reuse, and the roster documents before roster work.
+## No-new-game rule
 
-If an instruction, task, or earlier commit conflicts with the rule **“mod and merge an existing Naruto Senki project; do not create a new game,” STOP the conflicting work and follow this rule**. Do not treat an existing prototype scaffold in this repository as permission to continue building a separate game. Audit it and decide whether it is useful tooling or should be removed/replaced after identifying the real Senki base.
+The central repository is [kage049754/Senki](https://github.com/kage049754/Senki). The selected game reference is [Naruto Senki V2 v2.1.6-fix](https://github.com/Naruto-Senki/files/releases/tag/v2.1.6-fix). A release APK is a packaged binary, not editable source. The source tree used by CI is currently fetched from a pinned external V2-derived repository into a temporary workspace; it is not fully vendored here.
 
-These repository instructions guide repository-aware agents; they cannot technically force every external AI to obey. Keep them in the obvious entry-point files and re-read them each session.
+Do not expand the old Kotlin/Canvas prototype as the final game. Keep the existing game engine and battle loop; adapt existing mod content to its native systems.
 
-## Required workflow
+## External character research policy
 
-1. Inspect this repository and its latest commit/build status.
-2. Research existing Naruto Senki source projects and mods; verify their real contents, upstream/fork relationships, engine, buildability, and licenses/permissions.
-3. Select and document **one existing Senki game as the base** before major implementation. Do not assume a candidate is suitable until inspected.
-4. Keep `kage049754/Senki` as the central integration workspace. Preserve the selected base's engine and core gameplay wherever practical.
-5. Merge compatible source changes/content in controlled batches. Resolve duplicate IDs, incompatible formats, engine/version conflicts, dependencies, UI collisions, and gameplay balance.
-6. Track every source and asset's provenance and reuse permission. Public availability is not permission to redistribute.
-7. Build the unified mod and verify the actual APK artifact. If CI fails, inspect logs, fix, commit, rerun, and verify again.
-8. Report exact verified status. CI success is not the same as physical-device testing.
+Search broadly across public Senki mod source repositories, forks, release notes, and creator-provided resource/source packages. Verify actual implementation and distinguish selectable fighters from summons, guardians, clones, NPCs, alternate forms, and image-only/release-note leads.
 
-## What “unified” means
+Record exact source revision, provenance, code license, asset/voice permission, dependencies, and compatibility. Public visibility is not automatic permission to redistribute source or assets. Do not extract assets/code from APKs or copy unclear-rights content into a distributable build. Continue research and compatibility analysis while seeking a viable authorized source; never fabricate progress.
 
-- One existing Senki game foundation and engine.
-- One integrated character roster, including compatible mod characters and meaningful alternate forms.
-- Compatible skills, animations, effects, UI, maps, and other content integrated into the same game.
-- One consistent set of IDs, resources, configuration, dependencies, and gameplay rules.
-- One final Android package after successful build and testing.
+## Character completion gate
 
-The roster can be expanded beyond 70 entries if the chosen base and resources support it, but **do not build a new engine just to meet a roster target**. Prefer adapting the existing game's native systems.
+A character counts as integrated only after its code/resources are connected to the game's actual selection and battle lifecycle. It counts as verified playable only after selection, spawn, movement, basic attack, each skill, effects/audio, AI, death/respawn, profile/skill view, kill/death display, and resource stability have been checked. A passing static audit or Android build is not gameplay proof.
 
-## Source research and merging rules
+Track each candidate's source, revision, permission status, ID, page/slot, portrait/atlas frame, animation, skills/effects/audio, AI/control path, missing dependencies, test evidence, and status in docs/CHARACTER_ROSTER.md.
 
-- Treat candidate repositories as unverified until their trees and source files have been inspected.
-- Compare forks against upstream; do not count a fork as a distinct mod without meaningful changes.
-- Distinguish editable source projects from APK-only releases, file hosts, translations, websites, and unrelated Naruto games.
-- Do not blindly merge entire repositories or APKs.
-- Do not copy or redistribute code/assets unless their license or explicit permission allows the intended use.
-- If a mod is incompatible or lacks reuse permission, document it as reference-only/excluded; do not pretend it was merged.
-- Never claim a character or mod is integrated until it builds and has been tested in the unified game.
+## Phases
 
-## Build and verification
+1. **Phase 0 — Instructions and truthful baseline:** align docs and inspect latest CI.
+2. **Phase 1 — V2 base:** maintain one existing V2-derived base and document source/provenance.
+3. **Phase 2 — External character discovery:** find distinct playable implementations from other Senki mods.
+4. **Phase 3 — First complete port:** adapt one character to an available page 1–3 slot and test it end-to-end.
+5. **Phase 4 — Batch integration:** add more verified characters toward 70+.
+6. **Phase 5 — Final regression and release:** verify build/artifact, then separately install and test on the phone.
 
-Follow the full failure-inspection/fix/rebuild loop in [AGENTS.md](AGENTS.md). Record the latest run, commit, actual result, artifact name/link, and device-test status in [PROGRESS.md](PROGRESS.md). Never call a queued, running, stale, or failed run a success.
+See [ROADMAP.md](ROADMAP.md) for task lists and exit gates.
 
-## Current status
+## Current honest status (2026-10-10)
 
-The repository previously received a native Kotlin/Canvas prototype scaffold. **That scaffold is not the agreed final game foundation.** The V2 source candidate and Android build configuration have now been inspected; see [docs/V2_BUILD_AUDIT.md](docs/V2_BUILD_AUDIT.md). The candidate uses legacy Android tooling, and code/asset reuse permissions remain unresolved. Do not continue adding original game-engine/gameplay systems to the prototype as a substitute for the existing game.
+- Last verified central Actions run: [#206 — SUCCESS](https://github.com/kage049754/Senki/actions/runs/38043294444), commit [3c3f7f2](https://github.com/kage049754/Senki/commit/3c3f7f25818dce5c9b966e53a755fd50d74ca04c).
+- The run checks page-button atlas parsing, dynamic pagination, Lua/source assertions, Android candidate build/package checks, and artifact upload.
+- External-mod characters integrated: **0**. External-mod characters verified playable: **0**.
+- Page 4/5 image-style pagination is groundwork, not roster progress.
+- Physical-phone install, startup, and gameplay have **not** been verified.
+- Source and third-party asset permissions remain unresolved for inspected candidates. The full V2 source tree is not yet vendored here.
 
-## Research documents
+## Reference docs
 
 - [AI agent rules](AGENTS.md)
-- [Roadmap](ROADMAP.md)
-- [Persistent progress](PROGRESS.md)
+- [Roadmap and phases](ROADMAP.md)
+- [Persistent progress and CI evidence](PROGRESS.md)
 - [Mod/source research inventory](docs/MOD_RESEARCH.md)
-- [Character roster tracker](docs/CHARACTER_ROSTER.md)
-- [Roster scalability notes](docs/ROSTER_SCALABILITY.md)
-- [Asset/license tracking](docs/ASSET_LICENSES.md)
+- [Character tracker](docs/CHARACTER_ROSTER.md)
+- [Asset/license register](docs/ASSET_LICENSES.md)
+- [Base-game/source audit](docs/BASE_GAME.md) and [V2 build audit](docs/V2_BUILD_AUDIT.md)
 
 ## Rights and disclaimer
 
-This is an independent fan-made, non-commercial modding/research workspace. Fan-made/non-commercial status does not automatically grant rights to third-party code or assets. The root LICENSE covers only original contributions authored for this repository by contributors who can license them; it does not override external source terms or rights held by Naruto/Naruto Senki owners. See NOTICE.md, docs/ASSET_LICENSES.md, and docs/V2_BUILD_AUDIT.md. Do not redistribute material without permission.
-
-
-## Selected base game: Naruto Senki V2
-
-The user has selected **Naruto Senki: V2** as the game to mod. The original release listing is the reference point: [Naruto-Senki/files releases](https://github.com/Naruto-Senki/files/releases), with the [v2.1.6-fix release page](https://github.com/Naruto-Senki/files/releases/tag/v2.1.6-fix) currently identified. The direct [Android APK release asset](https://github.com/Naruto-Senki/files/releases/download/v2.1.6-fix/NSV2_2.1.6-fix_Android.apk) is linked for reference/download from the original host.
-
-**All future authorized modding work is centralized in this repository, `kage049754/Senki`.** Changes to characters, skills, animations, fixes, and other content must be integrated into the selected existing Senki V2 base here, not built as a separate new game.
-
-Important: the linked release page is a file host with packaged release assets, including an APK; it is not itself editable source code. The V2 source project and its license/asset terms still need to be verified and imported before actual source-level modding can be completed. See [docs/BASE_GAME.md](docs/BASE_GAME.md). The APK is linked as a reference and is not claimed to be copied into this repository.
-
-
-## Latest source research status (2026-10-10)
-
-Two V2-derived Android source candidates have now been found with their **own** successful GitHub Actions APK builds:
-- [Wilykun/NarutoSenki-V2](https://github.com/Wilykun/NarutoSenki-V2) — includes a documented AI-vs-AI Spectate mode and build fixes.
-- [muhammadadilsyaputra08-alt/NarutoSenki-Custom](https://github.com/muhammadadilsyaputra08-alt/NarutoSenki-Custom) — documents an Android-only V2-derived C++/Lua source tree and a reproducible legacy Android build setup.
-
-These are technical candidates, **not imported into this repository**. Both currently report no declared GitHub license, and the permissions for inherited source and Naruto/game assets remain unresolved. Their CI artifacts are not builds from `kage049754/Senki`. See [the source comparison inventory](docs/MOD_RESEARCH.md), [the permission register](docs/ASSET_LICENSES.md), and [the base-game notes](docs/BASE_GAME.md).
-
-The next milestone is to establish source provenance and obtain appropriate code/asset permissions, then choose exactly one V2 base and build it in this central repository. The current prototype-only CI success does not satisfy that milestone. No unified mod APK or device-tested game has been completed yet.
-
-## Personal-use development direction (updated 2026-10-10)
-The user wants active research and private testing to continue even if a public Senki source/mod does not state an explicit reuse license. Missing license metadata must not be treated as a blocker to finding candidates, comparing features, or checking whether source builds. Search more GitHub forks, mod releases, archives, mirrors, and other publicly accessible sources for character models, sprites, animations, effects, skills, stages, UI, and complete Android game projects.
-
-The immediate goal is a working personal Android test build based on the existing Naruto Senki/V2 game—not a replacement prototype and not a public redistribution release. Test candidates in isolation, document their origin/version, choose a strong base, integrate incrementally, and verify actual build results. A successful CI build still does not prove installation or gameplay on a physical phone. Keep rights/provenance notes accurate, but do not let repetitive generic permission warnings derail technical progress.
-
-
-## Additional verified V2 candidate builds (2026-10-10)
-
-A second, feature-rich V2-derived source candidate has now built successfully in this repository's CI: [`sansaks-jpg/NarutoSenki-V2` LAN candidate run](https://github.com/kage049754/Senki/actions/runs/37967514487). Its artifact is `naruto-senki-v2-lan-candidate-apk` (80,405,874-byte ZIP; expires 2026-10-23). It retains the existing Cocos2d-x/C++/Lua game and adds LAN multiplayer hardening and crash fixes. The first candidate also has a successful artifact-enabled build: [Android-clean V2 candidate run](https://github.com/kage049754/Senki/actions/runs/37966861114), artifact `naruto-senki-v2-candidate-debug-apk` (83,435,979-byte ZIP; expires 2026-10-23).
-
-Both are **candidate APKs built in CI**, not yet integrated into one central source tree and not physically tested on the user's phone. The next engineering gate is a source/resource comparison to select the best V2 base, then controlled integration and device testing. See [PROGRESS.md](PROGRESS.md) and [docs/MOD_RESEARCH.md](docs/MOD_RESEARCH.md) for exact commits and build evidence.
-
-
-### Source comparison result
-A direct recursive-tree comparison found 1,828 identical files across the two successful candidates. The Android-clean candidate uniquely includes a redesigned Kabuto character, clone logic, sprite/audio assets and projectile data; the LAN-enhanced branch does not contain that character. For the offline-first mod, Android-clean is therefore the provisional lead base, while LAN-enhanced changes will be reviewed as selective bug-fix patches rather than merged wholesale. This is a provisional engineering choice pending source integration and phone testing.
-
-
-## Latest verified custom UI candidate (2026-10-10)
-
-The latest successful build includes a new original Senki launcher icon, loading-screen background, and character-selection HUD background, while preserving the existing Cocos2d-x game and its selection logic. CI verifies both custom backgrounds are inside the APK and checks the package identity. [Open the successful build and download the artifact](https://github.com/kage049754/Senki/actions/runs/37971031426) — artifact `naruto-senki-v2-candidate-debug-apk`, 83,466,499-byte ZIP, expires 2026-10-23.
-
-This is still a CI-built candidate, not phone-verified. See `PROGRESS.md` and `ROADMAP.md` for the exact status and remaining checks.
-
-
-### Latest main-menu build
-The main menu background has now been redesigned too. The existing game-mode carousel and menu callbacks are preserved. [Download the newest candidate artifact from successful Actions run 37971712613](https://github.com/kage049754/Senki/actions/runs/37971712613) — artifact `naruto-senki-v2-candidate-debug-apk`, 83,718,905-byte ZIP, expires 2026-10-23. CI confirms that the APK contains all three custom backgrounds and has the expected `Naruto Senki Mod` package identity. Device/gameplay testing is not yet confirmed.
-
-
-### Newest verified artifact (2026-10-10)
-The latest successful run is [37972501198](https://github.com/kage049754/Senki/actions/runs/37972501198), artifact `naruto-senki-v2-candidate-debug-apk` (ID `11637936223`, 83,729,869-byte ZIP, expires 2026-10-23). It includes the custom launcher icon and three custom screen backgrounds; CI verifies those assets and the app identity. The on-device visual/gameplay test is still pending.
-
-
-## Latest verified central APK build (2026-10-10)
-
-The latest central candidate build is [Actions run 38015483353](https://github.com/kage049754/Senki/actions/runs/38015483353), which completed **SUCCESS** on commit `5a0b8b2950eb3ab4a09e8744fd9d01f508983873`.
-
-- Artifact: `naruto-senki-v2-candidate-debug-apk` (83,726,412-byte ZIP; SHA-256 `38e9900dae77eccee4120c61d03a1c87416b866837d70f72a83fa5057b2ef495`; expires 2026-10-24).
-- Verified app identity: `com.senki.naruto.mod`, version `2.1.0-mod`, label `Naruto Senki Mod`.
-- Verified the compiled Android manifest uses sensor-landscape orientation; the patch also handles `orientation|screenSize` configuration changes.
-- Verified the APK contains the custom loading, character-selection, and main-menu background assets.
-- Hardened the custom loading/menu/selection backgrounds with original-background fallbacks to reduce the risk of a blank screen if a custom image fails to load.
-
-**Important scope:** the workflow clones the pinned Android-clean V2-derived source into a temporary CI workspace, applies this repository's ordered patches, builds the APK, and uploads it. The full external game source is not yet vendored into the central repo, and no physical-phone installation/gameplay has been verified. This is a real V2-derived candidate APK build, not the old Kotlin/Canvas prototype artifact and not a completed unified mod roster.
-
-
-### Latest packaging verification — 2026-10-10
-
-A further check was added specifically because an earlier APK was reported as invalid during installation. [Run 38015857617](https://github.com/kage049754/Senki/actions/runs/38015857617) completed **SUCCESS** after building the patched V2-derived APK and verifying its signature plus native Android libraries.
-
-- Artifact: `naruto-senki-v2-candidate-debug-apk`, ID `11656381799`, ZIP size 83,732,890 bytes, SHA-256 `c9114464e52be0cefe7ad2c4a273e6f40441649a32d4a19a8e3137733fc3f9ff`, expires 2026-10-24.
-- Android APK Signature Scheme v1 and v2: verified.
-- Native libraries: `arm64-v8a` and `armeabi-v7a` both present.
-- Sensor-landscape orientation, custom screen assets, and package identity checks: passed.
-
-This removes some packaging-related uncertainty, but the APK still must be installed and tested on the actual phone before we can say the earlier install or blank-screen issue is fixed.
-
-
-### Latest verified build with Lua validation — 2026-10-10
-
-[Run 38016218553](https://github.com/kage049754/Senki/actions/runs/38016218553) completed **SUCCESS** on commit `a250c15d592bc06dad97e4d629c612c71b7808b4`.
-
-- All game Lua scripts passed Lua 5.1 syntax validation.
-- C++/Android Gradle build passed.
-- Compiled manifest, custom UI asset packaging, package identity, APK signature, and `arm64-v8a` / `armeabi-v7a` native library checks passed.
-- Artifact: `naruto-senki-v2-candidate-debug-apk`, ID `11655967631`, 83,749,269-byte ZIP, SHA-256 `3fe28a0f6f3282c2674e3ea8ecc9ca5bcaae6b440bd15aa708ac0f7a25cd06c6`, expires 2026-10-24.
-
-The source roster inventory contains 37 unique selectable names; that is a source-level count, not a verified-playable count. Physical-device install, startup, character selection, and battle checks remain outstanding.
-
-
-### Roster scalability groundwork — 2026-10-10
-
-The existing character-selection screen no longer hardcodes exactly three pages. Patch `0008-dynamic-roster-pagination.patch` calculates the page count from the current character layout. Pages 1–3 keep original image controls; pages 4+ use generated image controls with normal/selected states styled from the original page-button art. The Android build and APK checks passed in [run 38020781870](https://github.com/kage049754/Senki/actions/runs/38020781870); artifact ID `11657917474`.
-
-This is groundwork for the user's 70+ roster goal, **not** a claim that 70 characters are already present. The inspected base currently lists 37 unique selectable names. The new pagination still needs phone testing with 4+ pages, and characters must be added and verified individually.
-
-
-### Dynamic character pagination and expanded source research — 2026-10-10
-
-The latest successful build is [run 38020781870](https://github.com/kage049754/Senki/actions/runs/38020781870), artifact `naruto-senki-v2-candidate-debug-apk` (ID `11657917474`, 83,355,267 bytes; archive SHA-256 `303f9dfbabd11fec739b91dcdda4f818421618c242dda4182794d9497aa6c147`). It includes the image-based pagination patch, verifies generated page 4/5 normal/selected controls in the APK, confirms the retired custom menu/selection backgrounds are absent, and passes Lua syntax, landscape, signature, and native ABI checks.
-
-Additional release-note research found potential character leads in [Zx-Akito's Naruto Senki release line](https://github.com/Zx-Akito/NarutoSenki-Release/releases): Shizune, Hashirama, Rin, Sakon & Ukon, Juzo, Kurenai, Might Guy, Yamato, Sasori, Zetsu, Iruka, Jirobo, Tayuya, Anko, and others. These are discovery leads only; the latest v1.26 release is APK-only and reports server-side processing, so it is not a direct offline V2 source base. The lead list is tracked in `docs/CHARACTER_ROSTER.md` and the compatibility notes in `docs/MOD_RESEARCH.md`.
-
-The selected V2-derived base still has 37 unique selectable names. Pagination groundwork is built, but no additional character from those release leads has been ported or verified. The next goal is to locate editable source/resource sets and add compatible characters incrementally without replacing existing roster entries.
-
-
-### Dynamic roster pagination — build verified
-
-The current source patch removes the fixed three-page character-selection limit. The page count is calculated from the roster list (21 character slots per page), and the page controls use numbered text instead of depending on only three fixed page-sprite pairs. CI run [38016671857](https://github.com/kage049754/Senki/actions/runs/38016671857) passed the source assertions, Lua syntax validation, Android build, package/landscape checks, APK signature validation, and native ABI checks. This does not substitute for testing the selection UI on a phone.
-
-
-### Character search/filter verified in the APK — 2026-10-10
-
-[Run 38018448399](https://github.com/kage049754/Senki/actions/runs/38018448399) completed **SUCCESS**. The APK build now includes the dynamic page-count change plus a search field that filters character IDs/names across pages, jumps to the first matching page, hides pages with no results while searching, and shows a “No characters found” message when needed.
-
-CI extracted `SelectLayer.lua` from the built APK and verified the search/filter code is packaged. The APK also passed Lua syntax, landscape manifest, package identity, signature, and native ABI checks.
-
-- Artifact: `naruto-senki-v2-candidate-debug-apk`, ID `11657656484`, ZIP size 83,699,768 bytes, SHA-256 `51faf000d5ff9ef9027f351db0915f5aed58590ccd57f698392a8e1b2b9a3305`, expires 2026-10-24.
-- Current roster inventory remains 37 unique selectable names. This is UI groundwork for expansion, not a claim that the game now has 70+ characters.
-- Search typing, selection, and 4+ pages still need real-phone validation; the successful CI build does not replace device testing.
-
-## Complete playable-character standard
-
-Adding a character means adding a **working playable fighter**, not only a portrait or a roster name. For every genuinely new character, track these parts separately and implement what is missing:
-
-1. **Selection profile:** correct portrait/avatar, display name, character ID, and a working selection/tap target. The selected entry must resolve to the same fighter that appears in battle.
-2. **Preview and skill information:** show the correct character preview where supported; when the player opens the skill view, show that character's actual skill names, descriptions, and icons when available. Skill UI must reflect implemented abilities, not placeholder claims.
-3. **Combat assets and animations:** character sprites/model, idle, movement, attack, skill, hit/damage, knockback, death, and other states required by the base engine.
-4. **Gameplay logic:** movement, basic attacks, hitboxes, damage, cooldowns, skills, effects/projectiles/summons, and sound references where available.
-5. **Controls and AI:** player input triggers the correct actions; computer-controlled fighters can move, attack, use appropriate abilities, and react to combat.
-6. **Resources and registration:** all IDs, sprite frames, plist/XML/config entries, Lua/C++ references, sound/effect paths, and selection/roster entries must resolve without collisions.
-7. **Combat identity:** where the existing game event system permits it, show the actual killer and victim with their portraits and names when a kill/death occurs. Example: Naruto (portrait) defeated Sasuke (portrait). Identify the actual killer/victim for each event; don't infer them only from the initially selected character. Integrate with existing kill counters/game-over behavior instead of duplicating or breaking it.
-8. **Verification:** build the APK, inspect logs and packaged resources, then test selection, preview, skill view, movement, attacks, every skill, damage/hit detection, effects, AI, death/respawn, and kill/death notifications in gameplay. Record CI results separately from phone testing.
-
-A character is **DISCOVERED** when found in a source, **PORTED** when its source/assets are integrated, **BUILT** when the unified APK packages it, and **PLAYABLE-VERIFIED** only after the relevant in-game behavior has been tested. Portrait-only, skill-icon-only, or roster-only entries must never be counted as complete playable characters.
-
-The roster and page controls must remain scalable. Preserve original image-based page buttons 1–3 and their touch behavior. Any added page buttons (4, 5, and beyond) should use matching image-based controls with normal/selected states and reliable touch handling—not text-only clickable replacements that look or behave differently. More pages expose registered roster entries; they do not automatically implement new characters.
-
-
-
-## Character profiles, skills, and kill/death identity
-
-A new character is not complete when only their portrait or name appears. Each character integration should connect the correct selection portrait/avatar and display name, preview, skill information (names/icons/descriptions where supported), in-game sprites/model, animation states, movement, basic attacks, hit detection, skills/cooldowns, effects, audio, player controls, AI behavior, and all resource/config references. Verify the selected entry launches the matching implementation rather than another character. Test selection, preview, skill display, movement, attacks, every skill, damage, effects, AI, death/respawn, and match modes before marking a character playable-verified.
-
-Where the existing V2 battle-event hooks support it, the game should show a kill/death notification with the actual killer and victim portraits and names (for example, Naruto defeated Sasuke), with counters/streaks only if supported by the mode. Inspect existing combat/death events first; do not fake notifications using only the selected character.
-
-## Original background restoration
-
-The user requested the original Naruto Senki backgrounds restored for both the main menu/mode carousel (Training, Network, Exit interface) and the character-selection screen. The build pipeline must not apply the retired custom main-menu or character-selection background patches, must not generate/use senki_menu.png or senki_select.png, and must preserve the original background/decorative layers and existing UI behavior. The custom loading artwork may remain. Validate this from the applied patch list and source before claiming the rollback is complete; CI does not replace a visual check on the phone.
-
-
-## Current authoritative status — 2026-10-10
-
-The latest central V2-derived candidate build is [GitHub Actions run 38019992304](https://github.com/kage049754/Senki/actions/runs/38019992304) (run #64, commit `e874e45d90f7e83082ff55b304bdb6f49f82fe65`), which completed **SUCCESS**. Artifact: `naruto-senki-v2-candidate-debug-apk`, ID `11657109973`, ZIP size 83,344,194 bytes, SHA-256 `07c153b870d5a56f704dec61907278689cbd8325140b8a533fba9059b4eb9618`, expires 2026-10-24. Lua syntax, search/filter, dynamic page-count, landscape, Android build, package identity, signature, native ABI and artifact checks passed.
-
-The current build recipe no longer applies the retired custom main-menu or character-selection background patches; the custom loading screen remains separate. The APK's asset list still needs an explicit check for absence of the retired replacement images, and the original backgrounds/decorative layers have not yet been visually confirmed on the phone. Pages 4+ still use text-only controls and do not meet the requested image-based normal/selected button style. Only 37 selectable names have been measured in the source; the verified playable count is still unmeasured, no newly discovered character is fully integrated, and the final unified modded game has not been completed or physically tested. See `ROADMAP.md` and `PROGRESS.md` for phase-by-phase blockers.
-
-
-## Mandatory complete-character asset and AI contract
-
-**Adding a character means integrating the complete character package, not only adding a roster name or portrait.** Before implementation, inspect the candidate source and create a per-character asset manifest with exact paths and source/provenance for every applicable item:
-
-- **Selection UI:** character display name, selection portrait/avatar, selection button/thumbnail states, correct preview model/sprite, and working selection/confirmation behavior.
-- **Skill viewer/UI:** every skill's actual name, icon, description, order/slot, and any supported cost/cooldown information. UI data must match the skills that really execute in combat.
-- **Visuals and animation:** character sprite/model, atlas/texture/plist, idle, movement/run, facing, basic attacks, skill/cast, hit/damage, knockback, death, transformation/ultimate, and any additional states the implementation uses.
-- **Audio:** character voice clips/voice lines when present in the source or required by the character's design, plus skill, attack, hit, summon, transformation, and other character-specific sound effects. Inventory actual files and references; never claim voice/audio is included if it is missing. A missing or intentionally absent category must be explicitly documented with its reason and completion impact.
-- **Combat assets and logic:** projectile/summon assets, particles/effects, hitboxes, damage, cooldowns, resource costs, transformations, and links from code/config to every resource.
-- **AI and selection eligibility:** register the character in the existing game AI's valid character pool/selection logic, so computer-controlled opponents/allies can actually spawn and use that character. Confirm AI can move, choose valid basic attacks and skills, respect cooldowns/range/state, and avoid invalid skill/resource references. If the game has random/team/draft selection, include the character in each supported selection path. Merely appearing in the player roster does not satisfy AI support.
-- **Identity/integrity:** unique stable character/form IDs; matching class/script/XML/plist/config/animation/effect/audio paths; no accidental replacement of an existing fighter or ID/resource collision.
-
-For each character, record what was found, reused, adapted, newly authored, missing, or blocked. Search the full source tree and related resource bundles instead of assuming assets are present. Use assets only under the project's applicable permission/provenance rules. Do not fabricate a “complete” status when voice clips, icons, animations, or AI hooks are absent. A character may be marked fully complete only when every applicable category is accounted for and all required player and AI behavior passes testing; otherwise report the exact missing items and use an incomplete/blocked status.
-
-Required acceptance tests: selection portrait/name/preview; skill viewer matches real skills; every skill icon and description maps to a working skill; audio/voice plays from the intended events; player controls and AI both use the character correctly; battle spawn, movement, attack, every skill, effects, hit detection/damage, death/respawn, and resource loading/release. CI/build success alone does not prove these behaviors. The roster tracker template and Phase 3/4 roadmap must be followed for every character batch.
-
-## Mandatory complete-character package and AI-selection contract
-
-When a character is added or ported, the goal is to bring over and connect **the whole usable character package**, not just a portrait or a name. Audit the source implementation and all assets before integration. For each character/form, include or explicitly account for:
-
-- **Character identity and selection UI:** stable unique ID, correct display name, roster button/thumbnail in normal and selected states, selection portrait/avatar, preview/model/sprite, and working selection/start behavior.
-- **Skill-view UI:** actual skill names, icons, descriptions and any supported rank/cooldown information must correspond to that character's implemented abilities. Never show an icon or skill description for a skill that does not work.
-- **Visual assets and animation:** in-game sprites/model, atlas/texture and plist/config, idle, movement/run, basic attack, cast/skill, hit/damage, knockback, death, summon/transformation and ultimate states as supported by that character and the V2 engine.
-- **Combat implementation:** basic attacks, attack timing/range/hitboxes, damage, cooldowns, projectiles, summons, passives, skills/ultimate where the source supports them, status effects, effects/particles, and correct resource references.
-- **Audio:** voice lines/character voice clips where available, attack/skill/ultimate/hit/death/transform/summon sound effects, and any character-specific audio cues. Record each file and its trigger. If the source truly has no voice/audio for a category, mark it explicitly as missing/not applicable and do not silently claim the character has a complete voice set.
-- **Player and game AI:** player controls must invoke the right actions, and the game's computer-controlled roster/AI must be able to select or spawn that fighter in supported modes, move, attack, choose appropriate skills, respect range/cooldowns/state, and use valid animations/effects/audio without crashes. If the game AI has a fixed roster or mode-specific restrictions, trace and update the relevant registration/selection logic; adding a player-selectable entry alone does not make the fighter available to AI.
-- **Registration and integrity:** update all required roster, class/ID, Lua/C++, XML/plist/config, animation, sound, effect, and resource-path references without collisions or accidentally replacing another character.
-- **Combat feedback:** where the engine supports it, kill/death messages should identify the actual killer and defeated fighter, using their correct names and portraits/avatars, while preserving existing score/counter/game-over behavior.
-
-**Acceptance rule:** a character is not complete merely because a portrait, skill icon, name, class file, or APK build exists. Track discovery, source inspection, porting, build verification, and in-game verification separately. Test selection/preview, skill view, all implemented moves/skills, visuals/audio triggers, AI selection/spawn and behavior, damage/death/respawn, and resource loading. Record missing source assets or incompatible features honestly; never invent assets and claim they came from the source. Review source and asset reuse terms and provenance before redistribution.
-
-
-### Automated character package inventory
-
-The CI workflow now runs `scripts/audit_character_packages.py` against the pinned source and uploads a `senki-character-package-audit` report with the debug APK. It inventories source-level clues for each of the 37 selectable names: native class/header presence, character-named Lua files, unit/resource files, audio folders, packed selection-frame names, and recognizable AI-registration patterns. The report is intentionally conservative: it is a triage tool, not a character-completeness verdict. Every character still needs a manual per-skill/animation/audio/AI review and in-game verification. A successful build or a row of detected files does not add a character to the verified roster.
-
-
-## Current technical checkpoint — 2026-10-10
-
-The central CI workflow now builds a pinned V2-derived diagnostic candidate and applies the source-controlled changes in isolation. Latest successful workflow: [run #126](https://github.com/kage049754/Senki/actions/runs/38028647795), exact workflow commit `9aa276227fa118e89246eef561aa318209d3c60a`. Its APK artifact is `naruto-senki-v2-candidate-debug-apk`, artifact ID `11660439960`, SHA-256 `865afbe5def724a1f0c0da37ad9aec845d12ccac4ed56a14411c156e6ce3b76c`. See PROGRESS.md for the complete artifact record.
-
-Current candidate changes verified by CI include:
-- Original main-menu and character-selection backgrounds are retained; retired custom background replacement patches are excluded.
-- Character-selection pagination remains image-based. Generated page 4/5 normal and selected button assets are checked against the original artwork.
-- Character search/filter code and a visible missing-skill-description fallback are packaged in the APK.
-- Six existing native transformation forms are exposed as entries on page four with safe UI aliases and dedicated form portraits.
-- Character package audit now reports the gap to 70 distinct declared entries without pretending to measure gameplay-verified characters.
-
-The candidate currently declares **43 selectable UI entries**, but only **37 distinct base characters** after excluding six known alternate forms, against the desired 70-distinct-character target. The static audit does not prove that all 43 are playable. Page four is currently populated with six extra forms; page-five controls are prepared but are not displayed because there are only 84 roster slots (four pages).
-
-**Still not finished:** no physical-device/emulator gameplay validation has been completed; the six form entries need in-game checks; 33 additional distinct characters are needed to reach 70 distinct characters (27 more raw UI entries would reach 70 entries only if forms were counted); the candidate source is still fetched into a temporary CI workspace rather than vendored as an editable source tree; source/asset permissions remain unresolved. The artifact is a short-lived diagnostic candidate, not the final unified release.
-
-
-## Roster expansion order — user priority (2026-10-10)
-
-**Do not move on to pages 4 or 5 until the first batch of distinct characters from other Naruto Senki mods has been investigated and integrated into available slots on pages 1, 2, and 3.** The user specifically wants new characters from other Senki mods to appear on pages 1–3 first, not just alternate forms of Naruto, Pain, Sasuke, Rock Lee, or Jiraiya.
-
-- Keep the existing page 1–3 image-button art and touch behavior. Preserve original backgrounds.
-- Audit the actual roster layout and available slots before changing entries. Preserve original characters unless a specific slot is intentionally being replaced; document every changed slot.
-- Prioritize distinct mod characters with complete, compatible character packages. Candidate names in research are leads only, not approved or integrated characters.
-- Do not count a character as added/playable until its permitted assets, selection portrait/name, sprites/animations, attacks/skills/icons/descriptions, effects, audio/voice where available, AI/player behavior, and battle/death/kill-profile references are integrated and tested.
-- Only after pages 1–3 have been populated with the first verified batch should work continue to page 4 and then page 5. Page 4/5 must not be padded with forms merely to demonstrate pagination.
-- Current build success means the pinned V2-derived diagnostic candidate packaged; it does not mean new external characters were integrated or that phone behavior was tested. See PROGRESS.md and docs/CHARACTER_ROSTER.md.
-
-
-## Required portrait for every new character
-Every added roster entry must show that character's own matching avatar/portrait in its assigned character-select slot—not just a display name, empty slot, unrelated art, or placeholder. Record the slot, stable ID, portrait file/frame, asset provenance/license, and validation status in docs/CHARACTER_ROSTER.md. Validate that the image renders correctly in the selection screen and that supported profile, skill-selection, and kill/death displays use the correct character identity. Missing or mismatched portrait assets mean the character is incomplete and must not be counted as playable. This requirement does not mean example portraits have already been imported; each asset still needs verified compatibility and reuse rights.
+This is an independent fan-made research/modding workspace. Non-commercial intent does not itself grant rights to third-party code, art, audio, or franchise assets. The root LICENSE applies only to eligible original contributions and does not override external licenses or rights held by Naruto/Naruto Senki owners.
