@@ -206,3 +206,14 @@ A character is **DISCOVERED** when found in a source, **PORTED** when its source
 
 The roster and page controls must remain scalable. Preserve original image-based page buttons 1–3 and their touch behavior. Any added page buttons (4, 5, and beyond) should use matching image-based controls with normal/selected states and reliable touch handling—not text-only clickable replacements that look or behave differently. More pages expose registered roster entries; they do not automatically implement new characters.
 
+
+
+## Character profiles, skills, and kill/death identity
+
+A new character is not complete when only their portrait or name appears. Each character integration should connect the correct selection portrait/avatar and display name, preview, skill information (names/icons/descriptions where supported), in-game sprites/model, animation states, movement, basic attacks, hit detection, skills/cooldowns, effects, audio, player controls, AI behavior, and all resource/config references. Verify the selected entry launches the matching implementation rather than another character. Test selection, preview, skill display, movement, attacks, every skill, damage, effects, AI, death/respawn, and match modes before marking a character playable-verified.
+
+Where the existing V2 battle-event hooks support it, the game should show a kill/death notification with the actual killer and victim portraits and names (for example, Naruto defeated Sasuke), with counters/streaks only if supported by the mode. Inspect existing combat/death events first; do not fake notifications using only the selected character.
+
+## Original background restoration
+
+The user requested the original Naruto Senki backgrounds restored for both the main menu/mode carousel (Training, Network, Exit interface) and the character-selection screen. The build pipeline must not apply the retired custom main-menu or character-selection background patches, must not generate/use senki_menu.png or senki_select.png, and must preserve the original background/decorative layers and existing UI behavior. The custom loading artwork may remain. Validate this from the applied patch list and source before claiming the rollback is complete; CI does not replace a visual check on the phone.
