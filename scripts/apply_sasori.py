@@ -37,12 +37,13 @@ data["metadata"]["realTextureFileName"] = "Sasori.png"
 
 # Keep the V2 animation schema and retarget it to the Sasori atlas.
 base = resources / "Unit/Ninja/Kankuro"
-base_xml = base / "Kankuro.xml"
+source_xml = source / "Saso.xml"
 base_skill_plist = base / "Kankuro_Skill.plist"
 base_skill_png = next((base / n for n in ("Kankuro_Skill.png", "Kankuro_Skill.pvr.ccz", "Kankuro_Skill.ccz") if (base / n).is_file()), None)
-if not base_xml.is_file() or not base_skill_plist.is_file() or base_skill_png is None:
-    raise SystemExit("V2 Kankuro animation/skill template is incomplete")
-(unit / "Sasori.xml").write_text(base_xml.read_text(encoding="utf-8").replace("Kankuro", "Sasori"), encoding="utf-8")
+if not source_xml.is_file() or not base_skill_plist.is_file() or base_skill_png is None:
+    raise SystemExit("Sasori source animations or V2-compatible skill UI template are incomplete")
+# Prefer Sasori's own action/frame data rather than reusing Kankuro's moves.
+(unit / "Sasori.xml").write_text(source_xml.read_text(encoding="utf-8").replace("Saso", "Sasori"), encoding="utf-8")
 shutil.copy2(base_skill_plist, unit / "Sasori_Skill.plist")
 skill_data = plistlib.loads((unit / "Sasori_Skill.plist").read_bytes())
 skill_data["frames"] = {
