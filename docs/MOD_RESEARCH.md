@@ -361,3 +361,20 @@ These additional search hits are useful for tracing lineage but do not add verif
 When researching a mod or candidate character, inspect the whole source package instead of counting only roster labels. For each candidate, look for selection portrait/avatar and button states; display name/ID and preview; skill-view data/icons/descriptions; character class and combat implementation; sprite sheets/atlases/plists and animation definitions; attack/skill/ultimate logic, projectiles/summons and effects; voice lines and action-specific sound effects; and the game AI roster/selection/spawn/decision logic. Record exact source paths, branch/commit/version, dependencies, engine compatibility, and source/asset permission status.
 
 Classify every category as PRESENT-AND-INSPECTED, MISSING, INCOMPATIBLE, NOT-APPLICABLE-WITH-REASON, or NOT-YET-INSPECTED. A release-note name or APK portrait is only a lead, not evidence that editable assets or AI support exist. Confirm whether a character is genuinely selectable and playable in the source, whether the AI can select/spawn it, and whether each skill shown in the UI maps to working code. Preserve provenance for voice, music, SFX, artwork, sprites, animation and effects separately. Do not mark a candidate as a complete character source until its applicable resources and implementation have been inspected.
+
+
+## Tenth-pass legacy-source inspection — 2026-10-10
+
+### Candidate: `LeaderOnePro/NarutoSenki-cocos2dx`
+
+- Repository: https://github.com/LeaderOnePro/NarutoSenki-cocos2dx
+- Inspected branch/head: `main` at `187fca6efd1ba6b89a91659fa7c591dde3995280` (recursive source tree inspected).
+- This is an older Cocos2d-x 2.2.6 C++ implementation with a monolithic `Classes/Characters.cpp`, not the same modular C++/Lua structure as the pinned Android-clean candidate.
+- **Useful source leads found:** the source contains an `AI_ImmortalSasuke()` implementation and a Han AI dispatch branch in `Classes/Characters.cpp`; resources include `Resources/Element/Han/Han.{xml,plist,pvr.ccz}`, `Resources/Element/ImmortalSasuke/ImmortalSasuke.{xml,plist,pvr.ccz}`, plus character-named audio folders. This is stronger evidence than a release-note name alone that some character logic/resources exist in an editable source tree.
+- **Critical gap:** the inspected `SelectLayer.cpp` hardcodes a selection list that does not include Han or ImmortalSasuke, and the tree search did not find their expected `*_select.png`, `*_half.png`, or `*_font.png` selection assets. The presence of AI dispatch, resource atlases and audio does **not** prove a complete selectable character package.
+- **Compatibility gap:** this fork's legacy C++ architecture and resource/config conventions differ from the current modular V2 candidate. Porting the old `Characters.cpp` blocks directly would be unsafe; each character would need behavior, skill, resource and AI mapping into the current native systems.
+- **Rights gate:** no root `LICENSE`/copying/notice file was found in the inspected repository tree. Its code and game artwork/audio are **not approved for redistribution** on the basis of public visibility alone. Keep the source reference-only until permission/license status is resolved.
+- **Classification:** `RESOURCE_REVIEW / BLOCKED`; no character from this source has been copied into the project or counted as added.
+- **Next action:** locate a permission-cleared source for the same character(s), or obtain explicit permission; then build a per-character manifest and port one complete character at a time. Do not start with the old monolithic AI branch as if it were a drop-in module.
+
+This inspection identifies a new *source lead*, not a new in-game character. Current roster counts remain unchanged.
