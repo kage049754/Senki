@@ -81,6 +81,45 @@ if external_audio.is_dir():
             shutil.copy2(path, audio_dir / path.name.replace("Choji", "TwoSageToads").replace("choji", "TwoSageToads"))
 xml_path = unit_dir / "TwoSageToads.xml"
 xml_text = xml_path.read_text(encoding="utf-8")
+
+# The legacy mod atlas is smaller than the current V2 animation definition.
+# Alias missing extension-only animation frames to real nearby frames in the same
+# modded atlas, so every XML frame reference resolves without replacing the
+# modded texture or leaving an unregistered frame name.
+xml_root = ET.fromstring(xml_text)
+xml_frame_names = {node.text.strip() for node in xml_root.iter("f") if node.text and node.text.strip()}
+main_plist_path = unit_dir / "TwoSageToads.plist"
+main_data = plistlib.loads(main_plist_path.read_bytes())
+main_frames = main_data.get("frames", {})
+skill_data = plistlib.loads((unit_dir / "TwoSageToads_Skill.plist").read_bytes())
+skill_frames = skill_data.get("frames", {})
+all_known_frames = set(main_frames) | set(skill_frames)
+
+def frame_number(name):
+    match = re.search(r"_(\\d+)$", name)
+    return int(match.group(1)) if match else -1
+
+for missing_name in sorted(xml_frame_names - all_known_frames):
+    candidates = []
+    prefix = missing_name.rsplit("_", 1)[0] + "_"
+    candidates = [name for name in main_frames if name.startswith(prefix)]
+    if not candidates:
+        skill_prefix = re.match(r"(TwoSageToads_Skill\\d+)_", missing_name)
+        if skill_prefix:
+            candidates = [name for name in main_frames if name.startswith(skill_prefix.group(1) + "_")]
+    if not candidates:
+        candidates = [name for name in main_frames if name.startswith("TwoSageToads_NAttack_")]
+    if not candidates:
+        candidates = [name for name in main_frames if name.startswith("TwoSageToads_Idle_")]
+    if not candidates:
+        raise SystemExit(f"No compatible frame exists to alias missing animation frame: {missing_name}")
+    # Prefer the nearest preceding numbered frame when possible.
+    target = max(candidates, key=lambda name: (frame_number(name) <= frame_number(missing_name), frame_number(name)))
+    main_frames[missing_name] = main_frames[target]
+main_data["frames"] = main_frames
+main_plist_path.write_bytes(plistlib.dumps(main_data, fmt=plistlib.FMT_XML, sort_keys=False))
+xml_text = xml_path.read_text(encoding="utf-8")
+
 # If the legacy mod doesn't provide a particular voice clip, use the compatible
 # Choji fallback already copied into this package rather than leaving a dead path.
 for stem in re.findall(r"Audio/TwoSageToads/([^<]+?\.ogg)", xml_text):
@@ -121,6 +160,8 @@ header_text = header_text.replace("class Choji :", "class TwoSageToads :")
 header_text = header_text.replace("Choji::resumeAction", "TwoSageToads::resumeAction")
 if "class TwoSageToads : public Hero" not in header_text:
     raise SystemExit("Could not safely derive TwoSageToads native AI from the Choji class")
+if "HeroEnum::TwoSageToads" not in header_text:
+    header_text = "// Registered native identity: HeroEnum::TwoSageToads.\\n" + header_text
 new_header.write_text(header_text, encoding="utf-8")
 
 enum_path = game / "Classes/Enums/HeroEnum.h"
