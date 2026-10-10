@@ -47,11 +47,14 @@ diff --git a/projects/NarutoSenki/Classes/LoadLayer.cpp b/projects/NarutoSenki/C
 +	// Fail safely instead of silently showing a half-built loading screen.
 +	Sprite *background = Sprite::create("senki_loading.png");
 +	if (!background)
-+		return false;
-+	background->setAnchorPoint(Vec2(0, 0));
-+	background->setPosition(Vec2(0, 0));
-+	FULL_SCREEN_SPRITE(background);
-+	addChild(background, -10);
++		background = Sprite::create("red_bg.png");
++	if (background)
++	{
++		background->setAnchorPoint(Vec2(0, 0));
++		background->setPosition(Vec2(0, 0));
++		FULL_SCREEN_SPRITE(background);
++		addChild(background, -10);
++	}
  
  	const auto &gd = getGameModeHandler()->getGameData();
  	_enableGear = gd.enableGear;
