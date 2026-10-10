@@ -666,3 +666,17 @@ GitHub API confirms `kage049754/Senki` is currently **public**. Therefore, the s
 - [ ] Determine whether any of the five Pain paths can legitimately become player-selectable without breaking Pain's summon kit; do not promote them based on enum/resource presence alone.
 - [ ] Continue finding at least 27 additional complete character packages from compatible source trees and document source/asset rights before merging.
 - [ ] Physical-device verification and source/asset permission review remain open.
+
+
+## Latest non-roster enum audit and build verification — run #159 (2026-10-10)
+
+- [x] Extended the static character audit to list `HeroEnum` identifiers not present in the visible selection list; these are explicitly marked for manual classification and are not counted as playable characters.
+- [x] Added regression assertions for the 70-entry declared-roster gap, the enum-only lead inventory, and known summon/support identifiers such as `AnimalPath` and `Guardian`.
+- [x] Inspected the actual failure/fix chain: runs #155–#158 were superseded/cancelled while the audit output escaping and test regex were corrected. The latest exact-source run #159 completed successfully.
+- [x] GitHub Actions run **#159** succeeded on exact SHA `3f6ac555fa5b9fb5a9f64c195679e0abe50da2aa`: https://github.com/kage049754/Senki/actions/runs/38031862251
+- [x] Android diagnostic APK built; candidate APK presence and signature/native ABI packaging checks passed.
+- [x] APK artifact `naruto-senki-v2-candidate-debug-apk`, ID `11662291624`, size 83,328,393 bytes; SHA-256 `f5529a7558f1e60fe8176c78f13a92364d866ce4e9e81a21092910118a3bef70`; expires 2026-10-24.
+- [x] Audit artifact `senki-character-package-audit`, ID `11662461471`; SHA-256 `34caeb205755ca9d78516b1cdc0ed9991efe467ff414a4f8175e08a729bdcb52`; expires 2026-10-24.
+- [ ] Review each non-roster enum identifier against native class, provider dispatch, XML/plist/texture, AI, and transformation logic before considering it a selectable character.
+- [ ] The declared roster is still 43 names; verified playable count is not measured. This audit adds discovery leads, not new playable characters.
+- [ ] Continue physical-device testing, source-vendoring/provenance work, and integration of complete compatible characters.
