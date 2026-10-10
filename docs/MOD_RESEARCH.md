@@ -388,3 +388,24 @@ This inspection identifies a new *source lead*, not a new in-game character. Cur
 - Candidate audit also flags exceptions (for example Kiba has only 3/5 name-matched Unit/resource paths), which are investigation targets, not proof of a broken character.
 - Research source: [LeaderOnePro/NarutoSenki](https://github.com/LeaderOnePro/NarutoSenki) is an older Cocos2d-x 2.2.2 source project; it is not a drop-in extension for this project's modular V2 candidate. Public access and a source tree are not a redistribution license.
 - No additional character has passed the permission + compatibility + complete-assets gate. New characters added remains **0**; don't label an audit-only finding as an integration.
+
+
+## Eleventh-pass legacy mod source comparison — 2026-10-10
+
+### Candidate: `Zx-Akito/NarutoSenki`
+
+- Repository: https://github.com/Zx-Akito/NarutoSenki
+- Inspected branch: `master`; recursive tree contains 1,199 entries. The inspected source includes a monolithic `Classes/Characters.cpp` / `Classes/Characters.h` AI and character implementation, and resource paths under `Resources/Element/` rather than the current V2 candidate's `Resources/Unit/Ninja/` layout.
+- Confirmed source/resource leads include alternate forms and characters such as `SageJiraiya`, `ImmortalSasuke`, `RikudoNaruto`, and `MaskRaidon`. Examples inspected: `Resources/Element/SageJiraiya/SageJiraiya.{xml,plist,pvr.ccz}`, `Resources/Element/ImmortalSasuke/ImmortalSasuke.{xml,plist,pvr.ccz}`, `Resources/Element/RikudoNaruto/RikudoNaruto.{xml,plist,pvr.ccz}`, plus character-specific audio folders and skill clips. `Characters.cpp` has explicit AI dispatch branches for several of these names.
+- These are editable implementation/resource leads, stronger than release notes alone, but the source uses the older monolithic architecture and its resource/animation naming conventions differ from the pinned V2 candidate. Its files cannot be copied straight into V2 and expected to work. Each candidate needs a behavior/animation/skill/AI mapping and a full resource manifest before porting.
+- No declared repository license was present in the GitHub repository metadata. For the user's private experimentation, continue technical analysis rather than stopping research; keep this source marked as a legacy porting reference and do not imply public redistribution rights.
+- **Classification: SOURCE-INSPECTED / LEGACY-PORT CANDIDATE.** No character from this source has been integrated or counted as playable in the current build.
+
+### Cross-check: current V2 forks
+
+The inspected `Fansirsqi/NarutoSenki-V2`, `ZhReimu/NarutoSenki-V2`, `sansaks-jpg/NarutoSenki-V2`, and `Wilykun/NarutoSenki-V2` trees each expose the same 41 separate `Classes/Core/Shinobi/*.hpp` header count at their current default branches; the sample class-name tails are identical. They remain lineage/reference leads, not evidence of a new complete character package beyond the pinned candidate. Do not count duplicate forks as extra characters.
+
+### Follow-up: kill-feed portrait audit
+
+- The current battle HUD's `HudLayer::createReport()` requests `<Name>_rp.png` and `<Name>_rpf.png` frames, while the frames live in `Resources/Report.plist`. The audit script now checks both expected portrait frames per roster name and CI asserts that Kabuto and Kiba have both frames declared.
+- This is an atlas-name integrity check only. It does not prove the correct killer/victim names are passed, portraits are rendered in the right order, or the notification works during battle; those still need runtime tests.
