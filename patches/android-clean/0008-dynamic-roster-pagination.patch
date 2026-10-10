@@ -6,7 +6,9 @@ diff --git a/projects/NarutoSenki/lua/ui/SelectLayer.lua b/projects/NarutoSenki/
  
 -    self.pageNum = 3
 +    local charactersList = ns.CharactersLayout or {}
-+    self.pageNum = math.max(1, math.ceil(#charactersList / 21))
++    -- Keep page 5 reachable for the planned 70+ distinct-character roster.
++    -- It may be empty until a verified character batch is added there.
++    self.pageNum = math.max(5, math.ceil(#charactersList / 21))
  
      self._comLabel1 = nil
 @@ -120,13 +121,27 @@
