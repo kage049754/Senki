@@ -118,12 +118,15 @@ jobs:
           set -euo pipefail
           SELECT=/tmp/narutosenki-candidate/projects/NarutoSenki/lua/ui/SelectLayer.lua
           grep -F 'self.pageNum = math.max(1, math.ceil(#charactersList / 21))' "$SELECT"
+          grep -F 'ui.newImageMenuItem' "$SELECT"
           grep -F 'ui.newTTFLabelMenuItem' "$SELECT"
+          grep -F 'if i <= 3 then' "$SELECT"
+          grep -F 'self.currentPage = index' "$SELECT"
           if grep -F 'self.pageNum = 3' "$SELECT"; then
             echo "Fixed three-page roster cap remains in SelectLayer.lua."
             exit 1
           fi
-          echo "Roster page count is derived from the actual layout list; numbered page controls no longer depend on only three page sprites."
+          echo "Roster page count is dynamic. Pages 1-3 retain original image-based touch menu items; additional pages use numbered text controls."
 
       - name: Verify landscape and rotation-stability settings
         shell: bash
