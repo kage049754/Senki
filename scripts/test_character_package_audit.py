@@ -37,10 +37,12 @@ summary = re.search(r"Unique selectable names found: \*\*(\d+)\*\*", report)
 assert summary, "Roster count summary is missing"
 expected_count = int(summary.group(1))
 assert len(rows) == expected_count, f"Table has {len(rows)} rows; roster summary says {expected_count}"
-target = re.search(r"Distinct selectable-entry target: \*\*(\d+)/70 declared \((\d+) more entries", report)
+target = re.search(r"Selectable-entry target: \\*\\*(\\d+)/70 declared \\((\\d+) more entries", report)
 assert target, "70-entry roster target gap is missing"
 assert int(target.group(1)) == expected_count, "Roster target count disagrees with unique roster summary"
 assert int(target.group(2)) == max(0, 70 - expected_count), "Roster target shortfall is incorrect"
+assert "Distinct base-character count (excluding 6 known alternate forms): **37/70 (33 additional distinct characters needed" in report, "Distinct character count must exclude the six known alternate forms"
+assert "`SageJiraiya` → `Jiraiya`" in report and "`RockLee` → `Lee`" in report, "Known alternate-form mappings must be documented"
 assert "Gameplay-verified playable count: **not measured by this static audit.**" in report, (
     "Static audit must not imply gameplay-verified character count"
 )
