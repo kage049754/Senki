@@ -340,3 +340,7 @@ The user's explicit order is to add **distinct characters sourced from other Nar
 - Do not import external code/assets without permission. The current V2 source candidate has unresolved reuse rights; public visibility or a private fan build does not itself grant permission.
 - A character is not “added” because its name appears in the layout or an audit finds files. Require complete assets and gameplay integration, then selection/spawn/skills/AI/death-respawn/resource tests.
 - Keep page 4/5 expansion blocked behind the first verified page 1–3 batch. Do not pad page 4 with existing forms as if they were new mod characters.
+
+
+## Required portrait mapping for every roster addition
+Each new entry must have its own matching portrait/avatar rendered in its assigned character-selection slot. Track at minimum: page number, slot index, stable character ID, displayed name, portrait image file and atlas/frame key, source URL/repository, license or explicit permission evidence, and selection-screen test result. Also record supported skill/profile and kill/death portrait references. A missing, broken, unrelated, or placeholder portrait means the character is incomplete and cannot be counted as playable. Reference images used in discussion are not proof that assets have been imported. Existing entries must not be displaced without explicit approval; work on pages 1–3 first.
