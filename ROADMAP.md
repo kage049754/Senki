@@ -173,3 +173,34 @@ The newest artifact and CI evidence are tracked in `PROGRESS.md`; on-device visu
 - [ ] Locate editable source/resource implementations for the discovered character leads; the current release-host APK is server-side-dependent and not a direct offline source base.
 - [ ] Port one character at a time: class/behavior, XML/config, sprite/plist, animation/effects, audio, portrait/button, roster entry, and build/runtime tests.
 - [ ] Device-test four or more selection pages and verify that the new text page buttons preserve existing tap-once preview / tap-again confirm behavior.
+
+## Phase 5A — Character completeness, selection details, and combat event UI
+**Status: Planned requirements; individual new characters and kill/death UI are not yet verified as implemented**
+
+### Per-character integration checklist
+- [ ] Record source repository/revision and inspect the character's real code and asset set.
+- [ ] Add the correct selection portrait/avatar, display name, stable character ID, and roster entry.
+- [ ] Connect selection to the correct character implementation and preview; verify taps do not select a different entry.
+- [ ] Show the character's actual skill names/icons/descriptions in the skill-information view where supported.
+- [ ] Integrate sprite/model assets, sprite sheets/plists, animation definitions, and required idle/movement/attack/skill/hit/death states.
+- [ ] Connect basic attacks, movement, hitboxes, damage, cooldowns, character-specific skills, projectiles/summons, effects, and sounds where available.
+- [ ] Connect player controls and computer AI to the correct actions and ability logic.
+- [ ] Resolve all character IDs, resource paths, config, Lua/C++/XML/plist references, and dependencies; ensure no existing character is accidentally overwritten.
+- [ ] Build the unified APK and verify the expected assets and code are packaged.
+- [ ] Test selection, preview, skill information, movement, attacks, every skill, hit detection, damage, effects, AI, death/respawn, and relevant match modes.
+- [ ] Mark a character **playable-verified** only after gameplay checks; do not count a portrait-only or roster-only entry as complete.
+
+### Kill/death identity UI
+- [ ] Inspect existing battle events, damage/death callbacks, score counters, and game-over UI before designing a new overlay.
+- [ ] Where supported by the existing engine, show the actual killer's portrait/name and victim's portrait/name on a kill event (for example, "Naruto defeated Sasuke").
+- [ ] Show corresponding victim/killer identity on death feedback, and update existing kill/death counters consistently where the mode supports them.
+- [ ] Correctly attribute events to the real killer, including AI/ally interactions; don't infer the killer from the character selected at match start.
+- [ ] Preserve existing match flow and avoid duplicate overlays, stale portraits, or changes to damage/game-over behavior.
+- [ ] Verify the event UI in an actual match. CI can check compilation and packaged resources, but cannot by itself prove correct runtime attribution.
+
+### Selection pagination consistency
+- [ ] Preserve the original image-based page buttons 1, 2, and 3 and their original touch behavior.
+- [ ] Create matching image-based normal/selected states for pages 4, 5, and future pages; all must remain reliably tappable and visually consistent with the original interface.
+- [ ] Ensure each page displays the intended registered characters without changing their IDs or replacing existing fighters.
+- [ ] Test page navigation and character selection on an Android device. Dynamic page count alone does not add or complete characters.
+
