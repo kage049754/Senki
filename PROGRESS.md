@@ -541,3 +541,14 @@ GitHub API confirms `kage049754/Senki` is currently **public**. Therefore, the s
 - [x] APK artifact `naruto-senki-v2-candidate-debug-apk`, ID `11660823928`, size 83,302,910 bytes; SHA-256 `885fbdb5b403d5f14c9bc05274887efa317751c54aa7a8995adcec5fe47078c2`; expires 2026-10-24.
 - [x] Character audit artifact `senki-character-package-audit`, ID `11660579136`; expires 2026-10-24.
 - [ ] These checks still do not prove the forms launch or behave correctly in gameplay; physical-device/emulator verification is outstanding.
+
+
+## Roster-target accounting — run #126 (2026-10-10)
+
+- [x] Run **#126** succeeded on exact source SHA `9aa276227fa118e89246eef561aa318209d3c60a`: https://github.com/kage049754/Senki/actions/runs/38028647795
+- [x] Character audit now explicitly reports the gap to 70 declared entries and states that gameplay-verified count is not measured by static inventory.
+- [x] Audit table structure/row-count/target-gap checks passed; Android diagnostic candidate build, package/signature/ABI checks, and artifact upload passed.
+- [x] Audit artifact `senki-character-package-audit`, ID `11661505149`, SHA-256 `50d7cc2e83c2c99a8c093f758ef65b127cd1f2c0b2e562491aa10252b68b3465`; expires 2026-10-24.
+- [x] APK artifact `naruto-senki-v2-candidate-debug-apk`, ID `11660439960`, size 83,357,309 bytes; SHA-256 `865afbe5def724a1f0c0da37ad9aec845d12ccac4ed56a14411c156e6ce3b76c`; expires 2026-10-24.
+- [ ] Current declared selectable roster is **43 distinct names/forms** against the 70-entry target, leaving **27 additional distinct entries** before gameplay verification. The six added entries are existing native transformation forms, not newly ported external characters.
+- [ ] Continue investigating permission-cleared, editable source for new characters; source-level inventory is not a substitute for combat, AI, animation, and device tests.
