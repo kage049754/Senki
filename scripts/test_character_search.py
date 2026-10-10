@@ -25,6 +25,9 @@ required = [
     "senki_page\' .. tostring(i) .. \'_on.png",
     "self.pageNum = math.max(5, math.ceil(#charactersList / 21))",
     "self.currentPage = 1",
+    "More characters coming soon",
+    "local emptyReservedPage = query == \"\" and not pageHasMatches[self.currentPage]",
+    "self.searchEmptyLabel:setVisible(matchCount == 0 or emptyReservedPage)",
 ]
 missing = [fragment for fragment in required if fragment not in source]
 if missing:
