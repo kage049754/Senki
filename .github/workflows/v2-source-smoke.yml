@@ -100,6 +100,9 @@ jobs:
                   strings = [chunk.decode("utf-8", "ignore") for chunk in __import__("re").findall(rb"[\x20-\x7e]{5,}", data)]
                   print(f"Pack header {pack}: size={len(data)} head={data[:64].hex()} printable={printable!r}")
                   print(f"Pack strings {pack} (first 30):", strings[:30])
+                  targets = ("Kurenai", "Guy", "MightGuy", "Yamato", "Shizune", "Hashirama", "Rin", "Sakon", "Ukon", "Juzo", "Sasori", "Zetsu", "Iruka", "Minato")
+                  character_paths = [s for s in strings if any(t.lower() in s.lower() for t in targets) and (s.startswith("Element/") or s.startswith("Audio/"))]
+                  print(f"Character resource paths {pack}:", character_paths[:200])
               native = [p for p in entries if p.endswith("libnaruto_senki.so")]
               for lib in native:
                   with zipfile.ZipFile(apk) as zf:
