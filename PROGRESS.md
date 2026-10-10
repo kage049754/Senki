@@ -801,3 +801,11 @@ User requires every new character to have its own correct avatar/portrait in the
 - [x] The audit still finds selection-art gaps for six current entries, 42/43 skill-description label frames (Kabuto uses a 5/5 text fallback), and 43/43 XML-to-atlas name coverage. These are static checks, not runtime playability proof.
 - [ ] Next: investigate character-selection slot wiring and the Guardian/Han/Roshi lifecycle further, while keeping unlicensed external assets out of the build. Find a complete distinct-character source with explicit reuse terms or prepare a permission-safe implementation plan before roster integration.
 - [ ] No new distinct character has been integrated or gameplay-verified. Device testing remains separate from CI build/artifact verification.
+
+## Continued-work update — run #195 (2026-10-10)
+
+- [x] Run #195 reached terminal **SUCCESS** after inspecting and fixing run #194's Python syntax error: https://github.com/kage049754/Senki/actions/runs/38038427248
+- [x] Verified diagnostic APK artifact `naruto-senki-v2-candidate-debug-apk` (83,323,437 bytes; artifact ID `11665320110`; digest `sha256:04a1b487e0f779233a348f12311e85a649f92f67013fdc8b0031be4b4829d931`). This remains a diagnostic candidate, not device-tested gameplay.
+- [x] Downloaded and inspected audit artifact `senki-character-package-audit` (artifact ID `11665246523`; digest `sha256:1c8951908bb3ae559375b944201b659d0355399e1cd0a3695ba1eb802362435c`). The report now explicitly flags Guardian's source-level AI combat override while warning this is not proof of player control for Han/Roshi.
+- [x] Static inventory remains **43 selectable UI entries / 37 after excluding six known alternate forms**, 33 distinct characters short of 70; gameplay-verified count remains unmeasured.
+- [ ] Next: continue investigating distinct-character candidates with explicit reuse permission and compatible complete resources. Do not add Han/Roshi as selectable characters until a player-controlled Hero lifecycle and all selection, skill, portrait, effects/audio, AI, death/respawn, and gameplay checks are completed.
