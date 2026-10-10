@@ -98,7 +98,10 @@ with OUT.open("w", encoding="utf-8") as f:
     f.write("# Automated Character Package Inventory\n\n")
     f.write(f"- Candidate root: `{GAME}`\n")
     f.write(f"- Roster source: `lua/class/basic.lua`\n")
+    target_gap = max(0, 70 - len(names))
     f.write(f"- Unique selectable names found: **{len(names)}**\n")
+    f.write(f"- Distinct selectable-entry target: **{len(names)}/70 declared ({target_gap} more entries to reach 70; gameplay completeness is not implied).**\n")
+    f.write("- Gameplay-verified playable count: **not measured by this static audit.**\n")
     f.write(f"- Kill-feed portrait atlas coverage: **{portrait_complete}/{len(rows)} roster entries have both frames.**\n")
     f.write(f"- Skill-description label frame coverage: **{label_complete}/{len(rows)} roster entries have all five expected frames.**\n")
     if missing_label_names:
