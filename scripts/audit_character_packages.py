@@ -34,6 +34,17 @@ for item in re.finditer(r"'([^']*)'|\"([^\"]*)\"|(?<![\w])_None(?![\w])", body):
     if name and name.lower() != "none" and name not in names:
         names.append(name)
 
+# These six entries are existing forms of a base character, not six additional
+# distinct characters toward the 70+ distinct-character goal.
+KNOWN_FORM_BASES = {
+    "SageJiraiya": "Jiraiya",
+    "ImmortalSasuke": "Sasuke",
+    "SageNaruto": "Naruto",
+    "RikudoNaruto": "Naruto",
+    "RockLee": "Lee",
+    "Nagato": "Pain",
+}
+distinct_base_names = [name for name in names if name not in KNOWN_FORM_BASES]
 
 # Preserve empty slots so every portrait can be checked against its exact page/slot.
 slot_tokens = []
@@ -223,9 +234,12 @@ with OUT.open("w", encoding="utf-8") as f:
     f.write(f"- Candidate root: `{GAME}`\n")
     f.write(f"- Roster source: `lua/class/basic.lua`\n")
     target_gap = max(0, 70 - len(names))
+    distinct_gap = max(0, 70 - len(distinct_base_names))
     f.write(f"- Unique selectable names found: **{len(names)}**\n")
     f.write(f"- Explicit selection slots mapped: **{len(slot_tokens)}** across **{(len(slot_tokens) + 20) // 21} pages** (21 slots per page).\n")
-    f.write(f"- Distinct selectable-entry target: **{len(names)}/70 declared ({target_gap} more entries to reach 70; gameplay completeness is not implied).**\n")
+    f.write(f"- Selectable-entry target: **{len(names)}/70 declared ({target_gap} more entries to reach 70; alternate forms are included in this UI-entry count).**\\n")
+    f.write(f"- Distinct base-character count (excluding {len(KNOWN_FORM_BASES)} known alternate forms): **{len(distinct_base_names)}/70 ({distinct_gap} additional distinct characters needed; gameplay completeness is not implied).**\\n")
+    f.write("- Known alternate forms excluded from the distinct-character count: " + ", ".join(f"`{name}` → `{base}`" for name, base in KNOWN_FORM_BASES.items() if name in names) + ".\\n")
     f.write("- Gameplay-verified playable count: **not measured by this static audit.**\n")
     f.write(f"- HeroEnum entries absent from the visible selection list: **{len(unlisted_enum_names)} requiring manual classification** (not counted as playable).\n")
     if unlisted_enum_names:
