@@ -146,6 +146,56 @@ missing_label_names = [(row[0], row[4]) for row in rows if row[4] != "5/5"]
 selection_complete = sum(1 for row in rows if row[7] == "ALL_3_FRAMES_FOUND")
 missing_selection_names = [row[0] for row in rows if row[7] != "ALL_3_FRAMES_FOUND"]
 
+# Surface off-roster resource packages so future additions are researched instead
+# of being silently ignored or counted as playable from file presence alone.
+provider_path = GAME / "Classes/Core/Provider.hpp"
+provider_source = provider_path.read_text(encoding="utf-8", errors="replace") if provider_path.is_file() else ""
+select_atlas_path = GAME / "Resources/Select.plist"
+select_atlas_source = select_atlas_path.read_text(encoding="utf-8", errors="replace") if select_atlas_path.is_file() else ""
+report_atlas_path = GAME / "Resources/Report.plist"
+report_atlas_source = report_atlas_path.read_text(encoding="utf-8", errors="replace") if report_atlas_path.is_file() else ""
+off_roster_candidates = []
+for kind in ("Ninja", "Guardian"):
+    root = GAME / "Resources/Unit" / kind
+    if not root.is_dir():
+        continue
+    for unit_dir in sorted(p for p in root.iterdir() if p.is_dir()):
+        candidate = unit_dir.name
+        if candidate in names:
+            continue
+        candidate_xml = unit_dir / f"{candidate}.xml"
+        candidate_plist = unit_dir / f"{candidate}.plist"
+        if not candidate_xml.is_file() and not candidate_plist.is_file():
+            continue
+        candidate_plist_text = candidate_plist.read_text(encoding="utf-8", errors="replace") if candidate_plist.is_file() else ""
+        candidate_texture_match = re.search(r"<key>textureFileName</key>\s*<string>([^<]+)</string>", candidate_plist_text)
+        candidate_texture_ok = bool(candidate_texture_match and (unit_dir / candidate_texture_match.group(1)).is_file())
+        candidate_select_frames = sum(
+            1 for suffix in ("_select.png", "_half.png", "_font.png")
+            if f"{candidate}{suffix}".lower() in select_atlas_source.lower()
+        )
+        candidate_report_frames = sum(
+            1 for suffix in ("_rp.png", "_rpf.png")
+            if f"{candidate}{suffix}".lower() in report_atlas_source.lower()
+        )
+        candidate_skill_icons = sum(
+            1 for i in range(1, 6)
+            if f"{candidate}_skill{i}.png".lower() in resource_names
+            or f"{candidate}_skill{i}.png".lower() in plist_text
+        )
+        candidate_audio = [rel for _, rel in relative if under_dir(rel, "Audio", candidate)]
+        off_roster_candidates.append((
+            candidate, kind,
+            "XML+PLIST+TEXTURE" if candidate_xml.is_file() and candidate_plist.is_file() and candidate_texture_ok
+            else ("XML+PLIST" if candidate_xml.is_file() and candidate_plist.is_file() else "INCOMPLETE"),
+            "YES" if candidate in provider_source else "NO",
+            "YES" if candidate in enum_names else "NO",
+            f"{candidate_select_frames}/3",
+            f"{candidate_report_frames}/2",
+            f"{candidate_skill_icons}/5",
+            len(candidate_audio),
+        ))
+
 OUT.parent.mkdir(parents=True, exist_ok=True)
 with OUT.open("w", encoding="utf-8") as f:
     f.write("# Automated Character Package Inventory\n\n")
@@ -206,6 +256,15 @@ with OUT.open("w", encoding="utf-8") as f:
     f.write("|---|---|---|---:|---:|---:|---:|---|---|\n")
     for row in detail_rows:
         f.write("| " + " | ".join(fmt(x) for x in row) + " |\n")
+    f.write("\\n## Off-roster character package leads (not counted as playable)\\n\\n")
+    f.write("These entries have resource folders but are not in the visible character roster. File presence alone does not establish a selectable/playable character.\\n\\n")
+    f.write("| Candidate | Resource folder | Package completeness | Provider route | HeroEnum entry | Selection frames | Kill-feed frames | Skill icon frames | Exact-name audio files |\\n")
+    f.write("|---|---|---|---|---|---:|---:|---:|---:|\\n")
+    for row in off_roster_candidates:
+        f.write("| " + " | ".join(fmt(x) for x in row) + " |\\n")
+    if not off_roster_candidates:
+        f.write("| None found | — | — | — | — | — | — | — | — |\\n")
+    f.write("\\n")
     f.write("\n## Interpretation rules\n\n")
     f.write("- A `NO/MONOLITHIC` header result means the code may be in a shared C++ file; it is not proof the character is absent. Unit/resource counts are broad filename matches and do not prove the correct frames load.\n")
     f.write("- Missing skill icon or description-label frame names require manual investigation. A missing label can make the skill-view UI request a nonexistent frame; this audit does not test runtime handling or invent replacement descriptions. Some forms may share assets/classes and some skill UI may be assembled indirectly.\n")
