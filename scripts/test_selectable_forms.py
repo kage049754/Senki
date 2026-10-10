@@ -40,11 +40,19 @@ for name, (alias, display, skill_alias) in forms.items():
         raise SystemExit(f"Form is missing from roster: {name}")
     if not re.search(rf"mk_const\({re.escape(name)}\)", enum):
         raise SystemExit(f"Native enum missing for {name}")
-    resource = game / "Resources/Unit/Ninja" / name / f"{name}.xml"
-    atlas = game / "Resources/Unit/Ninja" / name / f"{name}.plist"
+    resource_dir = game / "Resources/Unit/Ninja" / name
+    resource = resource_dir / f"{name}.xml"
+    atlas = resource_dir / f"{name}.plist"
     header = game / "Classes/Core/Shinobi" / class_headers[name]
     if not resource.is_file() or not atlas.is_file() or not header.is_file():
         raise SystemExit(f"Missing character XML/plist/class header for {name}")
+    atlas_text = atlas.read_text(encoding="utf-8", errors="replace")
+    texture_match = re.search(r"<key>textureFileName</key>\\s*<string>([^<]+)</string>", atlas_text)
+    if not texture_match:
+        raise SystemExit(f"Cannot determine atlas texture filename from {atlas}")
+    texture = resource_dir / texture_match.group(1)
+    if not texture.is_file():
+        raise SystemExit(f"Missing texture referenced by {atlas}: {texture.name}")
     if f"HeroEnum::{name}" not in header.read_text(encoding="utf-8"):
         raise SystemExit(f"Native character class does not register {name}: {header}")
     if f"{name} = '{alias}'" not in select or f"{name} = '{display}'" not in select:
