@@ -226,3 +226,32 @@ When supported by existing battle hooks, implement kill/death identity notificat
 ## Current authoritative CI checkpoint — 2026-10-10
 
 The latest run is [38019992304](https://github.com/kage049754/Senki/actions/runs/38019992304), run #64, commit `e874e45d90f7e83082ff55b304bdb6f49f82fe65`. It completed **SUCCESS** and uploaded `naruto-senki-v2-candidate-debug-apk` (artifact ID `11657109973`, ZIP size 83,344,194 bytes, SHA-256 `07c153b870d5a56f704dec61907278689cbd8325140b8a533fba9059b4eb9618`, expires 2026-10-24). All build, Lua syntax, search/filter, dynamic pagination, landscape, signature, native ABI, and artifact-upload steps passed. This is a V2-derived diagnostic candidate, not a finished merged roster or phone-tested game. The custom menu/selection patch files are absent from the current tree; the workflow also explicitly excludes them. The 4+ page control visuals remain a known requirement gap because current pages 4+ are text menu items.
+
+
+## Mandatory per-character asset manifest and AI acceptance gate
+
+This gate applies to every new character or meaningful form across Phases 3–5. A name/portrait appearing in the roster is not character integration. For each candidate, inventory exact source paths and provenance for:
+
+- selection display name, portrait/avatar, button states, preview art/model/sprite, and select/confirm behavior;
+- skill-view data: real skill names, icons, descriptions, slot/order, and supported cooldown/cost fields;
+- sprite/model, atlas/texture/plist, idle, movement, attacks, cast/skill, hit/damage, knockback, death, transformation/ultimate and other used animation states;
+- voice clips/voice lines where supplied or required, and attack/skill/hit/summon/transformation sound effects;
+- skill implementations, projectiles/summons, effects, hitboxes, damage, cooldowns, costs and their resource/config references;
+- character class/script/config, stable unique IDs, resource paths and form/variant registration;
+- computer AI roster/selection/spawn registration, decision logic, movement, valid attacks/skills, range/state/cooldown handling, and supported random/team selection paths.
+
+For every category, record exact paths and mark FOUND, ADAPTED, CREATED, NOT APPLICABLE (explain why), MISSING, or BLOCKED. Search source and resource bundles; do not infer that an asset exists from a reference in code. Do not claim a character has voice assets if no clips were found. Do not use unrelated sounds or placeholder icons without recording the adaptation. Apply source/asset permission and provenance rules to every imported item.
+
+### Phase 3 exit-gate addition — asset/source completeness
+- [ ] Create a per-character manifest before porting any candidate.
+- [ ] Map selection portrait/avatar, name, preview, all skill UI fields, sprites/animations, audio/voice, skill/effect assets, configuration and AI-selection hooks.
+- [ ] Record all missing or not-applicable categories and the reason; resolve required gaps or keep the character explicitly partial/blocked.
+
+### Phase 4 implementation and test addition
+- [ ] Integrate the character into both player selection and existing computer AI selection/spawn paths supported by the game.
+- [ ] Confirm the AI can move and execute the character's valid basic attacks and every supported skill; test cooldown, range, state, transformation/summon, and resource edge cases.
+- [ ] Confirm skill-view names/icons/descriptions match the real combat implementation and every audio/resource reference resolves.
+- [ ] Test player and AI in battle, including preview, skills, sounds, hit detection/damage, death/respawn, and resource loading/release.
+- [ ] Record asset manifest and test evidence before marking a character VERIFIED.
+
+**Completion rule:** a character is fully complete only when all applicable categories are accounted for and the player and AI tests pass. If voice/audio or any other required category is unavailable, state the exact gap instead of reporting full completion. The current 37 source-level roster names are not evidence that 37 characters have complete assets or working AI.
