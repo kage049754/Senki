@@ -1,7 +1,7 @@
 diff --git a/projects/NarutoSenki/Classes/StartMenu.cpp b/projects/NarutoSenki/Classes/StartMenu.cpp
 --- a/projects/NarutoSenki/Classes/StartMenu.cpp
 +++ b/projects/NarutoSenki/Classes/StartMenu.cpp
-@@ -213,64 +213,15 @@
+@@ -213,64 +213,18 @@
  	addSprites("Result.plist");
  	addSprites("NamePlate.plist");
  
