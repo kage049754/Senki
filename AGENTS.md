@@ -70,7 +70,7 @@ If the current tool session cannot keep polling in the background, report the ex
 
 The user may choose to describe this as a fan-made/non-commercial project, but that does not waive external source licenses or third-party asset rights. The repository root LICENSE covers only original contributions made for this repository; it must not be presented as a license for external Naruto Senki source/assets. Keep unlicensed source/assets as reference-only until terms or permission are established. Read NOTICE.md and docs/V2_BUILD_AUDIT.md.
 
-The current Android workflow is explicitly a legacy prototype scaffold build, not a Naruto Senki V2 build. Never report its success as completion of the target game.
+The repository now has a `build-v2-candidate` workflow that clones the pinned `muhammadadilsyaputra08-alt/NarutoSenki-Custom` V2-derived source into a temporary runner workspace, applies source-controlled patches, builds a diagnostic APK, and verifies its package/artifact. This is evidence that the patched external candidate builds in CI, not that the full source has been vendored into this repository or that the APK is a finished release. The older legacy prototype scaffold, if built by a separate workflow, must not be reported as the target game.
 
 ## Documentation duties
 
