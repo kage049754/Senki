@@ -32,12 +32,12 @@
 **Exit checks:** one existing Senki source base is selected with evidence, build instructions, known blockers, and documented permission status.
 
 ## Phase 2 — Establish the chosen base in the central repository
-**Status: In progress — central CI run #98 succeeded from the pinned temporary clone; APK artifact is verified, but source vendoring, rights review, and phone validation remain open.**
+**Status: In progress — central CI run #101 succeeded with the skill-description fallback and verified APK artifact; source vendoring, rights review, and phone validation remain open.**
 
 - [ ] Bring or adapt the chosen base into `kage049754/Senki` using a documented, provenance-preserving method.
 - [ ] Preserve original engine/game loop and existing behavior wherever practical.
 - [ ] Resolve dependencies and Android build issues without replacing the engine with a new implementation.
-- [x] Establish central CI for the pinned Android-clean V2-derived candidate and verify its actual patched APK artifact (latest run #98: https://github.com/kage049754/Senki/actions/runs/38024493952; artifact ID 11659787739).
+- [x] Establish central CI for the pinned Android-clean V2-derived candidate and verify its actual patched APK artifact (latest run #101: https://github.com/kage049754/Senki/actions/runs/38024966443; artifact ID 11659082992; SHA-256 `2c71b02890ee86d87e7882d5365299cde4dc7ff2524cc89f88edb54be218870b`).
 - [ ] Vendor or otherwise preserve a reproducible, editable copy of the chosen source tree inside this repository; the current workflow still clones it into a temporary runner workspace.
 - [ ] Confirm install/launch separately on a device when possible.
 
@@ -290,3 +290,8 @@ Central CI run #98 passed source checks, character-audit report validation, Andr
 ### Skill-description missing-frame guard — 2026-10-10
 
 A safe UI fallback was added in central CI for characters whose expected `<Character>_labelN.png` frame is absent. The patch checks the sprite-frame cache and shows `Skill description unavailable` when missing. Run #101 passed, including the Android candidate build and artifact verification: https://github.com/kage049754/Senki/actions/runs/38024966443 (APK artifact ID 11659082992). This is a guard against a missing-frame UI failure, not a replacement for the missing skill-description art/content and not proof of runtime appearance. Physical-device testing remains open.
+
+
+### Skill-description fallback verification — 2026-10-10
+
+Run #101 passed the new static fallback regression test and the Android candidate build. The patched skill view now guards the expected description frame and uses a visible generic fallback if the frame is absent. Runtime rendering and actual device behavior remain unverified; this does not add a character or fabricate skill descriptions.
