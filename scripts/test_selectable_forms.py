@@ -61,7 +61,14 @@ for name, (alias, display, skill_alias) in forms.items():
         raise SystemExit(f"Missing selection art/display-name aliases for {name}")
     if f"{name} = '{skill_alias}'" not in skill:
         raise SystemExit(f"Missing skill UI alias for {name}")
-for fragment in ["skillUiAlias[self.selectHero] or self.selectHero", "local skillFrameOk, skillFrame = pcall(display.newSpriteFrame, imgPath)", 'text = "Skill description unavailable"']:
+for fragment in [
+    "skillUiAlias[self.selectHero] or self.selectHero",
+    "local skillLabelHero = skillUiAlias[self.selectHero] or self.selectHero",
+    "local skillFrameOk, skillFrame = pcall(display.newSpriteFrame, imgPath)",
+    'text = (skillDescriptionFallbacks[self.selectHero] and skillDescriptionFallbacks[self.selectHero][buttonType - 2]) or ("Skill " .. tostring(buttonType - 2) .. " description unavailable")',
+    "local skillDescriptionFallbacks = {",
+    '[4] = "Dead Soul Jutsu: revive and temporarily control a nearby eliminated hero."',
+]:
     if fragment not in skill:
         raise SystemExit(f"Missing safe skill-view handling: {fragment}")
 
