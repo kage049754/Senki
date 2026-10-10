@@ -90,3 +90,10 @@ No external source is approved for copying solely by virtue of appearing in the 
 - Source: legacy Cocos2d-x 2.2.2 / Visual Studio 2010, Windows-oriented package; no declared GitHub license.
 - Potential content: local PvP/co-op plan and UI/control customization changes.
 - Status: **PERMISSION_REQUIRED / REFERENCE_ONLY**; no code/assets approved for reuse and no Android build path verified.
+
+## Per-character asset-rights review — voices and full character packages
+
+For each character/form, record provenance and permission status separately for: selection portraits/avatars/button art; skill icons and UI artwork; sprites/models and animation sheets; skill/effect/projectile/summon assets; voice clips/voice lines; attack/skill/hit/death/transform/summon sound effects; music; and code/configuration. A permission status for source code must not be assumed to cover third-party character art, voices, sound effects, or music.
+
+The character manifest in `docs/CHARACTER_ROSTER.md` must link each asset category to its exact source path and source revision where known. Mark absent categories as missing/not-applicable with evidence, and mark unknown rights as `PERMISSION_REQUIRED` or `UNREVIEWED`; do not silently treat public visibility, an APK extraction, or attribution as redistribution permission. Technical private testing and source discovery may continue while permission is being investigated, but public release claims must not overstate the rights status.
+
