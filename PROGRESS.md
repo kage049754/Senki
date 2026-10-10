@@ -275,3 +275,13 @@ Sasori, Zetsu, Iruka, Sakon & Ukon, Juzo, Jonin Minato, Jirobo, Tayuya, and Anko
 4. Add automated checks for duplicate IDs, missing resource references, broken animation frames, incomplete skill UI and missing death/selection art.
 5. Commit the actual implementation, wait for the exact Actions run, inspect/fix failures, rerun until success, verify the APK artifact, then keep phone testing separate.
 6. Repeat for every additional candidate that can be genuinely integrated; target 70+ distinct playable characters without placeholders or false counts.
+
+
+## Update — Run #300 passed; source discovery continued (2026-10-10)
+
+- [Run #300 — SUCCESS](https://github.com/kage049754/Senki/actions/runs/38055895185), commit [de5f593](https://github.com/kage049754/Senki/commit/de5f593147fe176085544ae43fbd68cee00221ed).
+- The run completed the external-character priority/record-integrity check and technical candidate build. Verified artifacts: `senki-character-package-audit`, `naruto-senki-v2-candidate-debug-apk`, and `release-character-resource-inventory`. Artifacts are temporary Actions artifacts, not a public release.
+- The run did not import any of the six priority characters. No new playable character was established by this run.
+- Continued direct tree inspection of the editable public sources `Zx-Akito/NarutoSenki` and `muhammadadilsyaputra08-alt/NarutoSenki-Custom`. Neither tree exposed a complete source package for Might Guy, Kurenai, Yamato, Hashirama, Shizune, or Rin. The legacy tree contains Hashirama skill-art resource names, but that alone does not supply a full character implementation and dependencies.
+- Candidate count remains 37 distinct base characters / 44 selectable entries; external mod variant count remains 1 (Two Sage Toads, Choji-based); distinct external characters verified playable remains 0. Physical phone testing remains unverified.
+- Next action: broaden source discovery and/or implement an independently authored compatible character package through native game systems. Do not count resource names, a release-note entry, or a successful candidate build as a port.
