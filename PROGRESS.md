@@ -453,3 +453,12 @@ This is a successful **diagnostic candidate build**, not a final unified release
 - [x] APK artifact `naruto-senki-v2-candidate-debug-apk`, ID `11659729329`, size 83,306,812 bytes, SHA-256 `97e37a19c006b4c3af9a0fe301013b0f1cb94c2a20d99c02eefb5eb6e24b7d2e`, expires 2026-10-24.
 - [x] Audit artifact `senki-character-package-audit`, ID `11660148824`, SHA-256 `fe4b7314d5cce2e6e0ec77dc67f3bd0112416f65bd6c82a73c08efea5900a527`, expires 2026-10-24.
 - [ ] Runtime UI and device behavior remain unverified. A packaged-string check proves the fallback is in the APK, not that it renders correctly on all runtime states.
+
+
+## Additional mod research — Fukasaku/Shima lead (2026-10-10)
+
+- [x] Inspected `LeaderOnePro/NarutoSenki1.17Mod`: a packaged Android mod based on Senki 1.17 that replaces Choji with the two Great Sage Toads, Fukasaku/Shima.
+- [x] Confirmed the APK tree includes dedicated Fukasaku audio and element/resource folders, but not an editable source project in the inspected tree.
+- [x] Compared `wsnbbnbb/NarutoSenki1.17Mod`; it is a fork of the same repository with matching reported size/layout, not a separate source implementation.
+- [x] Recorded the lead as reference-only in `docs/MOD_RESEARCH.md`; no packaged APK assets were copied into Senki.
+- [ ] Find an editable, compatible Fukasaku/Shima implementation or a permission-cleared source; do not count it as integrated or playable in the V2 candidate.
