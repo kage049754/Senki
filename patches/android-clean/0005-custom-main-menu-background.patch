@@ -67,11 +67,14 @@ diff --git a/projects/NarutoSenki/Classes/StartMenu.cpp b/projects/NarutoSenki/C
 +	// game-mode carousel and all existing menu callbacks below.
 +	Sprite *background = Sprite::create("senki_menu.png");
 +	if (!background)
-+		return false;
-+	background->setAnchorPoint(Vec2(0, 0));
-+	background->setPosition(Vec2(0, 0));
-+	FULL_SCREEN_SPRITE(background);
-+	addChild(background, -10);
++		background = Sprite::create("red_bg.png");
++	if (background)
++	{
++		background->setAnchorPoint(Vec2(0, 0));
++		background->setPosition(Vec2(0, 0));
++		FULL_SCREEN_SPRITE(background);
++		addChild(background, -10);
++	}
  
  	// produce the menu button
  	auto gamemode_btn = MenuButton::create("menu01.png");
