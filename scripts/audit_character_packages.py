@@ -65,6 +65,7 @@ def fmt(value):
 
 rows = []
 detail_rows = []
+missing_frame_ref_details: dict[str, list[str]] = {}
 for name in names:
     low = name.lower()
     header = any(rel.lower() == f"classes/core/shinobi/{low}.hpp" for _, rel in relative)
@@ -126,6 +127,9 @@ for name in names:
     plist_frames = set(re.findall(r"<key>([^<]+)</key>\s*<dict>", plist_exact_text, re.IGNORECASE)) if plist_exact else set()
     missing_frame_refs = sorted(xml_frames - plist_frames)
     frame_coverage = f"{len(xml_frames - set(missing_frame_refs))}/{len(xml_frames)}" if xml_frames else "NO_XML_FRAMES"
+    if missing_frame_refs:
+        # Keep the full names in the report so likely copy/paste and alias issues can be triaged.
+        missing_frame_ref_details[name] = missing_frame_refs
     detail_rows.append((name, animation_status, atlas_status, frame_coverage, f"{len(missing_frame_refs)} missing frame refs", f"{audio_events} audio event refs", f"{len(audio)} exact-name audio files", "YES" if enum_refs else "NO", "YES" if ai_refs else "MANUAL"))
 
 portrait_complete = sum(1 for row in rows if row[8] == "2/2")
@@ -154,6 +158,11 @@ with OUT.open("w", encoding="utf-8") as f:
     f.write(f"- Animation XML frame-reference coverage: **{frame_complete}/{len(detail_rows)} roster entries have no missing XML-to-atlas frame names.**\n")
     if missing_frame_ref_rows:
         f.write("- XML-to-atlas frame-reference exceptions: " + ", ".join(f"`{name}` ({count})" for name, count in missing_frame_ref_rows) + ".\n")
+        f.write("\n### Missing XML frame names (first 12 per entry)\n\n")
+        for name, missing_names in missing_frame_ref_details.items():
+            shown = missing_names[:12]
+            suffix = f"; plus {len(missing_names) - len(shown)} more" if len(missing_names) > len(shown) else ""
+            f.write(f"- `{name}`: " + ", ".join(f"`{frame}`" for frame in shown) + suffix + ".\n")
     else:
         f.write("- XML-to-atlas frame-reference exceptions: none detected by name comparison.\n")
     if skill_ui_aliases:
