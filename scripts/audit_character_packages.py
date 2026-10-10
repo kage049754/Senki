@@ -64,6 +64,7 @@ def fmt(value):
     return str(value).replace("|", "\\|").replace("\n", " ")
 
 rows = []
+detail_rows = []
 for name in names:
     low = name.lower()
     header = any(rel.lower() == f"classes/core/shinobi/{low}.hpp" for _, rel in relative)
@@ -104,6 +105,24 @@ for name in names:
     else:
         selection = "NOT_FOUND_MANUAL_CHECK"
     rows.append((name, "YES" if header else "NO/MONOLITHIC", "ENUM_REFERENCE_FOUND" if enum_refs else "NO_ENUM_REFERENCE_FOUND", f"{skill_icons_found}/5", f"{skill_labels_found}/5", len(unit), len(audio), selection, f"{report_frames_found}/2", "AI_REGISTRATION_REFERENCE_FOUND" if ai_refs else "MANUAL_AI_AUDIT_REQUIRED"))
+    # Exact per-character package checks: animation/config XML, sprite atlas,
+    # referenced texture, and audio events declared by the XML.
+    unit_dir = GAME / "Resources/Unit/Ninja" / name
+    unit_xml = unit_dir / f"{name}.xml"
+    unit_plist = unit_dir / f"{name}.plist"
+    xml_text = unit_xml.read_text(encoding="utf-8", errors="replace") if unit_xml.is_file() else ""
+    plist_exact = unit_plist.is_file()
+    texture_name = None
+    if plist_exact:
+        plist_exact_text = unit_plist.read_text(encoding="utf-8", errors="replace")
+        texture_match = re.search(r"<key>textureFileName</key>\\s*<string>([^<]+)</string>", plist_exact_text)
+        if texture_match:
+            texture_name = texture_match.group(1)
+    texture_ok = bool(texture_name and (unit_dir / texture_name).is_file())
+    animation_status = "XML_FOUND" if unit_xml.is_file() else "XML_MISSING"
+    atlas_status = "PLIST+TEXTURE_FOUND" if plist_exact and texture_ok else ("PLIST_FOUND_TEXTURE_MISSING" if plist_exact else "PLIST_MISSING")
+    audio_events = len(re.findall(r"<e\\s+type=['\\\"]setSound['\\\"]>\\s*Audio/[^<]+", xml_text, re.IGNORECASE))
+    detail_rows.append((name, animation_status, atlas_status, f"{audio_events} audio event refs", f"{len(audio)} exact-name audio files", "YES" if enum_refs else "NO", "YES" if ai_refs else "MANUAL"))
 
 portrait_complete = sum(1 for row in rows if row[8] == "2/2")
 missing_portrait_names = [row[0] for row in rows if row[8] != "2/2"]
@@ -137,6 +156,11 @@ with OUT.open("w", encoding="utf-8") as f:
     f.write("| Character | Separate C++ header | Native enum reference | Skill icon frames | Skill description frames | Unit/resource file matches | Exact-name audio files | Selection art check | Kill-feed portrait frames | AI registration clue |\n")
     f.write("|---|---|---|---|---|---:|---:|---|---|---|\n")
     for row in rows:
+        f.write("| " + " | ".join(fmt(x) for x in row) + " |\n")
+    f.write("\n## Detailed animation, atlas, audio, and AI checks\n\n")
+    f.write("| Character | Animation/config XML | Sprite atlas + texture | Audio event references in XML | Exact-name audio files | Enum reference | AI registration clue |\n")
+    f.write("|---|---|---|---:|---:|---|---|\n")
+    for row in detail_rows:
         f.write("| " + " | ".join(fmt(x) for x in row) + " |\n")
     f.write("\n## Interpretation rules\n\n")
     f.write("- A `NO/MONOLITHIC` header result means the code may be in a shared C++ file; it is not proof the character is absent. Unit/resource counts are broad filename matches and do not prove the correct frames load.\n")
