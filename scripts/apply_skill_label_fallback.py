@@ -41,6 +41,25 @@ if old_label_path in source:
 elif "local skillLabelHero = skillUiAlias[self.selectHero] or self.selectHero" not in source:
     raise SystemExit("Cannot map form skill-description labels to base art.")
 
+# Kabuto's redesigned package has complete skill logic/XML but no five *_labelN.png frames.
+# Keep the skill viewer informative instead of showing only a generic missing-resource message.
+if "local skillDescriptionFallbacks = {" not in source:
+    old_table_anchor = "local transformList = {"
+    new_table_anchor = """local skillDescriptionFallbacks = {
+    Kabuto = {
+        [1] = "Chakra Scalpel Activation: boosts damage and heals on hits for 6 seconds.",
+        [2] = "Nerve Strike Dash: dash forward with a slash trail that slows enemies.",
+        [3] = "Dead Soul Vault: teleport-strike the target area with a multi-hit attack.",
+        [4] = "Dead Soul Jutsu: revive and temporarily control a nearby eliminated hero.",
+        [5] = "Nehan Shojo: Final Slash: stun nearby enemies, then deal heavy true damage to the target."
+    }
+}
+
+local transformList = {"""
+    if source.count(old_table_anchor) != 1:
+        raise SystemExit("Cannot insert character-specific skill-description fallback table.")
+    source = source.replace(old_table_anchor, new_table_anchor, 1)
+
 old_cleanup = "    if self._skillExplain then self._skillExplain:removeFromParent() end"
 new_cleanup = """    if self._skillExplainClipper then
         self._skillExplainClipper:removeFromParent()
@@ -65,7 +84,7 @@ new_sprite = """    -- A missing description frame must not break the skill-deta
         self._skillExplain = display.newSprite('#' .. imgPath)
     else
         self._skillExplain = ui.newTTFLabel({
-            text = "Skill description unavailable",
+            text = (skillDescriptionFallbacks[self.selectHero] and skillDescriptionFallbacks[self.selectHero][buttonType - 2]) or ("Skill " .. tostring(buttonType - 2) .. " description unavailable"),
             font = ui.DEFAULT_TTF_FONT,
             size = 16,
             color = ccc3(255, 255, 255)
