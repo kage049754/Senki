@@ -89,6 +89,23 @@ jobs:
               print("Character-name entries:", matches[:100])
               containers = [p for p in entries if p.lower().endswith((".obb", ".pak", ".dat", ".bin", ".zip", ".car", ".ccz", ".pvr.ccz"))]
               print("Likely resource containers:", containers[:80])
+              if "assets/nskp_packs.txt" in entries:
+                  with zipfile.ZipFile(apk) as zf:
+                      pack_list = zf.read("assets/nskp_packs.txt")
+                  print("nskp_packs.txt (first 6000 chars):", pack_list[:6000].decode("utf-8", "replace"))
+              for pack in [p for p in entries if p.startswith("assets/") and p.endswith(".nskp")]:
+                  with zipfile.ZipFile(apk) as zf:
+                      data = zf.read(pack)
+                  printable = "".join(chr(b) if 32 <= b < 127 else "." for b in data[:96])
+                  strings = [chunk.decode("utf-8", "ignore") for chunk in __import__("re").findall(rb"[\x20-\x7e]{5,}", data)]
+                  print(f"Pack header {pack}: size={len(data)} head={data[:64].hex()} printable={printable!r}")
+                  print(f"Pack strings {pack} (first 30):", strings[:30])
+              native = [p for p in entries if p.endswith("libnaruto_senki.so")]
+              for lib in native:
+                  with zipfile.ZipFile(apk) as zf:
+                      data = zf.read(lib)
+                  strings = [chunk.decode("utf-8", "ignore") for chunk in __import__("re").findall(rb"[\x20-\x7e]{5,}", data)]
+                  print(f"Native library clues {lib}:", [s for s in strings if any(k in s.lower() for k in ("nskp", "pack", "encrypt", "decrypt", "game_00", "resource"))][:80])
           PY
           echo "Release APK inventory complete; source-style package availability will be checked before importing."
 
