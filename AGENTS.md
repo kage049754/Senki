@@ -158,3 +158,16 @@ For every new or ported fighter, create a per-character manifest and audit the s
 Do not copy an asset merely because it exists in a public repository or APK. Track source URL, upstream/fork, exact path/version, provenance and permission status. Missing voice lines or other source assets do not automatically forbid technical testing, but they must remain an explicit incomplete item. Never invent an asset or imply it was included from the source when it was not.
 
 A fighter may be marked PLAYABLE-VERIFIED only when its player path, combat implementation, all applicable resources and supported AI path have passed their relevant tests. Keep separate labels for source-discovered, source-inspected, ported, build-verified, and gameplay-verified.
+
+
+## User-mandated roster order (2026-10-10 — follow before page 4/5)
+
+The next roster task is **distinct new characters from other Naruto Senki mods in available slots on pages 1, 2, and 3 first**. Do not proceed to pages 4 or 5 as the main roster-expansion task until this first batch has been researched and handled.
+
+1. Inspect the real roster order, slot count, selection layout, and each candidate's source; preserve the original page 1–3 image buttons, touch behavior, and original backgrounds.
+2. Prioritize genuinely distinct characters from other Senki mods—not only transformations/forms of Naruto, Pain, Sasuke, Rock Lee, or Jiraiya. Record which exact slots change; do not silently replace originals.
+3. Check provenance, compatibility, and code/asset permissions before reuse. If permission is unresolved, keep the character as a research lead and do not import its assets.
+4. Each accepted character must have a complete package: display name/selection portrait, model or sprite sheets and animation data, attacks/movement/skills, skill names/icons/descriptions, effects, available audio/voice, AI and player controls, and battle/kill/death/profile references. Verify selection, spawn, skills, death/respawn, and resources.
+5. Do not count forms, placeholders, roster labels, portraits alone, or a passing static audit as newly playable characters.
+6. Only after a first verified batch is present on pages 1–3 should page 4 then page 5 be expanded with additional distinct characters. Generated page-button art is only navigation; it is not roster progress.
+7. Update README, ROADMAP, docs/CHARACTER_ROSTER.md, docs/MOD_RESEARCH.md, and PROGRESS.md when actual evidence changes. Never describe a candidate build as a final release or phone-tested APK.
