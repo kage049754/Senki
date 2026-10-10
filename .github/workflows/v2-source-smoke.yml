@@ -150,6 +150,14 @@ jobs:
           python3 "$GITHUB_WORKSPACE/scripts/test_two_sage_toads.py" "$GAME"
           echo "The additive Two Sage Toads integration is source-checked; runtime gameplay still requires device validation."
 
+      - name: Inspect legacy release APK resource layout
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 "$GITHUB_WORKSPACE/scripts/inspect_release_apk_assets.py" \
+            /tmp/narutosenki-release-apks/NarutoSenki-v1.25-beta-1.apk \
+            /tmp/narutosenki-release-apks/NarutoSenki-v1.26-beta-1.apk
+
       - name: Import v1.25/v1.26 release characters into the V2 candidate
         shell: bash
         run: |
