@@ -231,3 +231,13 @@ The repo previously received a native Kotlin/Canvas prototype scaffold. It is no
 - [x] Updated the central candidate build workflow to assert the manifest retains `sensorLandscape` and `orientation|screenSize`, then inspect the compiled APK manifest for the sensor-landscape value.
 - [ ] Current verification run `38015169691` is in progress on commit `8d31f68ae4912078266a207ade5bbe05cfc4b8b8`. The previous run for the manifest patch alone was cancelled by the newer workflow commit before completing; wait for the latest run and inspect any failure logs before counting this change as built.
 - [ ] Device rotation/touch/gameplay still requires phone testing. CI checks the compiled manifest, not real hardware behavior.
+
+
+## Blank-screen fallback hardening — 2026-10-10
+
+- [x] Reviewed custom loading, menu, and character-selection background patches after the earlier blank-after-intro report.
+- [x] Updated the loading and main-menu C++ patches to fall back to the original `red_bg.png` if the custom PNG cannot be loaded, rather than returning `false` and aborting scene initialization.
+- [x] Updated the Lua character-selection patch to fall back to `blue_bg.png` and guard the background sprite before applying layout calls.
+- [x] Corrected unified-diff hunk counts after editing the patch files; the latest workflow's “Apply central Senki patches” step passed, confirming the patch series applies cleanly to the pinned source.
+- [ ] Latest run `38015483353` is still in progress. Wait for the final APK build, landscape manifest verification, and artifact upload before marking this fallback hardening as fully build-verified.
+- [ ] This improves failure tolerance but does not prove the user's earlier blank-screen issue is fixed on-device; real launch and menu navigation still need phone testing.
