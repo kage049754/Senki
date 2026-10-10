@@ -96,7 +96,7 @@ assert not missing_atlas, (
     "The pinned candidate's roster has missing/unresolved sprite textures: "
     + ", ".join(missing_atlas)
 )
-frame_coverage_rows = [row for row in detail_rows if re.fullmatch(r"\\d+/\\d+", row[3])]
+frame_coverage_rows = [row for row in detail_rows if re.fullmatch(r"\d+/\d+", row[3])]
 assert len(frame_coverage_rows) == expected_count, (
     "Every roster entry must report XML-to-atlas frame reference coverage"
 )
@@ -104,7 +104,7 @@ assert all(int(row[3].split("/")[1]) > 0 for row in frame_coverage_rows), (
     "Every roster entry must contain at least one XML frame reference"
 )
 missing_frame_ref_summary = re.search(
-    r"Animation XML frame-reference coverage: \\*\\*(\\d+)/(\\d+) roster entries",
+    r"Animation XML frame-reference coverage: \*\*(\d+)/(\d+) roster entries",
     report,
 )
 assert missing_frame_ref_summary, "XML-to-atlas frame-reference coverage summary is missing"
