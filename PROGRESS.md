@@ -611,3 +611,15 @@ GitHub API confirms `kage049754/Senki` is currently **public**. Therefore, the s
 - [x] APK artifact `naruto-senki-v2-candidate-debug-apk`, ID `11661692440`, size 83,322,088 bytes, SHA-256 `3342575c632dee2a795af2207d510a97c3f70f6952eb68a536d31f6fa070bb13`; expires 2026-10-24.
 - [x] Character audit artifact `senki-character-package-audit`, ID `11662017164`, SHA-256 `c859375f2ec3f74ba1b7ba34a630687c178808ec670574c58b903273b56bc512`.
 - [ ] Runtime visual/gameplay testing is still outstanding; source and APK byte checks do not replace an Android install and play test.
+
+
+## Latest form skill-label alias verification — run #143 (2026-10-10)
+
+- [x] Updated the actual candidate patch so existing forms use their base character's skill-description label frames, not only their base skill icons/full-screen art. This resolves the false missing-label issue for `RockLee` and other aliased forms.
+- [x] GitHub Actions run **#143** succeeded on exact workflow SHA `40aea9917261a9355c76d1f6b4b5496c036593be`: https://github.com/kage049754/Senki/actions/runs/38030471776
+- [x] Lua syntax, character package audit, alias-aware audit regression, Android diagnostic build, packaged skill fallback, APK signature/native ABI checks, and artifact upload passed.
+- [x] Audit result remains **42/43** entries with all five expected skill-description frames after aliases. Only `Kabuto` lacks all five label frames (0/5); the generic visible fallback is included. This is a resource audit, not proof of runtime skill-view behavior.
+- [x] APK artifact `naruto-senki-v2-candidate-debug-apk`, ID `11661893046`, size 83,325,632 bytes, SHA-256 `b7c57d7b60880c85109ae3dd0bf79fc78daa6a367589aa9a74954bbbf5a22145`; expires 2026-10-24.
+- [x] Character audit artifact `senki-character-package-audit`, ID `11661603360`, SHA-256 `3397364510d2db1177a5ae6bc7f442fa329b10afd632a989c83e188f18799943`; expires 2026-10-24.
+- [ ] Physical-device verification of skill-label rendering, tooltip switching, page 4/5 controls, and original backgrounds remains open.
+- [ ] The roster remains 43 distinct selection names. No new character was added by this fix; gameplay-verified playable count is still unmeasured.
