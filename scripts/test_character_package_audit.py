@@ -41,7 +41,7 @@ target = re.search(r"Selectable-entry target: \*\*(\d+)/70 declared \((\d+) more
 assert target, "70-entry roster target gap is missing"
 assert int(target.group(1)) == expected_count, "Roster target count disagrees with unique roster summary"
 assert int(target.group(2)) == max(0, 70 - expected_count), "Roster target shortfall is incorrect"
-assert "Distinct base-character count (excluding 6 known alternate forms): **37/70 (33 additional distinct characters needed" in report, "Distinct character count must exclude the six known alternate forms"
+assert "Distinct base-character count (excluding 6 known alternate forms): **38/70 (32 additional distinct characters needed" in report, "Distinct character count must exclude the six known alternate forms and include the new Two Sage Toads slot"
 assert "`SageJiraiya` → `Jiraiya`" in report and "`RockLee` → `Lee`" in report, "Known alternate-form mappings must be documented"
 assert "Gameplay-verified playable count: **not measured by this static audit.**" in report, (
     "Static audit must not imply gameplay-verified character count"
