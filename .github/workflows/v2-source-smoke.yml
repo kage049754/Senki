@@ -133,7 +133,6 @@ jobs:
           SELECT=/tmp/narutosenki-candidate/projects/NarutoSenki/lua/ui/SelectLayer.lua
           grep -F 'self.pageNum = math.max(1, math.ceil(#charactersList / 21))' "$SELECT"
           grep -F 'ui.newImageMenuItem' "$SELECT"
-          grep -F 'ui.newImageMenuItem' "$SELECT"
           grep -F 'if i <= 3 then' "$SELECT"
           grep -F "senki_page' .. tostring(i) .. '_off.png" "$SELECT"
           grep -F "senki_page' .. tostring(i) .. '_on.png" "$SELECT"
@@ -243,7 +242,11 @@ jobs:
           unzip -l "$APK" | grep -F "assets/senki_page4_on.png"
           unzip -l "$APK" | grep -F "assets/senki_page5_off.png"
           unzip -l "$APK" | grep -F "assets/senki_page5_on.png"
-          if unzip -Z1 "$APK" | grep -E 'assets/senki_(menu|select)[.]png
+          if unzip -Z1 "$APK" | grep -E 'assets/senki_(menu|select)[.]png$'; then
+            echo "Retired custom menu/selection background replacement is still packaged."
+            exit 1
+          fi
+          echo "Candidate APK contains the loading art and generated image-based page controls; retired custom menu/selection replacements are absent."
 
       - name: Verify patched package identity in APK
         if: success()
