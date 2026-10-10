@@ -378,3 +378,13 @@ Classify every category as PRESENT-AND-INSPECTED, MISSING, INCOMPATIBLE, NOT-APP
 - **Next action:** locate a permission-cleared source for the same character(s), or obtain explicit permission; then build a per-character manifest and port one complete character at a time. Do not start with the old monolithic AI branch as if it were a drop-in module.
 
 This inspection identifies a new *source lead*, not a new in-game character. Current roster counts remain unchanged.
+
+
+## Follow-up research: complete-package audit and permission gate — 2026-10-10
+
+- The current pinned candidate's `SkillLayer.lua` requests skill icon frames named `<Character>_skill1.png` through `_skill5.png` and skill-description frames `<Character>_label1.png` through `_label5.png`. This provides a more actionable inventory than merely checking for a file called `<Character>_skill.plist`.
+- The CI audit script was expanded to check those exact expected frame names in loose resources and plist frame declarations, alongside native enum references, selection frames, Unit paths, audio path matches, and detectable AI registration patterns.
+- The latest audit found the expected 5/5 skill icon and 5/5 label frames for Naruto, Sakura, Sai, Kakashi, Shikamaru, Ino, Choji, Asuma, Hinata and others in the candidate tree. These are **name-presence checks only**; they do not prove the images are correct, text is readable, skill names match behavior, or audio triggers at the right events.
+- Candidate audit also flags exceptions (for example Kiba has only 3/5 name-matched Unit/resource paths), which are investigation targets, not proof of a broken character.
+- Research source: [LeaderOnePro/NarutoSenki](https://github.com/LeaderOnePro/NarutoSenki) is an older Cocos2d-x 2.2.2 source project; it is not a drop-in extension for this project's modular V2 candidate. Public access and a source tree are not a redistribution license.
+- No additional character has passed the permission + compatibility + complete-assets gate. New characters added remains **0**; don't label an audit-only finding as an integration.
