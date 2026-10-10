@@ -94,6 +94,25 @@ for stem in re.findall(r"Audio/TwoSageToads/([^<]+?\.ogg)", xml_text):
             if fallback_path.is_file():
                 shutil.copy2(fallback_path, audio_dir / stem)
 
+# Add UI-atlas aliases for selection, small portraits, and kill/death feeds. The
+# aliases point at existing atlas rectangles; no unrelated fighter artwork is replaced.
+for plist_path in resources.glob("*.plist"):
+    try:
+        data = plistlib.loads(plist_path.read_bytes())
+    except Exception:
+        continue
+    frames = data.get("frames")
+    if not isinstance(frames, dict):
+        continue
+    additions = {}
+    for frame_name, metadata in list(frames.items()):
+        if frame_name.startswith("Choji_"):
+            alias = frame_name.replace("Choji_", "TwoSageToads_", 1)
+            additions.setdefault(alias, metadata)
+    if additions:
+        frames.update({name: meta for name, meta in additions.items() if name not in frames})
+        plist_path.write_bytes(plistlib.dumps(data, fmt=plistlib.FMT_XML, sort_keys=False))
+
 # Duplicate the native AI/combat class so the roster ID is not silently rewritten to Choji.
 choji_header = game / "Classes/Core/Shinobi/Choji.hpp"
 new_header = game / "Classes/Core/Shinobi/TwoSageToads.hpp"
@@ -156,6 +175,34 @@ for table_name, entries in [
         if end < 0:
             raise SystemExit(f"Could not find end of {table_name}")
         select_text = select_text[:end] + "\n" + entries.rstrip("\n") + select_text[end:]
+# Route the selected portrait to the aliased frame and render a true display name.
+old_half = "        self._heroHalfImage = display.newSprite(charName .. '_half.png', 10, 10)"
+new_half = "        local selectAssetName = selectionAssetAlias[btn._charName] or btn._charName\n        self._heroHalfImage = display.newSprite('#' .. selectAssetName .. '_half.png', 10, 10)"
+if old_half in select_text:
+    select_text = select_text.replace(old_half, new_half, 1)
+elif new_half not in select_text:
+    raise SystemExit("Could not route selected character portrait to aliased selection art")
+old_name = """        self._heroName = display.newSprite(charName .. '_font.png', 100, 20)
+        self._heroName:setAnchorPoint(CCPoint(0.5, 0))
+        self:addChild(self._heroName, 5)"""
+new_name = """        local displayName = selectionDisplayName[btn._charName]
+        if displayName then
+            self._heroName = ui.newTTFLabel({
+                text = displayName,
+                font = ui.DEFAULT_TTF_FONT,
+                size = 16,
+                color = ccc3(255, 255, 255)
+            })
+            self._heroName:setPosition(100, 20)
+        else
+            self._heroName = display.newSprite(charName .. '_font.png', 100, 20)
+        end
+        self._heroName:setAnchorPoint(CCPoint(0.5, 0))
+        self:addChild(self._heroName, 5)"""
+if old_name in select_text:
+    select_text = select_text.replace(old_name, new_name, 1)
+elif new_name not in select_text:
+    raise SystemExit("Could not render external character display name")
 select_path.write_text(select_text, encoding="utf-8")
 
 skill_path = game / "lua/ui/SkillLayer.lua"
