@@ -32,12 +32,12 @@
 **Exit checks:** one existing Senki source base is selected with evidence, build instructions, known blockers, and documented permission status.
 
 ## Phase 2 — Establish the chosen base in the central repository
-**Status: In progress — the patched V2-derived source builds in central CI from a pinned temporary clone; full source vendoring and phone validation remain open.**
+**Status: In progress — central CI run #98 succeeded from the pinned temporary clone; APK artifact is verified, but source vendoring, rights review, and phone validation remain open.**
 
 - [ ] Bring or adapt the chosen base into `kage049754/Senki` using a documented, provenance-preserving method.
 - [ ] Preserve original engine/game loop and existing behavior wherever practical.
 - [ ] Resolve dependencies and Android build issues without replacing the engine with a new implementation.
-- [x] Establish central CI for the pinned Android-clean V2-derived candidate and verify its actual patched APK artifact (run 38015483353).
+- [x] Establish central CI for the pinned Android-clean V2-derived candidate and verify its actual patched APK artifact (latest run #98: https://github.com/kage049754/Senki/actions/runs/38024493952; artifact ID 11659787739).
 - [ ] Vendor or otherwise preserve a reproducible, editable copy of the chosen source tree inside this repository; the current workflow still clones it into a temporary runner workspace.
 - [ ] Confirm install/launch separately on a device when possible.
 
@@ -280,3 +280,8 @@ Maintain a per-character manifest in `docs/CHARACTER_ROSTER.md`. Mark unavailabl
 - [x] The audit checks the current roster source, per-character C++ header, Unit resource paths, audio folder paths, packed selection art frame names, and detectable AI registration.
 - [ ] This audit is not gameplay verification; it cannot confirm skill viewer contents, exact voice/SFX triggers, animation correctness, resource runtime stability, or AI combat quality.
 - [ ] No new character is added by this tooling. The first character port remains gated on finding a compatible, permission-cleared complete package or documented approval for the code and each relevant asset category.
+
+
+### Latest verification note — 2026-10-10
+
+Central CI run #98 passed source checks, character-audit report validation, Android diagnostic build, APK identity/search/signature/ABI checks, and artifact upload. This verifies the pinned patched candidate can be packaged by CI. It does **not** establish that the APK installs or plays correctly on the user's phone, that every character is complete, or that external source/assets are cleared for redistribution. Kabuto's expected skill-description labels remain a manual UI issue; no character was added in this pass.
