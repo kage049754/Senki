@@ -156,3 +156,10 @@ This removes some packaging-related uncertainty, but the APK still must be insta
 - Artifact: `naruto-senki-v2-candidate-debug-apk`, ID `11655967631`, 83,749,269-byte ZIP, SHA-256 `3fe28a0f6f3282c2674e3ea8ecc9ca5bcaae6b440bd15aa708ac0f7a25cd06c6`, expires 2026-10-24.
 
 The source roster inventory contains 37 unique selectable names; that is a source-level count, not a verified-playable count. Physical-device install, startup, character selection, and battle checks remain outstanding.
+
+
+### Roster scalability groundwork — 2026-10-10
+
+The existing character-selection screen no longer hardcodes exactly three pages. Patch `0008-dynamic-roster-pagination.patch` calculates the page count from the current character layout and uses numbered text page controls instead of requiring only three page-image assets. Lua syntax checks and the Android build passed in [run 38016671857](https://github.com/kage049754/Senki/actions/runs/38016671857); artifact ID `11655938596`.
+
+This is groundwork for the user's 70+ roster goal, **not** a claim that 70 characters are already present. The inspected base currently lists 37 unique selectable names. The new pagination still needs phone testing with 4+ pages, and characters must be added and verified individually.
