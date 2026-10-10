@@ -311,3 +311,19 @@ The pinned V2 candidate has a `HokageMinato_half.png` selection frame and named 
 - [ ] None of these static results promotes a character to VERIFIED. Test selection, spawn, movement, attacks, each skill, audio, AI, death/respawn, and resource stability in the actual game.
 - [ ] The source and bundled asset permission review remains unresolved; no new external character package should be copied or redistributed until its permission status is approved.
 - Evidence: [run #164 and diagnostic artifact](https://github.com/kage049754/Senki/actions/runs/38032945561).
+
+
+## Animation XML-to-atlas frame-name audit — 2026-10-10
+
+The audit now compares frame names referenced by each unit XML with frame keys in the corresponding unit plist. Latest verified result from run #168: **39/43** declared roster entries had no name mismatches.
+
+Four packages require manual triage:
+
+- **Asuma — 12 missing names:** all are `Asuma_Skill05_002` through `Asuma_Skill05_013`.
+- **Kimimaro — 5 missing names:** the XML references `Jugo_Skill05_14` through `Jugo_Skill05_18`, which appears to be a likely copy/paste or wrong-atlas reference.
+- **SageJiraiya — 6 missing names:** the XML references base `Jiraiya_AirHurt` / `Jiraiya_KnockDown` frames. Confirm whether the base atlas is loaded at runtime.
+- **RockLee — 55 missing names:** many references use the base `Lee_` prefix while the form's XML also uses `RockLee_`; confirm whether the unit loader registers the base atlas or whether frame names are wrong.
+
+These are static name mismatches, not yet confirmed runtime failures. The next audit output lists up to 12 missing frame names per affected entry. The known Kimimaro/Jugo mismatch is now guarded by a regression test. No character is promoted to VERIFIED by this static check; inspect runtime atlas loading and verify permissions before any source/assets are integrated.
+
+Evidence: [run #168](https://github.com/kage049754/Senki/actions/runs/38033542630).
