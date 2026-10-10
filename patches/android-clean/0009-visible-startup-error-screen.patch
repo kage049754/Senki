@@ -1,0 +1,92 @@
+diff --git a/projects/NarutoSenki/lua/main.lua b/projects/NarutoSenki/lua/main.lua
+--- a/projects/NarutoSenki/lua/main.lua
++++ b/projects/NarutoSenki/lua/main.lua
+@@ -1,14 +1,57 @@
+-require 'config'
+-
+-local function main()
+-    -- avoid memory leak
+-    collectgarbage('setpause', 100)
+-    collectgarbage('setstepmul', 5000)
+-    log('--- Loaded Lua Scripts ---')
+-
+-    local gameScene = GameScene:create()
+-    hook.registerInitHandlerOnly(gameScene)
+-    CCDirector:sharedDirector():runWithScene(gameScene)
+-end
+-
+-xpcall(main, __G__TRACKBACK__)
++-- Keep config loading inside the protected startup block. If config, a module,
++-- or GameScene initialization fails, show the error instead of leaving a blank
++-- screen after the native engine splash.
++local function showStartupFailure(err)
++    local message = tostring(err or 'Unknown startup error')
++    print('[Senki startup failure] ' .. message)
++
++    local ok, displayErr = pcall(function()
++        local director = CCDirector:sharedDirector()
++        local scene = CCScene:create()
++        local layer = CCLayerColor:create(ccc4(24, 16, 20, 255))
++        scene:addChild(layer)
++
++        local size = director:getWinSize()
++        local wrapped = {}
++        message = message:gsub('\r', ''):gsub('\n', ' ')
++        local lineWidth = 48
++        for i = 1, #message, lineWidth do
++            wrapped[#wrapped + 1] = message:sub(i, i + lineWidth - 1)
++        end
++        if #wrapped == 0 then
++            wrapped[1] = 'Unknown startup error'
++        end
++
++        local lines = {
++            'NARUTO SENKI COULD NOT START',
++            'Startup diagnostic (send this text when reporting a bug):'
++        }
++        for i = 1, #wrapped do
++            lines[#lines + 1] = wrapped[i]
++        end
++
++        local lineHeight = 22
++        local maxLines = math.max(1, math.floor((size.height - 24) / lineHeight))
++        if #lines > maxLines then
++            lines[maxLines] = '... (error text truncated; see Android logcat)'
++        end
++        for i = 1, math.min(#lines, maxLines) do
++            local label = CCLabelTTF:create(lines[i], 'Arial', 16)
++            label:setAnchorPoint(CCPoint(0, 1))
++            label:setPosition(CCPoint(16, size.height - 12 - ((i - 1) * lineHeight)))
++            layer:addChild(label, 10)
++        end
++        director:runWithScene(scene)
++    end)
++
++    if not ok then
++        print('[Senki startup failure] Could not render diagnostic screen: ' .. tostring(displayErr))
++    end
++end
++
++local function boot()
++    require 'config'
++
++    -- avoid memory leak
++    collectgarbage('setpause', 100)
++    collectgarbage('setstepmul', 5000)
++    log('--- Loaded Lua Scripts ---')
++
++    local gameScene = GameScene:create()
++    hook.registerInitHandlerOnly(gameScene)
++    CCDirector:sharedDirector():runWithScene(gameScene)
++end
++
++local ok, err = xpcall(boot, function(msg)
++    if debug and debug.traceback then
++        return debug.traceback(tostring(msg), 2)
++    end
++    return tostring(msg)
++end)
++
++if not ok then
++    showStartupFailure(err)
++end
