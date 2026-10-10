@@ -330,3 +330,28 @@ Pinned source `muhammadadilsyaputra08-alt/NarutoSenki-Custom@279e85e73040558c849
 ### Next extraction/port research
 - Prioritize finding editable character source/assets for the above leads and compare their implementation requirements with V2's C++ classes, XML/config files, sprite/plist sheets, effects, audio, and selection resources.
 - Any import should be a small, auditable character batch with unique IDs and an APK build. APK-only release metadata is discovery evidence, not proof that the character can be ported or that its assets are already available.
+
+
+## Ninth-pass V2 fork deduplication — 2026-10-10
+
+A repository search for `NarutoSenki V2` returned several additional public mirrors/forks. Their metadata and branch-head commit SHAs were compared before treating them as new mod sources:
+
+### `kuiyr0810/NarutoSenki-V2`
+- GitHub metadata identifies it as a fork of `Zx-Akito/NarutoSenki-V2`, with the same source lineage through `real-re/NarutoSenki-V2-old`.
+- The inspected `master` head SHA is exactly `ed4009cf443b82899bb0af0e20e3df97d16995d8`, identical to the inspected `Zx-Akito/NarutoSenki-V2` head.
+- GitHub compare API result: `identical`, 0 commits ahead/behind, 0 differing files at those heads.
+- No declared license found in repository metadata. **Classification: duplicate mirror, not an independent mod; no new content to port.**
+
+### `BF667/NarutoSenki-V2`
+- GitHub metadata identifies it as a fork of `kuiyr0810/NarutoSenki-V2`.
+- The inspected `master` head `d1a01eb4a6c007a0aea429e8883a079e06ab7387` is 8 commits behind the current `kuiyr0810`/Zx-Akito head; it is a stale ancestor, not a newer independent mod.
+- Recent visible commits in this older branch include parser/cache and map changes from 2021; no new roster contribution was verified by this metadata/history comparison.
+- No declared license found. **Classification: stale duplicate/ancestor, reference-only; no merge recommended.**
+
+### `Fansirsqi/NarutoSenki-V2` and `ZhReimu/NarutoSenki-V2`
+- The inspected `master` heads both resolve to `093caa9be474f500b95a13d1cfdf9030cd7bed81`.
+- GitHub compare API result: `identical`, 0 commits ahead/behind, 0 differing files at those heads.
+- No declared license found. **Classification: duplicate fork pair, not two independent mod projects.**
+
+### Research conclusion
+These additional search hits are useful for tracing lineage but do not add verified unique characters or skills to the integration queue. Continue prioritizing source candidates with demonstrable unique changes (for example, the Android-clean candidate's Kabuto implementation) and compare exact commits/paths before planning any port. Current CI build evidence remains tied to the pinned candidate `muhammadadilsyaputra08-alt/NarutoSenki-Custom@279e85e73040558c84988a0eea310b6286eb77f0`; the duplicate forks above were not used to build the current artifact. All candidates remain unlicensed/unapproved for public redistribution unless separate permission evidence is found.
