@@ -119,3 +119,16 @@ The main menu background has now been redesigned too. The existing game-mode car
 
 ### Newest verified artifact (2026-10-10)
 The latest successful run is [37972501198](https://github.com/kage049754/Senki/actions/runs/37972501198), artifact `naruto-senki-v2-candidate-debug-apk` (ID `11637936223`, 83,729,869-byte ZIP, expires 2026-10-23). It includes the custom launcher icon and three custom screen backgrounds; CI verifies those assets and the app identity. The on-device visual/gameplay test is still pending.
+
+
+## Latest verified central APK build (2026-10-10)
+
+The latest central candidate build is [Actions run 38015483353](https://github.com/kage049754/Senki/actions/runs/38015483353), which completed **SUCCESS** on commit `5a0b8b2950eb3ab4a09e8744fd9d01f508983873`.
+
+- Artifact: `naruto-senki-v2-candidate-debug-apk` (83,726,412-byte ZIP; SHA-256 `38e9900dae77eccee4120c61d03a1c87416b866837d70f72a83fa5057b2ef495`; expires 2026-10-24).
+- Verified app identity: `com.senki.naruto.mod`, version `2.1.0-mod`, label `Naruto Senki Mod`.
+- Verified the compiled Android manifest uses sensor-landscape orientation; the patch also handles `orientation|screenSize` configuration changes.
+- Verified the APK contains the custom loading, character-selection, and main-menu background assets.
+- Hardened the custom loading/menu/selection backgrounds with original-background fallbacks to reduce the risk of a blank screen if a custom image fails to load.
+
+**Important scope:** the workflow clones the pinned Android-clean V2-derived source into a temporary CI workspace, applies this repository's ordered patches, builds the APK, and uploads it. The full external game source is not yet vendored into the central repo, and no physical-phone installation/gameplay has been verified. This is a real V2-derived candidate APK build, not the old Kotlin/Canvas prototype artifact and not a completed unified mod roster.
