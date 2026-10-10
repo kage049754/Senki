@@ -32,12 +32,12 @@
 **Exit checks:** one existing Senki source base is selected with evidence, build instructions, known blockers, and documented permission status.
 
 ## Phase 2 — Establish the chosen base in the central repository
-**Status: In progress — central CI run #104 succeeded and verified the skill-description fallback inside the packaged APK; source vendoring, rights review, and phone validation remain open.**
+**Status: In progress — central CI run #109 succeeded, including page-button artwork regression checks and packaged skill-description fallback verification; source vendoring, rights review, and phone validation remain open.**
 
 - [ ] Bring or adapt the chosen base into `kage049754/Senki` using a documented, provenance-preserving method.
 - [ ] Preserve original engine/game loop and existing behavior wherever practical.
 - [ ] Resolve dependencies and Android build issues without replacing the engine with a new implementation.
-- [x] Establish central CI for the pinned Android-clean V2-derived candidate and verify its actual patched APK artifact (latest run #104: https://github.com/kage049754/Senki/actions/runs/38025372460; artifact ID 11659729329; SHA-256 `97e37a19c006b4c3af9a0fe301013b0f1cb94c2a20d99c02eefb5eb6e24b7d2e`).
+- [x] Establish central CI for the pinned Android-clean V2-derived candidate and verify its actual patched APK artifact (latest run #109: https://github.com/kage049754/Senki/actions/runs/38025803886; artifact ID 11660410133; SHA-256 `a48e46cf0467d0bab35717534aad02ecd8d6bfcaf0d6dd935fb6719c41264635`).
 - [ ] Vendor or otherwise preserve a reproducible, editable copy of the chosen source tree inside this repository; the current workflow still clones it into a temporary runner workspace.
 - [ ] Confirm install/launch separately on a device when possible.
 
@@ -305,3 +305,10 @@ Run #104 passed after fixing a malformed intermediate workflow edit. CI now extr
 ### Packaged skill-description fallback — run #104
 
 The workflow now extracts `SkillLayer.lua` from the built APK and checks for both the guarded frame lookup and the visible fallback string. Run #104 passed this packaged-source check, APK build, signature/native ABI checks, and artifact upload. This is stronger than a source-only test but still does not replace physical-device visual/gameplay testing.
+
+
+### Pagination artwork regression — run #109
+
+Run #109 passed a regression check that reads the original page-button frames from the actual Select atlas and verifies generated page 4/5 normal/selected states preserve the original outer artwork. The test initially failed due to assumptions about standalone frame files and an overly strict center-region boundary; those test defects were corrected based on the actual CI logs. The same run also passed the Android build, packaged skill-fallback check, signature/native ABI validation, and artifact upload.
+
+The current source still has 63 roster layout slots (three pages at 21 slots per page). The generated page 4/5 button artwork is ready and validated, but those pages will not appear until the roster actually grows beyond three pages.
