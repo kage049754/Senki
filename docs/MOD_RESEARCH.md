@@ -486,3 +486,26 @@ Inspected `lua/class/basic.lua` in `Fansirsqi/NarutoSenki-V2`, `ZhReimu/NarutoSe
 - Inspected tree: 13,272 entries. The project is a Godot conversion/reimplementation, not a compatible Cocos2d-x V2 source base. Its skill icon/half-portrait inventory overlaps the current V2 forms (Sage Jiraiya, Immortal Sasuke, Sage Naruto, Rikudo Naruto, Rock Lee, etc.) rather than providing a clear new character roster.
 - One additional visual lead, `HokageMinato`, has a half portrait, kill-feed frames, a result icon, and an ougi audio file, but the inspected tree did not show a matching complete skill-icon/animation package or evidence that it is a selectable playable character. Treat it as **DISCOVERED / INCOMPLETE ASSET LEAD**, not a character to add.
 - Status: **REFERENCE_ONLY**. No Godot code or assets copied. Next action would require identifying a complete native character implementation and mapping it to the V2 candidate's C++/XML/resource conventions; a portrait/audio fragment alone is insufficient.
+
+
+## Second-pass roster expansion audit — 2026-10-10
+
+A direct roster comparison was run against the selected pinned V2-derived candidate and several other public V2 source forks. These checks were limited to source-tree and roster metadata; they do not grant permission to reuse any source/assets.
+
+### Candidate roster counts observed
+
+- Pinned muhammadadilsyaputra08-alt/NarutoSenki-Custom before central patches declares 37 distinct selectable names.
+- The checked Wilykun/NarutoSenki-V2, Fansirliu/NarutoSenki-V2, LeaderOnePro/NarutoSenki-V2-old, yiyuan521/NarutoSenki-V2, BF667/NarutoSenki-V2, and ZhReimu/NarutoSenki-V2 rosters declare 36 distinct names each in their current lua/class/basic.lua.
+- These forks do not reveal a ready-made 70-character roster. Some have additional native form resources/transformations, but their selectable lists remain essentially the same core roster.
+- Central candidate now declares 43 distinct names after adding six existing native transformation forms. The static audit calculates a gap of 27 entries to reach 70 declared names; that is not a gameplay-verified count.
+
+### Native NPC/summon classes deliberately not counted as playable
+
+- AnimalPath, AsuraPath, and NarakaPath have native code/resources but their current perform() logic is summon/AI-oriented and their own complete selection/skill UI package has not been established.
+- NarutoClone, SageNarutoClone, and RikudoNarutoClone are clone implementations used by combat skills, not complete player-selection packages.
+- Guardian is a generic AI class. Resources/Unit/Guardian/Han and Resources/Unit/Guardian/Roshi provide guardian animations/resources, but the inspected candidate does not declare distinct HeroEnum::Han or HeroEnum::Roshi playable classes and does not provide the complete selection/skill UI package for them. Do not add these names to the roster or count them as playable without implementing and testing the full player-controlled path.
+- HokageMinato appears as an audio directory in some source trees, but the inspected V2 tree does not establish a complete dedicated selectable character package for that name. Audio files alone are not a character implementation.
+
+### Next expansion rule
+
+Do not inflate the roster by exposing summons, clones, or guardian NPCs as if they were finished fighters. For every new entry, require a native/player-controlled path, complete combat/resource mapping, selection and skill UI, AI behavior for opponents, kill/death display, and build plus gameplay tests. Research leads such as Han/Roshi remain reference-only until a compatible implementation and reuse permissions are resolved.
