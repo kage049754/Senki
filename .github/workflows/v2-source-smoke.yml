@@ -72,6 +72,19 @@ jobs:
           find "$GAME/lua" -type f -name '*.lua' -print0 | xargs -0 -n1 luac5.1 -p
           echo "All game Lua scripts parse successfully, including the patched character-selection UI."
 
+      - name: Verify dynamic character pagination
+        shell: bash
+        run: |
+          set -euo pipefail
+          SELECT=/tmp/narutosenki-candidate/projects/NarutoSenki/lua/ui/SelectLayer.lua
+          grep -F 'self.pageNum = math.max(1, math.ceil(#charactersList / 21))' "$SELECT"
+          grep -F 'ui.newTTFLabelMenuItem' "$SELECT"
+          if grep -F 'self.pageNum = 3' "$SELECT"; then
+            echo "Fixed three-page roster cap remains in SelectLayer.lua."
+            exit 1
+          fi
+          echo "Roster page count is derived from the actual layout list; numbered page controls no longer depend on only three page sprites."
+
       - name: Verify landscape and rotation-stability settings
         shell: bash
         run: |
