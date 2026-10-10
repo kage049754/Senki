@@ -188,3 +188,21 @@ CI extracted `SelectLayer.lua` from the built APK and verified the search/filter
 - Artifact: `naruto-senki-v2-candidate-debug-apk`, ID `11657656484`, ZIP size 83,699,768 bytes, SHA-256 `51faf000d5ff9ef9027f351db0915f5aed58590ccd57f698392a8e1b2b9a3305`, expires 2026-10-24.
 - Current roster inventory remains 37 unique selectable names. This is UI groundwork for expansion, not a claim that the game now has 70+ characters.
 - Search typing, selection, and 4+ pages still need real-phone validation; the successful CI build does not replace device testing.
+
+## Complete playable-character standard
+
+Adding a character means adding a **working playable fighter**, not only a portrait or a roster name. For every genuinely new character, track these parts separately and implement what is missing:
+
+1. **Selection profile:** correct portrait/avatar, display name, character ID, and a working selection/tap target. The selected entry must resolve to the same fighter that appears in battle.
+2. **Preview and skill information:** show the correct character preview where supported; when the player opens the skill view, show that character's actual skill names, descriptions, and icons when available. Skill UI must reflect implemented abilities, not placeholder claims.
+3. **Combat assets and animations:** character sprites/model, idle, movement, attack, skill, hit/damage, knockback, death, and other states required by the base engine.
+4. **Gameplay logic:** movement, basic attacks, hitboxes, damage, cooldowns, skills, effects/projectiles/summons, and sound references where available.
+5. **Controls and AI:** player input triggers the correct actions; computer-controlled fighters can move, attack, use appropriate abilities, and react to combat.
+6. **Resources and registration:** all IDs, sprite frames, plist/XML/config entries, Lua/C++ references, sound/effect paths, and selection/roster entries must resolve without collisions.
+7. **Combat identity:** where the existing game event system permits it, show the actual killer and victim with their portraits and names when a kill/death occurs. Example: Naruto (portrait) defeated Sasuke (portrait). Identify the actual killer/victim for each event; don't infer them only from the initially selected character. Integrate with existing kill counters/game-over behavior instead of duplicating or breaking it.
+8. **Verification:** build the APK, inspect logs and packaged resources, then test selection, preview, skill view, movement, attacks, every skill, damage/hit detection, effects, AI, death/respawn, and kill/death notifications in gameplay. Record CI results separately from phone testing.
+
+A character is **DISCOVERED** when found in a source, **PORTED** when its source/assets are integrated, **BUILT** when the unified APK packages it, and **PLAYABLE-VERIFIED** only after the relevant in-game behavior has been tested. Portrait-only, skill-icon-only, or roster-only entries must never be counted as complete playable characters.
+
+The roster and page controls must remain scalable. Preserve original image-based page buttons 1–3 and their touch behavior. Any added page buttons (4, 5, and beyond) should use matching image-based controls with normal/selected states and reliable touch handling—not text-only clickable replacements that look or behave differently. More pages expose registered roster entries; they do not automatically implement new characters.
+
