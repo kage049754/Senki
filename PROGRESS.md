@@ -164,3 +164,11 @@ Treat these as priority candidates to investigate in editable Senki mod source. 
 - The dedicated SkillLayer regression test passed, but the audit report still claimed 0/5 descriptions because nested-table parsing was brittle across source layout variants.
 - Fix: the audit now checks for the fallback table marker and counts the five exact Kabuto description strings directly in that table's trailing source region. This aligns the audit with the tested UI content instead of relying on indentation/brace formatting.
 - Still no new characters integrated by this audit fix.
+
+
+## Latest run #258 failure — fallback marker gate removed
+
+- Run: https://github.com/kage049754/Senki/actions/runs/38051626398
+- The audit continued to report 0/5 even though the dedicated SkillLayer test verifies all five exact strings. The fallback marker-position condition was unnecessary and made the report brittle.
+- Fix: count the five exact tested descriptions directly in the audited SkillLayer source. The dedicated regression test remains responsible for confirming the fallback table and UI behavior.
+- No character integration is claimed from this test correction.
