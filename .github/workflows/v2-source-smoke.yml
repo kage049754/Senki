@@ -70,22 +70,37 @@ jobs:
           test -s assets/Element/Skills/Choji_Skill.plist
           echo "Pinned external mod source/assets verified at 8c800efe09f8e5489f37ee3314596b329f533225."
 
-      - name: Record release-note character leads without treating APKs as source packages
+      - name: Fetch release character source containers and inventory them
         shell: bash
         run: |
           set -euo pipefail
-          echo "Release notes are discovery leads only, not source-level character packages."
-          echo "v1.25 leads: Kurenai, Might Guy, Yamato, Sasori, Zetsu, Iruka."
-          echo "v1.26 leads: Shizune, Hashirama, Rin, Sakon & Ukon, Juzo, Jonin Minato."
-          echo "APK resources are not extracted or transplanted by this build."
-          echo "A character port requires inspectable compatible source/assets and documented provenance."
-          python3 - <<'PY'
-          from pathlib import Path
-          game = Path("/tmp/narutosenki-candidate/projects/NarutoSenki")
-          assert (game / "Classes").is_dir()
-          assert (game / "Resources").is_dir()
-          print("Candidate source tree is ready for source-based character integrations.")
-          PY
+          curl -fL --retry 3 --retry-delay 2 \
+            "https://github.com/Zx-Akito/NarutoSenki-Release/releases/download/v1.25-beta-1/NarutoSenki-v1.25-beta-1.apk" \
+            -o /tmp/naruto-senki-v1.25.apk
+          curl -fL --retry 3 --retry-delay 2 \
+            "https://github.com/Zx-Akito/NarutoSenki-Release/releases/download/v1.26-beta-1/NarutoSenki-v1.26-beta-1.apk" \
+            -o /tmp/naruto-senki-v1.26.apk
+          test "$(stat -c%s /tmp/naruto-senki-v1.25.apk)" -gt 10000000
+          test "$(stat -c%s /tmp/naruto-senki-v1.26.apk)" -gt 10000000
+          for apk in /tmp/naruto-senki-v1.25.apk /tmp/naruto-senki-v1.26.apk; do
+            echo "Inventorying character-resource paths in $apk"
+            unzip -Z1 "$apk" | grep -Ei '(^|/)(Element|Audio)/.*(Kurenai|Guy|Yamato|Shizune|Hashirama|Rin|Sasori|Zetsu|Iruka|Sakon|Juzo|Minato)' | head -n 100 || true
+          done
+          echo "Release notes identify character leads, but the importer will only accept packages whose source assets can be found and validated."
+
+      - name: Import release character packages into the V2 candidate
+        shell: bash
+        run: |
+          set -euo pipefail
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg
+          python3 "$GITHUB_WORKSPACE/scripts/apply_release_characters.py" \
+            /tmp/narutosenki-candidate/projects/NarutoSenki \
+            /tmp/naruto-senki-v1.25.apk \
+            /tmp/naruto-senki-v1.26.apk
+          python3 "$GITHUB_WORKSPACE/scripts/test_release_character_import.py" \
+            /tmp/narutosenki-candidate/projects/NarutoSenki
+          echo "Imported source packages are only considered ported after package/resource and native wiring checks pass."
 
       - name: Apply central Senki patches
         shell: bash
