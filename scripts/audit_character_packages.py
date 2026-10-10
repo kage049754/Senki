@@ -256,15 +256,15 @@ with OUT.open("w", encoding="utf-8") as f:
     f.write("|---|---|---|---:|---:|---:|---:|---|---|\n")
     for row in detail_rows:
         f.write("| " + " | ".join(fmt(x) for x in row) + " |\n")
-    f.write("\\n## Off-roster character package leads (not counted as playable)\\n\\n")
-    f.write("These entries have resource folders but are not in the visible character roster. File presence alone does not establish a selectable/playable character.\\n\\n")
-    f.write("| Candidate | Resource folder | Package completeness | Provider route | HeroEnum entry | Selection frames | Kill-feed frames | Skill icon frames | Exact-name audio files |\\n")
-    f.write("|---|---|---|---|---|---:|---:|---:|---:|\\n")
+    f.write("\n## Off-roster character package leads (not counted as playable)\n\n")
+    f.write("These entries have resource folders but are not in the visible character roster. File presence alone does not establish a selectable/playable character.\n\n")
+    f.write("| Candidate | Resource folder | Package completeness | Provider route | HeroEnum entry | Selection frames | Kill-feed frames | Skill icon frames | Exact-name audio files |\n")
+    f.write("|---|---|---|---|---|---:|---:|---:|---:|\n")
     for row in off_roster_candidates:
-        f.write("| " + " | ".join(fmt(x) for x in row) + " |\\n")
+        f.write("| " + " | ".join(fmt(x) for x in row) + " |\n")
     if not off_roster_candidates:
-        f.write("| None found | — | — | — | — | — | — | — | — |\\n")
-    f.write("\\n")
+        f.write("| None found | — | — | — | — | — | — | — | — |\n")
+    f.write("\n")
     f.write("\n## Interpretation rules\n\n")
     f.write("- A `NO/MONOLITHIC` header result means the code may be in a shared C++ file; it is not proof the character is absent. Unit/resource counts are broad filename matches and do not prove the correct frames load.\n")
     f.write("- Missing skill icon or description-label frame names require manual investigation. A missing label can make the skill-view UI request a nonexistent frame; this audit does not test runtime handling or invent replacement descriptions. Some forms may share assets/classes and some skill UI may be assembled indirectly.\n")
