@@ -575,3 +575,13 @@ GitHub API confirms `kage049754/Senki` is currently **public**. Therefore, the s
 - [x] Character audit artifact `senki-character-package-audit`, ID `11661615867`.
 - [ ] The regression verifies source fragments only. It does **not** replace installing the APK and visually checking the character-selection and training/network/exit screens on Android.
 - [ ] Current selectable roster remains 43 distinct names including six existing forms; gameplay-verified count remains unmeasured. No new external character was integrated in this pass.
+
+
+## Latest original-background asset packaging verification — run #136 (2026-10-10)
+
+- [x] Added a CI check that the built APK includes the original background textures `red_bg.png`, `blue_bg.png`, `menu_bar2.png`, and `menu_bar3.png`, in addition to the source-level check of the original selection/mode-menu background setup.
+- [x] GitHub Actions run **#136** succeeded on exact workflow SHA `9c4aa3dbd82c91cef8fb90297030b809ae0cdd42`: https://github.com/kage049754/Senki/actions/runs/38029520544
+- [x] Original-background source regression, Lua syntax checks, Android build, APK existence, package identity, character-search/skill fallback/form packaging, signature/native ABI checks, and artifact upload passed.
+- [x] APK artifact `naruto-senki-v2-candidate-debug-apk`, ID `11661441846`, size 83,348,767 bytes, SHA-256 `65a9116d9652b65a21eaf9f765ff709b3475aad45da3c2922522ad0253464a8f`; expires 2026-10-24.
+- [x] Character audit artifact `senki-character-package-audit`, ID `11661511654`.
+- [ ] Source and packaged asset checks do not prove visual appearance at runtime. The character-selection and training/network/exit backgrounds still need to be inspected on an actual Android device/emulator.
