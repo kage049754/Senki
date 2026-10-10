@@ -119,3 +119,10 @@ The character manifest in `docs/CHARACTER_ROSTER.md` must link each asset catego
 - Status: **REFERENCE_ONLY / ASSET_PERMISSION_REQUIRED**
 - Review date: 2026-10-10
 - Notes: the `HokageMinato` files found are a partial visual/audio lead, not proof of a complete playable character.
+
+
+## Additional candidate asset-provenance findings — 2026-10-10
+
+- `Fansirsqi/NarutoSenki` includes a root Mulan PSL v2 license, but its inspected tree is an Android package/resource distribution rather than an editable V2 source tree. Its README identifies some content as extracted package assets and references original asset creators. Do not assume the repository license clears bundled Naruto Senki sprites, animation frames, audio, or other third-party content; provenance must be checked asset by asset.
+- `likill/NarutoSenki-master`, `RieyuXhen/NarutoSenki`, and `Zx-Akito/NarutoSenki` are legacy Cocos2d-x 2.2.2 source references with no root license found in the inspected trees. Their character/AI code and resource files are not approved for copying into the V2 candidate. Treat as reference-only until both code rights and asset rights are documented.
+- No new third-party character assets were copied into this repository by this research pass.
