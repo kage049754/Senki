@@ -422,3 +422,7 @@ The character package audit now reports `HeroEnum` entries that are not present 
 - [ ] Once the first distinct-character batch is verified on pages 1–3, proceed to page 4, then page 5. Do not use existing forms as filler to claim this milestone complete.
 
 **Important current limitation:** external source and asset reuse permission remains unresolved for the current V2 candidate and research leads. Research and slot planning can proceed, but external assets must not be copied into the build until reuse is authorized or a clearly licensed source is found.
+
+
+### Mandatory acceptance check: character portraits
+For every new character on pages 1–3, confirm a real matching portrait/avatar appears in the exact assigned selection slot with the correct display name and valid atlas/frame reference. Record page + slot + stable ID + portrait resource + provenance/license + test result in docs/CHARACTER_ROSTER.md. Check supported skill/profile and kill/death portrait displays too. Blank, unrelated, placeholder, or broken images fail acceptance; the character remains incomplete and is not counted playable. Do not move priority to pages 4–5 until the initial distinct-character batch and its portraits are validated.
