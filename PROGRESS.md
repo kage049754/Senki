@@ -809,3 +809,11 @@ User requires every new character to have its own correct avatar/portrait in the
 - [x] Downloaded and inspected audit artifact `senki-character-package-audit` (artifact ID `11665246523`; digest `sha256:1c8951908bb3ae559375b944201b659d0355399e1cd0a3695ba1eb802362435c`). The report now explicitly flags Guardian's source-level AI combat override while warning this is not proof of player control for Han/Roshi.
 - [x] Static inventory remains **43 selectable UI entries / 37 after excluding six known alternate forms**, 33 distinct characters short of 70; gameplay-verified count remains unmeasured.
 - [ ] Next: continue investigating distinct-character candidates with explicit reuse permission and compatible complete resources. Do not add Han/Roshi as selectable characters until a player-controlled Hero lifecycle and all selection, skill, portrait, effects/audio, AI, death/respawn, and gameplay checks are completed.
+
+## Continued source research — 2026-10-10
+
+- [x] Rechecked additional public source repositories for licensing metadata. `Fansirsqi/NarutoSenki` has Mulan PSL v2 repository metadata, but the inspected tree is an APK-style extracted asset package rather than editable character source; the license does not independently establish rights to third-party Naruto art/audio. It is not used as an asset source.
+- [x] Compared `kuiyr0810/NarutoSenki-V2`; its visible roster layout is the same 43-entry pattern and no new distinct selectable character was found in the inspected layout. No license file or GitHub license metadata was present in the checked branch.
+- [x] Also checked `likill/NarutoSenki-master`, `LeaderOnePro/NarutoSenki1.17Mod`, and `Zx-Akito/NarutoSenki-Release`; no clear reuse license was found in the inspected default branches, and the release-only repository lacks a source tree.
+- [x] Corrected README wording to distinguish 43 UI entries from 37 distinct base characters. No new character was added or counted.
+- [ ] Continue searching for explicit permission/licensing and complete distinct character packages. Current public mod sources remain research leads, not automatically reusable content.
