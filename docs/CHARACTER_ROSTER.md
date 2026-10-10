@@ -344,3 +344,17 @@ The user's explicit order is to add **distinct characters sourced from other Nar
 
 ## Required portrait mapping for every roster addition
 Each new entry must have its own matching portrait/avatar rendered in its assigned character-selection slot. Track at minimum: page number, slot index, stable character ID, displayed name, portrait image file and atlas/frame key, source URL/repository, license or explicit permission evidence, and selection-screen test result. Also record supported skill/profile and kill/death portrait references. A missing, broken, unrelated, or placeholder portrait means the character is incomplete and cannot be counted as playable. Reference images used in discussion are not proof that assets have been imported. Existing entries must not be displaced without explicit approval; work on pages 1–3 first.
+
+
+## Additional leads found — 2026-10-10
+
+### Han and Roshi (guardian-package research only)
+
+- **Names:** Han; Roshi
+- **Source candidate:** `muhammadadilsyaputra08-alt/NarutoSenki-Custom`, pinned commit `279e85e73040558c84988a0eea310b6286eb77f0`
+- **Available lead:** each has a unit XML, sprite atlas plist, and texture under `Resources/Unit/Guardian/`; Han also has named audio events.
+- **Current status:** RESOURCE_REVIEW — **not playable / not integrated**. The source uses a shared `HeroEnum::Guardian` class and has no dedicated Han/Roshi selectable hero class. Their visible roster does not include them. These must not be counted as new playable characters.
+- **Next action:** trace how Guardian instances are spawned and named; determine whether their animation/actions can be adapted to the existing player-controlled Hero lifecycle; inspect required skill/effect/report/selection art; then implement and verify selection, controls, AI, skills, death/respawn, and resource cleanup before changing status.
+- **Rights:** source repository and asset terms are not declared in the inspected metadata. Keep this as a research lead; do not vendor or redistribute its binary/art files until provenance and applicable permissions are resolved.
+
+The source inventory remains **37 visible selectable names / 43 after six existing native forms are exposed by the CI patch**. Han and Roshi do not increase either count. Gameplay-verified playable count remains unmeasured.
