@@ -241,3 +241,15 @@ The repo previously received a native Kotlin/Canvas prototype scaffold. It is no
 - [x] Corrected unified-diff hunk counts after editing the patch files; the latest workflow's “Apply central Senki patches” step passed, confirming the patch series applies cleanly to the pinned source.
 - [ ] Latest run `38015483353` is still in progress. Wait for the final APK build, landscape manifest verification, and artifact upload before marking this fallback hardening as fully build-verified.
 - [ ] This improves failure tolerance but does not prove the user's earlier blank-screen issue is fixed on-device; real launch and menu navigation still need phone testing.
+
+
+## Latest central build verified — 2026-10-10
+
+- [x] Run `38015483353` completed **SUCCESS** on commit `5a0b8b2950eb3ab4a09e8744fd9d01f508983873`: [open run](https://github.com/kage049754/Senki/actions/runs/38015483353).
+- [x] The ordered central patch series applied successfully, including the new fallback backgrounds and landscape stability patch.
+- [x] Gradle reported `BUILD SUCCESSFUL in 2m 26s`.
+- [x] The compiled APK manifest verified `android:screenOrientation=0x6` (sensor landscape), and the source manifest check verified `orientation|screenSize` handling.
+- [x] APK checks passed for package `com.senki.naruto.mod`, version `2.1.0-mod` / code 3, app label `Naruto Senki Mod`, and all three packaged backgrounds: `assets/senki_loading.png`, `assets/senki_select.png`, `assets/senki_menu.png`.
+- [x] Verified artifact `naruto-senki-v2-candidate-debug-apk`, ID `11655846337`, ZIP size 83,726,412 bytes, SHA-256 `38e9900dae77eccee4120c61d03a1c87416b866837d70f72a83fa5057b2ef495`, expires 2026-10-24. Download from the [successful build's artifact card](https://github.com/kage049754/Senki/actions/runs/38015483353).
+- [ ] This remains a CI-built APK assembled from the pinned external V2-derived source plus central patches in a temporary workspace; the full game source has not been vendored into the central repository.
+- [ ] No physical phone install/gameplay result has been reported yet. Blank-screen fallback changes are compile/package verified, but actual launch behavior still needs device testing.
