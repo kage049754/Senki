@@ -47,7 +47,7 @@ for name, (alias, display, skill_alias) in forms.items():
     if not resource.is_file() or not atlas.is_file() or not header.is_file():
         raise SystemExit(f"Missing character XML/plist/class header for {name}")
     atlas_text = atlas.read_text(encoding="utf-8", errors="replace")
-    texture_match = re.search(r"<key>textureFileName</key>\\s*<string>([^<]+)</string>", atlas_text)
+    texture_match = re.search(r"<key>textureFileName</key>\s*<string>([^<]+)</string>", atlas_text)
     if not texture_match:
         raise SystemExit(f"Cannot determine atlas texture filename from {atlas}")
     texture = resource_dir / texture_match.group(1)
