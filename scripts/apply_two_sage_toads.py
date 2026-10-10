@@ -219,7 +219,10 @@ if "TwoSageToads = 'Choji'" not in skill_text:
     end = skill_text.find("\n}", pos)
     if end < 0:
         raise SystemExit("Could not find end of skillUiAlias")
-    skill_text = skill_text[:end] + "\n    TwoSageToads = 'Choji'," + skill_text[end:]
+    prefix = skill_text[:end].rstrip()
+    if not prefix.endswith(","):
+        prefix += ","
+    skill_text = prefix + "\n    TwoSageToads = 'Choji'," + skill_text[end:]
 skill_path.write_text(skill_text, encoding="utf-8")
 
 # Basic integrity checks before the Android build.
