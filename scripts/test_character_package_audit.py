@@ -97,9 +97,9 @@ assert not missing_atlas, (
     + ", ".join(missing_atlas)
 )
 sound_event_counts = [
-    int(match.group(1))
+    int(row[3].split()[0])
     for row in detail_rows
-    if (match := re.fullmatch(r"(\\d+) audio event refs", row[3])) is not None
+    if len(row[3].split()) == 4 and row[3].split()[0].isdigit() and row[3].split()[1:] == ["audio", "event", "refs"]
 ]
 assert sound_event_counts and any(count > 0 for count in sound_event_counts), (
     "The audit did not recognize any animation XML audio event references"
