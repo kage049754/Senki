@@ -333,8 +333,20 @@ The repo previously received a native Kotlin/Canvas prototype scaffold. It is no
 
 - [x] Updated the central build workflow to exclude the retired custom main-menu and character-selection background patches.
 - [x] Removed generation and APK assertions for senki_menu.png and senki_select.png; custom loading artwork remains separate.
-- [ ] Delete the now-retired patch files and update artwork notes so the repository no longer advertises the replaced backgrounds as active.
-- [ ] Confirm a fresh Actions run completes successfully and inspect the artifact.
+- [x] Confirm the retired `0004-custom-character-select-background.patch` and `0005-custom-main-menu-background.patch` files are absent from the current tree; the workflow excludes them and the generated `senki_menu.png` / `senki_select.png` assets.
+- [x] Fresh Actions run `38019992304` completed successfully and uploaded the candidate APK artifact (artifact ID `11657109973`).
+- [ ] Inspect the APK's packaged assets explicitly to confirm the custom menu/selection replacement PNGs are absent.
 - [ ] Install on the phone and visually confirm both original backgrounds and their decorative layers are restored.
 
 **Character completion contract:** every new character must have the right portrait/name and selection preview; actual skill details where supported; sprites/model, animations, movement, basic attacks, hit detection, skills/cooldowns, effects/audio, player controls, AI, and correct IDs/resource paths. For kills/deaths, inspect existing engine hooks and show the actual killer/victim portrait and name when feasible. These are planned acceptance criteria, not a claim that the feature is already implemented. A character counts as playable only after gameplay tests, and CI success alone does not prove the visual rollback or gameplay.
+
+
+## Latest verified CI run — original background rollback build (2026-10-10)
+
+- Run: [38019992304](https://github.com/kage049754/Senki/actions/runs/38019992304), workflow run #64.
+- Commit: `e874e45d90f7e83082ff55b304bdb6f49f82fe65` — `Remove retired custom menu and selection artwork`.
+- Result: **SUCCESS**; all 23 substantive build/verification steps passed, including all Lua syntax, search/filter behavior, dynamic pagination, landscape settings, Gradle build, APK identity, signature, ABI packaging, and artifact upload.
+- Artifact: `naruto-senki-v2-candidate-debug-apk`, ID `11657109973`, 83,344,194-byte ZIP, SHA-256 `07c153b870d5a56f704dec61907278689cbd8325140b8a533fba9059b4eb9618`, expires 2026-10-24.
+- The workflow no longer applies the custom main-menu and character-selection background patches. The patch files are absent from the current tree; custom loading artwork remains separate.
+- Not yet verified: explicit inspection of the APK ZIP contents for absence of `senki_menu.png`/`senki_select.png`, phone visual confirmation, physical installation, and gameplay.
+- Known UI gap: pages 4+ still use text-only page controls. The user requirement is matching image-based normal/selected controls for all pages while preserving original image-based pages 1–3. Dynamic page count is not the same as finishing the page-button design.
