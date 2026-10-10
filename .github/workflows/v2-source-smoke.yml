@@ -70,108 +70,22 @@ jobs:
           test -s assets/Element/Skills/Choji_Skill.plist
           echo "Pinned external mod source/assets verified at 8c800efe09f8e5489f37ee3314596b329f533225."
 
-      - name: Cache pinned Naruto Senki v1.25/v1.26 release APKs
-        uses: actions/cache@v4
-        with:
-          path: /tmp/narutosenki-release-apks
-          key: narutosenki-release-apks-v1.25-c384188d9632ab44-v1.26-8bda3dcec136c315
-
-      - name: Fetch and verify legacy release APKs for character porting
+      - name: Record release-note character leads without treating APKs as source packages
         shell: bash
         run: |
           set -euo pipefail
-          mkdir -p /tmp/narutosenki-release-apks
-          V125=/tmp/narutosenki-release-apks/NarutoSenki-v1.25-beta-1.apk
-          V126=/tmp/narutosenki-release-apks/NarutoSenki-v1.26-beta-1.apk
-          if [[ ! -s "$V125" ]]; then
-            curl --fail --location --retry 3 --retry-delay 2 \
-              "https://github.com/Zx-Akito/NarutoSenki-Release/releases/download/v1.25-beta-1/NarutoSenki-v1.25-beta-1.apk" -o "$V125"
-          fi
-          if [[ ! -s "$V126" ]]; then
-            curl --fail --location --retry 3 --retry-delay 2 \
-              "https://github.com/Zx-Akito/NarutoSenki-Release/releases/download/v1.26-beta-1/NarutoSenki-v1.26-beta-1.apk" -o "$V126"
-          fi
-          echo "c384188d9632ab44a530308da0ab114980df01fd43d4e3f3ca79267c761614af  $V125" | sha256sum --check -
-          echo "8bda3dcec136c315d1b67e5f289c4376b626cf9142eb9fe6eb8c210e0746142d  $V126" | sha256sum --check -
-          echo "Pinned v1.25/v1.26 character-resource containers verified."
-
-      - name: Apply central Senki patches
-        shell: bash
-        run: |
-          set -euo pipefail
-          # Keep the game's original main-menu and character-selection backgrounds.
-          # Explicitly exclude the retired custom-background patches.
-          mapfile -t patches < <(find "$GITHUB_WORKSPACE/patches/android-clean" -maxdepth 1 -type f -name '*.patch' ! -name '0004-custom-character-select-background.patch' ! -name '0005-custom-main-menu-background.patch' -print | sort)
-          if [[ ${#patches[@]} -eq 0 ]]; then
-            echo "No local patches found; refusing to build an unmodified candidate by accident."
-            exit 1
-          fi
-          for patch in "${patches[@]}"; do
-            echo "Checking and applying $patch"
-            if ! git -C /tmp/narutosenki-candidate apply --check "$patch"; then
-              echo "Patch context failure for $patch; printing nearby source for diagnosis."
-              if [[ "$patch" == *0008-dynamic-roster-pagination.patch ]]; then
-                grep -n -A18 -B5 'self.pageNum' /tmp/narutosenki-candidate/projects/NarutoSenki/lua/ui/SelectLayer.lua || true
-                grep -n -A20 -B5 'local page_btn' /tmp/narutosenki-candidate/projects/NarutoSenki/lua/ui/SelectLayer.lua || true
-              fi
-              exit 1
-            fi
-            git -C /tmp/narutosenki-candidate apply "$patch"
-          done
-          echo "All central Senki patches applied."
-
-      - name: Apply character search/filter enhancement
-        shell: bash
-        run: |
-          set -euo pipefail
-          python3 "$GITHUB_WORKSPACE/scripts/apply_character_search.py" /tmp/narutosenki-candidate/projects/NarutoSenki/lua/ui/SelectLayer.lua
-
-      - name: Apply missing skill-description fallback
-        shell: bash
-        run: |
-          set -euo pipefail
-          python3 "$GITHUB_WORKSPACE/scripts/apply_skill_label_fallback.py" /tmp/narutosenki-candidate/projects/NarutoSenki/lua/ui/SkillLayer.lua
-          python3 "$GITHUB_WORKSPACE/scripts/test_skill_label_fallback.py" /tmp/narutosenki-candidate/projects/NarutoSenki/lua/ui/SkillLayer.lua
-
-      - name: Add existing native forms to roster page four
-        shell: bash
-        run: |
-          set -euo pipefail
-          GAME=/tmp/narutosenki-candidate/projects/NarutoSenki
-          python3 "$GITHUB_WORKSPACE/scripts/apply_selectable_forms.py" "$GAME"
-          python3 "$GITHUB_WORKSPACE/scripts/test_selectable_forms.py" "$GAME"
-
-      - name: Integrate Two Sage Toads as the first external mod character
-        shell: bash
-        run: |
-          set -euo pipefail
-          GAME=/tmp/narutosenki-candidate/projects/NarutoSenki
-          python3 "$GITHUB_WORKSPACE/scripts/apply_two_sage_toads.py" "$GAME" /tmp/narutosenki-toad-mod
-          python3 "$GITHUB_WORKSPACE/scripts/test_two_sage_toads.py" "$GAME"
-          echo "The additive Two Sage Toads integration is source-checked; runtime gameplay still requires device validation."
-
-      - name: Inspect legacy release APK resource layout
-        shell: bash
-        run: |
-          set -euo pipefail
-          python3 "$GITHUB_WORKSPACE/scripts/inspect_release_apk_assets.py" \
-            /tmp/narutosenki-release-apks/NarutoSenki-v1.25-beta-1.apk \
-            /tmp/narutosenki-release-apks/NarutoSenki-v1.26-beta-1.apk
-
-      - name: Import v1.25/v1.26 release characters into the V2 candidate
-        shell: bash
-        run: |
-          set -euo pipefail
-          if ! command -v ffmpeg >/dev/null 2>&1; then
-            sudo apt-get update
-            sudo apt-get install -y ffmpeg
-          fi
-          GAME=/tmp/narutosenki-candidate/projects/NarutoSenki
-          python3 "$GITHUB_WORKSPACE/scripts/apply_release_characters.py" \
-            "$GAME" \
-            /tmp/narutosenki-release-apks/NarutoSenki-v1.25-beta-1.apk \
-            /tmp/narutosenki-release-apks/NarutoSenki-v1.26-beta-1.apk
-          python3 "$GITHUB_WORKSPACE/scripts/test_release_characters.py" "$GAME"
+          echo "Release notes are discovery leads only, not source-level character packages."
+          echo "v1.25 leads: Kurenai, Might Guy, Yamato, Sasori, Zetsu, Iruka."
+          echo "v1.26 leads: Shizune, Hashirama, Rin, Sakon & Ukon, Juzo, Jonin Minato."
+          echo "APK resources are not extracted or transplanted by this build."
+          echo "A character port requires inspectable compatible source/assets and documented provenance."
+          python3 - <<'PY'
+          from pathlib import Path
+          game = Path("/tmp/narutosenki-candidate/projects/NarutoSenki")
+          assert (game / "Classes").is_dir()
+          assert (game / "Resources").is_dir()
+          print("Candidate source tree is ready for source-based character integrations.")
+          PY
 
       - name: Verify original character-selection and mode-menu backgrounds
         shell: bash
