@@ -379,3 +379,14 @@ AI means the game's computer-controlled fighter behavior here: it must be able t
 - [x] Improved the audit to check the candidate's actual `Resources/Unit/` layout and the three expected packed selection frames in `Resources/Select.plist`, and to look for the current C++ `HeroEnum::Name` + `setAIHandler` registration pattern.
 - [ ] The audit is a source-level heuristic only. "Manual AI audit required" means the pattern wasn't found in the scanned files; it does not prove AI support is missing. No character is marked newly added or playable-verified by this report.
 - [ ] Next implementation gate: find a character source with clear code/art/audio permission, map its complete assets and AI behavior to the current modular architecture, then integrate one character and add tests before counting it.
+
+
+## Continued work — run #89 and skill UI audit improvement (2026-10-10)
+
+- [x] Latest source commit `e1008de1046d449ab641f1eac9208132cfc12d9d` adds exact-name checks for the five skill icon and five skill-description frames requested by `SkillLayer.lua`, in addition to selection art, enum, Unit-resource, audio-path and AI-registration clues.
+- [x] Run [#89](https://github.com/kage049754/Senki/actions/runs/38022671278) completed **SUCCESS** against that commit. Android build and both artifact uploads passed.
+- [x] APK artifact `naruto-senki-v2-candidate-debug-apk`, ID `11658199787`, 83,357,018 bytes, expires 2026-10-24.
+- [x] Character audit artifact `senki-character-package-audit`, ID `11657914883`, 1,425 bytes, expires 2026-10-24.
+- [x] Audit output now distinguishes skill icon frame count and skill description frame count. These are source filename/plist-name checks, not visual/functional proof.
+- [ ] Source research has not yet identified a character package whose code, selection art, skills, animations, voice/SFX and other assets are all permission-cleared and compatible. No new character has been integrated.
+- [ ] Next phases remain: resolve authorized character source/assets; port a complete character and AI behavior; add automated per-character checks; inspect the UI and test actual gameplay on device; repeat fixes/builds until final verification.
