@@ -163,3 +163,13 @@ The newest artifact and CI evidence are tracked in `PROGRESS.md`; on-device visu
 - [ ] Install and launch on the user's phone; test post-engine-intro startup, main menu, character selection, battle start, touch controls, and orientation behavior.
 - [ ] Keep expanding the character/mod research inventory and choose individual compatible changes to port after runtime baseline validation.
 - [ ] Full V2 source tree is not yet vendored into this repository; current CI clones the pinned source and applies central patches temporarily.
+
+
+## Roster expansion status — 2026-10-10
+
+- [x] Source inventory measured: 37 unique selectable names in the current Android-clean base; do not confuse this with verified playable count.
+- [x] Removed the fixed three-page selection cap in patch `0008-dynamic-roster-pagination.patch`; central CI run `38016671857` passed and uploaded artifact ID `11655938596`.
+- [x] Added a separate discovered-leads registry for characters mentioned in the Naruto Senki v1.24–v1.26 release notes.
+- [ ] Locate editable source/resource implementations for the discovered character leads; the current release-host APK is server-side-dependent and not a direct offline source base.
+- [ ] Port one character at a time: class/behavior, XML/config, sprite/plist, animation/effects, audio, portrait/button, roster entry, and build/runtime tests.
+- [ ] Device-test four or more selection pages and verify that the new text page buttons preserve existing tap-once preview / tap-again confirm behavior.
