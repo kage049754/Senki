@@ -71,7 +71,11 @@ def replace_prefix(value, source_names, new_id):
     if not isinstance(value, str):
         return value
     for source_name in sorted(source_names, key=len, reverse=True):
-        value = value.replace(source_name, new_id)
+        value = re.sub(
+            r"(?<![A-Za-z0-9])" + re.escape(source_name) + r"(?=[_./\\\\-]|$)",
+            new_id,
+            value,
+        )
     return value
 
 def convert_xml(raw, source_names, new_id):
