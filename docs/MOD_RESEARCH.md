@@ -274,3 +274,14 @@ For every promising candidate, record the source URL, revision/release, engine, 
 - Run `37972501198`: **SUCCESS**, artifact `naruto-senki-v2-candidate-debug-apk` (ID `11637936223`, 83,729,869-byte ZIP, expires 2026-10-23).
 - The archive contains `assets/senki_loading.png`, `assets/senki_select.png`, and `assets/senki_menu.png`; package ID/version/label checks passed.
 - No phone runtime test is claimed.
+
+
+## Selectable roster inventory for Android-clean candidate — 2026-10-10
+
+Pinned source `muhammadadilsyaputra08-alt/NarutoSenki-Custom@279e85e73040558c84988a0eea310b6286eb77f0` was inspected directly:
+- `lua/class/basic.lua` defines `ns.CharactersLayout` with **37 unique selectable character names**: Naruto, Sakura, Sai, Kakashi, Shikamaru, Ino, Choji, Asuma, Kiba, Hinata, Shino, Neji, Tenten, Lee, Tobirama, Hiruzen, Minato, Jiraiya, Tsunade, Orochimaru, Gaara, Kankuro, Chiyo, Sasuke, Karin, Suigetsu, Jugo, Kabuto, Tobi, Konan, Pain, Deidara, Kakuzu, Hidan, Kimimaro, Itachi, Kisame.
+- The C++ `Classes/Core/Shinobi/` folder contains 42 headers, including five Pain-path implementation classes in addition to the selectable character classes. Header count is not a playable-roster count.
+- Direct comparison against `sansaks-jpg/NarutoSenki-V2@1751b7fb8f05a96ff6e85bc8a6c8e3fdcca3f74a` confirms Android-clean uniquely includes `Kabuto.hpp`; the LAN candidate has no `Kabuto.hpp`.
+- Kabuto is a substantive custom kit implementation with skills, effects, audio/resource definitions, and behavior changes, not just a portrait. It remains source-inspected only; the current CI build has not verified the character in live battle.
+- The selectable layout has 37 unique entries, but the number of fully functional and device-tested characters is **not yet measured**. Do not label all 37 as verified playable until runtime checks pass.
+- Next roster phase: inventory per-character C++ class, XML/config, sprite/plist, effects, audio, skill IDs and selection assets; then identify mod sources that add unique compatible characters without replacing the V2 engine.
