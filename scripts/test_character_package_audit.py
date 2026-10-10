@@ -35,7 +35,7 @@ for line in lines[header_index + 2:]:
 
 summary = re.search(r"Unique selectable names found: \*\*(\d+)\*\*", report)
 assert summary, "Roster count summary is missing"
-duplicates = re.search(r"Duplicate selectable roster IDs: \\*\\*(\\d+)\\*\\*", report)
+duplicates = re.search(r"Duplicate selectable roster IDs: \*\*(\d+)\*\*", report)
 assert duplicates, "Duplicate roster-ID summary is missing"
 assert int(duplicates.group(1)) == 0, "Selectable character IDs must be unique before a port can be accepted"
 expected_count = int(summary.group(1))
