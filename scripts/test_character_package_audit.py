@@ -131,9 +131,15 @@ if int(missing_frame_ref_summary.group(1)) < expected_count:
     assert "Missing XML frame names (first 12 per entry)" in report, (
         "Frame-reference exceptions must include names for actionable triage"
     )
-    assert "Jugo_Skill05_14" in report and "- `Kimimaro`:" in report, (
-        "Known Kimimaro-to-Jugo frame-name mismatch must remain visible for triage"
+    missing_section = report.split("### Missing XML frame names (first 12 per entry)", 1)[1].split("\\n\\n", 1)[0]
+    assert missing_section.strip(), "Frame-reference exceptions must include actionable frame names"
+else:
+    assert "XML-to-atlas frame-reference exceptions: none detected by name comparison." in report, (
+        "A clean frame audit must explicitly report no unresolved active references"
     )
+assert "Jugo_Skill05_14" not in report.split("### Missing XML frame names (first 12 per entry)", 1)[-1].split("## Exact character-selection slot map", 1)[0], (
+    "Commented-out Jugo animation examples must not be reported as active Kimimaro frame failures"
+)
 sound_event_counts = [
     int(row[5].split()[0])
     for row in detail_rows
