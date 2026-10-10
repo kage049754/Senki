@@ -295,7 +295,7 @@ with OUT.open("w", encoding="utf-8") as f:
         "Nehan Shojo: Final Slash: stun nearby enemies, then deal heavy true damage to the target.",
     )
     kabuto_fallback_count = sum(1 for description in fallback_descriptions if description in skill_source)
-    f.write(f"- Kabuto runtime skill-description text fallbacks: **{kabuto_fallback_count}/5 detected in patched SkillLayer.lua** (separate from image-label frame coverage).\n")
+    f.write("- Kabuto runtime skill-description fallback: checked by the dedicated test_skill_label_fallback.py static regression test; not inferred from this inventory.\n")
     frame_complete = sum(1 for row in detail_rows if row[4].startswith("0 "))
     missing_frame_ref_rows = [(row[0], row[4]) for row in detail_rows if not row[4].startswith("0 ")]
     f.write(f"- Animation XML frame-reference coverage: **{frame_complete}/{len(detail_rows)} roster entries have no missing XML-to-atlas frame names.**\n")
