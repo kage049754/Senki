@@ -81,3 +81,15 @@ Update only after inspecting and testing the actual code.
 - [ ] The current base still has only 37 unique selectable names. Dynamic pagination is groundwork, not a 70-character roster.
 - [ ] Validate 4+ pages with real entries on a phone; check page button layout, selection confirmation, battle spawn, and existing mode-specific selection behavior.
 - [ ] Implement/search/filter and resource validation only after preserving the current selection logic and testing the dynamic-page change.
+
+
+## Character search/filter implemented in source and APK — 2026-10-10
+
+- [x] Added `scripts/apply_character_search.py`, a checked and repeatable source edit applied after the ordered patch series.
+- [x] Search field is placed at the upper-right but left of the ranking button; query matching is case-insensitive and searches the character IDs/names.
+- [x] Matching results are filtered across all pages; the UI automatically switches to the first page with a match and hides page buttons with no matches during a non-empty query.
+- [x] Empty queries restore the full roster and page controls. Empty results show “No characters found”.
+- [x] Selection cursor visibility follows the filtered selection, avoiding a cursor left over a hidden character.
+- [x] APK verification now extracts the packaged `SelectLayer.lua` and checks for the filter method, no-results text, and final search position.
+- [x] Build verified: [run 38018448399](https://github.com/kage049754/Senki/actions/runs/38018448399), artifact ID `11657656484`.
+- [ ] Test text-input events, touch selection, page changes, and clearing the query on a physical Android phone. Current roster still has 37 unique names; search/pagination does not itself add characters.
