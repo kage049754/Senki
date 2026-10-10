@@ -32,12 +32,12 @@
 **Exit checks:** one existing Senki source base is selected with evidence, build instructions, known blockers, and documented permission status.
 
 ## Phase 2 — Establish the chosen base in the central repository
-**Status: In progress — central CI run #101 succeeded with the skill-description fallback and verified APK artifact; source vendoring, rights review, and phone validation remain open.**
+**Status: In progress — central CI run #104 succeeded and verified the skill-description fallback inside the packaged APK; source vendoring, rights review, and phone validation remain open.**
 
 - [ ] Bring or adapt the chosen base into `kage049754/Senki` using a documented, provenance-preserving method.
 - [ ] Preserve original engine/game loop and existing behavior wherever practical.
 - [ ] Resolve dependencies and Android build issues without replacing the engine with a new implementation.
-- [x] Establish central CI for the pinned Android-clean V2-derived candidate and verify its actual patched APK artifact (latest run #101: https://github.com/kage049754/Senki/actions/runs/38024966443; artifact ID 11659082992; SHA-256 `2c71b02890ee86d87e7882d5365299cde4dc7ff2524cc89f88edb54be218870b`).
+- [x] Establish central CI for the pinned Android-clean V2-derived candidate and verify its actual patched APK artifact (latest run #104: https://github.com/kage049754/Senki/actions/runs/38025372460; artifact ID 11659729329; SHA-256 `97e37a19c006b4c3af9a0fe301013b0f1cb94c2a20d99c02eefb5eb6e24b7d2e`).
 - [ ] Vendor or otherwise preserve a reproducible, editable copy of the chosen source tree inside this repository; the current workflow still clones it into a temporary runner workspace.
 - [ ] Confirm install/launch separately on a device when possible.
 
@@ -300,3 +300,8 @@ Run #101 passed the new static fallback regression test and the Android candidat
 ### Packaged skill fallback verification — 2026-10-10
 
 Run #104 passed after fixing a malformed intermediate workflow edit. CI now extracts `SkillLayer.lua` from the actual APK and checks that the missing-label fallback text and guarded frame lookup are present in the packaged asset. Verified artifact: https://github.com/kage049754/Senki/actions/runs/38025372460 (APK artifact ID 11659729329, SHA-256 `97e37a19c006b4c3af9a0fe301013b0f1cb94c2a20d99c02eefb5eb6e24b7d2e`). This remains a diagnostic candidate; physical device and gameplay tests are outstanding.
+
+
+### Packaged skill-description fallback — run #104
+
+The workflow now extracts `SkillLayer.lua` from the built APK and checks for both the guarded frame lookup and the visible fallback string. Run #104 passed this packaged-source check, APK build, signature/native ABI checks, and artifact upload. This is stronger than a source-only test but still does not replace physical-device visual/gameplay testing.
