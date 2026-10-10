@@ -829,3 +829,14 @@ The repository metadata confirms these are forks of the same parent, not indepen
 - External characters integrated into the central V2 candidate: 0.
 - External characters verified playable: 0.
 - Next search should favor meaningful mod forks with documented character additions and inspectable source/resource files, rather than mirrors of the same legacy source tree. Continue using release notes to discover candidate names, then find actual source implementations and record provenance before any port.
+
+
+## Source-tree verification follow-up — 2026-10-10
+
+The editable legacy tree at [Zx-Akito/NarutoSenki](https://github.com/Zx-Akito/NarutoSenki) was rechecked against the external release-note leads. Its inspected Classes/SelectLayer.cpp constructs its selectable list from the same nine core names: Naruto, Sakura, Sai, Itachi, Konan, Deidara, Sasuke, Karin, and Jugo. The tree includes legacy resources for some already-known fighters such as Jiraiya and Karin, but no source-level packages were found for the newer release-note leads Shizune, Hashirama, Rin, Sakon & Ukon, or Juzo in the inspected path inventory. The release repository's v1.26 beta 1 changelog does name those additions, but its published artifact is an APK; that is a lead, not an approved source package.
+
+The fork [hendprw/NarutoSenki](https://github.com/hendprw/NarutoSenki) was compared with its upstream and is identical at the inspected master revision (d847b113dfce486822768ef5a1c1c874b50fa3cd); it contributes no new implementation.
+
+Additional GitHub repository/code searches for Shizune_skill, Shizune.xml, Hashirama_Skill, Kurenai_select.png, Tayuya_skill, and FDPL/NarutoSenki source terms returned no source-level matches in this search pass. This does not prove no such implementation exists anywhere; it means no usable new package was verified through these searches.
+
+**Outcome:** still zero external character packages that are both source-inspectable and permission-cleared for integration. Do not extract or port from the release APK. Continue seeking a creator-provided source/resource package or permission grant; the first complete port remains blocked on that prerequisite.
