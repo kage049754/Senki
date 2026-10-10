@@ -224,7 +224,7 @@ def update_atlas_plist(zf, source_plist_path, target_plist_path, source_names, n
     target_plist_path.write_bytes(plistlib.dumps(data, fmt=plistlib.FMT_XML, sort_keys=False))
     return data
 
-def add_ui_aliases(base_to_new):
+def add_ui_aliases(base_to_new_pairs):
     for plist_path in resources.glob("*.plist"):
         try:
             data = plistlib.loads(plist_path.read_bytes())
@@ -234,7 +234,7 @@ def add_ui_aliases(base_to_new):
         if not isinstance(frames, dict):
             continue
         additions = {}
-        for base_name, new_id in base_to_new.items():
+        for base_name, new_id in base_to_new_pairs:
             for frame_name, metadata in list(frames.items()):
                 if frame_name.startswith(base_name + "_"):
                     alias = new_id + frame_name[len(base_name):]
@@ -274,7 +274,7 @@ def find_character_assets(zf, source_candidates):
 apk_zips = {label: zipfile.ZipFile(path) for label, path in apk_paths.items()}
 added = []
 skipped = []
-base_to_new = {}
+base_to_new = []
 selection_alias_entries = []
 display_name_entries = []
 skill_alias_entries = []
@@ -406,7 +406,7 @@ for candidate in CANDIDATES:
         header_text = "// Registered native identity: HeroEnum::" + candidate["id"] + ".\n" + header_text
     (class_dir / (candidate["id"] + ".hpp")).write_text(header_text, encoding="utf-8")
 
-    base_to_new[candidate["base"]] = candidate["id"]
+    base_to_new.append((candidate["base"], candidate["id"]))
     selection_alias_entries.append((candidate["id"], candidate["base"]))
     display_name_entries.append((candidate["id"], candidate["display"]))
     skill_alias_entries.append((candidate["id"], candidate["base"]))
