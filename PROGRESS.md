@@ -635,3 +635,12 @@ GitHub API confirms `kage049754/Senki` is currently **public**. Therefore, the s
 - [x] Character audit artifact `senki-character-package-audit`, ID `11662099251`, SHA-256 `fbd2915a317262947ba38b27dfe2f58db12efebbc827e85c656b6f8ceb52dead`; expires 2026-10-24.
 - [ ] Runtime rendering and tooltip scrolling still require Android device/emulator testing.
 - [ ] The roster remains 43 declared selection names; no new character was integrated. Gameplay-verified count remains unmeasured.
+
+
+## Latest roster-source research checkpoint — 2026-10-10
+
+- [x] Compared additional repositories, including `Fansirsqi/NarutoSenki`, `likill/NarutoSenki-master`, `RieyuXhen/NarutoSenki`, `Zx-Akito/NarutoSenki`, `hendprw/NarutoSenki`, and the paired 1.17 mod repositories.
+- [x] Confirmed `wsnbbnbb/NarutoSenki1.17Mod` and `LeaderOnePro/NarutoSenki1.17Mod` share the same recursive tree SHA; they are not independent sources.
+- [x] Confirmed `hendprw/NarutoSenki` and `Zx-Akito/NarutoSenki` share the same recursive tree SHA. Legacy Cocos2d-x 2.2.2 source files expose 58 distinct AI method names, but those are not 58 verified player characters.
+- [x] Compared the V2-family original selection layouts: inspected forks expose 36 original selection names, while the pinned Android-only candidate exposes 37 because it includes Kabuto. The V2 family does not supply the 27 additional complete playable packages needed to reach 70.
+- [ ] Continue looking for independent, editable, compatible character implementations. Do not count APK-only resources, duplicate mirrors, enum-only support classes, summons, or AI method names as new playable characters.
