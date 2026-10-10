@@ -409,3 +409,14 @@ The inspected `Fansirsqi/NarutoSenki-V2`, `ZhReimu/NarutoSenki-V2`, `sansaks-jpg
 
 - The current battle HUD's `HudLayer::createReport()` requests `<Name>_rp.png` and `<Name>_rpf.png` frames, while the frames live in `Resources/Report.plist`. The audit script now checks both expected portrait frames per roster name and CI asserts that Kabuto and Kiba have both frames declared.
 - This is an atlas-name integrity check only. It does not prove the correct killer/victim names are passed, portraits are rendered in the right order, or the notification works during battle; those still need runtime tests.
+
+
+### NarutoSenki 1.17 mod — Fukasaku replacement (inspected 2026-10-10)
+
+- Repository: https://github.com/LeaderOnePro/NarutoSenki1.17Mod
+- Default branch: `main`; repository metadata showed last update 2026-07-27, size 37,613 KB, no declared license.
+- README description (Chinese): a custom mod based on Naruto Senki 1.17; it replaces Akimichi Choji with the two Great Sage Toads (Fukasaku/Shima).
+- Tree inspection found 1,043 paths, including packaged Android APK contents (`classes.dex`, `resources.arsc`, `lib/`, and `assets/`) rather than an editable C++/Lua source project. Assets include `assets/Audio/Fukasaku/`, `assets/Element/Fukasaku/`, and related character/effect atlases.
+- Fork comparison: `wsnbbnbb/NarutoSenki1.17Mod` reports this repository as its parent and has the same reported size/tree layout; it is a fork/mirror, not an independent implementation.
+- **Classification: REFERENCE_ONLY / APK-PACKAGED MOD.** It is useful evidence that a Fukasaku/Shima character replacement exists in a 1.17 mod and helps identify the resource families needed for a complete character package. It is not a drop-in V2 source port: no editable character source was found in the tree inspection, the base version differs, and code/assets have no declared reuse terms.
+- **Integration status: not imported.** No APK extraction, binary patching, or asset copying was done. Next step is to find a source-editable version of this character or implement it from a permission-cleared source; then map selection art, skill icons/descriptions, sprites/animations, audio, effects, skill logic, and AI to the chosen V2 architecture and test it.
