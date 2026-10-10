@@ -390,3 +390,19 @@ AI means the game's computer-controlled fighter behavior here: it must be able t
 - [x] Audit output now distinguishes skill icon frame count and skill description frame count. These are source filename/plist-name checks, not visual/functional proof.
 - [ ] Source research has not yet identified a character package whose code, selection art, skills, animations, voice/SFX and other assets are all permission-cleared and compatible. No new character has been integrated.
 - [ ] Next phases remain: resolve authorized character source/assets; port a complete character and AI behavior; add automated per-character checks; inspect the UI and test actual gameplay on device; repeat fixes/builds until final verification.
+
+
+## Latest central V2-candidate CI verification — 2026-10-10
+
+- [x] Commit `4d3bea9232aa4c65ea4e4432d814fcf837b0d046` completed GitHub Actions run **#98** successfully: https://github.com/kage049754/Senki/actions/runs/38024493952
+- [x] Verified the exact run SHA matches the latest source commit.
+- [x] Lua syntax and source smoke checks passed; the character audit report structure/coverage test passed.
+- [x] Android diagnostic candidate build passed; APK existence, package identity, packaged character-search code, signature/native ABI checks, and artifact upload all passed.
+- [x] Verified APK artifact `naruto-senki-v2-candidate-debug-apk`, artifact ID `11659787739`, size 83,342,550 bytes; SHA-256 `210a7b2d26374658db6a3097cd0821609b7db7b7fd47e4303b9397626ba21fa6`; expires 2026-10-24.
+- [x] Verified audit artifact `senki-character-package-audit`, artifact ID `11659742756`; expires 2026-10-24.
+- [x] Improved the automated inventory to report skill-description label coverage and list exceptions requiring manual review. The candidate's Kabuto skill-label frames remain absent by exact-name audit; no replacement labels were invented and no new character was integrated.
+- [ ] Install and launch this exact artifact on the user's physical Android device; inspect original backgrounds, page 4+ navigation, character preview/selection, skill viewer, and battle behavior.
+- [ ] Establish source/asset permissions or another permission-cleared source base before treating this candidate as an importable/releasable unified game.
+- [ ] Current verified playable character count remains **unmeasured**; new characters integrated by this pass: **0**.
+
+This is a successful **diagnostic candidate build**, not a final unified release or proof of physical-device gameplay. The external source is still cloned into the CI runner rather than vendored into this repository, and rights review remains open.
