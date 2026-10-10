@@ -347,3 +347,12 @@ The latest candidate APK built and passed static form-registration, resource/tex
 - Exact SHA: `9aa276227fa118e89246eef561aa318209d3c60a`
 - APK artifact ID: `11660439960`; SHA-256: `865afbe5def724a1f0c0da37ad9aec845d12ccac4ed56a14411c156e6ce3b76c`
 - Outstanding: actual device/emulator gameplay tests, source-vendoring, and code/asset rights review. No external character port is counted as complete.
+
+
+### Original background preservation — CI run #136 (2026-10-10)
+
+Run #136 passed both source-level checks and packaged-APK checks for the original character-selection and mode-menu background resources. The workflow confirms that the retired custom menu/selection replacement assets are absent and the original red/blue backgrounds and menu bars are present in the APK. This is not a visual runtime test; device/emulator verification remains open.
+
+- Run: https://github.com/kage049754/Senki/actions/runs/38029520544
+- SHA: `9c4aa3dbd82c91cef8fb90297030b809ae0cdd42`
+- APK artifact ID: `11661441846`, SHA-256: `65a9116d9652b65a21eaf9f765ff709b3475aad45da3c2922522ad0253464a8f`
