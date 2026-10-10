@@ -872,3 +872,18 @@ This source is useful for understanding legacy roster/resource wiring but **does
 - **Decision:** PACKAGE_REFERENCE_ONLY / PERMISSION_REQUIRED. Do not extract or transplant packaged APK resources. This source does not qualify any of the six requested characters for a safe, auditable source-level port.
 - Next step remains finding editable character source plus an authorized asset/provenance path, or obtaining a direct authorized source/resource package from a contributor. The six requested character statuses remain unchanged; external characters integrated **0**, verified playable **0**.
 
+
+
+## Current integration checkpoint — Two Sage Toads (2026-10-10)
+
+**Status: IMPLEMENTED in the CI candidate; gameplay verification pending.**
+
+- External mod: [LeaderOnePro/NarutoSenki1.17Mod](https://github.com/LeaderOnePro/NarutoSenki1.17Mod), pinned in CI to `8c800efe09f8e5489f37ee3314596b329f533225`.
+- Its README says the mod replaces Akimichi Choji with the Two Sage Toads. The package exposes the relevant character and skill atlases plus character audio files in its repository tree.
+- The Senki CI patch creates a separate `TwoSageToads` roster identity and resource package, copies/renames the mod atlases, retargets the V2-compatible animation XML, supplies audio fallbacks, adds a native AI class/enum/Provider dispatch, and wires selection/skill UI aliases. The original Choji roster entry remains.
+- Compatibility limitation: the current implementation uses Choji's native AI/combat/skill behavior. This is a playable-identity/visual-mod integration, not yet a unique Two Sage Toads gameplay implementation.
+- Regression coverage: XML animation frame names are checked against the packaged atlases; the latest successful [CI run #223](https://github.com/kage049754/Senki/actions/runs/38049878750) built the Android candidate APK and uploaded artifacts (APK artifact ID `11668738659`, audit artifact ID `11668783626`).
+- **Not yet verified:** phone installation, battle spawn, touch controls, AI, skill behavior, sound playback, death/respawn, and runtime memory/resource behavior.
+- **Counting rule:** this is a variant/replacement of Choji and is excluded from the 70 distinct-base-character target. The source-level roster is 44 selectable entries, 37 distinct base characters, and seven known forms/variants excluded from the distinct count (six native forms plus Two Sage Toads).
+- Next work: test this candidate on device, then prioritize a truly distinct external fighter such as Kurenai, Might Guy, Yamato, Shizune, Hashirama, Rin, Juzo, or another release-note lead. The release notes alone are not a source-level port; each still needs a compatible character implementation and resources.
+
