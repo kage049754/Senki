@@ -1,4 +1,5 @@
 # SENKI — Existing Naruto Senki Mod-Merging Workspace
+> **PRIMARY PRIORITY — EXTERNAL SENKI MOD CHARACTERS:** Find characters that are actually implemented in OTHER Naruto Senki mods, then integrate those implementations into this existing Naruto Senki V2 project. Do not spend roster-expansion work auditing, recounting, renaming, or exposing characters/forms/summons already present in the current V2 source. Existing V2 content may be checked only as needed to confirm compatibility and avoid duplicates. Prioritize genuine external-mod characters and their complete implementation (selection portrait/name, sprites/animations, skills/effects/audio, player controls, AI, profile/skill display, and kill/death UI). Work on available slots on pages 1–3 first; preserve the original image-based page buttons and touch behavior. Do not claim an addition until the character is integrated and tested.
 
 > **Non-negotiable project direction: MODDING AND MERGING ONLY. DO NOT CREATE A NEW GAME.**
 
