@@ -160,14 +160,14 @@ The source roster inventory contains 37 unique selectable names; that is a sourc
 
 ### Roster scalability groundwork — 2026-10-10
 
-The existing character-selection screen no longer hardcodes exactly three pages. Patch `0008-dynamic-roster-pagination.patch` calculates the page count from the current character layout and uses numbered text page controls instead of requiring only three page-image assets. Lua syntax checks and the Android build passed in [run 38016671857](https://github.com/kage049754/Senki/actions/runs/38016671857); artifact ID `11655938596`.
+The existing character-selection screen no longer hardcodes exactly three pages. Patch `0008-dynamic-roster-pagination.patch` calculates the page count from the current character layout. Pages 1–3 keep original image controls; pages 4+ use generated image controls with normal/selected states styled from the original page-button art. The Android build and APK checks passed in [run 38020781870](https://github.com/kage049754/Senki/actions/runs/38020781870); artifact ID `11657917474`.
 
 This is groundwork for the user's 70+ roster goal, **not** a claim that 70 characters are already present. The inspected base currently lists 37 unique selectable names. The new pagination still needs phone testing with 4+ pages, and characters must be added and verified individually.
 
 
 ### Dynamic character pagination and expanded source research — 2026-10-10
 
-The latest successful build is [run 38016671857](https://github.com/kage049754/Senki/actions/runs/38016671857), artifact `naruto-senki-v2-candidate-debug-apk` (ID `11655938596`, 83,752,290-byte ZIP). It includes the dynamic selection-pagination patch, passes Lua 5.1 syntax checks, and verifies the landscape manifest, APK signature, and both native ABIs.
+The latest successful build is [run 38020781870](https://github.com/kage049754/Senki/actions/runs/38020781870), artifact `naruto-senki-v2-candidate-debug-apk` (ID `11657917474`, 83,355,267 bytes; archive SHA-256 `303f9dfbabd11fec739b91dcdda4f818421618c242dda4182794d9497aa6c147`). It includes the image-based pagination patch, verifies generated page 4/5 normal/selected controls in the APK, confirms the retired custom menu/selection backgrounds are absent, and passes Lua syntax, landscape, signature, and native ABI checks.
 
 Additional release-note research found potential character leads in [Zx-Akito's Naruto Senki release line](https://github.com/Zx-Akito/NarutoSenki-Release/releases): Shizune, Hashirama, Rin, Sakon & Ukon, Juzo, Kurenai, Might Guy, Yamato, Sasori, Zetsu, Iruka, Jirobo, Tayuya, Anko, and others. These are discovery leads only; the latest v1.26 release is APK-only and reports server-side processing, so it is not a direct offline V2 source base. The lead list is tracked in `docs/CHARACTER_ROSTER.md` and the compatibility notes in `docs/MOD_RESEARCH.md`.
 
