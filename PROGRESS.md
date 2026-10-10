@@ -188,3 +188,11 @@ Treat these as priority candidates to investigate in editable Senki mod source. 
 - The roster audit passed after the fallback-test correction. The next failure was test_character_search.py, which was checking many pagination implementation details that are already covered by the dedicated dynamic-pagination and page-button tests.
 - Fix: narrowed the search test to the actual search contract: case-insensitive substring filtering, visibility updates, and empty/reserved-page feedback. Pagination stays independently tested by its own checks.
 - No character addition is claimed by this test cleanup.
+
+
+## Latest run #265 failure — incomplete search implementation
+
+- Run: https://github.com/kage049754/Senki/actions/runs/38051786147
+- The narrowed search regression test found that the candidate's existing filter method was incomplete: the apply script had treated the mere presence of its method signature as proof the feature was complete and skipped patching it.
+- Fix: the apply script now checks required behavior markers. If a partial filter method exists, it removes that incomplete method and applies the complete cross-page search implementation; it skips only when the behavior markers are present.
+- This is the root-cause fix for search wiring, not a character addition.
