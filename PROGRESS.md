@@ -87,3 +87,11 @@ Do not report a character as added unless its gameplay implementation and all re
 ## Current next action after Run #208
 
 Continue source-level discovery for a complete, independently selectable external Senki character with inspectable files and a viable rights/provenance path. Do not count release-note-only candidates or APK-only resources. Once a candidate qualifies, map all dependencies and port it into an available page 1–3 slot before batch expansion.
+
+
+## Latest candidate audit — likill legacy source
+
+- Inspected the editable source for Network/Hardcore character selection, AI declarations, and resource loading.
+- The Network/Hardcore list contains 35 non-empty selectable names, but those names all overlap the pinned Android-clean candidate roster; the same repository's Training list contains only nine.
+- The repository has no declared license/root LICENSE in the checked tree, and its legacy Cocos2d-x 2.2.2 setup has no verified Android build path.
+- Decision: reference-only; no character copied, no new external character integrated. Continue searching for a genuinely distinct character source with a clear permission path.
