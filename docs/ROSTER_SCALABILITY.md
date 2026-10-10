@@ -69,3 +69,15 @@ Portrait-only placeholders, planned entries, synthetic tests, unreviewed assets,
 - Verified playable roster count: NOT YET MEASURED.
 
 Update only after inspecting and testing the actual code.
+
+
+## First native selection-screen scalability patch — 2026-10-10
+
+- [x] Removed the hardcoded `self.pageNum = 3` from the existing V2-derived `SelectLayer.lua`.
+- [x] Page count is derived from the existing `ns.CharactersLayout` table in batches of 21 selection slots per page.
+- [x] Replaced the three sprite-specific page buttons with numbered text menu items, so the selection UI no longer depends on only `page1_*`, `page2_*`, and `page3_*` assets.
+- [x] The central CI workflow asserts the dynamic page-count expression and runs Lua 5.1 syntax validation on all game scripts.
+- [x] Build verified: [run 38016671857](https://github.com/kage049754/Senki/actions/runs/38016671857) succeeded and uploaded artifact ID `11655938596`.
+- [ ] The current base still has only 37 unique selectable names. Dynamic pagination is groundwork, not a 70-character roster.
+- [ ] Validate 4+ pages with real entries on a phone; check page button layout, selection confirmation, battle spawn, and existing mode-specific selection behavior.
+- [ ] Implement/search/filter and resource validation only after preserving the current selection logic and testing the dynamic-page change.
