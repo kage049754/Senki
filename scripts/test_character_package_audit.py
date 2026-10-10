@@ -44,6 +44,14 @@ assert int(target.group(2)) == max(0, 70 - expected_count), "Roster target short
 assert "Gameplay-verified playable count: **not measured by this static audit.**" in report, (
     "Static audit must not imply gameplay-verified character count"
 )
+enum_leads = re.search(r"HeroEnum entries absent from the visible selection list: \\*\\*(\\d+) requiring manual classification", report)
+assert enum_leads, "Non-roster HeroEnum audit summary is missing"
+assert "Non-roster enum leads:" in report, "Non-roster enum lead list is missing"
+assert "not counted as playable" in report, "Non-roster enum warning must prevent false playable counts"
+assert "`AnimalPath`" in report and "`Guardian`" in report, (
+    "Known summon/support enum entries should be surfaced for manual classification"
+)
+
 coverage = re.search(r"Kill-feed portrait atlas coverage: \*\*(\d+)/(\d+) roster entries", report)
 assert coverage, "Kill-feed portrait coverage summary is missing"
 assert int(coverage.group(1)) == int(coverage.group(2)) == expected_count, (
