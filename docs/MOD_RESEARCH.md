@@ -726,3 +726,13 @@ Decision: these are not 70-character bases and do not solve the additional-roste
 - `Classes/Characters.h` centralizes AI functions in the monolithic `Hero` class. The resource tree has many `Resources/Element/<name>` folders, including character names but also summons/support entities such as Akamaru, Kurama, Centipede, DogWall, Slug, and Pain paths. Resource-folder count must not be used as a playable-character count.
 - The resource tree also includes Han and Roshi, but their presence is not proof of a dedicated selectable hero or direct player-control path. Treat them as leads requiring class/control/spawn tracing.
 - Comparison result: this candidate offers a possible **mechanics/resource reference** for future port analysis, but it does not close the distinct playable roster gap and should not replace the selected V2-derived base. No files were copied.
+
+
+## Source-tree lead check — Han and Roshi (2026-10-10)
+
+A recursive tree inspection of the public V2-derived candidate found existing Han and Roshi resource directories, animation XML/plist data, sprite atlases, and voice/skill audio. This confirms resource leads exist in that candidate tree; it does **not** prove they are selectable or cleared for redistribution.
+
+- Source references: [Han unit resources](https://github.com/Zx-Akito/NarutoSenki-V2/tree/master/projects/NarutoSenki/Resources/Unit/Guardian/Han), [Roshi unit resources](https://github.com/Zx-Akito/NarutoSenki-V2/tree/master/projects/NarutoSenki/Resources/Unit/Guardian/Roshi), [Guardian implementation](https://github.com/Zx-Akito/NarutoSenki-V2/blob/master/projects/NarutoSenki/Classes/Core/Guardian/Guardian.hpp).
+- The inspected `Guardian` class implements autonomous target-seeking/attacks; the resource directory alone is not evidence of a player-controlled character-selection path.
+- The candidate repository has no declared GitHub license, and the provenance/reuse terms for game sprites, audio, and other assets remain unresolved. Do not copy these resources into the central repository or ship them as redistributed assets until permission/license terms are verified.
+- Next technical check: trace the candidate's character registration, selection UI, factory/class mapping, and player-input dispatch to determine whether Han/Roshi have any existing selectable form or would require a genuine control/character implementation. Keep both names as RESEARCH_ONLY until those checks and rights checks pass.
