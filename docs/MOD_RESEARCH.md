@@ -950,3 +950,21 @@ The older [LeaderOnePro/NarutoSenki](https://github.com/LeaderOnePro/NarutoSenki
 ### Search outcome and next action
 
 The search has broadened but has not yet found a complete editable source package for Kurenai, Might Guy, Yamato, Hashirama, Shizune, Rin, or the queued additional names. The best next technical path remains: (1) seek a complete authorized source handoff from the mod author; or (2) start an independently authored compatible character implementation with original assets and the existing native character lifecycle, then prove it in a battle/runtime test before counting it. Continue screening genuinely different mods instead of duplicating near-identical V2 mirrors.
+
+
+## Third-pass source discovery — 2026-10-11
+
+New repository inspected: [Fansirsqi/NarutoSenki](https://github.com/Fansirsqi/NarutoSenki), revision `636315c1cd9e5859d3efbe97bd42bf519fd4a9d8`.
+
+This is a stronger **character-resource lead** than the previous release-note/audio-only candidates. Source-indexed files include:
+- **Kimimaro:** character animation/config XML, sprite plist, selection portrait frame, avatar/skill-icon frames, skill-view label frames, cut-in/profile/result UI frames, and audio paths.
+- **Jugo:** character animation/config XML, sprite plist, skill-atlas plist, selection portrait, avatar/skill icon and skill-view label references, and audio paths.
+
+See [EXTERNAL_MOD_AUDIT_3_2026-10-11.md](EXTERNAL_MOD_AUDIT_3_2026-10-11.md) for exact source file links and details.
+
+**Important status:** These are substantial source-level package leads, not verified playable characters. This pass did not establish roster/selection dispatch, full skill implementation, AI behavior, or a running-game test. The current central target's indexed search did not find Kimimaro/Jugo, but a full pinned-tree comparison is still required. The package's Cocos2d-style resource layout differs from the current V2 candidate, so each event/skill/audio/effect/AI dependency must be mapped before porting. Code/asset reuse permission is not established; do not copy/redistribute assets until permission is resolved.
+
+- New promising leads: **2** (Kimimaro, Jugo).
+- Newly integrated characters: **0**.
+- Playable/selectable characters verified from this package: **0**.
+- Next action: inspect the source's select roster/registration and history, enumerate further distinct per-character packages, compare with the pinned target tree, resolve permission, then port and test a genuinely new character without reusing an existing fighter under another name.
