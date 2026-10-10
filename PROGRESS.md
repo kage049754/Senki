@@ -222,3 +222,12 @@ The repo previously received a native Kotlin/Canvas prototype scaffold. It is no
 - [x] Verified artifact `naruto-senki-v2-candidate-debug-apk`, ID `11637936223`, ZIP size 83,729,869 bytes, expires 2026-10-23.
 - [x] Confirmed the APK archive contains all three custom screen backgrounds and that package identity checks pass.
 - [ ] On-device install, visual layout, actual touch behavior, and battle regression tests remain unverified.
+
+
+## Landscape stability hardening — 2026-10-10
+
+- [x] Reviewed the pinned Android manifest: the game already starts in `sensorLandscape`, matching the requested landscape gameplay.
+- [x] Added `patches/android-clean/0007-landscape-config-stability.patch` to handle both `orientation` and `screenSize` configuration changes, reducing the risk of Android recreating the game activity during display-size/orientation configuration updates.
+- [x] Updated the central candidate build workflow to assert the manifest retains `sensorLandscape` and `orientation|screenSize`, then inspect the compiled APK manifest for the sensor-landscape value.
+- [ ] Current verification run `38015169691` is in progress on commit `8d31f68ae4912078266a207ade5bbe05cfc4b8b8`. The previous run for the manifest patch alone was cancelled by the newer workflow commit before completing; wait for the latest run and inspect any failure logs before counting this change as built.
+- [ ] Device rotation/touch/gameplay still requires phone testing. CI checks the compiled manifest, not real hardware behavior.
