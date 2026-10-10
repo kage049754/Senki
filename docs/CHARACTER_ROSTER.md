@@ -205,3 +205,19 @@ Source inspected: [Zx-Akito/NarutoSenki](https://github.com/Zx-Akito/NarutoSenki
 | MaskRaidon | AI dispatch branch in legacy `Classes/Characters.cpp`; `Resources/Element/MaskRaidon/MaskRaidon.{xml,plist,pvr.ccz}` | No `_select.png`, `_half.png`, or `_font.png` frame found in the inspected legacy Select atlas | **SOURCE-INSPECTED / PARTIAL**. Needs complete selection UI, skill/audio inventory, and V2 port analysis. |
 
 **Shared gaps for all four:** old Cocos2d-x class/AI architecture and `Resources/Element` conventions do not match the current V2 candidate's `Classes/Core/Shinobi`, AI registration, and `Resources/Unit/Ninja` layout. No asset was copied. Each port still needs a category-by-category manifest covering identity, skill icons/descriptions, model/animations, skills/cooldowns/hitboxes, voice/SFX triggers, effects/projectiles/summons, player controls, AI behavior, unique IDs, and runtime evidence. CI must verify source changes; actual battle/device tests are required before PLAYABLE-VERIFIED.
+
+
+## Automated package audit — run #109 — 2026-10-10
+
+The generated report for pinned candidate `279e85e73040558c84988a0eea310b6286eb77f0` found:
+
+- **37** unique selectable names in source (not equivalent to 37 verified playable characters).
+- **37/37** names have both expected kill-feed portrait frames declared in the audited atlas.
+- **36/37** names have all five expected skill-description label frames under the current naming rule.
+- **Kabuto** is the sole exact-name exception: **0/5** expected `Kabuto_labelN.png` frames were detected.
+- A guarded skill-view fallback is now applied in CI: if the requested description frame is missing, the viewer uses a visible generic `Skill description unavailable` label rather than blindly creating a sprite from a nonexistent frame. The fallback's source test and presence inside the packaged APK passed run #109.
+- **No character was added by this UI/audit work.** No character has been promoted to VERIFIED; the playable count is still unmeasured.
+
+Evidence: [run #109](https://github.com/kage049754/Senki/actions/runs/38025803886). Audit report artifact: `senki-character-package-audit` (artifact ID `11659909978`, expires 2026-10-24).
+
+The filename/frame audit is a heuristic, not a runtime completeness proof. It does not establish that the five label frames are the only possible description mechanism, nor does it verify skill logic, animation, AI, audio, or device gameplay.
