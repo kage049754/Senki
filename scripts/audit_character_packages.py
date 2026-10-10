@@ -287,12 +287,14 @@ with OUT.open("w", encoding="utf-8") as f:
     # Kabuto intentionally has no label sprites, but patched SkillLayer supplies
     # five descriptions so the UI can still explain its skills.
     fallback_start = skill_source.find("local skillDescriptionFallbacks")
-    fallback_end = skill_source.find("local transformList", fallback_start) if fallback_start >= 0 else -1
-    fallback_text = skill_source[fallback_start:fallback_end] if fallback_start >= 0 and fallback_end > fallback_start else (skill_source[fallback_start:] if fallback_start >= 0 else "")
-    kabuto_fallback_count = 0
-    kabuto_block = re.search(r"Kabuto\s*=\s*\{([\s\S]*?)\n\s{4}\}", fallback_text)
-    if kabuto_block:
-        kabuto_fallback_count = len(re.findall(r"\[\d+\]\s*=\s*\"", kabuto_block.group(1)))
+    fallback_descriptions = (
+        "Chakra Scalpel Activation: boosts damage and heals on hits for 6 seconds.",
+        "Nerve Strike Dash: dash forward with a slash trail that slows enemies.",
+        "Dead Soul Vault: teleport-strike the target area with a multi-hit attack.",
+        "Dead Soul Jutsu: revive and temporarily control a nearby eliminated hero.",
+        "Nehan Shojo: Final Slash: stun nearby enemies, then deal heavy true damage to the target.",
+    )
+    kabuto_fallback_count = sum(1 for description in fallback_descriptions if fallback_start >= 0 and description in skill_source[fallback_start:])
     f.write(f"- Kabuto runtime skill-description text fallbacks: **{kabuto_fallback_count}/5 detected in patched SkillLayer.lua** (separate from image-label frame coverage).\n")
     frame_complete = sum(1 for row in detail_rows if row[4].startswith("0 "))
     missing_frame_ref_rows = [(row[0], row[4]) for row in detail_rows if not row[4].startswith("0 ")]
