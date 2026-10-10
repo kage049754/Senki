@@ -522,3 +522,12 @@ GitHub API confirms `kage049754/Senki` is currently **public**. Therefore, the s
 - [x] The run passed the selectable-form source checks, full Lua syntax validation, character package audit, Android build, APK roster-packaging checks, signature/ABI checks, and artifact upload.
 - [x] Latest APK artifact: `naruto-senki-v2-candidate-debug-apk`, ID `11660673063`, size 83,313,937 bytes, digest `sha256:cfeca041cc20e0c6a423f492fcab286b38bc802ee8cd4de82c1b528c388341c1`; expires 2026-10-24.
 - [ ] Install and test the exact artifact on an Android device/emulator. No physical-device results are available in this session.
+
+
+## Latest packaged tooltip-cleanup verification — run #122 (2026-10-10)
+
+- [x] Run **#122** succeeded on exact workflow commit `6f636b5cf429231e760546b2ce17afbd5c6f7ff9`: https://github.com/kage049754/Senki/actions/runs/38027909214
+- [x] Added post-build checks proving the APK-packaged `SkillLayer.lua` contains both the missing-label fallback and whole-tooltip-container cleanup (`self._skillExplainClipper:removeFromParent()` and `self._skillExplainClipper = clipper`).
+- [x] APK artifact `naruto-senki-v2-candidate-debug-apk`, ID `11661206511`, size 83,310,581 bytes; SHA-256 `ea413331b1a90c61fedcd44f8ba65b19a31f8559c94edf7e7554e5d323d69b12`; expires 2026-10-24.
+- [x] Character audit artifact `senki-character-package-audit`, ID `11661201551`; expires 2026-10-24.
+- [ ] The next milestone remains runtime validation on an Android device/emulator, then additional character integrations sourced from compatible editable implementations. Current 43 selectable entries/forms are not equivalent to 43 gameplay-verified characters.
