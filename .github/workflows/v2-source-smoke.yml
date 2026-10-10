@@ -56,7 +56,14 @@ jobs:
           fi
           for patch in "${patches[@]}"; do
             echo "Checking and applying $patch"
-            git -C /tmp/narutosenki-candidate apply --check "$patch"
+            if ! git -C /tmp/narutosenki-candidate apply --check "$patch"; then
+              echo "Patch context failure for $patch; printing nearby source for diagnosis."
+              if [[ "$patch" == *0009-character-search-filter.patch ]]; then
+                grep -n -A28 -B5 'function SelectLayer:onPageButtonClick' /tmp/narutosenki-candidate/projects/NarutoSenki/lua/ui/SelectLayer.lua || true
+                nl -ba /tmp/narutosenki-candidate/projects/NarutoSenki/lua/ui/SelectLayer.lua | sed -n '295,340p' || true
+              fi
+              exit 1
+            fi
             git -C /tmp/narutosenki-candidate apply "$patch"
           done
           echo "All central Senki patches applied."
