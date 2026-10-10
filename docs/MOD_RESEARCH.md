@@ -968,3 +968,16 @@ See [EXTERNAL_MOD_AUDIT_3_2026-10-11.md](EXTERNAL_MOD_AUDIT_3_2026-10-11.md) for
 - Newly integrated characters: **0**.
 - Playable/selectable characters verified from this package: **0**.
 - Next action: inspect the source's select roster/registration and history, enumerate further distinct per-character packages, compare with the pinned target tree, resolve permission, then port and test a genuinely new character without reusing an existing fighter under another name.
+
+
+### Additional legacy source with a real character implementation — 2026-10-11
+
+Repository: [RieyuXhen/NarutoSenki](https://github.com/RieyuXhen/NarutoSenki), inspected revision `d3b24db722857b7f47d61db7c2e90ff5c8f8d086`.
+
+This pass verified **Jugo** in the legacy source beyond asset names alone:
+- `Classes/StartMenu.cpp` includes Jugo in the selectable character array.
+- `Classes/Characters.cpp` dispatches Jugo to `AI_Jugo()` and contains the AI function body.
+- `Classes/Characters.h` declares the AI entry.
+- The character XML, sprite/skill plists, selection portrait/name art, skill-view labels and audio references are present.
+
+This makes Jugo a source-verified selectable/AI-registered fighter in that legacy project. It is still **not a proven new character in the central V2 target** until its exact pinned roster is compared; do not add a duplicate. The source uses a legacy Cocos2d layout and no code/asset redistribution permission has been verified, so this is a research lead only. Details: [EXTERNAL_MOD_AUDIT_3_2026-10-11.md](EXTERNAL_MOD_AUDIT_3_2026-10-11.md).
