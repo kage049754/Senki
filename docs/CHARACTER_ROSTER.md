@@ -447,3 +447,11 @@ Do not count these as integrations. Keep the target gap at 33 distinct base char
 Checked additional C++/V2 repositories and compared their actual selection code. `LeaderOnePro/NarutoSenki` and `LeaderOnePro/NarutoSenki-cocos2dx` have editable C++ but their inspected selectable lists contain only characters already in the V2 base. Their AI routing for support entities/forms is not counted as a new selectable fighter. `sansaks-jpg/NarutoSenki-V2` is a stock-roster fork. `likill/NarutoSenki-master` lacks the expected V2 Lua roster path. No new, permission-cleared, complete external character package was identified.
 
 **Count remains unchanged:** external characters integrated **0**; external characters verified playable **0**. Release-note names remain candidates only until editable source/resources and reuse rights are confirmed. Do not fill character slots with placeholders and call them finished.
+
+## Candidate rejection — likill legacy source — 2026-10-10
+
+- Source: https://github.com/likill/NarutoSenki-master
+- Inspected Network/Hardcore selection list: 35 non-empty names; all overlap the pinned V2 candidate's selectable roster. Training selection remains the original nine-name list.
+- AI/resource-loader references include forms, support entities, and related assets; these are not counted as additional standalone characters.
+- Rights: no declared source license or root LICENSE found in the checked tree; bundled art/audio permissions are unknown.
+- Decision: **REFERENCE_ONLY / PERMISSION_REQUIRED**. No source/assets copied; no character added. This is a duplicate-roster lead, not an eligible port.
