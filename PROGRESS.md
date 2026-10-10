@@ -140,3 +140,11 @@ Treat these as priority candidates to investigate in editable Senki mod source. 
 - The candidate passed Lua validation, pagination checks, background checks, and package inventory generation. The audit validator then failed because it expected two alternate-form mappings to appear as roster entries, while they are absent from the visible 37-entry selection list and correctly remain enum-only research leads.
 - Fix: the audit report now always prints the known alternate-form mapping reference and explicitly marks whether each form is actually present in the visible roster. This documents aliases without falsely counting missing entries as playable.
 - No new character was added in this fix. Current candidate remains 37 selectable entries, one external variant (Two Sage Toads), and zero external characters verified playable on device.
+
+
+## Latest run #251 failure — fallback audit parser corrected
+
+- Run: https://github.com/kage049754/Senki/actions/runs/38051451473
+- The workflow reached the audit validation after the candidate inventory and UI checks. The audit report incorrectly detected **0/5** Kabuto text fallbacks even though the dedicated SkillLayer regression test passed.
+- Root cause: the audit script's regex required one exact table/blank-line layout. I replaced that brittle boundary with explicit extraction between the fallback table and transform list, then count the five indexed descriptions within Kabuto's block.
+- This is an audit parser correction, not a gameplay change or a character addition.
