@@ -32,12 +32,13 @@
 **Exit checks:** one existing Senki source base is selected with evidence, build instructions, known blockers, and documented permission status.
 
 ## Phase 2 — Establish the chosen base in the central repository
-**Status: Not started**
+**Status: In progress — the patched V2-derived source builds in central CI from a pinned temporary clone; full source vendoring and phone validation remain open.**
 
 - [ ] Bring or adapt the chosen base into `kage049754/Senki` using a documented, provenance-preserving method.
 - [ ] Preserve original engine/game loop and existing behavior wherever practical.
 - [ ] Resolve dependencies and Android build issues without replacing the engine with a new implementation.
-- [ ] Establish CI for the chosen base and verify its actual APK artifact.
+- [x] Establish central CI for the pinned Android-clean V2-derived candidate and verify its actual patched APK artifact (run 38015483353).
+- [ ] Vendor or otherwise preserve a reproducible, editable copy of the chosen source tree inside this repository; the current workflow still clones it into a temporary runner workspace.
 - [ ] Confirm install/launch separately on a device when possible.
 
 **Exit checks:** the selected existing Senki game builds and launches from the central repo before major mod merges begin.
@@ -151,3 +152,14 @@ Next work should focus on the visible controls and interaction layer: confirm me
 
 
 The newest artifact and CI evidence are tracked in `PROGRESS.md`; on-device visual and gameplay checks remain the next validation gate.
+
+
+## Latest engineering update — 2026-10-10
+
+- [x] The pinned Android-clean V2-derived source now builds in central CI with the ordered custom identity/loading/selection/menu patches.
+- [x] Added landscape stability handling and CI assertions for the compiled manifest's sensor-landscape orientation.
+- [x] Added fallback backgrounds to loading, menu, and selection so a missing custom PNG does not immediately abort scene setup.
+- [x] Latest verified run: `38015483353` **SUCCESS**; artifact `naruto-senki-v2-candidate-debug-apk`, ID `11655846337`, 83,726,412-byte ZIP. See [run and artifact card](https://github.com/kage049754/Senki/actions/runs/38015483353).
+- [ ] Install and launch on the user's phone; test post-engine-intro startup, main menu, character selection, battle start, touch controls, and orientation behavior.
+- [ ] Keep expanding the character/mod research inventory and choose individual compatible changes to port after runtime baseline validation.
+- [ ] Full V2 source tree is not yet vendored into this repository; current CI clones the pinned source and applies central patches temporarily.
