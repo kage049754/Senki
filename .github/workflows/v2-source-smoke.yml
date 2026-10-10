@@ -409,3 +409,6 @@ jobs:
 
       - name: Print build diagnostics on failure
         if: failure()
+        run: |
+          echo "Build failed. Inspect Gradle/NDK error above before changing the pinned candidate."
+          find /tmp/narutosenki-candidate/projects/NarutoSenki/proj.android-studio -type f \( -name '*.log' -o -name 'hs_err_pid*.log' \) -print 2>/dev/null || true
