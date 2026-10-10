@@ -34,8 +34,8 @@ for item in re.finditer(r"'([^']*)'|\"([^\"]*)\"|(?<![\w])_None(?![\w])", body):
     if name and name.lower() != "none" and name not in names:
         names.append(name)
 
-# These six entries are existing forms of a base character, not six additional
-# distinct characters toward the 70+ distinct-character goal.
+# These entries are existing forms or modded variants of base characters, not
+# additional distinct characters toward the 70+ distinct-character goal.
 KNOWN_FORM_BASES = {
     "SageJiraiya": "Jiraiya",
     "ImmortalSasuke": "Sasuke",
@@ -43,6 +43,9 @@ KNOWN_FORM_BASES = {
     "RikudoNaruto": "Naruto",
     "RockLee": "Lee",
     "Nagato": "Pain",
+    # This is an external modded replacement/variant of Choji, not a distinct
+    # base character toward the 70+ distinct-character target.
+    "TwoSageToads": "Choji",
 }
 distinct_base_names = [name for name in names if name not in KNOWN_FORM_BASES]
 
