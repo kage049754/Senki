@@ -1,7 +1,7 @@
 diff --git a/projects/NarutoSenki/lua/ui/SelectLayer.lua b/projects/NarutoSenki/lua/ui/SelectLayer.lua
 --- a/projects/NarutoSenki/lua/ui/SelectLayer.lua
 +++ b/projects/NarutoSenki/lua/ui/SelectLayer.lua
-@@ -50,69 +50,12 @@
+@@ -50,69 +50,17 @@
  
      local width, height = display.width, display.height
  
