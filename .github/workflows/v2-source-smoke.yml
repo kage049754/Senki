@@ -107,6 +107,12 @@ jobs:
           test -s "$GAME/Resources/senki_page5_on.png"
           file "$GAME/Resources/senki_page4_off.png" "$GAME/Resources/senki_page4_on.png" "$GAME/Resources/senki_page5_off.png" "$GAME/Resources/senki_page5_on.png"
 
+      - name: Verify generated pagination buttons preserve original artwork
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 "$GITHUB_WORKSPACE/scripts/test_page_button_assets.py" /tmp/narutosenki-candidate/projects/NarutoSenki/Resources
+
       - name: Audit every selectable character package
         shell: bash
         run: |
