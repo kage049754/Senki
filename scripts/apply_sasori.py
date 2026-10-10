@@ -126,22 +126,28 @@ if "'Sasori'" not in basic:
 
 select_path = game / "lua/ui/SelectLayer.lua"
 select = select_path.read_text(encoding="utf-8")
-for table_anchor, entry in [
-    ("    Nagato = 'Pain'\n}", "    Nagato = 'Pain',\n    Sasori = 'Kankuro'\n}"),
-    ("    Nagato = 'Nagato'\n}", "    Nagato = 'Nagato',\n    Sasori = 'Sasori'\n}"),
-]:
-    if ("Sasori = 'Kankuro'" in entry and "Sasori = 'Kankuro'" not in select) or ("Sasori = 'Sasori'" in entry and "Sasori = 'Sasori'" not in select):
-        if select.count(table_anchor) != 1: raise SystemExit("Could not safely extend selection UI alias table")
-        select = select.replace(table_anchor, entry, 1)
+def add_table_entry(source, table_name, entry, identity):
+    if identity in source:
+        return source
+    start = source.find(table_name)
+    if start < 0: raise SystemExit(f"Missing UI table: {table_name}")
+    end = source.find("\\n}", start)
+    if end < 0: raise SystemExit(f"Could not locate end of {table_name}")
+    body = source[start:end].rstrip()
+    if body.endswith(","): pass
+    else: body += ","
+    return source[:start] + body + "\\n    " + entry + source[end:]
+select = add_table_entry(select, "local selectionAssetAlias = {", "Sasori = 'Kankuro'", "Sasori = 'Kankuro'")
+select = add_table_entry(select, "local selectionDisplayName = {", "Sasori = 'Sasori'", "Sasori = 'Sasori'")
 old = "        local select_btn = SelectButton:create(charName .. '_select.png')"
-new = "        local selectAssetName = selectionAssetAlias[charName] or charName\n        local select_btn = SelectButton:create(selectAssetName .. '_select.png')"
+new = "        local selectAssetName = selectionAssetAlias[charName] or charName\\n        local select_btn = SelectButton:create(selectAssetName .. '_select.png')"
 if old in select: select = select.replace(old, new, 1)
 elif new not in select: raise SystemExit("Could not route Sasori selection button to Kankuro base art")
 old = "        self._heroHalfImage = display.newSprite(charName .. '_half.png', 10, 10)"
-new = "        local selectAssetName = selectionAssetAlias[btn._charName] or btn._charName\n        self._heroHalfImage = display.newSprite('#' .. selectAssetName .. '_half.png', 10, 10)"
+new = "        local selectAssetName = selectionAssetAlias[btn._charName] or btn._charName\\n        self._heroHalfImage = display.newSprite('#' .. selectAssetName .. '_half.png', 10, 10)"
 if old in select: select = select.replace(old, new, 1)
 elif new not in select: raise SystemExit("Could not route Sasori portrait to compatible UI art")
-old = "        self._heroName = display.newSprite(charName .. '_font.png', 100, 20)\n        self._heroName:setAnchorPoint(CCPoint(0.5, 0))\n        self:addChild(self._heroName, 5)"
+old = "        self._heroName = display.newSprite(charName .. '_font.png', 100, 20)\\n        self._heroName:setAnchorPoint(CCPoint(0.5, 0))\\n        self:addChild(self._heroName, 5)"
 new = """        local displayName = selectionDisplayName[btn._charName]
         if displayName then
             self._heroName = ui.newTTFLabel({text = displayName, font = ui.DEFAULT_TTF_FONT, size = 16, color = ccc3(255, 255, 255)})
@@ -161,11 +167,11 @@ if "Sasori = 'Kankuro'" not in skill:
     marker = "local skillUiAlias = {"
     pos = skill.find(marker)
     if pos < 0: raise SystemExit("Missing skillUiAlias")
-    end = skill.find("\n}", pos)
+    end = skill.find("\\n}", pos)
     if end < 0: raise SystemExit("Missing end of skillUiAlias")
     prefix = skill[:end].rstrip()
     if not prefix.endswith(","): prefix += ","
-    skill = prefix + "\n    Sasori = 'Kankuro'," + skill[end:]
+    skill = prefix + "\\n    Sasori = 'Kankuro'," + skill[end:]
 skill_path.write_text(skill, encoding="utf-8")
 
 # Selection/kill-feed atlas aliases use existing UI atlas rectangles, never replace originals.
