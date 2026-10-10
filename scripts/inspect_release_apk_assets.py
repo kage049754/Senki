@@ -53,20 +53,31 @@ for arg in sys.argv[1:]:
                         print("\n".join("    " + x for x in inner.namelist()[:80]))
                 except Exception:
                     pass
-            for offset in range(0, min(32, len(data))):
-                chunk = data[offset:]
-                for decoder_name, decoder in (
-                    ("zlib", zlib.decompress),
-                    ("gzip", gzip.decompress),
-                    ("bz2", bz2.decompress),
-                    ("lzma", lzma.decompress),
-                ):
-                    try:
-                        unpacked = decoder(chunk)
-                    except Exception:
-                        continue
-                    if unpacked:
-                        print(f"  {decoder_name} decompressed at offset {offset}: {len(unpacked)} bytes, head={unpacked[:24].hex()}")
-                        strings = re.findall(rb"[A-Za-z0-9_./ -]{5,}", unpacked[:min(len(unpacked), 1_000_000)])
-                        print("  decoded strings:", [token[:100].decode("latin1", "replace") for token in strings[:35]])
-                        break
+            if suffix == ".nskp" and data[:4] == b"NSK1" and len(data) >= 16:
+                import struct
+                count, index_end = struct.unpack_from("<II", data, 8)
+                print(f"  NSK1 header: version={struct.unpack_from('<I', data, 4)[0]}, file_count={count}, index_end={index_end}")
+                for layout in ("offset_size", "size_offset"):
+                    pos = 16
+                    records = []
+                    valid = True
+                    for _ in range(count):
+                        if pos + 2 > len(data):
+                            valid = False
+                            break
+                        path_len = struct.unpack_from("<H", data, pos)[0]
+                        pos += 2
+                        if path_len == 0 or pos + path_len + 8 > len(data):
+                            valid = False
+                            break
+                        path = data[pos:pos + path_len].decode("utf-8", "replace")
+                        pos += path_len
+                        first, second = struct.unpack_from("<II", data, pos)
+                        pos += 8
+                        offset, size = (first, second) if layout == "offset_size" else (second, first)
+                        if not path or any(ord(ch) < 32 for ch in path) or offset < index_end or size <= 0 or offset + size > len(data):
+                            valid = False
+                        records.append((path, offset, size))
+                    good = sum(1 for path, offset, size in records if path and offset >= index_end and size > 0 and offset + size <= len(data))
+                    print(f"  NSK1 layout {layout}: parsed={len(records)}/{count}, index_cursor={pos}, valid_entries={good}, layout_valid={valid}")
+                    print("  NSK1 first entries:", records[:6])
