@@ -148,3 +148,11 @@ Treat these as priority candidates to investigate in editable Senki mod source. 
 - The workflow reached the audit validation after the candidate inventory and UI checks. The audit report incorrectly detected **0/5** Kabuto text fallbacks even though the dedicated SkillLayer regression test passed.
 - Root cause: the audit script's regex required one exact table/blank-line layout. I replaced that brittle boundary with explicit extraction between the fallback table and transform list, then count the five indexed descriptions within Kabuto's block.
 - This is an audit parser correction, not a gameplay change or a character addition.
+
+
+## Latest run #254 failure — fallback table location edge case
+
+- Run: https://github.com/kage049754/Senki/actions/runs/38051524711
+- The candidate still passed Lua parsing, background checks, and pagination generation. Audit validation failed because this pinned source revision places the existing fallback table after the transform list, so the previous boundary lookup produced an empty scan range.
+- Fix: when the transform-list boundary occurs before the fallback table, the audit parser now scans from the fallback declaration through the rest of SkillLayer.lua instead of reporting zero.
+- No new character was added; this is still static-audit plumbing.
