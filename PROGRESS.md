@@ -367,3 +367,15 @@ AI means the game's computer-controlled fighter behavior here: it must be able t
 - [ ] Visually inspect page controls and original backgrounds on a physical Android device; CI packaging checks cannot confirm their appearance or touch behavior on device.
 - [ ] The artifact is still a technical build of an external V2-derived source candidate with central patches, not a permission-cleared final release or a verified multi-mod character merge.
 - [ ] Source and third-party art/audio/voice permissions remain unresolved; no newly integrated character is counted as fully playable or AI-verified.
+
+
+## Character-package audit automation — latest build run #86 (2026-10-10)
+
+- [x] Added `scripts/audit_character_packages.py` to scan the pinned source roster and produce a per-character source inventory for C++ headers, character-named Lua files, unit/resource files, audio folders, packed selection frames, and detectable native AI registration references.
+- [x] Added the audit to the CI workflow and uploads the report as artifact `senki-character-package-audit`.
+- [x] Run [38021855646](https://github.com/kage049754/Senki/actions/runs/38021855646), run #86, commit `fd874238aa9aabf115bffa8712d58b63e46fadf5`, completed **SUCCESS**. The source audit, Lua/search/pagination checks, Android build, APK package identity, signature/native ABI checks, and both artifact uploads passed.
+- [x] Audit artifact ID `11657868789`, 1,333 bytes, expires 2026-10-24.
+- [x] APK artifact `naruto-senki-v2-candidate-debug-apk`, ID `11658183639`, 83,324,238 bytes, expires 2026-10-24.
+- [x] Improved the audit to check the candidate's actual `Resources/Unit/` layout and the three expected packed selection frames in `Resources/Select.plist`, and to look for the current C++ `HeroEnum::Name` + `setAIHandler` registration pattern.
+- [ ] The audit is a source-level heuristic only. "Manual AI audit required" means the pattern wasn't found in the scanned files; it does not prove AI support is missing. No character is marked newly added or playable-verified by this report.
+- [ ] Next implementation gate: find a character source with clear code/art/audio permission, map its complete assets and AI behavior to the current modular architecture, then integrate one character and add tests before counting it.
