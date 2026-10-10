@@ -68,7 +68,7 @@
 **Exit checks:** each integrated batch builds, launches, and passes the relevant gameplay checks; no unverified merge is labelled complete.
 
 ## Phase 5 — Unified roster and polish
-**Status: Not started**
+**Status: In progress — six existing native forms are exposed on page four in CI; physical-device gameplay verification is pending.**
 
 - [ ] Expand the chosen base's roster using compatible and permitted mod content.
 - [ ] Keep the roster expandable beyond 70 where feasible, without replacing the existing game engine just to meet a number.
