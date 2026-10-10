@@ -595,6 +595,7 @@ GitHub API confirms `kage049754/Senki` is currently **public**. Therefore, the s
 - [x] Lua syntax checks, character audit report structure, APK build, package identity, packaged character-search code, signature/native ABI checks, and artifact upload passed.
 - [x] APK artifact `naruto-senki-v2-candidate-debug-apk`, ID `11661692440`, size 83,322,088 bytes, SHA-256 `3342575c632dee2a795af2207d510a97c3f70f6952eb68a536d31f6fa070bb13`; expires 2026-10-24.
 - [x] Character audit artifact `senki-character-package-audit`, ID `11662017164`; expires 2026-10-24.
+- [x] Corrected the audit to honor the six `SkillLayer` art aliases: **42/43** entries now have all five expected skill-description labels; only `Kabuto` remains a real missing-label exception (0/5), with the safe generic fallback packaged in the APK.
 - [ ] Physical-device verification of the missing-label fallback, tooltip switching, page 4/5 controls, and original backgrounds remains open.
 - [ ] No new external character was integrated. The audit remains a static resource/source inventory, not a gameplay completeness test.
 - [ ] Source vendoring and code/asset permission review remain open; this successful candidate build does not remove those blockers.
