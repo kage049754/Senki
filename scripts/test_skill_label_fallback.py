@@ -34,6 +34,6 @@ if missing:
 assert source.index("local skillUiAlias = {") < source.index("function SkillLayer:setSkillExplain")
 assert source.index("local skillLabelHero = skillUiAlias[self.selectHero] or self.selectHero") < source.index("local skillFrameOk, skillFrame")
 assert source.index("local skillFrameOk, skillFrame") < source.index("self._skillExplain = display.newSprite('#' .. imgPath)")
-assert source.index('text = "Skill description unavailable"') < source.index("self._skillExplain:setAnchorPoint(0, 0)")
+assert source.index('text = (skillDescriptionFallbacks[self.selectHero] and skillDescriptionFallbacks[self.selectHero][buttonType - 2])') < source.index("self._skillExplain:setAnchorPoint(0, 0)")
 assert source.index("self._skillExplainClipper:removeFromParent()") < source.index("self._skillExplainClipper = clipper")
 print("Missing skill labels have a visible fallback; switching skills removes the old tooltip container.")
