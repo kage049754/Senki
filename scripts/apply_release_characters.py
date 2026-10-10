@@ -288,6 +288,16 @@ def find_character_assets(zf, source_candidates):
     return source_name, xml_path, plist_path, texture_path, directory
 
 apk_zips = {label: zipfile.ZipFile(path) for label, path in apk_paths.items()}
+# Preflight every requested package before writing any files. A failed batch must
+# never leave half-registered assets in the candidate tree.
+preflight_missing = []
+for candidate in CANDIDATES:
+    if not find_character_assets(apk_zips[candidate["release"]], candidate["sources"]):
+        preflight_missing.append(candidate["id"])
+if preflight_missing:
+    for zf in apk_zips.values():
+        zf.close()
+    raise SystemExit("No source-style character package for: " + ", ".join(preflight_missing))
 added = []
 skipped = []
 base_to_new = []
