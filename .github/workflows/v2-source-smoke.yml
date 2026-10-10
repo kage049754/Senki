@@ -98,7 +98,7 @@ jobs:
             /tmp/narutosenki-candidate/projects/NarutoSenki \
             /tmp/naruto-senki-v1.25.apk \
             /tmp/naruto-senki-v1.26.apk
-          python3 "$GITHUB_WORKSPACE/scripts/test_release_character_import.py" \
+          python3 "$GITHUB_WORKSPACE/scripts/test_release_characters.py" \
             /tmp/narutosenki-candidate/projects/NarutoSenki
           echo "Imported source packages are only considered ported after package/resource and native wiring checks pass."
 
