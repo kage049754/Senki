@@ -327,3 +327,16 @@ Four packages require manual triage:
 These are static name mismatches, not yet confirmed runtime failures. The next audit output lists up to 12 missing frame names per affected entry. The known Kimimaro/Jugo mismatch is now guarded by a regression test. No character is promoted to VERIFIED by this static check; inspect runtime atlas loading and verify permissions before any source/assets are integrated.
 
 Evidence: [run #168](https://github.com/kage049754/Senki/actions/runs/38033542630).
+
+
+## User-priority slot plan — pages 1–3 first (2026-10-10)
+
+The user's explicit order is to add **distinct characters sourced from other Naruto Senki mods into slots on pages 1, 2, and 3 before proceeding to pages 4 or 5**.
+
+- Keep original page 1–3 image-based page buttons and their touch behavior. Keep the original character-selection and mode-menu backgrounds.
+- First map the current slot-to-character order and identify open/replaceable slots. Do not silently replace an original character; note the exact slot and reason for any change.
+- Prioritize distinct characters, not merely alternate transformations of Naruto, Pain, Sasuke, Rock Lee, or Jiraiya.
+- Research leads such as Shizune, Hashirama, Rin, Sakon & Ukon, Juzo, Kurenai, Yamato, Zetsu, Iruka, Jirobo, Tayuya, Anko, Han, and Immortal Sasuke remain unverified leads unless the tracker has evidence for their exact source, permission, compatibility, and tests.
+- Do not import external code/assets without permission. The current V2 source candidate has unresolved reuse rights; public visibility or a private fan build does not itself grant permission.
+- A character is not “added” because its name appears in the layout or an audit finds files. Require complete assets and gameplay integration, then selection/spawn/skills/AI/death-respawn/resource tests.
+- Keep page 4/5 expansion blocked behind the first verified page 1–3 batch. Do not pad page 4 with existing forms as if they were new mod characters.
