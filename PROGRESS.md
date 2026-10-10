@@ -598,3 +598,15 @@ GitHub API confirms `kage049754/Senki` is currently **public**. Therefore, the s
 - [ ] Physical-device verification of the missing-label fallback, tooltip switching, page 4/5 controls, and original backgrounds remains open.
 - [ ] No new external character was integrated. The audit remains a static resource/source inventory, not a gameplay completeness test.
 - [ ] Source vendoring and code/asset permission review remain open; this successful candidate build does not remove those blockers.
+
+
+## Latest alias-aware character audit and packaged background verification — run #141 (2026-10-10)
+
+- [x] Character package audit now reads the `SkillLayer.lua` UI alias map so forms that reuse a base character's skill art are not incorrectly flagged as missing all five skill icons/labels.
+- [x] Regression checks require the known `RockLee → Lee` skill-art alias to be recognized while keeping Kabuto's missing label frames flagged for manual review.
+- [x] Added `scripts/test_packaged_background_assets.py` to compare SHA-256 hashes of the APK's original red/blue backgrounds and menu bars against the pinned source files byte-for-byte.
+- [x] GitHub Actions run **#141** succeeded on exact workflow SHA `c02bfb51c34b9bc6ae1c4285eacd48e3cfec4f09`: https://github.com/kage049754/Senki/actions/runs/38030022200
+- [x] Character-audit structure, original-background checks, Android candidate build, APK verification, and artifact uploads all passed.
+- [x] APK artifact `naruto-senki-v2-candidate-debug-apk`, ID `11661692440`, size 83,322,088 bytes, SHA-256 `3342575c632dee2a795af2207d510a97c3f70f6952eb68a536d31f6fa070bb13`; expires 2026-10-24.
+- [x] Character audit artifact `senki-character-package-audit`, ID `11662017164`, SHA-256 `c859375f2ec3f74ba1b7ba34a630687c178808ec670574c58b903273b56bc512`.
+- [ ] Runtime visual/gameplay testing is still outstanding; source and APK byte checks do not replace an Android install and play test.
