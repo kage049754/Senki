@@ -34,6 +34,13 @@ for item in re.finditer(r"'([^']*)'|\"([^\"]*)\"|(?<![\w])_None(?![\w])", body):
     if name and name.lower() != "none" and name not in names:
         names.append(name)
 
+
+# Preserve empty slots so every portrait can be checked against its exact page/slot.
+slot_tokens = []
+for item in re.finditer(r"'([^']*)'|\"([^\"]*)\"|(?P<none>(?<![\w])_None(?![\w]))", body):
+    slot_name = item.group(1) or item.group(2) or None
+    slot_tokens.append(slot_name)
+
 # Enum entries outside the visible selection list may be forms, clones, summons,
 # or implementation-only entities. Report them for manual classification; never
 # count them as playable merely because an enum exists.
@@ -146,6 +153,7 @@ with OUT.open("w", encoding="utf-8") as f:
     f.write(f"- Roster source: `lua/class/basic.lua`\n")
     target_gap = max(0, 70 - len(names))
     f.write(f"- Unique selectable names found: **{len(names)}**\n")
+    f.write(f"- Explicit selection slots mapped: **{len(slot_tokens)}** across **{(len(slot_tokens) + 20) // 21} pages** (21 slots per page).\n")
     f.write(f"- Distinct selectable-entry target: **{len(names)}/70 declared ({target_gap} more entries to reach 70; gameplay completeness is not implied).**\n")
     f.write("- Gameplay-verified playable count: **not measured by this static audit.**\n")
     f.write(f"- HeroEnum entries absent from the visible selection list: **{len(unlisted_enum_names)} requiring manual classification** (not counted as playable).\n")
@@ -184,6 +192,15 @@ with OUT.open("w", encoding="utf-8") as f:
     f.write("|---|---|---|---|---|---:|---:|---|---|---|\n")
     for row in rows:
         f.write("| " + " | ".join(fmt(x) for x in row) + " |\n")
+    f.write("\n## Exact character-selection slot map\n\n")
+    f.write("| Page | Slot | Character ID/name | Selection art check |\n")
+    f.write("|---:|---:|---|---|\n")
+    for index, slot_name in enumerate(slot_tokens):
+        if not slot_name:
+            continue
+        row = next((entry for entry in rows if entry[0] == slot_name), None)
+        selection_status = row[7] if row else "NOT_IN_AUDIT"
+        f.write(f"| {(index // 21) + 1} | {(index % 21) + 1} | {fmt(slot_name)} | {selection_status} |\n")
     f.write("\n## Detailed animation, atlas, audio, and AI checks\n\n")
     f.write("| Character | Animation/config XML | Sprite atlas + texture | XML frame refs resolved in atlas | Missing XML frame refs | Audio event references in XML | Exact-name audio files | Enum reference | AI registration clue |\n")
     f.write("|---|---|---|---:|---:|---:|---:|---|---|\n")
