@@ -664,3 +664,17 @@ A tree and key-file SHA comparison on 2026-10-10 found:
 ### Search result
 
 This pass found no new independent, editable V2-compatible source base. It reduces duplicate-source leads and reinforces that the next 27 roster entries must come from individually verified packages or purpose-built compatible implementations, not duplicate repositories, APK resource dumps, or enum-only entities.
+
+
+## Eighth-pass V2 fork search — 2026-10-10
+
+Searched Chinese-language repository queries for `火影战记 V2` and `火影战记 源码`, then inspected four additional candidates:
+
+- `tomtam/NarutoSenki-V2`
+- `wsnbbnbb/NarutoSenki-V2`
+- `LeaderOnePro/NarutoSenki-V2-old`
+- `4399erbai/NarutoSenki-V2`
+
+All four inspected trees contain 2,961 entries, 41 native `Classes/Core/Shinobi/*.hpp` headers, and 45 distinct `Resources/Unit/Ninja/<name>/` directories. Their original `lua/class/basic.lua` layouts expose 36 selectable names, not more than the existing V2-family candidates. `tomtam`, `wsnbbnbb`, and `4399erbai` share recursive tree SHA `d1a01eb4a6c007a0aea429e8883a079e06ab7387`; the inspected `LeaderOnePro/NarutoSenki-V2-old` has a different tree SHA `c9bde135c7aa85d8f3e0ace1cb84ad135b92a2fd` and is a fork of `Fansirliu/NarutoSenki-V2`. None declares a root license in the inspected tree/metadata.
+
+Decision: these are not 70-character bases and do not solve the additional-roster gap. Keep them as comparison references unless a future per-file diff identifies a specific useful fix; do not count them as independent roster expansions or copy code/assets without documented permission.
