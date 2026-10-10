@@ -324,3 +324,13 @@ The GitHub API confirms `kage049754/Senki` is public. Workflow artifacts therefo
 Run #101 passed after adding a safe missing-skill-description frame fallback to the pinned Android candidate. See [run #101](https://github.com/kage049754/Senki/actions/runs/38024966443) and the exact artifact details in `PROGRESS.md`.
 
 This improves failure handling when a skill label frame is absent; it does not restore missing character-specific descriptions, prove runtime rendering, or count as a character integration. Device/emulator validation is still pending. The candidate is still cloned into CI temporarily rather than vendored into this repository.
+
+
+### Roster expansion milestone — 2026-10-10
+
+The pinned candidate now exposes six existing native forms on a fourth character-selection page: Sage Jiraiya, Immortal Sasuke, Sage Naruto, Six Paths Naruto, Rock Lee, and Nagato. The patch reuses existing native enum/class/resource implementations and adds safe UI aliases where dedicated selection or skill-guide frames are missing.
+
+- Latest build: [Actions run #117 — success](https://github.com/kage049754/Senki/actions/runs/38027092821).
+- The workflow now inspects the APK itself to verify the six roster names and their UI aliases are packaged.
+- The roster contains 84 slots and currently computes four pages. Page 4 is populated by six forms; page 5 button art is prepared and packaged but is not displayed until the roster exceeds 84 slots.
+- Physical-device selection, battle, AI, skill, and transformation tests remain pending. Do not count these entries as verified playable until those checks pass.
