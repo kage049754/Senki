@@ -42,5 +42,13 @@ assert coverage, "Kill-feed portrait coverage summary is missing"
 assert int(coverage.group(1)) == int(coverage.group(2)) == expected_count, (
     f"Portrait coverage is {coverage.group(1)}/{coverage.group(2)} for {expected_count} roster entries"
 )
+labels = re.search(r"Skill-description label frame coverage: \*\*(\d+)/(\d+) roster entries", report)
+assert labels, "Skill-description label coverage summary is missing"
+assert int(labels.group(1)) <= int(labels.group(2)) == expected_count, (
+    f"Skill-label coverage is {labels.group(1)}/{labels.group(2)} for {expected_count} roster entries"
+)
+assert "Skill-description label exceptions requiring manual review:" in report, (
+    "Skill-label exception summary is missing"
+)
 assert "does not prove a character is complete" in report, "Required audit limitation warning is missing"
-print(f"Character audit report is well-formed: {len(header_cells)} columns, {len(rows)} rows, portrait coverage {coverage.group(1)}/{coverage.group(2)}.")
+print(f"Character audit report is well-formed: {len(header_cells)} columns, {len(rows)} rows, portrait coverage {coverage.group(1)}/{coverage.group(2)}, skill-label coverage {labels.group(1)}/{labels.group(2)}.")
