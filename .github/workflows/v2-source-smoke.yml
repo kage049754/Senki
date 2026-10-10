@@ -34,6 +34,11 @@ jobs:
           echo "Local patch series: patches/android-clean/*.patch"
           echo "The diagnostic APK will be retained as a short-lived Actions artifact for private testing; this is not a public release."
 
+      - name: Enforce external-character-first documentation and evidence gates
+        run: |
+          set -euo pipefail
+          python3 "$GITHUB_WORKSPACE/scripts/test_external_character_priority.py" "$GITHUB_WORKSPACE"
+
       - name: Fetch pinned candidate into temporary runner workspace
         run: |
           git clone https://github.com/muhammadadilsyaputra08-alt/NarutoSenki-Custom.git /tmp/narutosenki-candidate
