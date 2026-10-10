@@ -731,3 +731,14 @@ GitHub API confirms `kage049754/Senki` is currently **public**. Therefore, the s
 - [x] Extended the report to include the first 12 missing frame names per affected character and added a regression assertion so the known Kimimaro-to-Jugo mismatch cannot silently disappear from the audit.
 - [ ] Awaiting final CI run for the expanded exception details and regression assertion. No source/assets have been imported from the external reference; permission status remains unresolved.
 - [ ] Next: inspect whether the four mismatch groups are intentional shared atlas dependencies or real references to absent frames. Only apply an authorized, evidence-based fix; then rerun the audit/build.
+
+## User priority: add distinct mod characters to pages 1–3 first (2026-10-10)
+
+- User instruction: fill available/explicitly approved character slots on pages 1, 2, and 3 with distinct characters from other Naruto Senki mods before progressing to pages 4 or 5.
+- Preserve the original image-based page 1–3 buttons and their touch behavior, and preserve the original character-select and mode-menu backgrounds.
+- Do not treat transformations/forms of Naruto, Pain, Sasuke, Rock Lee, or Jiraiya as satisfying the distinct-character milestone.
+- Updated README.md, AGENTS.md, ROADMAP.md, and docs/CHARACTER_ROSTER.md to make this order mandatory for future work.
+- Candidate leads (not integrated): Shizune, Hashirama, Rin, Sakon & Ukon, Juzo, Kurenai, Yamato, Zetsu, Iruka, Jirobo, Tayuya, Anko, Han, and Immortal Sasuke. Verify exact source, unique contribution vs fork, schema compatibility, and reuse permission before import.
+- Current blocker: external code/assets permissions for the V2 candidate and several leads are unresolved. Do not copy those assets until authorized or a source with clear compatible reuse terms is found.
+- Latest inspected run #170: **SUCCESS** — https://github.com/kage049754/Senki/actions/runs/38033790172. It produced diagnostic candidate APK artifact naruto-senki-v2-candidate-debug-apk (artifact ID 11663288408; ZIP digest SHA-256 1fcd463e448a031c60ff749cc19c4e4ca9c1d24452cea4a30347d68ac04285ec; expires 2026-10-24) and audit artifact senki-character-package-audit (ID 11662689122). This is a pinned V2-derived diagnostic candidate, not proof of new external characters, a final unified release, or physical-device testing. The run explicitly added existing native forms to page four, which does not meet the new page 1–3 distinct-character priority.
+- Verified newly integrated distinct external characters: **0**. Do not inflate this count based on candidate leads, existing forms, static audits, or page navigation.
