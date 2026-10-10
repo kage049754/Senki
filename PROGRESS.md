@@ -782,3 +782,13 @@ User requires every new character to have its own correct avatar/portrait in the
 - [ ] Roster remains **43/70 declared entries**; no new distinct external character has been integrated or gameplay-verified. Han/Roshi remain off-roster Guardian-resource leads until unique selection art, skill UI, player-control behavior, and permission status are resolved.
 - [ ] Next implementation focus: repair Kabuto's skill-description label presentation and improve the source audit to verify the actual runtime lookup/fallback behavior. Then resume distinct-character integration research, keeping the page 1–3 priority and original background/page-button behavior.
 - [ ] Build artifact verification is separate from installation or gameplay testing on a physical Android device.
+
+## Latest continued-work update — run #188 (2026-10-10)
+
+- [x] Continued polling run #188 through terminal **SUCCESS**: all 37 workflow steps passed, no failed steps: https://github.com/kage049754/Senki/actions/runs/38036909331
+- [x] Verified current-run APK artifact `naruto-senki-v2-candidate-debug-apk` (83,312,356 bytes; SHA-256 `b592502ed3064a03bf2ccad1a106d4f33b449435099859a9feb99c0fde2e33aa`, artifact ID 11664048922; expires 2026-10-24).
+- [x] Downloaded and inspected current-run audit artifact (3,663 bytes; SHA-256 `a32ccdc72c35f67499d05e54766fcbdbba2c01290c72074fc267648ea3cd25df`, artifact ID 11664058878).
+- [x] The audit explicitly detects **5/5 Kabuto text fallback descriptions** in patched `SkillLayer.lua`, while still honestly reporting 0/5 Kabuto image-label frames. This separates runtime fallback coverage from sprite-frame coverage rather than hiding the missing art.
+- [x] XML-to-atlas name coverage remains **43/43** after shared/skill atlas resolution; roster remains 43 declared entries, 27 below the 70-entry target.
+- [ ] Next: audit the actual skill-label fallback behavior and source art needs, then continue the priority of integrating distinct characters into open slots on pages 1–3. Public repository presence alone is not a license grant; no new external character is counted until its source/reuse permission and runtime integration are validated.
+- [ ] This is still a diagnostic build from a pinned external source in a temporary CI workspace, not the final unified game release and not a substitute for physical-device gameplay testing.
