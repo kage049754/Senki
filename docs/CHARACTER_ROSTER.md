@@ -120,3 +120,11 @@ These are **DISCOVERED / RESOURCE_REVIEW leads only** from release notes, not in
 | Pain (alternate implementation) | FDPL v1.22 third-party mod listing | DISCOVERED / replacement-based lead | Compare against existing Pain; avoid losing base character |
 
 Source inventory links and compatibility notes are recorded in docs/MOD_RESEARCH.md. Do not count these as planned/implemented/verified until the exact source files, resources, and integration tests are available.
+
+
+## Latest pagination acceptance status — 2026-10-10
+
+- [x] Dynamic page count and current pagination patch passed the central CI build in [run 38019992304](https://github.com/kage049754/Senki/actions/runs/38019992304).
+- [ ] Page controls for 4+ must be redesigned as image-based controls with matching normal/selected visuals. The current implementation uses numbered text menu items for pages beyond 3, so it does **not** yet meet the acceptance requirement.
+- [ ] Device-test page navigation and confirm original page 1–3 controls, preview/tap-again confirmation, and character spawn behavior remain intact.
+- The source-level roster remains 37 selectable names. Verified playable count remains unmeasured; pagination does not add characters.
