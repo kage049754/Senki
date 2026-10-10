@@ -770,3 +770,15 @@ User requires every new character to have its own correct avatar/portrait in the
 - [!] Off-roster Han and Roshi each have Guardian XML/plist/texture, report portraits and exact-name audio files, but neither has a HeroEnum entry, selection frames, nor skill-icon frames. The shared Guardian AI behavior and resources alone do not prove they work as player-controlled characters; do not count them as playable yet.
 - [ ] Next: inspect the remaining XML/atlas exceptions and selection-art generation path; continue searching for distinct Senki characters with complete resource packages, prioritizing filling pages 1–3. A new character only counts after unique selection portrait/name, skill UI, class/provider/enum wiring, animations/effects/audio references, AI/player behavior, and in-game verification are covered.
 - [ ] This successful artifact is still a diagnostic build assembled from a pinned external source in a temporary CI workspace, not the final unified mod APK and not a physical-device-tested release.
+
+## Latest continued-work update — run #186 (2026-10-10)
+
+- [x] Continued polling run #186 until GitHub reported a terminal result; it completed **SUCCESS** with all 37 workflow steps successful and no failed steps: https://github.com/kage049754/Senki/actions/runs/38036488927
+- [x] Verified the current-run APK artifact `naruto-senki-v2-candidate-debug-apk` (83,320,922 bytes; SHA-256 `a92b3189c9ffbab39c43a50d921c9e4bb7de8a396c1f518f7c53351fa5b313da`, artifact ID 11664052182, expires 2026-10-24) and downloaded it for artifact inspection.
+- [x] Downloaded and inspected the audit artifact (3,615 bytes; SHA-256 `ea85affb98d03244af748b2790e88a3ccc0ada134bd4280326f389a1543da1a8`, artifact ID 11663777243).
+- [x] The shared-atlas audit improvement resolved all name-level XML-to-atlas warnings: **43/43** declared entries now have no missing XML frame names when the audit includes the character's separate skill atlases and explicit base-character aliases.
+- [!] Selection art is still only **37/43** complete by the static frame/file check. The six flagged entries are SageJiraiya, ImmortalSasuke, SageNaruto, RikudoNaruto, RockLee, and Nagato; some are form/base aliases, but this does not meet the unique-portrait requirement for distinct additions.
+- [!] Kabuto still has **0/5** expected skill-description label frames and requires a runtime/UI dependency fix or explicit fallback, not merely an audit suppression.
+- [ ] Roster remains **43/70 declared entries**; no new distinct external character has been integrated or gameplay-verified. Han/Roshi remain off-roster Guardian-resource leads until unique selection art, skill UI, player-control behavior, and permission status are resolved.
+- [ ] Next implementation focus: repair Kabuto's skill-description label presentation and improve the source audit to verify the actual runtime lookup/fallback behavior. Then resume distinct-character integration research, keeping the page 1–3 priority and original background/page-button behavior.
+- [ ] Build artifact verification is separate from installation or gameplay testing on a physical Android device.
