@@ -652,3 +652,17 @@ GitHub API confirms `kage049754/Senki` is currently **public**. Therefore, the s
 - Run #151 then exposed the same stale expectation in the selectable-form regression. That assertion was updated to check the new fallback table and real Kabuto skill descriptions.
 - The packaged-APK workflow check was also updated to assert the new dynamic fallback expression and actual Kabuto description strings instead of the retired generic text.
 - Run #152 then passed the updated source checks, Android build, packaged skill-description checks, form roster packaging, signature/ABI validation, and artifact upload. The earlier failed runs remain failed in GitHub history; run #152 is the verified successful rerun.
+
+
+## Latest roster gap and non-roster enum audit — run #159 (2026-10-10)
+
+- [x] Added an automated inventory of `HeroEnum.h` names that are not in `ns.CharactersLayout`. The report explicitly marks these as manual-review leads, not playable characters.
+- [x] CI classified 9 non-roster enum leads: `AnimalPath`, `AsuraPath`, `HumanPath`, `PertaPath`, `NarakaPath`, `NarutoClone`, `SageNarutoClone`, `RikudoNarutoClone`, and `Guardian`. The five Pain-path entries appear to be internal/summoned entities; the three NarutoClone entries are clones, and Guardian is support content. They are not automatically counted as selectable characters.
+- [x] Audit report confirms **43 distinct declared selectable names**, leaving **27 more distinct entries** to reach 70 declared names. This is not a gameplay-verified count.
+- [x] GitHub Actions run **#159** succeeded on exact workflow SHA `3f6ac555fa5b9fb5a9f64c195679e0abe50da2aa`: https://github.com/kage049754/Senki/actions/runs/38031862251
+- [x] Lua/source checks, character audit structure, Android candidate build, packaged Kabuto skill-description fallback, APK verification, and artifact uploads passed.
+- [x] APK artifact `naruto-senki-v2-candidate-debug-apk`, ID `11662291624`, size 83,328,393 bytes, SHA-256 `f5529a7558f1e60fe8176c78f13a92364d866ce4e9e81a21092910118a3bef70`; expires 2026-10-24.
+- [x] Character audit artifact `senki-character-package-audit`, ID `11662461471`, SHA-256 `34caeb205755ca9d78516b1cdc0ed9991efe467ff414a4f8175e08a729bdcb52`.
+- [ ] Determine whether any of the five Pain paths can legitimately become player-selectable without breaking Pain's summon kit; do not promote them based on enum/resource presence alone.
+- [ ] Continue finding at least 27 additional complete character packages from compatible source trees and document source/asset rights before merging.
+- [ ] Physical-device verification and source/asset permission review remain open.
