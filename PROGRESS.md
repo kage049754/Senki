@@ -263,3 +263,14 @@ The repo previously received a native Kotlin/Canvas prototype scaffold. It is no
 - [x] Signature check: APK Signature Scheme v1 and v2 verified. Native libraries verified for both `arm64-v8a` and `armeabi-v7a` (`libcocos2dcpp.so`, `libc++_shared.so`).
 - [x] Verified latest artifact `naruto-senki-v2-candidate-debug-apk`, ID `11656381799`, ZIP size 83,732,890 bytes, SHA-256 `c9114464e52be0cefe7ad2c4a273e6f40441649a32d4a19a8e3137733fc3f9ff`, expires 2026-10-24. See [run and artifact card](https://github.com/kage049754/Senki/actions/runs/38015857617).
 - [ ] Signature/native checks reduce packaging uncertainty, but they do not prove installation on the user's specific Android device. Phone install and gameplay still need to be checked.
+
+
+## Lua syntax and installability checks verified — 2026-10-10
+
+- [x] Added a Lua 5.1 syntax pass across every game script after the patch series is applied.
+- [x] Run `38016218553`: **SUCCESS** on commit `a250c15d592bc06dad97e4d629c612c71b7808b4`; all source patches applied, all Lua scripts passed `luac5.1 -p`, Gradle build passed, and APK identity/landscape/signature/native-ABI checks passed.
+- [x] Gradle reported `BUILD SUCCESSFUL in 3m 11s`.
+- [x] Verified artifact `naruto-senki-v2-candidate-debug-apk`, ID `11655967631`, ZIP size 83,749,269 bytes, SHA-256 `3fe28a0f6f3282c2674e3ea8ecc9ca5bcaae6b440bd15aa708ac0f7a25cd06c6`, expires 2026-10-24. [Open the run and artifact card](https://github.com/kage049754/Senki/actions/runs/38016218553).
+- [x] Added an exact source-level roster inventory: 37 unique selectable names in the pinned Android-clean candidate. This is not a count of device-verified playable characters.
+- [ ] Next: continue mod-source discovery and compare per-character class/config/resource sets for unique additions; then integrate one compatible character at a time and build.
+- [ ] Physical install, launch after engine intro, selection, and battle remain unverified on the user's phone. Syntax/build/signature checks cannot replace runtime testing.
