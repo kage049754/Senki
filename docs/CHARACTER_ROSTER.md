@@ -93,3 +93,30 @@ Names mentioned in source release notes or mod descriptions belong in research r
 - [x] CI build `38016671857` passed Lua syntax checks and produced artifact `11655938596`.
 - [ ] No new character has been added by this patch. Current source-level selectable count remains 37; verified playable count remains unmeasured.
 - [ ] After device validation, begin adding compatible characters in small batches with all portrait/button/XML/sprite/plist/audio/skill references audited.
+
+
+## Additional discovered mod character leads — 2026-10-10
+
+These are **DISCOVERED / RESOURCE_REVIEW leads only** from release notes, not integrated characters. The release source and exact asset files are not yet mapped to V2.
+
+| Character or form | Discovery source | Current status | Next action |
+|---|---|---|---|
+| Shizune | NarutoSenki v1.26 beta 1 release notes | DISCOVERED / APK-only lead | Find editable class/resources; check offline compatibility |
+| Hashirama | NarutoSenki v1.26 beta 1 and FDPL v1.22 notes | DISCOVERED / APK-only lead | Find source/asset lineage; compare skill kit |
+| Rin | NarutoSenki v1.26 beta 1 release notes | DISCOVERED / APK-only lead | Find editable class/resources |
+| Sakon & Ukon | NarutoSenki v1.26 beta 1 release notes | DISCOVERED / APK-only lead | Determine whether implemented as one selectable slot or linked forms |
+| Juzo | NarutoSenki v1.26 beta 1 release notes | DISCOVERED / APK-only lead | Find editable class/resources |
+| Kurenai | NarutoSenki v1.25 beta 1 release notes | DISCOVERED / APK-only lead | Find editable class/resources |
+| Might Guy | NarutoSenki v1.25 beta 1 and FDPL v1.22 notes | DISCOVERED / APK-only lead | Find source/resources; do not overwrite Tenten in the unified roster |
+| Yamato | NarutoSenki v1.25 beta 1 release notes | DISCOVERED / APK-only lead | Find editable class/resources |
+| Sasori (awakened form) | NarutoSenki v1.26 beta 1/2 release notes | DISCOVERED / form/skill lead | Identify separate form vs shared character implementation |
+| Zetsu | NarutoSenki v1.26 beta 1 release notes | DISCOVERED / APK-only lead | Find editable class/resources |
+| Iruka | NarutoSenki v1.26 beta 1 release notes | DISCOVERED / APK-only lead | Find editable class/resources |
+| Third Kazekage | NarutoSenki v1.26 beta 1 release notes | DISCOVERED / AI lead | Determine whether selectable and find implementation |
+| Jirobo | NarutoSenki v1.24 beta 1 release notes | DISCOVERED / APK-only lead | Find editable class/resources |
+| Tayuya | NarutoSenki v1.24 beta 1 release notes | DISCOVERED / APK-only lead | Find editable class/resources |
+| Anko (including revised skin) | NarutoSenki v1.24 beta 1 and v1.24 beta 2 release notes | DISCOVERED / form/skill lead | Find editable class/resources |
+| White Mask Tobi | FDPL v1.22 third-party mod listing | DISCOVERED / replacement-based lead | Seek additive implementation so existing Tobi is preserved |
+| Pain (alternate implementation) | FDPL v1.22 third-party mod listing | DISCOVERED / replacement-based lead | Compare against existing Pain; avoid losing base character |
+
+Source inventory links and compatibility notes are recorded in docs/MOD_RESEARCH.md. Do not count these as planned/implemented/verified until the exact source files, resources, and integration tests are available.
