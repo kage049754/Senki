@@ -488,3 +488,15 @@ This is a successful **diagnostic candidate build**, not a final unified release
 ## Artifact access warning — public repository — 2026-10-10
 
 GitHub API confirms `kage049754/Senki` is currently **public**. Therefore, the short-lived Actions APK artifacts are not private to the user; people with public repository read access may be able to download them during the retention window. The workflow's “private testing” wording describes intended use, not access control. The APK contains the third-party V2-derived game's resources and is not permission-cleared for redistribution. Do not describe this artifact as a private release. Repository visibility has not been changed; that would require the user's explicit decision.
+
+
+## Latest skill-view resilience patch — 2026-10-10
+
+- [x] Added `scripts/apply_skill_label_fallback.py` to the pinned-candidate workflow. The patch checks whether the expected skill-description frame exists before constructing the sprite.
+- [x] If the frame is missing, the skill-details view now displays a visible “Skill description unavailable” text fallback instead of unconditionally constructing a sprite from a missing frame.
+- [x] Added `scripts/test_skill_label_fallback.py`; the latest CI run validates the patched Lua source and completed the Android candidate build successfully.
+- [x] Latest run #101: https://github.com/kage049754/Senki/actions/runs/38024966443; commit `2ca3914ae8e10300c3e3070b376c8cf241a26ddb`.
+- [x] APK artifact `naruto-senki-v2-candidate-debug-apk`, artifact ID `11659082992`, size 83,302,507 bytes, digest `sha256:2c71b02890ee86d87e7882d5365299cde4dc7ff2524cc89f88edb54be218870b`, expires 2026-10-24.
+- [ ] Runtime test the missing-label case on device/emulator and confirm the fallback renders and scrolls correctly. Static checks and packaging do not prove runtime UI behavior.
+- [ ] This patch does not supply missing character descriptions or integrate any new character. Newly integrated characters this pass: **0**.
+- [ ] The candidate source is still cloned into the workflow's temporary runner workspace. The central repo contains the patches and build workflow, not a vendored editable copy of the complete upstream game.
