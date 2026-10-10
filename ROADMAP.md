@@ -295,3 +295,8 @@ A safe UI fallback was added in central CI for characters whose expected `<Chara
 ### Skill-description fallback verification — 2026-10-10
 
 Run #101 passed the new static fallback regression test and the Android candidate build. The patched skill view now guards the expected description frame and uses a visible generic fallback if the frame is absent. Runtime rendering and actual device behavior remain unverified; this does not add a character or fabricate skill descriptions.
+
+
+### Packaged skill fallback verification — 2026-10-10
+
+Run #104 passed after fixing a malformed intermediate workflow edit. CI now extracts `SkillLayer.lua` from the actual APK and checks that the missing-label fallback text and guarded frame lookup are present in the packaged asset. Verified artifact: https://github.com/kage049754/Senki/actions/runs/38025372460 (APK artifact ID 11659729329, SHA-256 `97e37a19c006b4c3af9a0fe301013b0f1cb94c2a20d99c02eefb5eb6e24b7d2e`). This remains a diagnostic candidate; physical device and gameplay tests are outstanding.
