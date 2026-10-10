@@ -325,3 +325,16 @@ The repo previously received a native Kotlin/Canvas prototype scaffold. It is no
 - [x] Documented the UI expectation that pages 1–3 retain their original image-based controls and pages 4+ receive matching image-based normal/selected buttons rather than text-only clickable replacements.
 - [ ] These are now explicit implementation requirements; this documentation update does not claim that new characters or kill/death overlays have already been implemented or phone-tested.
 
+
+
+## User-requested original background rollback and character profile requirements — 2026-10-10
+
+**Requested background behavior:** restore the original background/decorative interface for the main menu containing Training / Network / Exit, and restore the original character-selection background. The loading background is separate and is not included in this rollback.
+
+- [x] Updated the central build workflow to exclude the retired custom main-menu and character-selection background patches.
+- [x] Removed generation and APK assertions for senki_menu.png and senki_select.png; custom loading artwork remains separate.
+- [ ] Delete the now-retired patch files and update artwork notes so the repository no longer advertises the replaced backgrounds as active.
+- [ ] Confirm a fresh Actions run completes successfully and inspect the artifact.
+- [ ] Install on the phone and visually confirm both original backgrounds and their decorative layers are restored.
+
+**Character completion contract:** every new character must have the right portrait/name and selection preview; actual skill details where supported; sprites/model, animations, movement, basic attacks, hit detection, skills/cooldowns, effects/audio, player controls, AI, and correct IDs/resource paths. For kills/deaths, inspect existing engine hooks and show the actual killer/victim portrait and name when feasible. These are planned acceptance criteria, not a claim that the feature is already implemented. A character counts as playable only after gameplay tests, and CI success alone does not prove the visual rollback or gameplay.
