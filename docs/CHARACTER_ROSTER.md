@@ -52,7 +52,7 @@ Target: at least 70 verified playable characters. The registry itself must not h
 ## Current verified roster
 **Verified playable character count: NOT YET MEASURED.**
 
-**Source inventory (not runtime-verified):** the pinned Android-clean candidate's original roster defines 37 unique selectable names. The current CI patch exposes six additional existing native forms on page four (43 non-placeholder entries total, 84 slots/four pages). The five Pain-path C++ headers are implementation classes, not separate selectable roster entries. See `PROGRESS.md` for the latest build and artifact.
+**Source inventory (not runtime-verified):** the pinned Android-clean candidate's original roster defines 37 unique selectable names. The current CI patch exposes six additional existing native forms on page four, for **43 distinct declared names** across 84 slots/four pages. The audit target gap is **27 additional distinct entries** to reach 70 declared names. The five Pain-path C++ headers are implementation classes, not separate selectable roster entries. Gameplay-verified count remains unmeasured. See `PROGRESS.md` for the latest build and artifact.
 
 No individual character is marked VERIFIED by this initial tracker. Populate entries only after inspecting the actual project and testing the character.
 
@@ -127,7 +127,7 @@ Source inventory links and compatibility notes are recorded in docs/MOD_RESEARCH
 - [x] Dynamic page count and image-based pagination patch passed central CI build [run 38020781870](https://github.com/kage049754/Senki/actions/runs/38020781870).
 - [x] Pages 1–3 retain their original image controls; pages 4+ use generated normal/selected image states styled from the original page-button art. CI confirms page 4/5 image assets are packaged and the retired custom menu/selection backgrounds are absent.
 - [ ] Device-test the visual match, page navigation, original page 1–3 controls, preview/tap-again confirmation, and character spawn behavior.
-- The source-level roster remains 37 selectable names. Verified playable count remains unmeasured; pagination does not add characters.
+- The original source baseline was 37 selectable names. The current patched candidate declares 43 names after six existing native forms were exposed. Verified playable count remains unmeasured; pagination itself does not add characters.
 
 
 ## Required per-character asset and AI manifest
@@ -255,3 +255,11 @@ The current CI patch exposes these six native forms in page four. Their native e
 | Nagato | Pain class dispatch + form resources | Reuses Pain small selection/skill icons; dedicated half portrait; readable text name | BUILD-VERIFIED in runs #117 and #121 | NOT TESTED |
 
 **Important:** BUILD-VERIFIED means the roster/UI changes are present in the successfully built APK and the package checks pass. It does not prove each form can be selected, spawned, controlled, or used by AI at runtime. The verified playable character count remains **NOT YET MEASURED** until physical-device or suitable emulator gameplay checks pass.
+
+
+## Latest roster regression and target-gap checks — 2026-10-10
+
+- [x] Central CI run #126 passed the report target-gap validation and Android diagnostic build: https://github.com/kage049754/Senki/actions/runs/38028647795
+- [x] Automated report states 43/70 declared names (27 more entries needed) and explicitly does not measure gameplay-verified playable count.
+- [ ] None of the 43 declared entries should be called VERIFIED until selection, battle spawn, movement, attacks, skills, AI, death/respawn, and device/runtime checks are completed.
+- [ ] Continue sourcing compatible, editable character implementations; asset-only or APK-only leads remain research references.
