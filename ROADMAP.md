@@ -312,3 +312,8 @@ The workflow now extracts `SkillLayer.lua` from the built APK and checks for bot
 Run #109 passed a regression check that reads the original page-button frames from the actual Select atlas and verifies generated page 4/5 normal/selected states preserve the original outer artwork. The test initially failed due to assumptions about standalone frame files and an overly strict center-region boundary; those test defects were corrected based on the actual CI logs. The same run also passed the Android build, packaged skill-fallback check, signature/native ABI validation, and artifact upload.
 
 The current source still has 63 roster layout slots (three pages at 21 slots per page). The generated page 4/5 button artwork is ready and validated, but those pages will not appear until the roster actually grows beyond three pages.
+
+
+### Artifact-access gate — repository is public (2026-10-10)
+
+The GitHub API confirms `kage049754/Senki` is public. Workflow artifacts therefore must not be described as private: users with public repository access may download the APK during its retention period. The APK contains third-party game resources whose reuse/redistribution rights are unresolved. No repository visibility change has been made. Before any broader distribution, either obtain the needed permissions or explicitly decide on repository/artifact access controls; a successful diagnostic build is not a release approval.
