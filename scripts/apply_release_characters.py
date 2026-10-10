@@ -92,6 +92,7 @@ def convert_xml(raw, source_names, new_id):
             old_type = node.attrib.get("type", "")
             node.tag = "p"
             node.attrib["type"] = "cd" if old_type.lower() == "colddown" else old_type
+            node.text = replace_prefix((node.text or "").strip(), source_names, new_id)
         elif node.tag == "frameName":
             node.tag = "f"
             text = (node.text or "").strip()
@@ -381,6 +382,13 @@ for candidate in CANDIDATES:
                 target = audio_dir / name
                 if not target.exists():
                     shutil.copy2(path, target)
+    for audio_group, source_suffix in (("Ougis", "_ougis.ogg"), ("Intro", ".ogg")):
+        group_dir = audio_root / audio_group
+        base_name = candidate["base"] + source_suffix
+        source_audio = group_dir / base_name
+        target_audio = group_dir / (candidate["id"] + source_suffix)
+        if source_audio.is_file() and not target_audio.exists():
+            shutil.copy2(source_audio, target_audio)
     xml_text = xml_target.read_text(encoding="utf-8")
     for audio_ref in re.findall(r"Audio/" + re.escape(candidate["id"]) + r"/([^<]+?\.ogg)", xml_text):
         if not (audio_dir / audio_ref).is_file():
