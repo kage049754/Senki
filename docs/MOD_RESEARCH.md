@@ -567,3 +567,15 @@ The public `Zx-Akito/NarutoSenki-Release` changelog for older v1.24–v1.26 rele
 ### Roster growth decision
 
 The pinned V2 base currently has 37 unique original selectable names plus six existing transformation-form entries (43 distinct selection names). Reaching 70 requires at least 27 additional distinct entries, but the V2 fork family compared above does not supply those extra character packages. The next credible expansion path is a character-by-character port from an inspectable mod/source or another explicitly permission-cleared source, not adding empty slots or duplicating names. Page-4/5 navigation artwork and dynamic pagination are already tested in CI; they do not themselves increase the roster.
+
+
+### Fifth-pass native-package inventory — 2026-10-10
+
+The pinned candidate's native class and resource inventory was checked against its original roster:
+
+- The original `ns.CharactersLayout` contains **37 unique selectable character names** before the six existing form entries are applied.
+- The native header inventory contains 41 `Shinobi/*.hpp` files, but five of these are Pain-path support entities (`AnimalPath`, `AsuraPath`, `HumanPath`, `NarakaPath`, `PertaPath`), not extra independent roster characters. Their source describes summon/AI behavior; some paths have intentionally empty `perform()` methods.
+- Additional `Provider` entries such as Akamaru, Centipede, DogWall, Karasu, Kurama, Mask, Parents, Sanshouuo, Saso, and Slug are summon/companion entities in this architecture, not proof of extra selectable ninjas.
+- The inventory therefore does not reveal a hidden pool of 27 ready-to-select characters. Do not inflate the 70+ count by exposing summons, clones, support entities, or duplicate forms as independent fighters without implementing the complete character-selection, combat, AI, and resource package.
+
+**Next roster step:** port one real additional character at a time from an inspectable mod source, starting with a complete candidate package (class/skill logic, sprites/animation XML/plist/texture, skill icons and labels, selection portrait/name, audio/effects, AI registration, native enum/Provider dispatch, and provenance notes). Run source/resource tests and an APK build after each port; gameplay verification remains a separate requirement.
