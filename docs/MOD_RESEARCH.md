@@ -937,3 +937,16 @@ Additional direct recursive-tree inspection was performed on:
 - [muhammadadilsyaputra08-alt/NarutoSenki-Custom](https://github.com/muhammadadilsyaputra08-alt/NarutoSenki-Custom) — a large editable V2-derived tree; the inspected paths did not establish complete source packages for Might Guy, Kurenai, Yamato, Hashirama, Shizune or Rin.
 
 This is a targeted source-tree check, not an exhaustive claim about every public repository. Additional forks/mods remain queued for inspection. Candidate roster and port status are unchanged: no distinct external character is newly verified playable. Continue to prioritize editable source, full dependencies, and a clear asset/provenance path; if unavailable, use an original implementation with independently created assets.
+
+
+## Expanded V2-fork sweep — 2026-10-10
+
+A further recursive-tree check compared these public repositories against the six priority names and the named release-note queue: [SILXNTRAY/NarutoSenki-V2](https://github.com/SILXNTRAY/NarutoSenki-V2), [sansaks-jpg/NarutoSenki-V2](https://github.com/sansaks-jpg/NarutoSenki-V2), [hitlabmodv2/NarutoSenki-V2](https://github.com/hitlabmodv2/NarutoSenki-V2), [rikudousennin22/NarutoSenki-V2](https://github.com/rikudousennin22/NarutoSenki-V2), [BF667/NarutoSenki-V2](https://github.com/BF667/NarutoSenki-V2), [4399erbai/NarutoSenki-V2](https://github.com/4399erbai/NarutoSenki-V2), [yiyuan521/NarutoSenki-V2](https://github.com/yiyuan521/NarutoSenki-V2), [ZhReimu/NarutoSenki-V2](https://github.com/ZhReimu/NarutoSenki-V2), [LeaderOnePro/NarutoSenki1.17Mod](https://github.com/LeaderOnePro/NarutoSenki1.17Mod), [wsnbbnbb/NarutoSenki1.17Mod](https://github.com/wsnbbnbb/NarutoSenki1.17Mod), and [Fansirsqi/NarutoSenki](https://github.com/Fansirsqi/NarutoSenki).
+
+No filename/path matches for the six priority characters or queued release-note names were found in those checked trees. This is only a path-level screening pass: code can use aliases or generic filenames, and it does not prove that a character is absent from the games. These V2 forks did not surface a new candidate package to port from their visible paths.
+
+The older [LeaderOnePro/NarutoSenki](https://github.com/LeaderOnePro/NarutoSenki) and [likill/NarutoSenki-master](https://github.com/likill/NarutoSenki-master) trees expose Hashirama skill-art resource names, but the targeted scan did not establish the full model/animation/behavior/selection package for Hashirama. Treat those as partial references only, not a ready-to-port character.
+
+### Search outcome and next action
+
+The search has broadened but has not yet found a complete editable source package for Kurenai, Might Guy, Yamato, Hashirama, Shizune, Rin, or the queued additional names. The best next technical path remains: (1) seek a complete authorized source handoff from the mod author; or (2) start an independently authored compatible character implementation with original assets and the existing native character lifecycle, then prove it in a battle/runtime test before counting it. Continue screening genuinely different mods instead of duplicating near-identical V2 mirrors.
