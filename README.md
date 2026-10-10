@@ -256,3 +256,8 @@ When a character is added or ported, the goal is to bring over and connect **the
 - **Combat feedback:** where the engine supports it, kill/death messages should identify the actual killer and defeated fighter, using their correct names and portraits/avatars, while preserving existing score/counter/game-over behavior.
 
 **Acceptance rule:** a character is not complete merely because a portrait, skill icon, name, class file, or APK build exists. Track discovery, source inspection, porting, build verification, and in-game verification separately. Test selection/preview, skill view, all implemented moves/skills, visuals/audio triggers, AI selection/spawn and behavior, damage/death/respawn, and resource loading. Record missing source assets or incompatible features honestly; never invent assets and claim they came from the source. Review source and asset reuse terms and provenance before redistribution.
+
+
+### Automated character package inventory
+
+The CI workflow now runs `scripts/audit_character_packages.py` against the pinned source and uploads a `senki-character-package-audit` report with the debug APK. It inventories source-level clues for each of the 37 selectable names: native class/header presence, character-named Lua files, unit/resource files, audio folders, packed selection-frame names, and recognizable AI-registration patterns. The report is intentionally conservative: it is a triage tool, not a character-completeness verdict. Every character still needs a manual per-skill/animation/audio/AI review and in-game verification. A successful build or a row of detected files does not add a character to the verified roster.
