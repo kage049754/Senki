@@ -132,3 +132,11 @@ Treat these as priority candidates to investigate in editable Senki mod source. 
 - The next failure was a stale audit-test expectation hard-coded to **48/70** and eleven imported base fighters. The actual pinned candidate audit reported **37 selectable entries**, with no new source-level release characters integrated. That stale assertion was invalid after removing the unproven APK import.
 - Fix commit: update the audit test to require the actual **37/70** baseline and prohibit counting release-note-only leads as integrated characters.
 - This is a test expectation fix, not a character addition. External mod variants remain 1 (Two Sage Toads), distinct base-character count 37, and gameplay-verified external characters 0.
+
+
+## Latest run #248 failure — audit mapping wording corrected
+
+- Run: https://github.com/kage049754/Senki/actions/runs/38051386787
+- The candidate passed Lua validation, pagination checks, background checks, and package inventory generation. The audit validator then failed because it expected two alternate-form mappings to appear as roster entries, while they are absent from the visible 37-entry selection list and correctly remain enum-only research leads.
+- Fix: the audit report now always prints the known alternate-form mapping reference and explicitly marks whether each form is actually present in the visible roster. This documents aliases without falsely counting missing entries as playable.
+- No new character was added in this fix. Current candidate remains 37 selectable entries, one external variant (Two Sage Toads), and zero external characters verified playable on device.
