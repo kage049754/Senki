@@ -77,6 +77,13 @@ jobs:
           set -euo pipefail
           python3 "$GITHUB_WORKSPACE/scripts/apply_character_search.py" /tmp/narutosenki-candidate/projects/NarutoSenki/lua/ui/SelectLayer.lua
 
+      - name: Apply missing skill-description fallback
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 "$GITHUB_WORKSPACE/scripts/apply_skill_label_fallback.py" /tmp/narutosenki-candidate/projects/NarutoSenki/lua/ui/SkillLayer.lua
+          python3 "$GITHUB_WORKSPACE/scripts/test_skill_label_fallback.py" /tmp/narutosenki-candidate/projects/NarutoSenki/lua/ui/SkillLayer.lua
+
       - name: Validate patched Lua scripts
         shell: bash
         run: |
