@@ -44,7 +44,7 @@ assert int(target.group(2)) == max(0, 70 - expected_count), "Roster target short
 assert "Gameplay-verified playable count: **not measured by this static audit.**" in report, (
     "Static audit must not imply gameplay-verified character count"
 )
-enum_leads = re.search(r"HeroEnum entries absent from the visible selection list: \\*\\*(\\d+) requiring manual classification", report)
+enum_leads = re.search(r"HeroEnum entries absent from the visible selection list: \*\*(\d+) requiring manual classification", report)
 assert enum_leads, "Non-roster HeroEnum audit summary is missing"
 assert "Non-roster enum leads:" in report, "Non-roster enum lead list is missing"
 assert "not counted as playable" in report, "Non-roster enum warning must prevent false playable counts"
