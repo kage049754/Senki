@@ -702,3 +702,20 @@ GitHub API confirms `kage049754/Senki` is currently **public**. Therefore, the s
 - [ ] No newly added character is counted as playable from this build. Current roster notes still distinguish 43 declared selectable names from the unmeasured verified-playable count.
 - [ ] Next work: review audit findings, identify a character whose complete assets and reuse permissions are actually established, then integrate/test one full character package into the selected native base. Continue documenting unresolved code/artwork/audio rights rather than silently copying reference-only assets.
 - [ ] Physical-device installation and gameplay remain unverified; CI success confirms only the checks performed by this workflow.
+
+
+## Character asset audit regex fix and regression verification — 2026-10-10
+
+- [x] Fixed two escaped-whitespace regexes in `scripts/audit_character_packages.py` that had incorrectly reported zero XML audio-event references and unresolved sprite textures.
+- [x] Verified the corrected patterns against the pinned V2 Minato XML/plist: the plist resolves `Minato.pvr.ccz` and the XML has 26 matching sound-event references in that sample.
+- [x] Added regression gates in `scripts/test_character_package_audit.py`: every current roster entry must resolve a sprite plist + texture, and the audit must recognize audio-event references.
+- [x] GitHub Actions run **#162** succeeded: https://github.com/kage049754/Senki/actions/runs/38032617069
+- [x] GitHub Actions run **#164** succeeded on exact commit `2fd6ba8de4ae7334e0451c397ab8b5342840e4bd`: https://github.com/kage049754/Senki/actions/runs/38032945561. All 37 successful steps completed; no failed steps.
+- [x] Run #164 diagnostic APK artifact `naruto-senki-v2-candidate-debug-apk`, ID `11663366691`, ZIP size 83,323,243 bytes, SHA-256 `8eac9d1221393eb9fb1cd916d4b3cc3945afa3c40b0da592f01f43d55997f104`; expires 2026-10-24.
+- [x] Run #164 audit artifact `senki-character-package-audit`, ID `11663032190`; expires 2026-10-24.
+- [x] Corrected report confirms all **43/43** declared entries have a detected unit XML, sprite plist + texture, and both kill-feed portrait frames; the static audit recognizes non-zero audio-event references.
+- [ ] **42/43** entries have all five expected skill-description label frames; Kabuto remains flagged for manual skill-view/art review.
+- [ ] The audit finds 9 enum-only leads (including summon/support/clone identifiers) that still need manual classification. They are not counted as playable characters.
+- [ ] Declared roster remains **43**, with **27 more declared entries** to reach 70. The gameplay-verified playable count is still unmeasured; no character was added or promoted to VERIFIED by this audit.
+- [ ] The APK remains a diagnostic build of the pinned external V2-derived candidate in a temporary CI workspace. It is not yet the final unified mod or a physical-device-tested release.
+- [ ] Next: resolve code/art/audio permission status; manually inspect Kabuto's skill labels and the AI registration gaps; only then select a permission-cleared character package for a controlled native integration and gameplay verification.
