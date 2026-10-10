@@ -58,10 +58,10 @@ diff --git a/projects/NarutoSenki/lua/ui/SelectLayer.lua b/projects/NarutoSenki/
 +    self:addChild(self.searchEmptyLabel, 100)
  
      local hero = selectNameList[1]
-@@ -311,1 +350,2 @@
+@@ -313,1 +352,2 @@
  function SelectLayer:onPageButtonClick(index)
 +    self.currentPage = index
-@@ -327,4 +367,39 @@
+@@ -329,4 +369,39 @@
              pageLayer:setPositionY(10000)
          end
      end
