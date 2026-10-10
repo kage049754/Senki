@@ -172,6 +172,44 @@ jobs:
           "$ANDROID_HOME/build-tools/31.0.0/aapt" dump xmltree "$APK" AndroidManifest.xml | tee /tmp/senki-apk-manifest.txt
           grep -F 'android:screenOrientation' /tmp/senki-apk-manifest.txt | grep -F '0x6'
 
+      - name: Verify APK signature and native ABI packaging
+        if: success()
+        shell: bash
+        run: |
+          set -euo pipefail
+          APK="$(find /tmp/narutosenki-candidate/projects/NarutoSenki/proj.android-studio -type f -path '*/build/outputs/apk/*/*.apk' -print -quit)"
+          test -n "$APK"
+          "$ANDROID_HOME/build-tools/31.0.0/apksigner" verify --verbose "$APK"
+          unzip -Z1 "$APK" | tee /tmp/senki-apk-entries.txt | grep -E '^lib/(arm64-v8a|armeabi-v7a)/[^/]+\.so        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: naruto-senki-v2-candidate-debug-apk
+          path: /tmp/narutosenki-candidate/projects/NarutoSenki/proj.android-studio/**/build/outputs/apk/**/*.apk
+          if-no-files-found: error
+          retention-days: 14
+
+      - name: Print build diagnostics on failure
+        if: failure()
+        run: |
+          echo "Build failed. Inspect Gradle/NDK error above before changing the pinned candidate."
+          find /tmp/narutosenki-candidate/projects/NarutoSenki/proj.android-studio -type f \( -name '*.log' -o -name 'hs_err_pid*.log' \) -print 2>/dev/null || true
+
+          grep -E '^lib/(arm64-v8a|armeabi-v7a)/[^/]+\.so        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: naruto-senki-v2-candidate-debug-apk
+          path: /tmp/narutosenki-candidate/projects/NarutoSenki/proj.android-studio/**/build/outputs/apk/**/*.apk
+          if-no-files-found: error
+          retention-days: 14
+
+      - name: Print build diagnostics on failure
+        if: failure()
+        run: |
+          echo "Build failed. Inspect Gradle/NDK error above before changing the pinned candidate."
+          find /tmp/narutosenki-candidate/projects/NarutoSenki/proj.android-studio -type f \( -name '*.log' -o -name 'hs_err_pid*.log' \) -print 2>/dev/null || true
+ /tmp/senki-apk-entries.txt >/dev/null
+          echo "APK signature verified and native Android libraries are packaged."
+
       - name: Upload candidate debug APK for private testing
         if: success()
         uses: actions/upload-artifact@v4
