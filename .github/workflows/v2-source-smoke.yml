@@ -59,9 +59,9 @@ jobs:
             echo "Checking and applying $patch"
             if ! git -C /tmp/narutosenki-candidate apply --check "$patch"; then
               echo "Patch context failure for $patch; printing nearby source for diagnosis."
-              if [[ "$patch" == *0009-character-search-filter.patch ]]; then
-                grep -n -A28 -B5 'function SelectLayer:onPageButtonClick' /tmp/narutosenki-candidate/projects/NarutoSenki/lua/ui/SelectLayer.lua || true
-                nl -ba /tmp/narutosenki-candidate/projects/NarutoSenki/lua/ui/SelectLayer.lua | sed -n '295,340p' || true
+              if [[ "$patch" == *0008-dynamic-roster-pagination.patch ]]; then
+                grep -n -A18 -B5 'self.pageNum' /tmp/narutosenki-candidate/projects/NarutoSenki/lua/ui/SelectLayer.lua || true
+                grep -n -A20 -B5 'local page_btn' /tmp/narutosenki-candidate/projects/NarutoSenki/lua/ui/SelectLayer.lua || true
               fi
               exit 1
             fi
@@ -85,6 +85,12 @@ jobs:
           test -s "$GAME/lua/ui/SelectLayer.lua"
           find "$GAME/lua" -type f -name '*.lua' -print0 | xargs -0 -n1 luac5.1 -p
           echo "All game Lua scripts parse successfully, including the patched character-selection UI."
+
+      - name: Test character search/filter behavior
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 "$GITHUB_WORKSPACE/scripts/test_character_search.py" /tmp/narutosenki-candidate/projects/NarutoSenki/lua/ui/SelectLayer.lua
 
       - name: Verify dynamic character pagination
         shell: bash
