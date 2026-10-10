@@ -509,3 +509,21 @@ A direct roster comparison was run against the selected pinned V2-derived candid
 ### Next expansion rule
 
 Do not inflate the roster by exposing summons, clones, or guardian NPCs as if they were finished fighters. For every new entry, require a native/player-controlled path, complete combat/resource mapping, selection and skill UI, AI behavior for opponents, kill/death display, and build plus gameplay tests. Research leads such as Han/Roshi remain reference-only until a compatible implementation and reuse permissions are resolved.
+
+
+## Fourth-pass source comparison — 2026-10-10
+
+### Older editable source: `LeaderOnePro/NarutoSenki`
+- Repository: https://github.com/LeaderOnePro/NarutoSenki
+- Public tree shows `Classes/`, `Resources/`, and `proj.win32/`; README identifies Cocos2d-x 2.2.2 and a Visual Studio 2010 workflow.
+- This is an older source family, not an Android-ready V2 source import. Its architecture, character IDs, resource atlases, animation/config format, and build dependencies would need a component-by-component compatibility audit before any port.
+- Search results/repository metadata did not establish a declared reuse license or asset permissions. Classification: **reference-only pending compatibility and permission review**, not a drop-in V2 base.
+
+### Rechecked V2 fork family for unique roster additions
+- Inspected the roster and enum layout in `Wilykun/NarutoSenki-V2`; its selectable roster contains the same 37 base character names seen in the current Android-only candidate, while its enum includes the same native forms/summons.
+- Previously inspected V2-derived forks `Fansirsqi/NarutoSenki-V2`, `ZhReimu/NarutoSenki-V2`, and `sansaks-jpg/NarutoSenki-V2` share the same 41 separate `Classes/Core/Shinobi/*.hpp` count. This does not prove byte-for-byte identity, but no new complete playable roster entry was established in this pass.
+- The existing native forms exposed by the central candidate are Sage Jiraiya, Immortal Sasuke, Sage Naruto, Six Paths Naruto, Rock Lee, and Nagato. The Pain paths AnimalPath, AsuraPath, HumanPath, PertaPath, and NarakaPath are summon/support implementations rather than safe evidence of extra player-selectable fighters; do not add them to the player roster merely because enum/resource files exist.
+- No additional external character was ported in this pass. Keep the target at 43 distinct selectable names for the current candidate, and keep the gameplay-verified count unmeasured until actual play tests are done.
+
+### Search conclusion
+The public GitHub search still has not surfaced a permission-cleared, independently editable mod source that supplies a verified new character compatible with this V2 candidate. APK-only mods and older Cocos2d-x 2.2.2 sources remain references, not automatically mergeable content. Continue the search, compare exact revisions, and record provenance; do not invent character functionality or claim a 70-character playable roster based on UI slots.
