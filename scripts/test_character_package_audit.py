@@ -70,4 +70,25 @@ assert "`RockLee` → `Lee`" in report, "Known RockLee-to-Lee skill UI alias is 
 assert "`Kabuto` (0/5)" in report, "Known missing Kabuto labels should remain flagged for manual review"
 assert "`RockLee` (0/5)" not in report, "A base-art alias should not be reported as missing skill labels"
 assert "does not prove a character is complete" in report, "Required audit limitation warning is missing"
+detail_heading = "## Detailed animation, atlas, audio, and AI checks"
+assert detail_heading in report, "Detailed per-character asset checks section is missing"
+detail_start = report.index(detail_heading)
+detail_lines = report[detail_start:].splitlines()
+detail_header_idx = next((i for i, line in enumerate(detail_lines) if line.startswith("| Character |")), None)
+assert detail_header_idx is not None, "Detailed asset table header is missing"
+detail_header = cells(detail_lines[detail_header_idx])
+assert len(detail_header) == 7, f"Expected 7 detailed asset columns, got {len(detail_header)}"
+detail_rows = []
+for line in detail_lines[detail_header_idx + 2:]:
+    if not line.startswith("|"):
+        break
+    row = cells(line)
+    assert len(row) == len(detail_header), f"Detailed asset row has {len(row)} cells; expected {len(detail_header)}: {line}"
+    detail_rows.append(row)
+assert len(detail_rows) == expected_count, (
+    f"Detailed asset table has {len(detail_rows)} rows; expected {expected_count}"
+)
+assert [row[0] for row in detail_rows] == [row[0] for row in rows], (
+    "Detailed asset table roster order/names do not match the main audit table"
+)
 print(f"Character audit report is well-formed: {len(header_cells)} columns, {len(rows)} rows, portrait coverage {coverage.group(1)}/{coverage.group(2)}, skill-label coverage {labels.group(1)}/{labels.group(2)}.")
