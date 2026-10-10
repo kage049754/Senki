@@ -37,7 +37,7 @@ summary = re.search(r"Unique selectable names found: \*\*(\d+)\*\*", report)
 assert summary, "Roster count summary is missing"
 expected_count = int(summary.group(1))
 assert len(rows) == expected_count, f"Table has {len(rows)} rows; roster summary says {expected_count}"
-target = re.search(r"Distinct selectable-entry target: \\*\\*(\\d+)/70 declared \\((\\d+) more entries", report)
+target = re.search(r"Distinct selectable-entry target: \*\*(\d+)/70 declared \((\d+) more entries", report)
 assert target, "70-entry roster target gap is missing"
 assert int(target.group(1)) == expected_count, "Roster target count disagrees with unique roster summary"
 assert int(target.group(2)) == max(0, 70 - expected_count), "Roster target shortfall is incorrect"
