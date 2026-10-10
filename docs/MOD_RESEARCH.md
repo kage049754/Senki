@@ -840,3 +840,24 @@ The fork [hendprw/NarutoSenki](https://github.com/hendprw/NarutoSenki) was compa
 Additional GitHub repository/code searches for Shizune_skill, Shizune.xml, Hashirama_Skill, Kurenai_select.png, Tayuya_skill, and FDPL/NarutoSenki source terms returned no source-level matches in this search pass. This does not prove no such implementation exists anywhere; it means no usable new package was verified through these searches.
 
 **Outcome:** still zero external character packages that are both source-inspectable and permission-cleared for integration. Do not extract or port from the release APK. Continue seeking a creator-provided source/resource package or permission grant; the first complete port remains blocked on that prerequisite.
+
+
+## Candidate source audit — likill/NarutoSenki-master — 2026-10-10
+
+Repository: https://github.com/likill/NarutoSenki-master  
+Inspected revision: 74e93aea66f55f02f94d2ae317dc5585aaf7e908 (source-file revision shown by GitHub links; default branch is main).  
+License metadata: no declared license; no root LICENSE file found.  
+Decision: **REFERENCE_ONLY / PERMISSION_REQUIRED**; do not copy its code or bundled character assets into the central project.
+
+### What the source actually contains
+
+- `Classes/NetworkLayer.cpp` defines a 35-name non-empty selectable list (including Chiyo, Tobirama, Hiruzen, Minato, Jiraiya, Tsunade, Orochimaru, Shikamaru, Ino, Choji, Asuma, Kiba, Hinata, Shino, Neji, Tenten, Lee, Gaara, Kankuro, and the Akatsuki cast). The list includes `None` placeholders and spans three pages.
+- `Classes/Characters.h` declares AI routines for the legacy playable cast and associated entities.
+- `Classes/LoadLayer.cpp` loads per-character sprite atlases, skill atlases, audio, and special related assets (for example Chiyo's puppet parents, Kankuro's puppet assets, Naruto's alternate forms, and Pain paths).
+- `Classes/SelectLayer.cpp` in the same repository still uses the smaller nine-character Training list; the 35-name list is in Network/Hardcore selection, not a universal roster.
+- The checked selectable names all already appear in the pinned Android-clean V2 candidate's `ns.CharactersLayout`. Thus this source is not evidence of a distinct new character for the current base; forms/support units referenced by its AI/resource loader are not new standalone roster additions.
+- The README describes Cocos2d-x 2.2.2 and a VS2010 setup. No reproducible Android build path or reuse permission was verified.
+
+### Result
+
+This source is useful for understanding legacy roster/resource wiring but **does not qualify as the first external character port**: its selectable names are already present in the current base and its code/assets lack a declared reuse license. No files were copied. Continue searching for genuinely distinct, permission-cleared characters such as the release-note leads, or obtain permission and an editable package from the relevant mod author.
