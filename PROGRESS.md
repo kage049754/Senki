@@ -531,3 +531,13 @@ GitHub API confirms `kage049754/Senki` is currently **public**. Therefore, the s
 - [x] APK artifact `naruto-senki-v2-candidate-debug-apk`, ID `11661206511`, size 83,310,581 bytes; SHA-256 `ea413331b1a90c61fedcd44f8ba65b19a31f8559c94edf7e7554e5d323d69b12`; expires 2026-10-24.
 - [x] Character audit artifact `senki-character-package-audit`, ID `11661201551`; expires 2026-10-24.
 - [ ] The next milestone remains runtime validation on an Android device/emulator, then additional character integrations sourced from compatible editable implementations. Current 43 selectable entries/forms are not equivalent to 43 gameplay-verified characters.
+
+
+## Latest native-form transformation regression — run #123 (2026-10-10)
+
+- [x] Run **#123** succeeded on exact source SHA `7bb1f98598cbb06d5587fb623b8fdb33c35d6b4d`: https://github.com/kage049754/Senki/actions/runs/38028261338
+- [x] Strengthened the form roster regression test to verify the six entries correspond to actual native transformation paths in `CharacterBase.cpp` (Naruto → Sage Naruto → Six Paths Naruto, Jiraiya → Sage Jiraiya, Sasuke → Immortal Sasuke, Lee → Rock Lee, Pain → Nagato).
+- [x] Lua validation, expanded form/resource/texture checks, APK build, packaged form checks, and artifact upload passed.
+- [x] APK artifact `naruto-senki-v2-candidate-debug-apk`, ID `11660823928`, size 83,302,910 bytes; SHA-256 `885fbdb5b403d5f14c9bc05274887efa317751c54aa7a8995adcec5fe47078c2`; expires 2026-10-24.
+- [x] Character audit artifact `senki-character-package-audit`, ID `11660579136`; expires 2026-10-24.
+- [ ] These checks still do not prove the forms launch or behave correctly in gameplay; physical-device/emulator verification is outstanding.
