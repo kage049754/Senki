@@ -243,15 +243,15 @@ These are research leads from the older Cocos2d-x 2.2.2 source at `Zx-Akito/Naru
 
 ## Candidate roster expansion built in CI — 2026-10-10
 
-The current CI patch exposes these six native forms in page four. Their native enum/class and XML/plist resources existed in the pinned candidate before the selection-list change.
+The current CI patch exposes these six native forms in page four. Their native enum/class and XML/plist resources existed in the pinned candidate before the selection-list change. Run #121 also verifies each form atlas points to an existing texture file and that all six roster/UI aliases are packaged in the APK.
 
 | Form | Existing native implementation | Selection UI adaptation | CI result | Device gameplay |
 |---|---|---|---|---|
-| Sage Jiraiya | Jiraiya class dispatch + form resources | Reuses Jiraiya small selection/skill icons; dedicated half portrait; readable text name | BUILD-VERIFIED in run #117 | NOT TESTED |
-| Immortal Sasuke | Sasuke class dispatch + form resources | Reuses Sasuke small selection/skill icons; dedicated half portrait; readable text name | BUILD-VERIFIED in run #117 | NOT TESTED |
-| Sage Naruto | Naruto class dispatch + form resources | Reuses Naruto small selection/skill icons; dedicated half portrait; readable text name | BUILD-VERIFIED in run #117 | NOT TESTED |
-| Six Paths Naruto (Rikudo Naruto) | Naruto class dispatch + form resources | Reuses Naruto small selection/skill icons; dedicated half portrait; readable text name | BUILD-VERIFIED in run #117 | NOT TESTED |
-| Rock Lee | Lee class dispatch + form resources | Reuses Lee small selection/skill icons; dedicated half portrait; readable text name | BUILD-VERIFIED in run #117 | NOT TESTED |
-| Nagato | Pain class dispatch + form resources | Reuses Pain small selection/skill icons; dedicated half portrait; readable text name | BUILD-VERIFIED in run #117 | NOT TESTED |
+| Sage Jiraiya | Jiraiya class dispatch + form resources | Reuses Jiraiya small selection/skill icons; dedicated half portrait; readable text name | BUILD-VERIFIED in runs #117 and #121 | NOT TESTED |
+| Immortal Sasuke | Sasuke class dispatch + form resources | Reuses Sasuke small selection/skill icons; dedicated half portrait; readable text name | BUILD-VERIFIED in runs #117 and #121 | NOT TESTED |
+| Sage Naruto | Naruto class dispatch + form resources | Reuses Naruto small selection/skill icons; dedicated half portrait; readable text name | BUILD-VERIFIED in runs #117 and #121 | NOT TESTED |
+| Six Paths Naruto (Rikudo Naruto) | Naruto class dispatch + form resources | Reuses Naruto small selection/skill icons; dedicated half portrait; readable text name | BUILD-VERIFIED in runs #117 and #121 | NOT TESTED |
+| Rock Lee | Lee class dispatch + form resources | Reuses Lee small selection/skill icons; dedicated half portrait; readable text name | BUILD-VERIFIED in runs #117 and #121 | NOT TESTED |
+| Nagato | Pain class dispatch + form resources | Reuses Pain small selection/skill icons; dedicated half portrait; readable text name | BUILD-VERIFIED in runs #117 and #121 | NOT TESTED |
 
 **Important:** BUILD-VERIFIED means the roster/UI changes are present in the successfully built APK and the package checks pass. It does not prove each form can be selected, spawned, controlled, or used by AI at runtime. The verified playable character count remains **NOT YET MEASURED** until physical-device or suitable emulator gameplay checks pass.
