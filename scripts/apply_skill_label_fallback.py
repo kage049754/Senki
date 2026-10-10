@@ -9,6 +9,38 @@ if len(sys.argv) != 2:
 target = Path(sys.argv[1])
 source = target.read_text(encoding="utf-8")
 
+# The native forms reuse their base character's skill description artwork.
+# Insert aliases before SkillLayer methods so the local table is in lexical scope.
+alias_marker = "local skillUiAlias = {"
+if alias_marker not in source:
+    old_alias = "local transformList = {"
+    new_alias = """-- Forms reuse their base character's skill art where no form-specific labels exist.
+local skillUiAlias = {
+    SageJiraiya = 'Jiraiya',
+    ImmortalSasuke = 'Sasuke',
+    SageNaruto = 'Naruto',
+    RikudoNaruto = 'Naruto',
+    RockLee = 'Lee',
+    Nagato = 'Pain'
+}
+
+local transformList = {"""
+    if source.count(old_alias) != 1:
+        raise SystemExit("Cannot insert skill UI aliases before the transform list.")
+    source = source.replace(old_alias, new_alias, 1)
+
+old_label_path = """    else
+        imgPath = self.selectHero .. '_label' .. (buttonType - 2) .. '.png'
+    end"""
+new_label_path = """    else
+        local skillLabelHero = skillUiAlias[self.selectHero] or self.selectHero
+        imgPath = skillLabelHero .. '_label' .. (buttonType - 2) .. '.png'
+    end"""
+if old_label_path in source:
+    source = source.replace(old_label_path, new_label_path, 1)
+elif "local skillLabelHero = skillUiAlias[self.selectHero] or self.selectHero" not in source:
+    raise SystemExit("Cannot map form skill-description labels to base art.")
+
 old_cleanup = "    if self._skillExplain then self._skillExplain:removeFromParent() end"
 new_cleanup = """    if self._skillExplainClipper then
         self._skillExplainClipper:removeFromParent()
