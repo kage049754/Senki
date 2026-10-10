@@ -13,6 +13,7 @@ Mission: merge real external Naruto Senki mod characters into the existing V2 ga
 | Tested commit | [de44153c133a56482be4b8ff07f3e0368607cdf1](https://github.com/kage049754/Senki/commit/de44153c133a56482be4b8ff07f3e0368607cdf1) |
 | Pagination / page-button checks | Passed |
 | External mod character variants integrated | **1 — Two Sage Toads** |
+| External mod character packages integrated into the candidate | **1 package/variant; not a distinct base character** |
 | External mod characters verified playable on device | **0** |
 | Distinct base-character count | **37** (Two Sage Toads is a Choji replacement variant, not a new distinct base character) |
 | Goal of 70+ distinct playable characters | Not achieved |
