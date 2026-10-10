@@ -289,10 +289,11 @@ The pinned source contains native classes and unit XML/atlas/texture resources f
 - CI run [#159](https://github.com/kage049754/Senki/actions/runs/38031862251) passed the updated report test and produced a verified diagnostic APK artifact. This still does not prove runtime playability or device installation.
 
 
-## Orphan selection-art/audio lead: Hokage Minato — inspected 2026-10-10
+## Hokage Minato resource lead — inspected 2026-10-10
 
-The pinned candidate's `Resources/Select.plist` includes a `HokageMinato_half.png` frame, and its audio tree includes `Resources/Audio/HokageMinato/` skill clips plus an Ougi clip. However, the inspected source tree has no `HokageMinato` hero enum entry, no C++ character class/header, and no `Resources/Unit/Ninja/HokageMinato/HokageMinato.xml` + atlas/texture package. The selection frame is therefore an orphan/incomplete lead, not a playable character.
+The pinned V2 candidate has a `HokageMinato_half.png` selection frame and named audio references, but lacks the V2 unit XML/atlas/texture and native class/enum. A separate 1.17 APK/decompiled package, `LeaderOnePro/NarutoSenki1.17Mod`, contains `HokageMinato.xml`, `.plist`, `.png`, multiple skill/Ougi audio clips, a half portrait, and kill-feed portrait frames. Its XML uses the older 1.x schema and references multiple events/projectiles, so it is a resource lead—not a directly importable V2 character.
 
-- Status: **DISCOVERED / BLOCKED by missing implementation and character resources**.
-- Next action: search source history/forks for the missing implementation and full sprite package; do not register this name in the playable roster using Minato's base assets and assume it is complete.
+- Status: **DISCOVERED / RESOURCE_REVIEW; not integrated**.
+- Next action: resolve provenance/permission, convert the XML to V2's unit schema, determine the native class/AI/control behavior, and test every skill, effect, sound, selection state, and death/respawn before counting it.
+- The source package lacks dedicated `HokageMinato_select.png` and `HokageMinato_font.png` frames; selection button art and display-name handling need an explicit plan.
 - The `NarutoRikudo` and `SasukeImmortal` strings found in selection artwork are naming variants of existing `RikudoNaruto` and `ImmortalSasuke`, not extra characters. `Black`, `Blink`, `None`, `None2`, `loading`, and `unknow` are not character entries based on this filename audit.
