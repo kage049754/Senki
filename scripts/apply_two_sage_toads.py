@@ -205,7 +205,7 @@ new_name = """        local displayName = selectionDisplayName[btn._charName]
         self:addChild(self._heroName, 5)"""
 if old_name in select_text:
     select_text = select_text.replace(old_name, new_name, 1)
-elif new_name not in select_text:
+elif "local formLabel = selectionDisplayName[btn._charName]" not in select_text:
     raise SystemExit("Could not render external character display name")
 select_path.write_text(select_text, encoding="utf-8")
 
