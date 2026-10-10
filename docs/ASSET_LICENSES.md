@@ -147,3 +147,12 @@ The character manifest in `docs/CHARACTER_ROSTER.md` must link each asset catego
 - Technical observation: Network/Hardcore mode lists 35 non-empty selectable names, while Training mode still lists nine. The inspected 35 names overlap the pinned V2 base roster; this is not a new-character package for the current project.
 - Assets/audio/animations: bundled in the source tree, but separate asset rights are not established.
 - Status: **REFERENCE_ONLY / PERMISSION_REQUIRED**. Do not copy or package code or assets without explicit permission.
+
+
+## Sasori initial candidate — source asset permission unresolved (2026-10-10)
+
+- Source: https://github.com/LeaderOnePro/NarutoSenki1.17Mod/tree/8c800efe09f8e5489f37ee3314596b329f533225/assets/Element/Saso
+- Files referenced by the private candidate integration: `Saso.png`, `Saso.plist`, `Saso.xml`; skill atlas/audio currently use Kankuro compatibility resources.
+- The source repository is a tracked APK/resource extraction and does not establish asset-specific reuse rights in the inspected root. No permission grant for the Saso sprite atlas or franchise material has been confirmed.
+- Code license: not established for the repository's game content. Asset/audio rights: unresolved.
+- Status: **PRIVATE_TEST_CANDIDATE / PERMISSION_REQUIRED**. Keep generated APK artifacts private; do not make a public release or redistribute these assets until the rights question is resolved or replace them with independently created/permitted assets.

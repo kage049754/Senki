@@ -39,7 +39,7 @@ Do not spend roster-expansion effort recounting V2 forms, summons, clones, or su
 **Exit gate:** reproducible V2-based build and source provenance are documented; install/startup are separately tested on the phone.
 
 ## Phase 2 — Discover external playable characters (ACTIVE)
-**Status: resource-name audit complete; source-level ports still blocked on editable packages or original replacement implementations**
+**Status: ACTIVE — one initial Sasori candidate now passes CI integration checks; source discovery continues**
 
 - [x] Review public Senki mod repositories and release histories.
 - [x] Record leads including Shizune, Hashirama, Rin, Sakon & Ukon, Juzo, Kurenai, Might Guy, Yamato, Sasori, Zetsu, Iruka, Jirobo, Tayuya, and Anko.
@@ -55,7 +55,7 @@ Do not spend roster-expansion effort recounting V2 forms, summons, clones, or su
 **Exit gate:** at least one distinct external character has a complete inspectable implementation, a clear provenance/permission decision, and a documented port plan. Release-note names and APK-only leads do not pass.
 
 ## Phase 3 — Port the first complete character
-**Status: NOT STARTED — no eligible external package selected yet**
+**Status: IN PROGRESS — Sasori candidate integrated with Kankuro-compatible baseline; unique combat and runtime validation remain incomplete**
 
 - [ ] Reserve an available page 1–3 slot without displacing an existing character.
 - [ ] Add stable ID, display name, selection portrait, and atlas/resource mapping.
@@ -100,9 +100,9 @@ For every code-affecting change: inspect latest run for exact commit → wait wh
 
 ## Current blocker and next task
 
-External character variants integrated: **1 — Two Sage Toads** (Choji-based variant, not a distinct base character). Distinct external characters verified playable: **0**. Page 4/5 image-style pagination is engineering groundwork only.
+External character variants integrated: **1 — Two Sage Toads** (Choji-based variant, not a distinct base character). Initial Sasori candidate: **1** roster identity/atlas integrated and CI-checked, currently using Kankuro-compatible behavior. Distinct external characters verified playable in runtime: **0**. Page 4/5 image-style pagination is engineering groundwork only.
 
-**Next:** run source-level discovery across all six priority targets and the remaining release-note leads. Prefer the first candidate with editable character logic plus sprite/atlas, animation, skills/effects, AI/input, selection/profile/kill-feed UI and audio where available. If no complete source package can be found, implement an original compatible character from independently created assets and native V2 systems. Then complete the first full port in a page 1–3 slot and repeat in batches; do not mark any character complete until its full gameplay gate passes.
+**Next:** finish Sasori's character-specific combat and runtime checks, while continuing source-level discovery across the remaining priority targets. The initial Sasori port uses a tracked Saso atlas and a Kankuro-compatible controller/skill baseline; source asset permissions are unresolved, so keep candidate artifacts private. Do not mark Sasori VERIFIED until unique skills, selection/profile/kill-feed identity, AI/player controls, and match lifecycle are checked. Then continue with Kurenai, Might Guy, Yamato, Hashirama, Shizune, Rin, and other leads in small batches.
 
 ## Related records
 

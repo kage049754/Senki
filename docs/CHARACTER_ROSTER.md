@@ -537,3 +537,18 @@ These six are explicitly prioritized by the user for external-mod discovery and 
 - Next action: find a distinct, inspectable implementation and map all dependencies
 
 **Completion rule:** do not change any of these statuses to IMPLEMENTED or VERIFIED based on a release-note mention, a name/portrait, an APK-only lead, or a passing build. Record exact files and test evidence after a real native integration.
+
+
+## Sasori — initial CI integration candidate (2026-10-10)
+
+- Unique character ID: `Sasori`
+- Display name: Sasori
+- Source repository/version: `LeaderOnePro/NarutoSenki1.17Mod`, commit `8c800efe09f8e5489f37ee3314596b329f533225`
+- Tracked visual source files: `assets/Element/Saso/Saso.png`, `assets/Element/Saso/Saso.plist`, `assets/Element/Saso/Saso.xml`
+- Integration: separate roster ID, HeroEnum entry, native Provider dispatch, V2-compatible animation XML, atlas frame mapping, audio paths, selection display-name alias, and skill UI alias.
+- Compatibility baseline: Kankuro controller and skill atlas. This is not yet Sasori's complete unique move set.
+- Build evidence: [Run #312 — SUCCESS](https://github.com/kage049754/Senki/actions/runs/38062969294); character integration/resource checks, Lua syntax validation, character audit, APK signature, and ABI packaging passed.
+- Asset/code permissions: unresolved. The source tree is an APK/resource distribution and no asset-specific reuse grant was confirmed. Candidate APK is a private testing artifact only; do not publish or redistribute the copied Saso artwork/audio without permission.
+- Runtime status: not tested in an actual match; phone installation not tested.
+- Status: **IN_PROGRESS / CI_CHECKED / GAMEPLAY_UNVERIFIED / RIGHTS_REVIEW**
+- Next: implement character-specific puppetry attacks, skill effects/cooldowns, and appropriate AI/player-control behavior; verify selection portrait, profile/skill view, kill/death identity, death/respawn, and repeated matches. Only then consider VERIFIED.
