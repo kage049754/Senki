@@ -642,3 +642,24 @@ A tree and key-file SHA comparison on 2026-10-10 found:
 - `ZhReimu/NarutoSenki-V2` shares the same inspected skill UI, select UI, and report atlas blobs, but has a different `basic.lua` blob. This alone does not prove a new playable character; inspect its roster diff and character/resource files before considering any port.
 - The `SILXNTRAY` repository has distinct UI/registry files and recent commits, but its roster layout still resembles the same base and the custom-character list is not populated in the inspected file.
 - These repositories report no declared GitHub license. Recent commits, fork status, and public access do not grant reuse permission.
+
+
+## Seventh-pass mirror and APK-mod comparison — 2026-10-10
+
+### `wsnbbnbb/NarutoSenki1.17Mod` vs `LeaderOnePro/NarutoSenki1.17Mod`
+
+- The repositories have the same recursive Git tree SHA `8c800efe09f8e5489f37ee3314596b329f533225` and 1,043 tree entries at the inspected revision.
+- Both are described as a custom mod based on Naruto Senki 1.17. Their trees contain Android package/decompiled material, not an editable V2 Cocos2d-x/Lua source project; neither has the selected V2 Android Gradle project layout.
+- Neither repository declares a license. This pair is a mirror/fork, not two independent character sources.
+- Classification: `APK_REFERENCE_ONLY / DUPLICATE`. Use descriptions for research only; no package contents were copied.
+
+### `hendprw/NarutoSenki` vs `Zx-Akito/NarutoSenki`
+
+- The inspected recursive tree SHA is identical in both repositories: `d847b113dfce486822768ef5a1c1c874b50fa3cd`, with 1,199 entries.
+- Both have the older monolithic `Classes/Characters.cpp` source layout rather than the selected V2 Lua roster and Android Gradle project. The `hendprw` repository is a fork of `Zx-Akito/NarutoSenki`.
+- Neither repository declares a license in the metadata checked. The fork does not add an independent roster based on this tree comparison.
+- Classification: `LEGACY_SOURCE_MIRROR / REFERENCE_ONLY`.
+
+### Search result
+
+This pass found no new independent, editable V2-compatible source base. It reduces duplicate-source leads and reinforces that the next 27 roster entries must come from individually verified packages or purpose-built compatible implementations, not duplicate repositories, APK resource dumps, or enum-only entities.
