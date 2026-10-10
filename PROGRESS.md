@@ -320,3 +320,12 @@ Sasori, Zetsu, Iruka, Sakon & Ukon, Juzo, Jonin Minato, Jirobo, Tayuya, and Anko
 - Sasori now uses its own converted idle/walk/hurt/death/basic-attack/skill01 animation definitions and Saso sprite atlas, instead of Kankuro's action XML. The native controller and skill-icon atlas are still Kankuro-compatible; source XML's skill02–skill05 actions have empty frame lists. Therefore this remains **IN_PROGRESS**, not a complete unique move set or gameplay-verified character.
 - Character count remains **38 distinct base-character entries / 45 selectable entries**; **32 additional distinct characters needed** for 70. Runtime-verified distinct external characters remain **0**. Phone installation/gameplay remain unverified.
 - Next: implement/verify the missing Sasori skill actions and controller-specific behavior, then add another complete candidate only after source resources, dispatch, selection/profile, audio, AI, and test gates are satisfied. Continue investigating existing Han/Roshi Guardian resources as possible additional character candidates, but don't count them until the playable control path is proven.
+
+
+## Update — Han candidate integration added to CI (2026-10-10)
+
+- Added an additive Han integration script using the candidate's existing `Resources/Unit/Guardian/Han` sprite/atlas/action assets, without replacing the Guardian unit.
+- The script copies Han's own action XML/atlas to the Ninja resource path, reduces boss-scale HP to 5,500, registers a separate `Han` enum/provider/roster identity, adds a simple native AI/control path and transformation handling, and fills empty skills 03–05 with isolated compatibility actions/atlas frames.
+- Han's selection portrait and skill-label art currently use Kankuro UI aliases; in-match model/action art is Han's. This is an initial candidate, not proof of gameplay correctness.
+- CI is being updated to run the dedicated Han package checks and count **39 distinct base-character entries / 46 selectable entries** (31 more distinct entries to reach 70). The next required gate is the exact Actions result and APK artifact verification.
+- Rights review for source V2 assets remains unresolved; keep artifacts private. Phone install and match gameplay are not verified.

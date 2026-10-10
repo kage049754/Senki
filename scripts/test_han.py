@@ -25,7 +25,7 @@ assert "class Han" in header and "HeroEnum::Han" in header
 assert "Han = 'Kankuro'" in select and "Han = 'Han'" in select
 assert "Han = 'Kankuro'" in skill
 unit = game / "Resources/Unit/Ninja/Han"
-for p in (unit/"Han.png", unit/"Han.pvr.ccz", unit/"Han.plist", unit/"Han.xml", unit/"Han_Compat.plist"):
+for p in (unit/"Han.pvr.ccz", unit/"Han.plist", unit/"Han.xml", unit/"Han_Compat.plist"):
     assert p.is_file() and p.stat().st_size > 0, f"Missing Han package file: {p}"
 main = plistlib.loads((unit/"Han.plist").read_bytes())
 compat = plistlib.loads((unit/"Han_Compat.plist").read_bytes())

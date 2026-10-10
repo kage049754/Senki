@@ -181,6 +181,15 @@ jobs:
           python3 "$GITHUB_WORKSPACE/scripts/test_sasori.py" "$GAME"
           echo "Sasori resource/integration checks passed; Kankuro-compatible combat baseline is documented, device gameplay remains unverified."
 
+      - name: Integrate Han as an additional playable character
+        shell: bash
+        run: |
+          set -euo pipefail
+          GAME=/tmp/narutosenki-candidate/projects/NarutoSenki
+          python3 "$GITHUB_WORKSPACE/scripts/apply_han.py" "$GAME"
+          python3 "$GITHUB_WORKSPACE/scripts/test_han.py" "$GAME"
+          echo "Han resource/integration checks passed; Han-specific runtime gameplay remains unverified."
+
       - name: Verify original character-selection and mode-menu backgrounds
         shell: bash
         run: |

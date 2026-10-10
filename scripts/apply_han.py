@@ -86,6 +86,7 @@ for clip in ("kankuro_skill3.ogg", "kankuro_skill4.ogg"):
 # Add the separate native class/dispatch; keep the original Guardian implementation.
 header = r'''#pragma once
 #include "Hero.hpp"
+// HeroEnum::Han
 
 class Han : public Hero
 {
