@@ -290,9 +290,9 @@ with OUT.open("w", encoding="utf-8") as f:
     fallback_end = skill_source.find("local transformList", fallback_start) if fallback_start >= 0 else -1
     fallback_text = skill_source[fallback_start:fallback_end] if fallback_start >= 0 and fallback_end > fallback_start else ""
     kabuto_fallback_count = 0
-    kabuto_block = re.search(r"Kabuto\\s*=\\s*\\{([\\s\\S]*?)\\n\\s{4}\\}", fallback_text)
+    kabuto_block = re.search(r"Kabuto\s*=\s*\{([\s\S]*?)\n\s{4}\}", fallback_text)
     if kabuto_block:
-        kabuto_fallback_count = len(re.findall(r"\\[\\d+\\]\\s*=\\s*\\\"", kabuto_block.group(1)))
+        kabuto_fallback_count = len(re.findall(r"\[\d+\]\s*=\s*\"", kabuto_block.group(1)))
     f.write(f"- Kabuto runtime skill-description text fallbacks: **{kabuto_fallback_count}/5 detected in patched SkillLayer.lua** (separate from image-label frame coverage).\n")
     frame_complete = sum(1 for row in detail_rows if row[4].startswith("0 "))
     missing_frame_ref_rows = [(row[0], row[4]) for row in detail_rows if not row[4].startswith("0 ")]
