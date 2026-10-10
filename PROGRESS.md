@@ -564,3 +564,14 @@ GitHub API confirms `kage049754/Senki` is currently **public**. Therefore, the s
 - [x] Latest static roster inventory finds 37 original unique names plus six existing forms (43 distinct selectable names). This is **not** a count of gameplay-verified playable characters; 27 additional distinct roster entries would be needed to reach the declared 70-entry target, and each still requires functional tests.
 - [ ] Device/emulator test remains outstanding: selection, preview art, skill UI, spawn, AI, movement, attacks, transformations, death/respawn, and original menu backgrounds.
 - [ ] Source/asset permission and source-vendoring gates remain open. No new external character has been integrated in this pass.
+
+
+## Latest background-preservation regression and APK — run #128 (2026-10-10)
+
+- [x] Added `scripts/test_original_backgrounds.py` to prevent accidental replacement of the original character-selection background logic and original GameModeLayer red background/menu bars/title.
+- [x] GitHub Actions run **#128** succeeded on exact workflow SHA `b41d47fb8fa0d9feda4ef3b3c9a4055c87e620f7`: https://github.com/kage049754/Senki/actions/runs/38029026945
+- [x] Background source-preservation regression, Lua syntax checks, Android candidate build, APK existence, signature/native ABI checks, and artifact upload passed.
+- [x] APK artifact `naruto-senki-v2-candidate-debug-apk`, ID `11662000429`, size 83,353,676 bytes, SHA-256 `ff1fc6f15d0dfe3f40f570851b68208e29385477c4fce2d2cc873995dcf4754a`; expires 2026-10-24.
+- [x] Character audit artifact `senki-character-package-audit`, ID `11661615867`.
+- [ ] The regression verifies source fragments only. It does **not** replace installing the APK and visually checking the character-selection and training/network/exit screens on Android.
+- [ ] Current selectable roster remains 43 distinct names including six existing forms; gameplay-verified count remains unmeasured. No new external character was integrated in this pass.
