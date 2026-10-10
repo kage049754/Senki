@@ -500,3 +500,16 @@ GitHub API confirms `kage049754/Senki` is currently **public**. Therefore, the s
 - [ ] Runtime test the missing-label case on device/emulator and confirm the fallback renders and scrolls correctly. Static checks and packaging do not prove runtime UI behavior.
 - [ ] This patch does not supply missing character descriptions or integrate any new character. Newly integrated characters this pass: **0**.
 - [ ] The candidate source is still cloned into the workflow's temporary runner workspace. The central repo contains the patches and build workflow, not a vendored editable copy of the complete upstream game.
+
+
+## Expanded roster candidate — six existing native forms exposed on page four
+
+- [x] Compared the current V2 candidate's `HeroEnum`, native character classes, and resource packages; found six already-implemented forms absent from `ns.CharactersLayout`: `SageJiraiya`, `ImmortalSasuke`, `SageNaruto`, `RikudoNaruto`, `RockLee`, and `Nagato`.
+- [x] Added source-controlled `scripts/apply_selectable_forms.py` to expose these six existing native forms in page four. The patch reuses their existing dedicated half-portrait frames, uses base-character small selection/skill icons where form-specific UI art is missing, shows readable form names, and uses the existing missing-description fallback.
+- [x] Added `scripts/test_selectable_forms.py` to check the 84-slot/four-page roster, native enum and class registrations, form XML/plist resources, half portraits, and UI aliases.
+- [x] Added a post-build APK inspection step that extracts the packaged `basic.lua`, `SelectLayer.lua`, and `SkillLayer.lua` and verifies the six form names and UI aliases are actually present in the APK.
+- [x] GitHub Actions run #117 succeeded on exact source SHA `da6bc5e446e32f7480a21c2826798398130f186c`: https://github.com/kage049754/Senki/actions/runs/38027092821
+- [x] Verified APK artifact `naruto-senki-v2-candidate-debug-apk`, artifact ID `11661160453`, size 83,341,459 bytes, digest `sha256:62c07ff29f8c1f7ba0bddc49abd79861ed2ff00534051424a0ea47eb3cf5379e`, expires 2026-10-24.
+- [ ] Physically install and test all six form selections, preview portraits, skill screen, character spawn, AI, movement, attacks, transformations, and death/respawn. CI verifies source packaging only, not in-game behavior.
+- [ ] Page four now has six extra form entries. Page-five normal/selected button assets are generated and packaged, but page five is not displayed yet because the current roster has 84 slots (four pages). More verified character implementations are needed before page five should be enabled.
+- [ ] Newly exposed forms are **not yet counted as verified playable characters**. This is roster/UI exposure of existing native implementations, not a port of new external assets or code.
