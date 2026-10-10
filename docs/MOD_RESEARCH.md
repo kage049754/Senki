@@ -608,3 +608,17 @@ The pinned candidate's native class and resource inventory was checked against i
 ### Outcome and next step
 
 This search found additional legacy character/AI references but **no permission-cleared, drop-in V2 source containing 27 verified new character packages**. Do not inflate the roster by counting AI method names, summons, resource folders, or README descriptions. Continue per-character source/provenance audits; only count a character after selection assets, skills, animations, AI/control behavior, effects/audio where available, and unified-game tests are complete.
+
+
+## Sixth-pass V2 native-enum versus selectable-roster audit — 2026-10-10
+
+Compared `lua/class/basic.lua` with `Classes/Enums/HeroEnum.h` at pinned source revision `279e85e73040558c84988a0eea310b6286eb77f0`.
+
+- The base roster contains **37 distinct selectable names** before central form patches.
+- The enum has **52 unique entries**. The 15 enum names absent from the original selection layout are: `SageJiraiya`, `RockLee`, `Nagato`, `SageNaruto`, `RikudoNaruto`, `AnimalPath`, `AsuraPath`, `HumanPath`, `PertaPath`, `NarakaPath`, `ImmortalSasuke`, `NarutoClone`, `SageNarutoClone`, `RikudoNarutoClone`, and `Guardian`.
+- The central patch already exposes six native forms (Sage Jiraiya, Rock Lee, Nagato, Sage Naruto, Six Paths Naruto, Immortal Sasuke), resulting in **43 distinct declared selection names**.
+- The remaining enum-only names are not automatically safe additions:
+  - Pain-path entities (`AnimalPath`, `AsuraPath`, `HumanPath`, `PertaPath`, `NarakaPath`) are native support/summon classes. Only some have distinct `Resources/Unit/Ninja/<Name>/` packages and path-specific audio; others share/derive from Pain-related implementation. Their selection portraits, complete player skill kits, controls, AI role, and skill-view assets have not been proven as a complete standalone package.
+  - `NarutoClone`, `SageNarutoClone`, and `RikudoNarutoClone` are clone implementation classes, not ordinary player roster entries.
+  - `Guardian` is a shared guardian implementation name, not proof of a distinct selectable character.
+- Decision: do not append these entries merely because they exist in the enum. Promote any path/guardian/clone only after verifying a distinct intended playable role, selection/preview assets, all controls and skill behavior, AI/spawn safety, UI resources, and source/asset provenance.
