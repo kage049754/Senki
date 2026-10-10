@@ -870,3 +870,13 @@ User requires every new character to have its own correct avatar/portrait in the
 - Finding: Han/Roshi resource folders remain leads only; no claim of selectable/player-controlled implementation was established.
 - Decision: keep this repository as a mechanics/resource reference candidate only. It does not provide a 70+ roster and is not a drop-in replacement for the V2-derived source. No external files were copied.
 - Next: continue source research for distinct character packages with class/control/resource paths, then compare only specific compatible mechanics against the V2 architecture.
+
+
+## Follow-up source trace — 2026-10-10
+
+- [x] Verified run [#204](https://github.com/kage049754/Senki/actions/runs/38041108524) completed with **success** after the enum-classification audit changes. Android candidate build completed successfully and both audit/APK artifacts were uploaded.
+- [x] Traced the public V2-derived candidate tree for the Han/Roshi lead. It contains Han and Roshi resource directories, animation XML/plist references, atlases, and audio files.
+- [x] Inspected `HeroEnum.h` and `Guardian.hpp`: the exposed enum identifier is the generic `Guardian`; the inspected Guardian behavior is autonomous AI target-seeking, not proof of player control or a character-select entry.
+- [x] Recorded the source-tree evidence and limitations in [docs/MOD_RESEARCH.md](docs/MOD_RESEARCH.md), including the no-license / unresolved asset-rights gate.
+- [ ] Han and Roshi remain research-only and are not counted as playable. Do not integrate or redistribute their assets until rights are verified and a real player-input/selection path is implemented and tested.
+- [ ] Next implementation phase: inspect the central build's source patch points for roster registration, selection-page slot wiring, player-control dispatch, and profile/skill UI; then integrate only a rights-cleared character package and add source-level + runtime checks.
