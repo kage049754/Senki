@@ -455,3 +455,75 @@ Checked additional C++/V2 repositories and compared their actual selection code.
 - AI/resource-loader references include forms, support entities, and related assets; these are not counted as additional standalone characters.
 - Rights: no declared source license or root LICENSE found in the checked tree; bundled art/audio permissions are unknown.
 - Decision: **REFERENCE_ONLY / PERMISSION_REQUIRED**. No source/assets copied; no character added. This is a duplicate-roster lead, not an eligible port.
+
+## User-requested priority candidates — 2026-10-10
+
+These six are explicitly prioritized by the user for external-mod discovery and integration. Their inclusion here records the request, **not** a claim that they are implemented or playable. For each, inspect editable source and resource files; verify compatibility with the pinned V2-derived candidate; record code license separately from art/audio/voice rights; and only then start a complete native port. Prefer available page 1–3 slots without replacing existing characters.
+
+### Kurenai Yūhi
+- Unique character ID: `kurenai_yuhi`
+- Display name: Kurenai
+- Source repository/version: not yet qualified; search Senki mod source and release-history leads
+- Source category: reference-only until editable source and provenance are verified
+- Code license status: unresolved
+- Asset/audio permission status: unresolved
+- Required port scope: portrait/selection entry, sprites and animation, genjutsu-themed basic attack/skills/effects, available audio, AI/player controls, skill/profile display, kill/death UI
+- Status: DISCOVERED / RIGHTS_REVIEW
+- Next action: find a distinct, inspectable implementation and map all dependencies
+
+### Might Guy
+- Unique character ID: `might_guy`
+- Display name: Might Guy
+- Source repository/version: not yet qualified; search Senki mod source and release-history leads
+- Source category: reference-only until editable source and provenance are verified
+- Code license status: unresolved
+- Asset/audio permission status: unresolved
+- Required port scope: portrait/selection entry, sprites and animation, taijutsu combos and skill effects, Eight Gates/ultimate if present in the source, available audio, AI/player controls, skill/profile display, kill/death UI
+- Status: DISCOVERED / RIGHTS_REVIEW
+- Next action: find a distinct, inspectable implementation and map all dependencies
+
+### Yamato
+- Unique character ID: `yamato`
+- Display name: Yamato
+- Source repository/version: not yet qualified; search Senki mod source and release-history leads
+- Source category: reference-only until editable source and provenance are verified
+- Code license status: unresolved
+- Asset/audio permission status: unresolved
+- Required port scope: portrait/selection entry, sprites and animation, Wood Release attacks and effects, available audio, AI/player controls, skill/profile display, kill/death UI
+- Status: DISCOVERED / RIGHTS_REVIEW
+- Next action: find a distinct, inspectable implementation and map all dependencies
+
+### Shizune
+- Unique character ID: `shizune`
+- Display name: Shizune
+- Source repository/version: not yet qualified; search Senki mod source and release-history leads
+- Source category: reference-only until editable source and provenance are verified
+- Code license status: unresolved
+- Asset/audio permission status: unresolved
+- Required port scope: portrait/selection entry, sprites and animation, attacks/medical/poison techniques and effects, available audio, AI/player controls, skill/profile display, kill/death UI
+- Status: DISCOVERED / RIGHTS_REVIEW
+- Next action: find a distinct, inspectable implementation and map all dependencies
+
+### Hashirama Senju
+- Unique character ID: `hashirama_senju`
+- Display name: Hashirama Senju
+- Source repository/version: not yet qualified; search Senki mod source and release-history leads
+- Source category: reference-only until editable source and provenance are verified
+- Code license status: unresolved
+- Asset/audio permission status: unresolved
+- Required port scope: portrait/selection entry, sprites and animation, Wood Release techniques, large-scale effects/summons if present in the source, available audio, AI/player controls, skill/profile display, kill/death UI
+- Status: DISCOVERED / RIGHTS_REVIEW
+- Next action: find a distinct, inspectable implementation and map all dependencies
+
+### Rin Nohara
+- Unique character ID: `rin_nohara`
+- Display name: Rin
+- Source repository/version: not yet qualified; search Senki mod source and release-history leads
+- Source category: reference-only until editable source and provenance are verified
+- Code license status: unresolved
+- Asset/audio permission status: unresolved
+- Required port scope: portrait/selection entry, sprites and animation, attacks/skills/effects present in the source, available audio, AI/player controls, skill/profile display, kill/death UI
+- Status: DISCOVERED / RIGHTS_REVIEW
+- Next action: find a distinct, inspectable implementation and map all dependencies
+
+**Completion rule:** do not change any of these statuses to IMPLEMENTED or VERIFIED based on a release-note mention, a name/portrait, an APK-only lead, or a passing build. Record exact files and test evidence after a real native integration.
