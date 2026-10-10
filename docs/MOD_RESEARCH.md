@@ -310,3 +310,23 @@ Pinned source `muhammadadilsyaputra08-alt/NarutoSenki-Custom@279e85e73040558c849
 ### Roster evidence
 - Pinned Android-clean V2-derived source has 37 unique selectable names in `lua/class/basic.lua`; 42 C++ Shinobi headers include five Pain-path classes. See `docs/CHARACTER_ROSTER.md`.
 - No new character from these legacy references has been ported or counted as playable. Any candidate contribution must be mapped to the V2 resource formats, IDs, scripts, and animations before a controlled port.
+
+
+## Eighth-pass modded-release character leads — 2026-10-10
+
+### `Zx-Akito/NarutoSenki-Release` (legacy v1.x release line)
+- Official public release listing: https://github.com/Zx-Akito/NarutoSenki-Release/releases
+- Latest inspected release: `v1.26-beta-2`, APK asset `NarutoSenki-v1.26-beta-2.apk` (78,074,332 bytes; release metadata SHA-256 `8ac4869dfcfc5aed043a124d26298b47b91d6598a5dddfcdc56880ce031cdaef`; published 2026-09-12).
+- Previous inspected `v1.26-beta-1` changelog names new characters: **Shizune, Hashirama, Rin, Sakon & Ukon, and Juzo**; it also brings back Jonin Minato and revises Zetsu, Awakened Sasori, Iruka, and Third Kazekage AI.
+- Earlier v1.24/v1.25 release notes also name **Jirobo, Tayuya, Anko, Kurenai, Might Guy, Yamato, Sasori, Zetsu, Iruka**, and other changes.
+- Important compatibility finding: v1.26-beta-1's notes explicitly say the game switched to **server-side processing** and added Global Chat. It is an APK-only release host, not an editable V2 source tree, and is not a direct offline-first base. Keep it as a lead for roster/skill research, not a source-integrated mod.
+- No declared repository license was found; release notes alone do not expose the editable C++/Lua/resource files for the new characters. Do not count any of these as implemented or playable in this project.
+
+### `FDPL Naruto Senki The Last Fixed V1.22` (third-party mod release lead)
+- A public mod listing reports four character replacements/additions: **Might Guy (replaces Tenten), Hashirama (replaces Karin), White Mask Tobi (revamped, replaces Tobi), and Pain (replaces Kankuro)**, plus nine character revamps and a new map.
+- This is a third-party APK/mod listing rather than a verified editable source repository. Treat the names and feature list as unverified leads until an original release/source and file inventory are inspected.
+- Do not merge or count it as a new V2 roster addition yet; its slot-replacement approach also conflicts with the goal of expanding the existing roster without losing current entries.
+
+### Next extraction/port research
+- Prioritize finding editable character source/assets for the above leads and compare their implementation requirements with V2's C++ classes, XML/config files, sprite/plist sheets, effects, audio, and selection resources.
+- Any import should be a small, auditable character batch with unique IDs and an APK build. APK-only release metadata is discovery evidence, not proof that the character can be ported or that its assets are already available.
