@@ -14,10 +14,15 @@ required = [
     'text = "Skill description unavailable"',
     "self._skillExplain:setAnchorPoint(0, 0)",
     "self._skillExplain:setPositionX(10)",
+    "self._skillExplainClipper = clipper",
+    "if self._skillExplainClipper then",
+    "self._skillExplainClipper:removeFromParent()",
+    "self._skillExplainClipper = nil",
 ]
 missing = [fragment for fragment in required if fragment not in source]
 if missing:
     raise SystemExit("Missing skill-description fallback behavior: " + ", ".join(missing))
 assert source.index("local skillFrameOk, skillFrame") < source.index("self._skillExplain = display.newSprite('#' .. imgPath)")
 assert source.index('text = "Skill description unavailable"') < source.index("self._skillExplain:setAnchorPoint(0, 0)")
-print("Skill-description frame lookup is protected; missing frames show a visible fallback label.")
+assert source.index("self._skillExplainClipper:removeFromParent()") < source.index("self._skillExplainClipper = clipper")
+print("Missing skill labels have a visible fallback; switching skills removes the old tooltip container.")
