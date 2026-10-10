@@ -11,6 +11,8 @@ required = [
     "local skillUiAlias = {",
     "local skillLabelHero = skillUiAlias[self.selectHero] or self.selectHero",
     "imgPath = skillLabelHero .. '_label' .. (buttonType - 2) .. '.png'",
+    "local skillLabelHero = skillUiAlias[self.selectHero] or self.selectHero",
+    "imgPath = skillLabelHero .. '_label' .. (buttonType - 2) .. '.png'",
     "local skillFrameOk, skillFrame = pcall(display.newSpriteFrame, imgPath)",
     "if skillFrameOk and skillFrame then",
     "self._skillExplain = display.newSprite('#' .. imgPath)",
