@@ -163,3 +163,12 @@ The source roster inventory contains 37 unique selectable names; that is a sourc
 The existing character-selection screen no longer hardcodes exactly three pages. Patch `0008-dynamic-roster-pagination.patch` calculates the page count from the current character layout and uses numbered text page controls instead of requiring only three page-image assets. Lua syntax checks and the Android build passed in [run 38016671857](https://github.com/kage049754/Senki/actions/runs/38016671857); artifact ID `11655938596`.
 
 This is groundwork for the user's 70+ roster goal, **not** a claim that 70 characters are already present. The inspected base currently lists 37 unique selectable names. The new pagination still needs phone testing with 4+ pages, and characters must be added and verified individually.
+
+
+### Dynamic character pagination and expanded source research — 2026-10-10
+
+The latest successful build is [run 38016671857](https://github.com/kage049754/Senki/actions/runs/38016671857), artifact `naruto-senki-v2-candidate-debug-apk` (ID `11655938596`, 83,752,290-byte ZIP). It includes the dynamic selection-pagination patch, passes Lua 5.1 syntax checks, and verifies the landscape manifest, APK signature, and both native ABIs.
+
+Additional release-note research found potential character leads in [Zx-Akito's Naruto Senki release line](https://github.com/Zx-Akito/NarutoSenki-Release/releases): Shizune, Hashirama, Rin, Sakon & Ukon, Juzo, Kurenai, Might Guy, Yamato, Sasori, Zetsu, Iruka, Jirobo, Tayuya, Anko, and others. These are discovery leads only; the latest v1.26 release is APK-only and reports server-side processing, so it is not a direct offline V2 source base. The lead list is tracked in `docs/CHARACTER_ROSTER.md` and the compatibility notes in `docs/MOD_RESEARCH.md`.
+
+The selected V2-derived base still has 37 unique selectable names. Pagination groundwork is built, but no additional character from those release leads has been ported or verified. The next goal is to locate editable source/resource sets and add compatible characters incrementally without replacing existing roster entries.
