@@ -44,3 +44,24 @@ Assessment: **strong source-level character package lead**, but selectable roste
 - Playable/selectable characters verified from this source in a running game: **0**.
 - Next: inspect the repository's roster/select registration and commit lineage; enumerate all per-character packages; compare each candidate against the exact central source revision; resolve code and asset permission; then port one genuinely new character through the target's native selection, skill UI, animation, audio, AI and battle systems. Do not relabel an existing fighter or count an asset-only package as playable.
 
+
+
+## Additional source inspected: RieyuXhen/NarutoSenki
+
+Repository: https://github.com/RieyuXhen/NarutoSenki  
+Inspected revision: `d3b24db722857b7f47d61db7c2e90ff5c8f8d086`.
+
+This is a source tree rather than just an APK asset listing. **Jugo is confirmed at source level as selectable and registered for AI** in this legacy source:
+- `Classes/StartMenu.cpp` includes `"Jugo"` in the selectable character name array.
+- `Classes/Characters.cpp` dispatches the `"Jugo"` name to `AI_Jugo()` and contains a concrete `Hero::AI_Jugo()` implementation.
+- `Classes/Characters.h` declares `AI_Jugo()`.
+- [Resources/Element/Jugo/Jugo.xml](https://github.com/RieyuXhen/NarutoSenki/blob/d3b24db722857b7f47d61db7c2e90ff5c8f8d086/Resources/Element/Jugo/Jugo.xml) provides Jugo-specific attack stats, animation frames, skill sequences, and sound events.
+- [Resources/Element/Jugo/Jugo.plist](https://github.com/RieyuXhen/NarutoSenki/blob/d3b24db722857b7f47d61db7c2e90ff5c8f8d086/Resources/Element/Jugo/Jugo.plist), [Resources/Element/Skills/Jugo_Skill.plist](https://github.com/RieyuXhen/NarutoSenki/blob/d3b24db722857b7f47d61db7c2e90ff5c8f8d086/Resources/Element/Skills/Jugo_Skill.plist), [Resources/Select.plist](https://github.com/RieyuXhen/NarutoSenki/blob/d3b24db722857b7f47d61db7c2e90ff5c8f8d086/Resources/Select.plist), [Resources/UI.plist](https://github.com/RieyuXhen/NarutoSenki/blob/d3b24db722857b7f47d61db7c2e90ff5c8f8d086/Resources/UI.plist), and [Resources/Audio/list.xml](https://github.com/RieyuXhen/NarutoSenki/blob/d3b24db722857b7f47d61db7c2e90ff5c8f8d086/Resources/Audio/list.xml) reference character, selection, skill, and audio resources.
+
+**Qualification:** Jugo is source-verified as selectable and AI-registered in this *legacy* implementation. It is **not yet qualified as new to the central target** until its presence/identity in the exact pinned V2 source is checked. The target uses a different class/resource layout, so this is not a drop-in port. Code/asset rights remain unverified; do not copy/redistribute until permission is resolved. No central-game files or roster entries were changed.
+
+Revised source counts:
+- Strong resource-package leads: Kimimaro and Jugo.
+- Legacy source-level selectable + AI implementation confirmed: Jugo.
+- New character proven unique to the central target and ready to port: **0**.
+- Characters integrated into central game in this audit: **0**.
