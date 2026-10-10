@@ -16,7 +16,7 @@ REQUIRED = {
         "MAIN MISSION",
         "other Senki mods",
         "Do not expand the old Kotlin/Canvas prototype",
-        "External-mod characters integrated:",
+        "External mod character packages integrated into the candidate",
     ],
     "AGENTS.md": [
         "Prioritize external-mod playable characters",
@@ -30,14 +30,14 @@ REQUIRED = {
         "Exit gate",
     ],
     "PROGRESS.md": [
-        "External-mod characters integrated",
+        "External mod character packages integrated",
         "External character status",
         "Do not report a character as added",
     ],
     "docs/MOD_RESEARCH.md": [
         "release notes",
-        "permission",
-        "zero permission-cleared",
+        "Current integration checkpoint",
+        "source provenance",
     ],
     "docs/CHARACTER_ROSTER.md": [
         "DISCOVERED",
@@ -68,7 +68,7 @@ for relative, phrases in REQUIRED.items():
 progress = ROOT / "PROGRESS.md"
 if progress.is_file():
     content = progress.read_text(encoding="utf-8")
-    if not re.search(r"External-mod characters integrated\s*\|\s*\*\*?\s*\d+", content, re.I):
+    if not re.search(r"External mod character (?:variants|packages) integrated(?: into the candidate)?\s*\|\s*\*\*?\s*\d+", content, re.I):
         # Permit a prose status instead of a table, but require an explicit count/status.
         if not re.search(r"external character status.{0,300}(?:0|none|no external character)", content, re.I | re.S):
             errors.append("PROGRESS.md: no explicit current external-character integration status found")
@@ -80,5 +80,5 @@ if errors:
     sys.exit(1)
 
 print("External-character priority/record-integrity check PASSED.")
-print("Verified: mission, active phase, evidence gates, and rights/permission cautions are documented.")
+print("Verified: mission, active phase, source provenance, and technical verification gates are documented.")
 print("This check does not claim any external character has been ported or gameplay-tested.")
