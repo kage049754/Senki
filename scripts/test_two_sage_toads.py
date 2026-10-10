@@ -45,7 +45,12 @@ assert main.get("frames"), "Main character atlas has no frame entries"
 assert skills.get("frames"), "Skill atlas has no frame entries"
 assert main.get("metadata", {}).get("textureFileName") == "TwoSageToads.png"
 assert skills.get("metadata", {}).get("textureFileName") == "TwoSageToads_Skill.png"
+assert "HeroEnum::TwoSageToads" in header, "Native character identity is not referenced by the character class"
 xml_text = xml_path.read_text(encoding="utf-8")
+xml_root = ET.fromstring(xml_text)
+xml_frames = {node.text.strip() for node in xml_root.iter("f") if node.text and node.text.strip()}
+missing_frames = sorted(xml_frames - set(main.get("frames", {})) - set(skills.get("frames", {})))
+assert not missing_frames, "Unresolved animation frames remain: " + ", ".join(missing_frames[:20])
 assert "Audio/TwoSageToads/" in xml_text, "Animation XML does not point at the new audio package"
 assert "Audio/Choji/" not in xml_text, "Animation XML still points at Choji audio"
 assert "Choji_" not in xml_text, "Animation XML still contains old character frame IDs"
