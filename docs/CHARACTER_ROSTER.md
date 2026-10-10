@@ -297,3 +297,17 @@ The pinned V2 candidate has a `HokageMinato_half.png` selection frame and named 
 - Next action: resolve provenance/permission, convert the XML to V2's unit schema, determine the native class/AI/control behavior, and test every skill, effect, sound, selection state, and death/respawn before counting it.
 - The source package lacks dedicated `HokageMinato_select.png` and `HokageMinato_font.png` frames; selection button art and display-name handling need an explicit plan.
 - The `NarutoRikudo` and `SasukeImmortal` strings found in selection artwork are naming variants of existing `RikudoNaruto` and `ImmortalSasuke`, not extra characters. `Black`, `Blink`, `None`, `None2`, `loading`, and `unknow` are not character entries based on this filename audit.
+
+
+## Latest detailed package audit — 2026-10-10
+
+- [x] Corrected texture-file and animation sound-event parsing in the audit script; run #164 passed the new regression gates.
+- [x] Current declared roster: **43 distinct entries**; remaining gap to 70 declared entries: **27**.
+- [x] Static resource audit: **43/43** have unit XML plus sprite plist/texture and both kill-feed portrait frames.
+- [x] The audit now recognizes audio-event references in animation XML rather than incorrectly reporting zero.
+- [ ] Skill-description art: **42/43** have all five expected label frames. Kabuto is the one flagged exception; fallback text exists, but the in-game skill view still needs manual verification.
+- [ ] AI registration: the audit only identifies clues, not proof of complete AI behavior. Manually review entries marked MANUAL.
+- [ ] Nine enum-only names remain manual-classification leads; do not count summons/support/clones as playable characters without proving they are independent selectable fighters.
+- [ ] None of these static results promotes a character to VERIFIED. Test selection, spawn, movement, attacks, each skill, audio, AI, death/respawn, and resource stability in the actual game.
+- [ ] The source and bundled asset permission review remains unresolved; no new external character package should be copied or redistributed until its permission status is approved.
+- Evidence: [run #164 and diagnostic artifact](https://github.com/kage049754/Senki/actions/runs/38032945561).
