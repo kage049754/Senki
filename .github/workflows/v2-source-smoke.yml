@@ -9,6 +9,11 @@ on:
       - 'patches/android-clean/**'
       - 'scripts/**'
       - 'artwork/**'
+      - 'README.md'
+      - 'AGENTS.md'
+      - 'ROADMAP.md'
+      - 'PROGRESS.md'
+      - 'docs/**'
 
 permissions:
   contents: read
