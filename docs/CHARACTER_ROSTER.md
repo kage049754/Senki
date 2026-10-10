@@ -195,7 +195,7 @@ A field may be marked missing/not-applicable only with a brief reason. Do not tr
 
 ## Legacy V1.17/V2-adjacent source leads — not integrated
 
-Source inspected: [Zx-Akito/NarutoSenki](https://github.com/Zx-Akito/NarutoSenki), branch `master`. This is a legacy monolithic Cocos2d-x project, not the current modular V2 candidate. These entries are **DISCOVERED / SOURCE-INSPECTED** only; none is added to the central game's roster by this research.
+Source inspected: [Zx-Akito/NarutoSenki](https://github.com/Zx-Akito/NarutoSenki), branch `master` at commit `d847b113dfce486822768ef5a1c1c874b50fa3cd`. This is a legacy monolithic Cocos2d-x project, not the current modular V2 candidate. These entries are **DISCOVERED / SOURCE-INSPECTED** only; none is added to the central game's roster by this research.
 
 | Candidate form/character | Evidence found in legacy source | Selection package check | Current status / missing work |
 |---|---|---|---|
