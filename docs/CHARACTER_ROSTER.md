@@ -373,3 +373,9 @@ The source inventory remains **37 visible selectable names / 43 after six existi
 - **`likill/NarutoSenki-master`** and **`LeaderOnePro/NarutoSenki1.17Mod`** are additional public mod repositories; the inspected default branches expose no repository license metadata or top-level license file. Their presence is a research lead, not reuse permission.
 - **`Zx-Akito/NarutoSenki-Release`** is a release-only repository with no source tree in the inspected default branch; it cannot serve as an auditable character-code integration source by itself.
 - This comparison did not identify a new distinct character with both a complete compatible source package and clear reuse authorization. Roster count remains unchanged; do not fabricate progress by adding names without assets and working gameplay.
+
+### Guardian lead cross-check — `likill/NarutoSenki-master` (2026-10-10)
+
+- The inspected fork includes Han/Roshi unit animation XML, sprite atlases/textures, audio paths, and kill/death portrait frames. Its `GameLayer::initGard()` creates a generic `Hero`, assigns either `Roshi` or `Han` with role `Com`, sets the guardian spawn point, and calls `doAI()`; `Characters.cpp` routes both names to `AI_Guardian()`.
+- Han/Roshi were not found in the fork's visible character-select layout or select-layer code search. This supports the current classification as **AI-spawned guardian units, not selectable player characters** in that source. It does not mean they could never be adapted; it means a player-controlled selection/lifecycle path would need to be implemented and tested.
+- This repository has no license metadata/license file in the inspected default branch. Its Han/Roshi files are useful architectural research only; no code or assets were copied into Senki.
