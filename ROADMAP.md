@@ -271,3 +271,12 @@ Every character port in Phase 4/5 must pass this gate before being called comple
 - [ ] **Verification:** build and inspect APK resources, then test character selection, preview, skill view, each attack/skill, animation/effect/audio triggers, AI roster selection/spawn, damage, death/respawn and supported modes. Record CI and physical-device tests separately.
 
 Maintain a per-character manifest in `docs/CHARACTER_ROSTER.md`. Mark unavailable assets as missing/blocked/not-applicable with evidence and source reason. Do not invent missing assets and claim they are original. Track states separately: DISCOVERED → SOURCE-INSPECTED → PORTED → BUILD-VERIFIED → PLAYABLE-VERIFIED. A portrait, icon, class file, or successful APK build alone never qualifies a character as complete.
+
+
+## Character package audit automation — 2026-10-10
+
+- [x] Added source-level inventory script `scripts/audit_character_packages.py`.
+- [x] CI now generates and uploads `senki-character-package-audit` alongside the candidate APK. Latest verified run: [#86](https://github.com/kage049754/Senki/actions/runs/38021855646), SUCCESS.
+- [x] The audit checks the current roster source, per-character C++ header, Unit resource paths, audio folder paths, packed selection art frame names, and detectable AI registration.
+- [ ] This audit is not gameplay verification; it cannot confirm skill viewer contents, exact voice/SFX triggers, animation correctness, resource runtime stability, or AI combat quality.
+- [ ] No new character is added by this tooling. The first character port remains gated on finding a compatible, permission-cleared complete package or documented approval for the code and each relevant asset category.
