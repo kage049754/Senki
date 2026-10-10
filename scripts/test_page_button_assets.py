@@ -56,7 +56,7 @@ def read_original_page_frame(page: int, state: str) -> Image.Image:
     frame = frames[name]
     if frame.get("textureRotated", False):
         raise SystemExit(f"Unexpected rotated original page button frame: {name}")
-    numbers = [int(float(x)) for x in re.findall(r"-?\\d+(?:\\.\\d+)?", frame["textureRect"])]
+    numbers = [int(float(x)) for x in re.findall(r"-?\d+(?:\.\d+)?", frame["textureRect"])]
     if len(numbers) != 4:
         raise SystemExit(f"Unsupported textureRect for {name}: {frame['textureRect']!r}")
     x, y, width, height = numbers
