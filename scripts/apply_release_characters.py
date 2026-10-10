@@ -473,11 +473,11 @@ select_text = select_path.read_text(encoding="utf-8")
 anchor = "    TwoSageToads = 'Choji'\n}"
 if anchor not in select_text:
     raise RuntimeError("Could not find TwoSageToads selectionAssetAlias anchor")
-select_text = select_text.replace(anchor, anchor[:-2] + ",\n" + "".join(f"    {key} = '{value}'\n" for key, value in selection_alias_entries) + "}", 1)
+select_text = select_text.replace(anchor, anchor[:-2] + ",\n" + "".join(f"    {key} = '{value}',\n" for key, value in selection_alias_entries) + "}", 1)
 anchor = "    TwoSageToads = 'Two Sage Toads'\n}"
 if anchor not in select_text:
     raise RuntimeError("Could not find TwoSageToads selectionDisplayName anchor")
-select_text = select_text.replace(anchor, anchor[:-2] + ",\n" + "".join(f"    {key} = '{value}'\n" for key, value in display_name_entries) + "}", 1)
+select_text = select_text.replace(anchor, anchor[:-2] + ",\n" + "".join(f"    {key} = '{value}',\n" for key, value in display_name_entries) + "}", 1)
 select_path.write_text(select_text, encoding="utf-8")
 
 skill_text = skill_path.read_text(encoding="utf-8")
