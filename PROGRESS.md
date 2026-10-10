@@ -315,3 +315,13 @@ The repo previously received a native Kotlin/Canvas prototype scaffold. It is no
 - [x] Run `38018448399`: **SUCCESS** on commit `f1d5efe0841d55c4c3e5f91edf4f5c5f403ca1b2`; Lua syntax, dynamic pagination, landscape, package identity, APK signature, native ABI, and packaged search code checks all passed.
 - [x] Verified artifact `naruto-senki-v2-candidate-debug-apk`, ID `11657656484`, ZIP size 83,699,768 bytes, SHA-256 `51faf000d5ff9ef9027f351db0915f5aed58590ccd57f698392a8e1b2b9a3305`, expires 2026-10-24. [Open run and artifact card](https://github.com/kage049754/Senki/actions/runs/38018448399).
 - [ ] Search/filter behavior and 4+ pages still need real-device testing. CI proves the code is packaged and parses; it cannot prove Android keyboard events or Cocos2d touch behavior.
+
+## Complete playable-character requirements recorded — 2026-10-10
+
+- [x] Added the per-character completeness standard to README and AI agent instructions: selection portrait/name, preview and actual skill information where supported, model/sprites, animations, movement, attacks, skills, effects/sounds, player controls, AI, resource references, and roster registration.
+- [x] Added the requested kill/death feedback requirement: show the real killer and victim with their portraits/names when supported by the existing battle-event system, while preserving score/game-over behavior and correctly attributing AI/ally kills.
+- [x] Added a roadmap checklist for character implementation, runtime tests, kill/death UI, and pagination visual/touch consistency.
+- [x] Clarified that discovered, ported, build-verified, and gameplay-verified are different states. A portrait or roster name alone is not a complete playable character.
+- [x] Documented the UI expectation that pages 1–3 retain their original image-based controls and pages 4+ receive matching image-based normal/selected buttons rather than text-only clickable replacements.
+- [ ] These are now explicit implementation requirements; this documentation update does not claim that new characters or kill/death overlays have already been implemented or phone-tested.
+
