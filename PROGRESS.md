@@ -442,3 +442,14 @@ This is a successful **diagnostic candidate build**, not a final unified release
 - [x] Latest APK artifact: `naruto-senki-v2-candidate-debug-apk`, ID `11659729329`, 83,306,812 bytes; SHA-256 `97e37a19c006b4c3af9a0fe301013b0f1cb94c2a20d99c02eefb5eb6e24b7d2e`; expires 2026-10-24.
 - [x] Latest character audit artifact: `senki-character-package-audit`, ID `11660148824`; SHA-256 `fe4b7314d5cce2e6e0ec77dc67f3bd0112416f65bd6c82a73c08efea5900a527`; expires 2026-10-24.
 - [ ] Still needs physical-device visual/gameplay verification. The successful CI checks confirm packaging, not runtime behavior.
+
+
+## Packaged skill-description fallback verification — 2026-10-10
+
+- [x] Follow-up run **#104** completed successfully: https://github.com/kage049754/Senki/actions/runs/38025372460
+- [x] The fallback patch passed source tests and Lua validation.
+- [x] The APK build completed and the workflow extracted the packaged `SkillLayer.lua` from the APK and verified both the fallback message and protected frame lookup are actually present in the packaged file.
+- [x] APK signature and native ABI checks passed.
+- [x] APK artifact `naruto-senki-v2-candidate-debug-apk`, ID `11659729329`, size 83,306,812 bytes, SHA-256 `97e37a19c006b4c3af9a0fe301013b0f1cb94c2a20d99c02eefb5eb6e24b7d2e`, expires 2026-10-24.
+- [x] Audit artifact `senki-character-package-audit`, ID `11660148824`, SHA-256 `fe4b7314d5cce2e6e0ec77dc67f3bd0112416f65bd6c82a73c08efea5900a527`, expires 2026-10-24.
+- [ ] Runtime UI and device behavior remain unverified. A packaged-string check proves the fallback is in the APK, not that it renders correctly on all runtime states.
