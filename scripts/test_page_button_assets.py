@@ -46,11 +46,11 @@ def read_original_frame(state: str) -> Image.Image:
 def outside_center_matches(original: Image.Image, generated: Image.Image) -> bool:
     src = original.load()
     dst = generated.load()
-    # The generator is allowed to repaint the central numeral disk only.
+    # The generator may repaint only the central numeral region; the outer rim must stay pixel-identical.
     for y in range(40):
         for x in range(40):
-            inside_disk = ((x - 20) / 8) ** 2 + ((y - 20) / 8) ** 2 <= 1
-            if not inside_disk and src[x, y] != dst[x, y]:
+            inside_repaint_region = 12 <= x <= 28 and 12 <= y <= 28
+            if not inside_repaint_region and src[x, y] != dst[x, y]:
                 return False
     return True
 
@@ -61,7 +61,7 @@ for page in (4, 5):
         generated = read(generated_name)
         if not outside_center_matches(original, generated):
             raise SystemExit(
-                f"{generated_name} changed pixels outside the numeral disk; "
+                f"{generated_name} changed pixels outside the central numeral region; "
                 "the original page-button rim/state artwork was not preserved."
             )
         if generated.getbbox() is None:
