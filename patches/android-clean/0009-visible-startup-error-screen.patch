@@ -1,7 +1,7 @@
 diff --git a/projects/NarutoSenki/lua/main.lua b/projects/NarutoSenki/lua/main.lua
 --- a/projects/NarutoSenki/lua/main.lua
 +++ b/projects/NarutoSenki/lua/main.lua
-@@ -1,14 +1,57 @@
+@@ -1,14 +1,74 @@
 -require 'config'
 -
 -local function main()
