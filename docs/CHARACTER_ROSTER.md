@@ -287,3 +287,12 @@ The pinned source contains native classes and unit XML/atlas/texture resources f
 - Nine enum names are absent from the visible selection list: `AnimalPath`, `AsuraPath`, `HumanPath`, `PertaPath`, `NarakaPath`, `NarutoClone`, `SageNarutoClone`, `RikudoNarutoClone`, and `Guardian`.
 - These are manual-review leads, not extra playable entries: the clone classes and Guardian are support content, while the Pain paths appear to be specialized units used by NarakaPath/Pain. The selection atlas lacks their own selection button/portrait/name frames.
 - CI run [#159](https://github.com/kage049754/Senki/actions/runs/38031862251) passed the updated report test and produced a verified diagnostic APK artifact. This still does not prove runtime playability or device installation.
+
+
+## Orphan selection-art/audio lead: Hokage Minato — inspected 2026-10-10
+
+The pinned candidate's `Resources/Select.plist` includes a `HokageMinato_half.png` frame, and its audio tree includes `Resources/Audio/HokageMinato/` skill clips plus an Ougi clip. However, the inspected source tree has no `HokageMinato` hero enum entry, no C++ character class/header, and no `Resources/Unit/Ninja/HokageMinato/HokageMinato.xml` + atlas/texture package. The selection frame is therefore an orphan/incomplete lead, not a playable character.
+
+- Status: **DISCOVERED / BLOCKED by missing implementation and character resources**.
+- Next action: search source history/forks for the missing implementation and full sprite package; do not register this name in the playable roster using Minato's base assets and assume it is complete.
+- The `NarutoRikudo` and `SasukeImmortal` strings found in selection artwork are naming variants of existing `RikudoNaruto` and `ImmortalSasuke`, not extra characters. `Black`, `Blink`, `None`, `None2`, `loading`, and `unknow` are not character entries based on this filename audit.
