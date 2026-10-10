@@ -71,3 +71,19 @@ Do not report a character as added unless its gameplay implementation and all re
 - Inspect actual logs for failures and fix root causes.
 - Confirm artifacts exist for the exact successful run.
 - CI packaging/signature checks are not phone installation or gameplay testing.
+
+
+## Latest verified CI — Run #208
+
+- Run: https://github.com/kage049754/Senki/actions/runs/38044462856
+- Tested commit: a5480d1454ead8de8ec36cf1c23455cb759ea9cf
+- Status: **completed / success**.
+- New CI step: test_external_character_priority.py checks that project instructions preserve the external-mod-first mission, active roadmap phase, per-character evidence requirements, and separate code/asset permission review.
+- Candidate APK artifact: naruto-senki-v2-candidate-debug-apk, artifact ID 11667032617, 83,300,015 bytes, not expired at verification.
+- Character audit artifact: senki-character-package-audit, artifact ID 11667571891, 4,336 bytes, not expired at verification.
+- The priority/evidence test and all existing source/Lua/pagination/background/package checks passed. The Android candidate APK built and its package/signature/native-ABI checks passed.
+- This candidate still has **0 external-mod characters integrated** and is not phone-tested. The new check is a guardrail, not a character port.
+
+## Current next action after Run #208
+
+Continue source-level discovery for a complete, independently selectable external Senki character with inspectable files and a viable rights/provenance path. Do not count release-note-only candidates or APK-only resources. Once a candidate qualifies, map all dependencies and port it into an available page 1–3 slot before batch expansion.
