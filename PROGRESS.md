@@ -644,3 +644,11 @@ GitHub API confirms `kage049754/Senki` is currently **public**. Therefore, the s
 - [x] Confirmed `hendprw/NarutoSenki` and `Zx-Akito/NarutoSenki` share the same recursive tree SHA. Legacy Cocos2d-x 2.2.2 source files expose 58 distinct AI method names, but those are not 58 verified player characters.
 - [x] Compared the V2-family original selection layouts: inspected forks expose 36 original selection names, while the pinned Android-only candidate exposes 37 because it includes Kabuto. The V2 family does not supply the 27 additional complete playable packages needed to reach 70.
 - [ ] Continue looking for independent, editable, compatible character implementations. Do not count APK-only resources, duplicate mirrors, enum-only support classes, summons, or AI method names as new playable characters.
+
+
+### Failure → fix → successful rerun notes for skill-description work
+
+- Run #150 failed because a regression expected the old generic “Skill description unavailable” text after the fallback became character-specific. The failure was inspected in the actual job logs.
+- Run #151 then exposed the same stale expectation in the selectable-form regression. That assertion was updated to check the new fallback table and real Kabuto skill descriptions.
+- The packaged-APK workflow check was also updated to assert the new dynamic fallback expression and actual Kabuto description strings instead of the retired generic text.
+- Run #152 then passed the updated source checks, Android build, packaged skill-description checks, form roster packaging, signature/ABI validation, and artifact upload. The earlier failed runs remain failed in GitHub history; run #152 is the verified successful rerun.
