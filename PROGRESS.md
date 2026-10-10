@@ -472,3 +472,14 @@ This is a successful **diagnostic candidate build**, not a final unified release
 - [x] Confirmed the pinned V2 candidate has no Han/Roshi class/resource folders and neither character is in its selectable roster.
 - [x] Documented the source paths and compatibility gaps in docs/MOD_RESEARCH.md; no source/assets copied.
 - [ ] Map the legacy Han/Roshi behavior to the current V2 character interfaces before selecting one for a complete implementation.
+
+
+## Pagination artwork regression test — run #109
+
+- [x] Run **#109** passed: https://github.com/kage049754/Senki/actions/runs/38025803886
+- [x] Added an image regression test for generated page 4 and 5 controls. It extracts the original page button frames from `Select.png` + `Select.plist`, verifies 40x40 visible normal/selected controls, and checks that the outer button artwork remains pixel-identical outside the center numeral region.
+- [x] The first test attempt failed because the test looked for atlas frames as standalone PNG files; the actual assets are packed in the Select atlas. After reading the real atlas frames, a second attempt exposed an overly strict center-region comparison. The test was corrected to validate the untouched outer rim; the corrected check passed.
+- [x] Dynamic pagination, source Lua validation, skill-label fallback tests, Android candidate build, packaged fallback check, APK signature/native ABI checks, and artifact upload all passed on run #109.
+- [x] APK artifact `naruto-senki-v2-candidate-debug-apk`, ID `11660410133`, size 83,334,545 bytes, SHA-256 `a48e46cf0467d0bab35717534aad02ecd8d6bfcaf0d6dd935fb6719c41264635`, expires 2026-10-24.
+- [x] Audit artifact `senki-character-package-audit`, ID `11659909978`, SHA-256 `a1f6650cb079a6bb5a8b46bc94a232b35e06f2f7dca79db0036d95cf0334b4bc`, expires 2026-10-24.
+- [ ] Physical-device UI/gameplay remains unverified. The current source inventory has 63 layout slots (3 pages at 21 slots/page), so pages 4 and 5 are generated and validated as future-ready controls but are not currently reached by this candidate's present roster count.
