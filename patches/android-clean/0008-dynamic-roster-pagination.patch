@@ -9,7 +9,7 @@ diff --git a/projects/NarutoSenki/lua/ui/SelectLayer.lua b/projects/NarutoSenki/
 +    self.pageNum = math.max(1, math.ceil(#charactersList / 21))
  
      self._comLabel1 = nil
-@@ -120,11 +121,30 @@
+@@ -120,13 +121,31 @@
      for i = 1, self.pageNum do
          -- initial page list
          local index = i
@@ -48,7 +48,7 @@ diff --git a/projects/NarutoSenki/lua/ui/SelectLayer.lua b/projects/NarutoSenki/
 +        end
  
          self:addChild(pageLayer, 5)
-@@ -141,8 +160,7 @@
+@@ -141,8 +159,7 @@
          table.insert(self.pageLayers, pageLayer)
          table.insert(self.pageButtons, page_btn)
      end
