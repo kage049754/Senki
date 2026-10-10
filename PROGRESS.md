@@ -757,3 +757,16 @@ User requires every new character to have its own correct avatar/portrait in the
 - [x] Kept the roster counts honest: 37 source-visible selectable names, 43 after the six existing native forms exposed by the diagnostic patch; Han/Roshi are not counted as integrated characters. Gameplay-verified playable count is still not measured.
 - [ ] Do not mark this as a finished game or final release. This workflow builds a diagnostic candidate from a pinned external source in a temporary CI workspace. Device installation, actual selection/battle/skill tests, full source import, and the 70-verified-character goal remain outstanding.
 - [ ] Next technical step for Han/Roshi: complete the selection portrait/name art and skill UI dependency audit, trace how Guardian units behave when selected as a player, then implement a complete character batch only after those checks pass.
+
+## Latest continued-work update — run #185 (2026-10-10)
+
+- [x] Run #185 completed successfully on commit `cfdb9a7151d9c2bfbc5957c6d3a7f3cbe0db8dd1`: https://github.com/kage049754/Senki/actions/runs/38035532569
+- [x] All 38 workflow steps completed successfully; no failed steps were reported.
+- [x] Verified the current-run diagnostic APK artifact: `naruto-senki-v2-candidate-debug-apk`, ZIP size 83,343,195 bytes, GitHub artifact digest `sha256:adcc6cf6cbc232b3b453c71d53565a798d2fc711809a4cda66d8da550e45d055`, artifact ID 11664276520, expires 2026-10-24.
+- [x] Downloaded and inspected the run #185 character audit. The static source inventory remains 43 declared selectable entries (including six existing native forms), with 27 more declared entries needed to reach 70. Gameplay-verified playable count remains unmeasured.
+- [x] The XML-comment parsing fix improved the XML-to-atlas report: **40/43** entries now have no missing frame-name references. Remaining name-level exceptions: Asuma (12), SageJiraiya (6), and RockLee (55). Investigate actual atlas dependencies before editing.
+- [x] Character selection art: **37/43** entries have all three expected selection frames/files; SageJiraiya, ImmortalSasuke, SageNaruto, RikudoNaruto, RockLee, and Nagato remain partial. The forms share base-art aliases, so this is not evidence of unique portrait compliance.
+- [x] Skill-description label frames: **42/43** entries pass; Kabuto still requires manual review. Kill/death report portrait frames are present for all 43 declared entries.
+- [!] Off-roster Han and Roshi each have Guardian XML/plist/texture, report portraits and exact-name audio files, but neither has a HeroEnum entry, selection frames, nor skill-icon frames. The shared Guardian AI behavior and resources alone do not prove they work as player-controlled characters; do not count them as playable yet.
+- [ ] Next: inspect the remaining XML/atlas exceptions and selection-art generation path; continue searching for distinct Senki characters with complete resource packages, prioritizing filling pages 1–3. A new character only counts after unique selection portrait/name, skill UI, class/provider/enum wiring, animations/effects/audio references, AI/player behavior, and in-game verification are covered.
+- [ ] This successful artifact is still a diagnostic build assembled from a pinned external source in a temporary CI workspace, not the final unified mod APK and not a physical-device-tested release.
