@@ -140,10 +140,15 @@ if '#include "Shinobi/TwoSageToads.hpp"' not in provider_text:
         raise SystemExit("Could not include TwoSageToads class in Provider.hpp")
     provider_text = provider_text.replace(marker, marker + '\n#include "Shinobi/TwoSageToads.hpp"', 1)
 if 'is("TwoSageToads")' not in provider_text:
-    marker = 'is("Choji")'
-    if provider_text.count(marker) != 1:
+    pattern = r'(\t*is\("Choji"\)\s*ptr = new Choji\(\);)'
+    provider_text, count = re.subn(
+        pattern,
+        lambda match: match.group(1) + '\n\t\tis("TwoSageToads")\t\tptr = new TwoSageToads();',
+        provider_text,
+        count=1,
+    )
+    if count != 1:
         raise SystemExit("Could not add TwoSageToads to native Provider dispatch")
-    provider_text = provider_text.replace(marker, marker + '\tptr = new Choji();\n\tis("TwoSageToads")\t\t\t\t\tptr = new TwoSageToads();', 1)
 provider_path.write_text(provider_text, encoding="utf-8")
 
 # Add to the first genuinely empty roster slot; do not replace an existing fighter.
