@@ -288,7 +288,127 @@ jobs:
           unzip -l "$APK" | grep -F "assets/senki_page4_on.png"
           unzip -l "$APK" | grep -F "assets/senki_page5_off.png"
           unzip -l "$APK" | grep -F "assets/senki_page5_on.png"
-          if unzip -Z1 "$APK" | grep -E 'assets/senki_(menu|select)[.]png$'; then
+          # Keep the original menu/selection background textures in the packaged candidate.
+          for asset in red_bg.png blue_bg.png menu_bar2.png menu_bar3.png; do
+            unzip -Z1 "$APK" | grep -E "assets/${asset}$"
+          done
+          if unzip -Z1 "$APK" | grep -E 'assets/senki_(menu|select)[.]png            echo "Retired custom menu/selection background replacement is still packaged."
+            exit 1
+          fi
+          echo "Candidate APK contains the loading art and generated image-based page controls; retired custom menu/selection replacements are absent."
+
+      - name: Verify patched package identity in APK
+        if: success()
+        shell: bash
+        run: |
+          set -euo pipefail
+          APK="$(find /tmp/narutosenki-candidate/projects/NarutoSenki/proj.android-studio -type f -path '*/build/outputs/apk/*/*.apk' -print -quit)"
+          test -n "$APK"
+          "$ANDROID_HOME/build-tools/31.0.0/aapt" dump badging "$APK" | tee /tmp/senki-apk-badging.txt
+          grep -F "name='com.senki.naruto.mod' versionCode='3' versionName='2.1.0-mod'" /tmp/senki-apk-badging.txt
+          grep -F "application-label:'Naruto Senki Mod'" /tmp/senki-apk-badging.txt
+          "$ANDROID_HOME/build-tools/31.0.0/aapt" dump xmltree "$APK" AndroidManifest.xml | tee /tmp/senki-apk-manifest.txt
+          grep -F 'android:screenOrientation' /tmp/senki-apk-manifest.txt | grep -F '0x6'
+
+      - name: Verify character search code is packaged in the APK
+        if: success()
+        shell: bash
+        run: |
+          set -euo pipefail
+          APK="$(find /tmp/narutosenki-candidate/projects/NarutoSenki/proj.android-studio -type f -path '*/build/outputs/apk/*/*.apk' -print -quit)"
+          ENTRY="$(unzip -Z1 "$APK" | grep -E '(^|/)SelectLayer[.]lua$' | head -n 1 || true)"
+          if [[ -z "$ENTRY" ]]; then
+            echo "SelectLayer.lua is not present as a loose APK asset; showing matching Lua entries for diagnosis."
+            unzip -Z1 "$APK" | grep -Ei 'selectlayer|lua/ui' | head -n 100 || true
+            exit 1
+          fi
+          unzip -p "$APK" "$ENTRY" > /tmp/senki-packaged-SelectLayer.lua
+          grep -F 'function SelectLayer:filterCharacters(query)' /tmp/senki-packaged-SelectLayer.lua
+          grep -F 'No characters found' /tmp/senki-packaged-SelectLayer.lua
+          grep -F 'width - 145' /tmp/senki-packaged-SelectLayer.lua
+          echo "Character search/filter code is present in packaged SelectLayer.lua."
+
+      - name: Verify skill-description fallback is packaged in the APK
+        if: success()
+        shell: bash
+        run: |
+          set -euo pipefail
+          APK=$(find /tmp/narutosenki-candidate/projects/NarutoSenki/proj.android-studio -type f -path '*/build/outputs/apk/*/*.apk' -print -quit)
+          ENTRY=$(unzip -Z1 "$APK" | grep -E '(^|/)SkillLayer[.]lua$' | head -n 1 || true)
+          if [[ -z "$ENTRY" ]]; then
+            echo "SkillLayer.lua is not present as a loose APK asset; showing matching Lua entries for diagnosis."
+            unzip -Z1 "$APK" | grep -Ei 'skilllayer|lua/ui' | head -n 100 || true
+            exit 1
+          fi
+          unzip -p "$APK" "$ENTRY" > /tmp/senki-packaged-SkillLayer.lua
+          grep -F 'Skill description unavailable' /tmp/senki-packaged-SkillLayer.lua
+          grep -F 'pcall(display.newSpriteFrame, imgPath)' /tmp/senki-packaged-SkillLayer.lua
+          grep -F 'self._skillExplainClipper:removeFromParent()' /tmp/senki-packaged-SkillLayer.lua
+          grep -F 'self._skillExplainClipper = clipper' /tmp/senki-packaged-SkillLayer.lua
+          echo "Safe missing-skill-description fallback and whole-tooltip cleanup are present in packaged SkillLayer.lua."
+
+      - name: Verify expanded form roster is packaged in the APK
+        if: success()
+        shell: bash
+        run: |
+          set -euo pipefail
+          APK="$(find /tmp/narutosenki-candidate/projects/NarutoSenki/proj.android-studio -type f -path '*/build/outputs/apk/*/*.apk' -print -quit)"
+          BASIC_ENTRY="$(unzip -Z1 "$APK" | grep -E '(^|/)basic[.]lua$' | head -n 1 || true)"
+          SELECT_ENTRY="$(unzip -Z1 "$APK" | grep -E '(^|/)SelectLayer[.]lua$' | head -n 1 || true)"
+          SKILL_ENTRY="$(unzip -Z1 "$APK" | grep -E '(^|/)SkillLayer[.]lua$' | head -n 1 || true)"
+          test -n "$BASIC_ENTRY"
+          test -n "$SELECT_ENTRY"
+          test -n "$SKILL_ENTRY"
+          unzip -p "$APK" "$BASIC_ENTRY" > /tmp/senki-packaged-basic.lua
+          unzip -p "$APK" "$SELECT_ENTRY" > /tmp/senki-packaged-SelectLayer.lua
+          unzip -p "$APK" "$SKILL_ENTRY" > /tmp/senki-packaged-SkillLayer.lua
+          for form in SageJiraiya ImmortalSasuke SageNaruto RikudoNaruto RockLee Nagato; do
+            grep -F "'$form'" /tmp/senki-packaged-basic.lua
+            grep -F "$form = " /tmp/senki-packaged-SelectLayer.lua
+            grep -F "$form = " /tmp/senki-packaged-SkillLayer.lua
+          done
+          grep -F 'local skillHero = skillUiAlias[self.selectHero] or self.selectHero' /tmp/senki-packaged-SkillLayer.lua
+          grep -F 'local fullArtHero = skillUiAlias[self.selectHero] or self.selectHero' /tmp/senki-packaged-SkillLayer.lua
+          echo "The APK contains all six extra native forms and their selection/skill UI aliases."
+
+      - name: Verify APK signature and native ABI packaging
+        if: success()
+        shell: bash
+        run: |
+          set -euo pipefail
+          APK=$(find /tmp/narutosenki-candidate/projects/NarutoSenki/proj.android-studio -type f -path '*/build/outputs/apk/*/*.apk' -print -quit)
+          test -n "$APK"
+          "$ANDROID_HOME/build-tools/31.0.0/apksigner" verify --verbose "$APK"
+          unzip -Z1 "$APK" > /tmp/senki-apk-entries.txt
+          grep -E '^lib/(arm64-v8a|armeabi-v7a)/[^/]+[.]so$' /tmp/senki-apk-entries.txt > /tmp/senki-native-libs.txt
+          test -s /tmp/senki-native-libs.txt
+          cat /tmp/senki-native-libs.txt
+          echo "APK signature verified and native Android libraries are packaged."
+
+      - name: Upload character package audit report
+        if: always() && hashFiles('character-package-audit.md') != ''
+        uses: actions/upload-artifact@v4
+        with:
+          name: senki-character-package-audit
+          path: character-package-audit.md
+          if-no-files-found: error
+          retention-days: 14
+
+      - name: Upload candidate debug APK for private testing
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: naruto-senki-v2-candidate-debug-apk
+          path: /tmp/narutosenki-candidate/projects/NarutoSenki/proj.android-studio/**/build/outputs/apk/**/*.apk
+          if-no-files-found: error
+          retention-days: 14
+
+      - name: Print build diagnostics on failure
+        if: failure()
+        run: |
+          echo "Build failed. Inspect Gradle/NDK error above before changing the pinned candidate."
+          find /tmp/narutosenki-candidate/projects/NarutoSenki/proj.android-studio -type f \( -name '*.log' -o -name 'hs_err_pid*.log' \) -print 2>/dev/null || true
+; then
             echo "Retired custom menu/selection background replacement is still packaged."
             exit 1
           fi
