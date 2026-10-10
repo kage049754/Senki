@@ -21,14 +21,18 @@ required = [
     "return self:onPageButtonClick(index)",
     "if i <= 3 then",
     "ui.newImageMenuItem",
-    "ui.newTTFLabelMenuItem",
+    "senki_page\' .. tostring(i) .. \'_off.png",
+    "senki_page\' .. tostring(i) .. \'_on.png",
     "self.pageNum = math.max(1, math.ceil(#charactersList / 21))",
 ]
 missing = [fragment for fragment in required if fragment not in source]
 if missing:
     raise SystemExit("Missing character pagination behavior: " + ", ".join(missing))
 
+if "ui.newTTFLabelMenuItem" in source:
+    raise SystemExit("Text-only page controls are still present.")
+
 if "self.pageNum = 3" in source:
     raise SystemExit("The fixed three-page limit is still present.")
 
-print("Character page controls retain the original touch menu items, dynamic page count, and page visibility/selection handler.")
+print("Character page controls retain image-based normal/selected states, dynamic page count, and the original page visibility/selection handler.")
