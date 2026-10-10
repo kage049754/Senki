@@ -52,7 +52,7 @@ Target: at least 70 verified playable characters. The registry itself must not h
 ## Current verified roster
 **Verified playable character count: NOT YET MEASURED.**
 
-**Source inventory (not runtime-verified):** the pinned Android-clean candidate's original roster defines 37 unique selectable names. The current CI patch exposes six additional existing native forms on page four, for **43 distinct declared names** across 84 slots/four pages. The audit target gap is **27 additional distinct entries** to reach 70 declared names. The five Pain-path C++ headers are implementation classes, not separate selectable roster entries. Gameplay-verified count remains unmeasured. See `PROGRESS.md` for the latest build and artifact.
+**Source inventory (not runtime-verified):** the pinned Android-clean candidate's original roster defines 37 unique selectable names. The current CI patch exposes six additional existing native forms on page four, for **43 selectable entries but only 37 distinct base characters** across 84 slots/four pages. The target gap is **33 additional distinct characters** to reach 70; alternate forms do not count as new base characters. The five Pain-path C++ headers are implementation classes, not separate selectable roster entries. Gameplay-verified count remains unmeasured. See `PROGRESS.md` for the latest build and artifact.
 
 No individual character is marked VERIFIED by this initial tracker. Populate entries only after inspecting the actual project and testing the character.
 
