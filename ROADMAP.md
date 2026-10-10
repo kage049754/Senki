@@ -32,19 +32,19 @@
 **Exit checks:** one existing Senki source base is selected with evidence, build instructions, known blockers, and documented permission status.
 
 ## Phase 2 — Establish the chosen base in the central repository
-**Status: In progress — central CI run #141 succeeded, including the skill-description fallback, alias-aware audit, page-button/background checks, and APK packaging verification; source vendoring, rights review, and phone validation remain open.**
+**Status: In progress — central CI run #143 succeeded, including form-specific skill-label aliasing, missing-label fallback, page-button/background checks, and APK packaging verification; source vendoring, rights review, and phone validation remain open.**
 
 - [ ] Bring or adapt the chosen base into `kage049754/Senki` using a documented, provenance-preserving method.
 - [ ] Preserve original engine/game loop and existing behavior wherever practical.
 - [ ] Resolve dependencies and Android build issues without replacing the engine with a new implementation.
-- [x] Establish central CI for the pinned Android-clean V2-derived candidate and verify its actual patched APK artifact (latest run #141: https://github.com/kage049754/Senki/actions/runs/38030022200; artifact ID 11661692440; SHA-256 `3342575c632dee2a795af2207d510a97c3f70f6952eb68a536d31f6fa070bb13`).
+- [x] Establish central CI for the pinned Android-clean V2-derived candidate and verify its actual patched APK artifact (latest run #143: https://github.com/kage049754/Senki/actions/runs/38030471776; artifact ID 11661893046; SHA-256 `b7c57d7b60880c85109ae3dd0bf79fc78daa6a367589aa9a74954bbbf5a22145`).
 - [ ] Vendor or otherwise preserve a reproducible, editable copy of the chosen source tree inside this repository; the current workflow still clones it into a temporary runner workspace.
 - [ ] Confirm install/launch separately on a device when possible.
 
 **Exit checks:** the selected existing Senki game builds and launches from the central repo before major mod merges begin.
 
 ## Phase 3 — Inventory and prepare mod content
-**Status: Not started**
+**Status: In progress — fifth-pass research found additional legacy character/AI references, but no drop-in, permission-cleared V2 source with 27 verified new character packages.**
 
 - [ ] Continue researching existing Senki mods, source forks, release histories, and compatible resources.
 - [ ] Compare forks to upstream and identify meaningful changes.
@@ -371,3 +371,13 @@ Run #141 passed the alias-aware character audit, source-level background preserv
 - Exact SHA: `c02bfb51c34b9bc6ae1c4285eacd48e3cfec4f09`
 - APK artifact ID: `11661692440`, SHA-256: `3342575c632dee2a795af2207d510a97c3f70f6952eb68a536d31f6fa070bb13`
 - Remaining: physical-device runtime validation, source-vendoring and rights review, and integration/testing of additional characters.
+
+### Latest form skill-label alias verification — run #143 (2026-10-10)
+
+The candidate now maps existing native forms to their base character's skill-description label frames as well as skill icons and large portraits. This avoids showing the generic missing-label fallback for forms that can reuse existing labels. Kabuto remains the only audited entry missing all five expected labels, and receives the visible fallback. Run #143 passed Lua syntax, character audit, Android candidate build, APK package/ABI/signature checks, and artifact upload.
+
+- Run: https://github.com/kage049754/Senki/actions/runs/38030471776
+- Exact source SHA: `40aea9917261a9355c76d1f6b4b5496c036593be`
+- APK artifact ID: `11661893046`, size 83,325,632 bytes, SHA-256: `b7c57d7b60880c85109ae3dd0bf79fc78daa6a367589aa9a74954bbbf5a22145`
+- Audit artifact ID: `11661603360`, SHA-256: `3397364510d2db1177a5ae6bc7f442fa329b10afd632a989c83e188f18799943`
+- Still open: physical-device UI/gameplay verification, source vendoring, permission review, and integration of additional characters.
