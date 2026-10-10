@@ -337,3 +337,13 @@ The pinned candidate now exposes six existing native forms on a fourth character
 
 
 Latest verification refresh: run #121 succeeded after adding atlas-texture existence checks to the six-form roster regression test. See `PROGRESS.md` for artifact ID `11660673063` and its SHA-256 digest. Device gameplay verification remains pending.
+
+
+### Latest checkpoint — 2026-10-10 (run #126)
+
+The latest candidate APK built and passed static form-registration, resource/texture, transformation-path, packaged roster, signature, and native ABI checks. The central repository now exposes six existing native transformation forms alongside the 37 original selectable names, for 43 distinct selectable names in the candidate. The declared 70-entry goal is a roster target, not a claim of 70 working characters; the static audit explicitly leaves gameplay-verified count unmeasured.
+
+- Successful run: https://github.com/kage049754/Senki/actions/runs/38028647795
+- Exact SHA: `9aa276227fa118e89246eef561aa318209d3c60a`
+- APK artifact ID: `11660439960`; SHA-256: `865afbe5def724a1f0c0da37ad9aec845d12ccac4ed56a14411c156e6ce3b76c`
+- Outstanding: actual device/emulator gameplay tests, source-vendoring, and code/asset rights review. No external character port is counted as complete.
