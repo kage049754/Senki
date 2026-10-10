@@ -356,3 +356,14 @@ The repo previously received a native Kotlin/Canvas prototype scaffold. It is no
 Every character addition must be tracked as a whole integration: selection name/ID/portrait/avatar/button art and preview; matching skill-view names/icons/descriptions; in-game sprite/model, atlas/plist and animation states; basic attacks, skills/cooldowns, hitboxes/damage, effects/projectiles/summons; voice clips where available and action-specific SFX with event triggers; player controls; existing game AI roster/selection/spawn and combat behavior; and all resource/config references. Where supported, verify actual killer/victim name and portrait in kill/death feedback.
 
 AI means the game's computer-controlled fighter behavior here: it must be able to select/spawn the character in relevant modes and use its supported moves/skills. Player selection alone does not satisfy AI support. For each character, list source assets and paths, source URL/commit, reuse/permission status, tests, and every missing or unsupported item. Never claim an absent voice pack, skill icon, animation or effect was included. Use the states DISCOVERED → SOURCE-INSPECTED → PORTED → BUILD-VERIFIED → PLAYABLE-VERIFIED; only the last state means gameplay verification passed. CI success is not a substitute for in-game/device testing.
+
+
+## Latest CI verification — run #82 (2026-10-10)
+- [x] Run [38020781870](https://github.com/kage049754/Senki/actions/runs/38020781870) completed with **SUCCESS** on commit `3cc5d3bd807ae6c7814dcce1d61710c05552b7b9`.
+- [x] Patch application, Lua syntax checks, search/filter regression checks, dynamic image-based pagination checks, landscape checks, and artwork rendering all passed.
+- [x] Android debug build completed; candidate APK existence, package identity, packaged search code, signature, and native ABI checks all passed.
+- [x] Verified artifact `naruto-senki-v2-candidate-debug-apk`, ID `11657917474`, size 83,355,267 bytes; SHA-256 `303f9dfbabd11fec739b91dcdda4f818421618c242dda4182794d9497aa6c147`; expires 2026-10-24.
+- [x] Workflow asserts the APK includes generated page 4 and 5 normal/selected image assets and does not include the retired custom main-menu/character-selection background replacements.
+- [ ] Visually inspect page controls and original backgrounds on a physical Android device; CI packaging checks cannot confirm their appearance or touch behavior on device.
+- [ ] The artifact is still a technical build of an external V2-derived source candidate with central patches, not a permission-cleared final release or a verified multi-mod character merge.
+- [ ] Source and third-party art/audio/voice permissions remain unresolved; no newly integrated character is counted as fully playable or AI-verified.
