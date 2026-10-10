@@ -141,3 +141,20 @@ Do not implement a character as just a roster entry, portrait, sprite, or skill 
 7. **Resource/ID integrity:** all C++/Lua/XML/plist/config, character class, animation, UI, effect, and audio references resolve to the correct fighter; IDs are unique; existing characters are not accidentally overwritten.
 
 Use only assets whose reuse is permitted under the repository's provenance/permission rules. Record all missing categories and their impact. A character is not fully complete if required icons, selection art, animation states, voice/audio, skill behavior, or AI support is missing; it may only be reported as partial/incomplete with an explicit gap list. Mark a character playable-verified only after testing selection, preview, skill display, player combat, audio/effects, AI selection and combat, death/respawn, and resource stability. Keep build verification separate from runtime/device verification.
+
+## Expanded character asset manifest — mandatory for every character
+
+For every new or ported fighter, create a per-character manifest and audit the source before editing. A complete package covers:
+
+1. Identity: stable character/form ID, display name, character-select portrait/avatar, normal/selected roster button art, preview art/model/sprite, and selection callback.
+2. Skill view: the correct skill names, icons, descriptions and other fields supported by the base game's skill panel; every listed skill must map to a real implemented ability.
+3. Visuals: in-game sprite/model, texture/atlas, plist/frame names, animation definitions and all states the fighter needs (idle, move/run, attack, cast, skill/ultimate, hit, knockback, death, summon/transform).
+4. Combat: basic attacks, timing, hitboxes, damage, cooldowns, projectile/summon behavior, passive/active/ultimate mechanics when supported, status/effects, and correct references.
+5. Audio: voice clips/lines where available plus attack, skill/ultimate, hit, death, transformation and summon sound effects. Record file paths and event triggers. If a category has no source asset or is unsupported, mark it missing/not-applicable and state the reason; never silently substitute unrelated audio or claim it is complete.
+6. AI availability: trace how computer-controlled fighters are selected/spawned in every relevant supported mode. Register the character where required and test AI movement, basic attacks, range/state/cooldown decisions, every supported skill, summons/transforms, animation, sound and effects. A character selectable only by the human player is not AI-complete.
+7. Integrity: audit character IDs/classes, roster entries, Lua/C++, XML/plist/config, sprite frame names, skill IDs, audio/effect paths and selection/skill UI links for missing references and collisions.
+8. Feedback and verification: where the engine supports it, show correct killer/victim names and portraits on kill/death events. Build and inspect the packaged APK, then test selection, preview, skill view, controls, combat, each ability, effects/audio, AI selection/behavior, death/respawn and resource loading in-game.
+
+Do not copy an asset merely because it exists in a public repository or APK. Track source URL, upstream/fork, exact path/version, provenance and permission status. Missing voice lines or other source assets do not automatically forbid technical testing, but they must remain an explicit incomplete item. Never invent an asset or imply it was included from the source when it was not.
+
+A fighter may be marked PLAYABLE-VERIFIED only when its player path, combat implementation, all applicable resources and supported AI path have passed their relevant tests. Keep separate labels for source-discovered, source-inspected, ported, build-verified, and gameplay-verified.
