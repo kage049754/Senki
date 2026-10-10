@@ -109,6 +109,13 @@ missing_frame_ref_summary = re.search(
 )
 assert missing_frame_ref_summary, "XML-to-atlas frame-reference coverage summary is missing"
 assert int(missing_frame_ref_summary.group(2)) == expected_count
+if int(missing_frame_ref_summary.group(1)) < expected_count:
+    assert "Missing XML frame names (first 12 per entry)" in report, (
+        "Frame-reference exceptions must include names for actionable triage"
+    )
+    assert "Jugo_Skill05_14" in report and "- `Kimimaro`:" in report, (
+        "Known Kimimaro-to-Jugo frame-name mismatch must remain visible for triage"
+    )
 sound_event_counts = [
     int(row[5].split()[0])
     for row in detail_rows
