@@ -89,11 +89,55 @@ skill_data["metadata"]["realTextureFileName"] = skill_texture_name
 (unit / "Sasori_Skill.plist").write_bytes(plistlib.dumps(skill_data, fmt=plistlib.FMT_XML, sort_keys=False))
 shutil.copy2(base_skill_png, unit / skill_texture_name)
 
+# The source Saso XML leaves skills 02-05 empty. Fill them from compatible
+# Kankuro action data, with isolated frame names and a separate atlas texture.
+base_xml_root = ET.parse(base / "Kankuro.xml").getroot()
+base_actions = {node.get("name"): node for node in base_xml_root.findall("action")}
+sasori_root = ET.parse(unit / "Sasori.xml").getroot()
+sasori_actions = {node.get("name"): node for node in sasori_root.findall("action")}
+base_main_plist = plistlib.loads((base / "Kankuro.plist").read_bytes())
+base_main_texture_name = base_main_plist.get("metadata", {}).get("textureFileName", "Kankuro.pvr.ccz")
+base_main_texture = base / base_main_texture_name
+if not base_main_texture.is_file():
+    base_main_texture = next((base / n for n in ("Kankuro.pvr.ccz", "Kankuro.png") if (base / n).is_file()), None)
+if base_main_texture is None or not base_main_plist.get("frames"):
+    raise SystemExit("V2 Kankuro main atlas is required to complete Sasori fallback skills")
+compat_frames = {}
+for frame_name, meta in base_main_plist["frames"].items():
+    clean = frame_name[:-4] if frame_name.endswith(".png") else frame_name
+    if clean.startswith("Kankuro_"):
+        compat_frames[re.sub(r"^Kankuro_", "SasoriCompat_", clean)] = meta
+compat_ext = ".pvr.ccz" if base_main_texture.name.lower().endswith(".pvr.ccz") else base_main_texture.suffix
+compat_texture_name = "Sasori_Compat" + compat_ext
+compat_plist = {"frames": compat_frames, "metadata": dict(base_main_plist.get("metadata", {}))}
+compat_plist["metadata"]["textureFileName"] = compat_texture_name
+compat_plist["metadata"]["realTextureFileName"] = compat_texture_name
+(unit / "Sasori_Compat.plist").write_bytes(plistlib.dumps(compat_plist, fmt=plistlib.FMT_XML, sort_keys=False))
+shutil.copy2(base_main_texture, unit / compat_texture_name)
+for skill_name in ("skill02", "skill03", "skill04", "skill05"):
+    target_action = sasori_actions.get(skill_name)
+    source_action = base_actions.get(skill_name)
+    if target_action is None or source_action is None:
+        raise SystemExit(f"Missing action definition for Sasori fallback {skill_name}")
+    target_frame = target_action.find("frame")
+    source_frame = source_action.find("frame")
+    if target_frame is None or source_frame is None:
+        raise SystemExit(f"Missing frame container for Sasori fallback {skill_name}")
+    if target_frame.findall("f"):
+        continue
+    for child in list(source_frame):
+        copied = ET.fromstring(ET.tostring(child, encoding="unicode"))
+        if copied.tag == "f" and copied.text:
+            copied.text = re.sub(r"^Kankuro_", "SasoriCompat_", copied.text.strip())
+        target_frame.append(copied)
+ET.indent(sasori_root, space="\\t")
+(unit / "Sasori.xml").write_text(ET.tostring(sasori_root, encoding="unicode", xml_declaration=True), encoding="utf-8")
+
 # Fill frame-name gaps only with actual rectangles present in the imported atlas.
 root = ET.parse(unit / "Sasori.xml").getroot()
 refs = {n.text.strip() for n in root.iter("f") if n.text and n.text.strip()}
 main = plistlib.loads((unit / "Sasori.plist").read_bytes())
-known = set(main.get("frames", {})) | set(skill_data.get("frames", {}))
+known = set(main.get("frames", {})) | set(skill_data.get("frames", {})) | set(compat_plist.get("frames", {}))
 main_frames = main["frames"]
 def frame_number(name):
     m = re.search(r"_(\d+)$", name)
@@ -230,11 +274,12 @@ for plist_path in resources.glob("*.plist"):
 # Verify every animation frame and referenced sound exists.
 main = plistlib.loads((unit / "Sasori.plist").read_bytes())
 skills = plistlib.loads((unit / "Sasori_Skill.plist").read_bytes())
-missing = refs - set(main.get("frames", {})) - set(skills.get("frames", {}))
+compat = plistlib.loads((unit / "Sasori_Compat.plist").read_bytes())
+missing = refs - set(main.get("frames", {})) - set(skills.get("frames", {})) - set(compat.get("frames", {}))
 if missing: raise SystemExit("Unresolved Sasori animation frames: " + ", ".join(sorted(missing)[:10]))
 for clip in re.findall(r"Audio/Sasori/([^<\" ]+?\.ogg)", xml_text):
     if not (audio / clip).is_file(): raise SystemExit(f"Missing Sasori audio: {clip}")
-for p in [header_dst, unit / "Sasori.xml", unit / "Sasori.plist", unit / "Sasori.png", unit / "Sasori_Skill.plist", unit / skill_texture_name]:
+for p in [header_dst, unit / "Sasori.xml", unit / "Sasori.plist", unit / "Sasori.png", unit / "Sasori_Skill.plist", unit / skill_texture_name, unit / "Sasori_Compat.plist", unit / compat_texture_name]:
     if not p.is_file() or p.stat().st_size == 0: raise SystemExit(f"Missing/empty Sasori package file: {p}")
 ET.parse(unit / "Sasori.xml")
 print("Added Sasori as a new selectable fighter using tracked Saso atlas, native dispatch, selection/profile aliases, and compatible Kankuro baseline behavior.")
