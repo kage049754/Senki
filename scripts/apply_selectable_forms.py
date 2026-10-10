@@ -23,6 +23,16 @@ forms = [
     ("Nagato", "Pain", "Nagato"),
 ]
 
+# Lee's native RockLee transformation exists in CharacterBase.cpp and Provider.hpp,
+# but the original SkillLayer transformation menu omits this route.
+transform_old = """    ['Sasuke'] = 'ImmortalSasuke',
+    ['Pain'] = 'Nagato'
+}"""
+transform_new = """    ['Sasuke'] = 'ImmortalSasuke',
+    ['Pain'] = 'Nagato',
+    ['Lee'] = 'RockLee'
+}"""
+
 source = basic.read_text(encoding="utf-8")
 marker = "-- SENKI_EXTRA_SELECTABLE_FORMS"
 if marker not in source:
@@ -101,6 +111,11 @@ elif new not in source:
 select.write_text(source, encoding="utf-8")
 
 source = skill.read_text(encoding="utf-8")
+if transform_old in source:
+    source = source.replace(transform_old, transform_new, 1)
+elif "['Lee'] = 'RockLee'" not in source:
+    raise SystemExit("Could not enable the existing Lee -> RockLee transformation in the skill-view menu.")
+
 alias_marker = "local skillUiAlias = {"
 if alias_marker not in source:
     old = "local transformList = {"
