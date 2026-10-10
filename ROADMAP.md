@@ -361,3 +361,13 @@ Run #136 passed both source-level checks and packaged-APK checks for the origina
 ### Latest skill-view resilience verification — run #141 (2026-10-10)
 
 The candidate now guards missing skill-description frame lookups and renders a visible fallback instead of blindly constructing a sprite from a missing frame. The tooltip clipper is tracked and cleaned up on skill switches. CI passed the source-level regression, Lua syntax validation, APK build, packaging checks, and artifact upload. Runtime visual behavior remains unverified on a device. No new characters were added by this change.
+
+
+### Latest candidate verification — run #141 (2026-10-10)
+
+Run #141 passed the alias-aware character audit, source-level background preservation check, byte-for-byte APK texture comparison, Android diagnostic build, APK packaging checks, and artifact upload. Skill-art inventory now accounts for the existing UI alias map; Kabuto's missing skill-description frames remain flagged instead of being hidden by the new aliases.
+
+- Run: https://github.com/kage049754/Senki/actions/runs/38030022200
+- Exact SHA: `c02bfb51c34b9bc6ae1c4285eacd48e3cfec4f09`
+- APK artifact ID: `11661692440`, SHA-256: `3342575c632dee2a795af2207d510a97c3f70f6952eb68a536d31f6fa070bb13`
+- Remaining: physical-device runtime validation, source-vendoring and rights review, and integration/testing of additional characters.
