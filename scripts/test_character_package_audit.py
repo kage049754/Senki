@@ -93,7 +93,7 @@ assert "Skill-description label exceptions requiring manual review:" in report, 
 assert "after applying SkillLayer UI aliases" in report, "Skill UI alias handling is not documented"
 assert "`RockLee` → `Lee`" in report, "Known RockLee-to-Lee skill UI alias is not reported"
 assert "`Kabuto` (0/5)" in report, "Known missing Kabuto labels should remain flagged for manual review"
-assert "Kabuto runtime skill-description text fallbacks: **5/5 detected" in report, "Kabuto's existing text fallback must be distinguished from missing image-label art"
+assert "Kabuto runtime skill-description fallback: checked by the dedicated test_skill_label_fallback.py static regression test" in report, "Audit must point to the dedicated fallback regression test"
 assert "`RockLee` (0/5)" not in report, "A base-art alias should not be reported as missing skill labels"
 assert "does not prove a character is complete" in report, "Required audit limitation warning is missing"
 detail_heading = "## Detailed animation, atlas, audio, and AI checks"
