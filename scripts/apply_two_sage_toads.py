@@ -162,20 +162,16 @@ if "'TwoSageToads'" not in basic_text:
 # Use existing selection UI frame art for the button/preview while showing the true name.
 select_path = game / "lua/ui/SelectLayer.lua"
 select_text = select_path.read_text(encoding="utf-8")
-for table_name, entries in [
-    ("selectionAssetAlias", "    TwoSageToads = 'Choji',\n"),
-    ("selectionDisplayName", "    TwoSageToads = 'Two Sage Toads',\n"),
-]:
-    close = "local " + table_name + " = {"
-    pos = select_text.find(close)
-    if pos < 0:
-        raise SystemExit(f"Missing {table_name}; selection patch order is incorrect")
-    end = select_text.find("\n}", pos)
-    if end < 0:
-        raise SystemExit(f"Could not find end of {table_name}")
-    table_text = select_text[pos:end]
-    if "TwoSageToads = " not in table_text:
-        select_text = select_text[:end] + "\n" + entries.rstrip("\n") + select_text[end:]
+alias_anchor = "    Nagato = 'Pain'\\n}"
+if "TwoSageToads = 'Choji'" not in select_text:
+    if select_text.count(alias_anchor) != 1:
+        raise SystemExit("Could not add TwoSageToads to selectionAssetAlias")
+    select_text = select_text.replace(alias_anchor, "    Nagato = 'Pain',\\n    TwoSageToads = 'Choji'\\n}", 1)
+display_anchor = "    Nagato = 'Nagato'\\n}"
+if "TwoSageToads = 'Two Sage Toads'" not in select_text:
+    if select_text.count(display_anchor) != 1:
+        raise SystemExit("Could not add TwoSageToads to selectionDisplayName")
+    select_text = select_text.replace(display_anchor, "    Nagato = 'Nagato',\\n    TwoSageToads = 'Two Sage Toads'\\n}", 1)
 select_path.write_text(select_text, encoding="utf-8")
 
 # Route the selected portrait to the aliased frame and render a true display name.
