@@ -144,3 +144,15 @@ A further check was added specifically because an earlier APK was reported as in
 - Sensor-landscape orientation, custom screen assets, and package identity checks: passed.
 
 This removes some packaging-related uncertainty, but the APK still must be installed and tested on the actual phone before we can say the earlier install or blank-screen issue is fixed.
+
+
+### Latest verified build with Lua validation — 2026-10-10
+
+[Run 38016218553](https://github.com/kage049754/Senki/actions/runs/38016218553) completed **SUCCESS** on commit `a250c15d592bc06dad97e4d629c612c71b7808b4`.
+
+- All game Lua scripts passed Lua 5.1 syntax validation.
+- C++/Android Gradle build passed.
+- Compiled manifest, custom UI asset packaging, package identity, APK signature, and `arm64-v8a` / `armeabi-v7a` native library checks passed.
+- Artifact: `naruto-senki-v2-candidate-debug-apk`, ID `11655967631`, 83,749,269-byte ZIP, SHA-256 `3fe28a0f6f3282c2674e3ea8ecc9ca5bcaae6b440bd15aa708ac0f7a25cd06c6`, expires 2026-10-24.
+
+The source roster inventory contains 37 unique selectable names; that is a source-level count, not a verified-playable count. Physical-device install, startup, character selection, and battle checks remain outstanding.
