@@ -73,7 +73,7 @@ for legacy_action in legacy_root.findall("action"):
     for p in action.findall("./data/p"):
         if p.get("type") == "attackType" and p.text == "Saso":
             p.text = "Sasori"
-ET.indent(native_root, space="\\t")
+ET.indent(native_root, space="\t")
 (unit / "Sasori.xml").write_text(ET.tostring(native_root, encoding="unicode", xml_declaration=True), encoding="utf-8")
 shutil.copy2(base_skill_plist, unit / "Sasori_Skill.plist")
 skill_data = plistlib.loads((unit / "Sasori_Skill.plist").read_bytes())
@@ -130,7 +130,7 @@ for skill_name in ("skill02", "skill03", "skill04", "skill05"):
         if copied.tag == "f" and copied.text:
             copied.text = re.sub(r"^Kankuro_", "SasoriCompat_", copied.text.strip())
         target_frame.append(copied)
-ET.indent(sasori_root, space="\\t")
+ET.indent(sasori_root, space="\t")
 (unit / "Sasori.xml").write_text(ET.tostring(sasori_root, encoding="unicode", xml_declaration=True), encoding="utf-8")
 
 # Fill frame-name gaps only with actual rectangles present in the imported atlas.
