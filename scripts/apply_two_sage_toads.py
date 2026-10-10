@@ -96,7 +96,7 @@ skill_frames = skill_data.get("frames", {})
 all_known_frames = set(main_frames) | set(skill_frames)
 
 def frame_number(name):
-    match = re.search(r"_(\\d+)$", name)
+    match = re.search(r"_(\d+)$", name)
     return int(match.group(1)) if match else -1
 
 for missing_name in sorted(xml_frame_names - all_known_frames):
@@ -104,7 +104,7 @@ for missing_name in sorted(xml_frame_names - all_known_frames):
     prefix = missing_name.rsplit("_", 1)[0] + "_"
     candidates = [name for name in main_frames if name.startswith(prefix)]
     if not candidates:
-        skill_prefix = re.match(r"(TwoSageToads_Skill\\d+)_", missing_name)
+        skill_prefix = re.match(r"(TwoSageToads_Skill\d+)_", missing_name)
         if skill_prefix:
             candidates = [name for name in main_frames if name.startswith(skill_prefix.group(1) + "_")]
     if not candidates:
@@ -161,7 +161,7 @@ header_text = header_text.replace("Choji::resumeAction", "TwoSageToads::resumeAc
 if "class TwoSageToads : public Hero" not in header_text:
     raise SystemExit("Could not safely derive TwoSageToads native AI from the Choji class")
 if "HeroEnum::TwoSageToads" not in header_text:
-    header_text = "// Registered native identity: HeroEnum::TwoSageToads.\\n" + header_text
+    header_text = "// Registered native identity: HeroEnum::TwoSageToads.\n" + header_text
 new_header.write_text(header_text, encoding="utf-8")
 
 enum_path = game / "Classes/Enums/HeroEnum.h"
