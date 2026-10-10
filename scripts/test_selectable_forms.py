@@ -19,12 +19,12 @@ forms = {
     "RockLee": ("Lee", "Rock Lee", "Lee"),
     "Nagato": ("Pain", "Nagato", "Pain"),
 }
-body_match = re.search(r"ns\\.CharactersLayout\\s*=\\s*\\{([\\s\\S]*?)\\n\\}", basic)
+body_match = re.search(r"ns\.CharactersLayout\s*=\s*\{([\s\S]*?)\n\}", basic)
 if not body_match:
     raise SystemExit("Could not locate roster table after adding forms")
-body = re.sub(r"--\\[\\[[\\s\\S]*?\\]\\]", "", body_match.group(1))
-body = re.sub(r"--[^\\n]*", "", body)
-tokens = re.findall(r"'[^']*'|\"[^\"]*\"|(?<![\\w])_None(?![\\w])", body)
+body = re.sub(r"--\[\[[\s\S]*?\]\]", "", body_match.group(1))
+body = re.sub(r"--[^\n]*", "", body)
+tokens = re.findall(r"'[^']*'|\"[^\"]*\"|(?<![\w])_None(?![\w])", body)
 if len(tokens) != 84:
     raise SystemExit(f"Expected exactly 84 slots (4 pages), found {len(tokens)}")
 class_headers = {
@@ -38,7 +38,7 @@ class_headers = {
 for name, (alias, display, skill_alias) in forms.items():
     if f"'{name}'" not in body:
         raise SystemExit(f"Form is missing from roster: {name}")
-    if not re.search(rf"mk_const\\({re.escape(name)}\\)", enum):
+    if not re.search(rf"mk_const\({re.escape(name)}\)", enum):
         raise SystemExit(f"Native enum missing for {name}")
     resource = game / "Resources/Unit/Ninja" / name / f"{name}.xml"
     atlas = game / "Resources/Unit/Ninja" / name / f"{name}.plist"
