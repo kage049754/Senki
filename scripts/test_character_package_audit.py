@@ -58,7 +58,7 @@ assert int(coverage.group(1)) == int(coverage.group(2)) == expected_count, (
     f"Portrait coverage is {coverage.group(1)}/{coverage.group(2)} for {expected_count} roster entries"
 )
 
-selection = re.search(r"Character-selection image coverage: \\*\\*(\\d+)/(\\d+) roster entries", report)
+selection = re.search(r"Character-selection image coverage: \*\*(\d+)/(\d+) roster entries", report)
 assert selection, "Character-selection image coverage summary is missing"
 assert int(selection.group(1)) <= int(selection.group(2)) == expected_count, (
     f"Selection image coverage is {selection.group(1)}/{selection.group(2)} for {expected_count} roster entries"
