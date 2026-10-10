@@ -680,3 +680,12 @@ GitHub API confirms `kage049754/Senki` is currently **public**. Therefore, the s
 - [ ] Review each non-roster enum identifier against native class, provider dispatch, XML/plist/texture, AI, and transformation logic before considering it a selectable character.
 - [ ] The declared roster is still 43 names; verified playable count is not measured. This audit adds discovery leads, not new playable characters.
 - [ ] Continue physical-device testing, source-vendoring/provenance work, and integration of complete compatible characters.
+
+
+## New character-resource discovery: Hokage Minato (reference-only)
+
+- [x] Found a concrete older-mod package containing Hokage Minato's sprite atlas/texture, animation XML, audio clips, selection half portrait, and kill-feed portraits: `LeaderOnePro/NarutoSenki1.17Mod`.
+- [x] Confirmed its XML uses the older 1.x `<animation>/<date>/<frameName>` schema, not V2's `<unit>/<data>/<f>` schema; it includes multiple skill actions and references buffs, summons, bullets, commands, and effects.
+- [x] Confirmed the V2 candidate has the half-portrait/audio references but lacks the actual unit package and native enum/class. This explains why the existing selection art alone was not enough.
+- [ ] Locate or implement a compatible native V2 class/AI and safely adapt the XML only after the provenance/permission decision; test all resource references and combat behavior.
+- [ ] This is a research lead, not an integrated character. The declared roster remains 43 and the target gap remains 27; no playable count is inferred.
