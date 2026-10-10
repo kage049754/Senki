@@ -431,3 +431,14 @@ This is a successful **diagnostic candidate build**, not a final unified release
 - [ ] Confirm the fallback and skill-view behavior on a real Android device; static tests cannot prove Cocos2d-x runtime compatibility or visual correctness.
 - [ ] Install/launch and play-test the candidate APK on the user's device; CI does not replace device verification.
 - [ ] Continue source-base comparison/provenance and code/asset permissions; no additional character was integrated by this change.
+
+
+## Packaged skill fallback verification — run #104 (2026-10-10)
+
+- [x] Fixed the CI workflow after the first attempt to add an APK-content check introduced malformed duplicate YAML. Runs #102 and #103 failed before starting a job; the workflow was corrected and the full build rerun.
+- [x] Run [#104](https://github.com/kage049754/Senki/actions/runs/38025372460), commit `277fd96969ac471136c0ecbc0b73a2b42e38cb49`, completed **SUCCESS**.
+- [x] Added a post-build check that extracts `SkillLayer.lua` from the built APK and verifies both the missing-label fallback text and protected sprite-frame lookup are actually packaged.
+- [x] Confirmed the new APK-content verification step passed, alongside all previous source checks, Android build, APK identity, signature/native ABI checks, and uploads.
+- [x] Latest APK artifact: `naruto-senki-v2-candidate-debug-apk`, ID `11659729329`, 83,306,812 bytes; SHA-256 `97e37a19c006b4c3af9a0fe301013b0f1cb94c2a20d99c02eefb5eb6e24b7d2e`; expires 2026-10-24.
+- [x] Latest character audit artifact: `senki-character-package-audit`, ID `11660148824`; SHA-256 `fe4b7314d5cce2e6e0ec77dc67f3bd0112416f65bd6c82a73c08efea5900a527`; expires 2026-10-24.
+- [ ] Still needs physical-device visual/gameplay verification. The successful CI checks confirm packaging, not runtime behavior.
