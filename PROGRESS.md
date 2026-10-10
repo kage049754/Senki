@@ -689,3 +689,16 @@ GitHub API confirms `kage049754/Senki` is currently **public**. Therefore, the s
 - [x] Confirmed the V2 candidate has the half-portrait/audio references but lacks the actual unit package and native enum/class. This explains why the existing selection art alone was not enough.
 - [ ] Locate or implement a compatible native V2 class/AI and safely adapt the XML only after the provenance/permission decision; test all resource references and combat behavior.
 - [ ] This is a research lead, not an integrated character. The declared roster remains 43 and the target gap remains 27; no playable count is inferred.
+
+
+## Latest verification pass — 2026-10-10 (run #161)
+
+- [x] Rechecked GitHub Actions run **#161**: https://github.com/kage049754/Senki/actions/runs/38032354146
+- [x] Run conclusion: **SUCCESS** on commit `af4a96195948011e9852cfadfe1cc4a902a81fe4` (workflow `V2 Source Candidate Build (Private Testing Artifact)`).
+- [x] All 34 substantive job steps completed successfully, including applying the central patches, Lua syntax validation, original-background checks, generated image-based page 4/5 buttons, character-package audit, pagination/search tests, Android SDK/NDK setup, APK build, package identity, packaged-code, signature, and native ABI checks.
+- [x] GitHub Actions artifact `naruto-senki-v2-candidate-debug-apk`, ID `11662811306`, is present, not expired, and is 83,375,086 bytes as a ZIP artifact; SHA-256 of the artifact ZIP: `d559a415cb1bcbb7ae3dc85b7f9f6ac8262d8c9634d4089f44d93e017ad7f73a`. It expires 2026-10-24.
+- [x] Character-package audit artifact `senki-character-package-audit`, ID `11662666611`, is present, not expired, and expires 2026-10-24.
+- [ ] This is still a **diagnostic build of the pinned external V2-derived candidate in a temporary CI workspace**. It is not proof that the full source has been imported into this central repository, and it is not a release-ready unified mod.
+- [ ] No newly added character is counted as playable from this build. Current roster notes still distinguish 43 declared selectable names from the unmeasured verified-playable count.
+- [ ] Next work: review audit findings, identify a character whose complete assets and reuse permissions are actually established, then integrate/test one full character package into the selected native base. Continue documenting unresolved code/artwork/audio rights rather than silently copying reference-only assets.
+- [ ] Physical-device installation and gameplay remain unverified; CI success confirms only the checks performed by this workflow.
