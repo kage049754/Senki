@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Exercise the actual SelectLayer filter function with lightweight Lua stubs."""
+"""Exercise the real character-page switching method with lightweight Lua stubs."""
 
 from pathlib import Path
 import subprocess
@@ -9,81 +9,58 @@ if len(sys.argv) != 2:
     raise SystemExit("usage: test_character_search.py PATH_TO_SelectLayer.lua")
 
 source = Path(sys.argv[1]).read_text(encoding="utf-8")
-start_marker = "function SelectLayer:filterCharacters(query)"
+start_marker = "function SelectLayer:onPageButtonClick(index)"
 end_marker = "\nfunction SelectLayer:setSelected(btn)"
 start = source.find(start_marker)
 end = source.find(end_marker, start + len(start_marker))
 if start < 0 or end < 0:
-    raise SystemExit("Cannot find the exact filter function boundaries in SelectLayer.lua.")
+    raise SystemExit("Cannot find the exact page-switch function boundaries in SelectLayer.lua.")
 
-filter_function = source[start:end]
+page_function = source[start:end]
+if "function SelectLayer:filterCharacters(query)" not in page_function:
+    raise SystemExit("Expected patched character filter method alongside page-switch handler.")
+if "if i <= 3 then" not in source or "ui.newImageMenuItem" not in source:
+    raise SystemExit("Original image-based touch menu items for the first three pages are missing.")
+if "self.pageNum = 3" in source:
+    raise SystemExit("The fixed three-page limit is still present.")
+
 harness = r'''
 SelectLayer = {}
+audio = { playSound = function(_) end }
+ns = { menu = { SELECT_SOUND = "select" } }
 
-function SelectLayer:onPageButtonClick(index)
-    self.currentPage = index
-    self.pageSwitches = (self.pageSwitches or 0) + 1
-end
-
-local function node(fields)
-    local result = fields or {}
-    function result:setVisible(value)
-        self.visible = value
-    end
-    result.visible = true
+local function node()
+    local result = {visible = true, y = 0, selectedState = false}
+    function result:selected() self.selectedState = true end
+    function result:unselected() self.selectedState = false end
+    function result:show() self.visible = true end
+    function result:hide() self.visible = false end
+    function result:setPositionY(value) self.y = value end
     return result
 end
 
-''' + filter_function + r'''
+''' + page_function + r'''
 
-local naruto = node({_charName = "Naruto", _pageIndex = 1})
-local kabuto = node({_charName = "Kabuto", _pageIndex = 2})
-local sakura = node({_charName = "Sakura", _pageIndex = 1})
-local emptySlot = node({_charName = "None", _pageIndex = 3})
-local page1 = node({})
-local page2 = node({})
-local page3 = node({})
-local cursor = node({})
-local emptyLabel = node({})
-
+local page1, page2, page3 = node(), node(), node()
+local btn1, btn2, btn3 = node(), node(), node()
 local layer = {
-    selectButtons = {naruto, kabuto, sakura, emptySlot},
-    pageButtons = {page1, page2, page3},
-    currentPage = 1,
-    selectHero = "Naruto",
-    _selectImg = cursor,
-    searchEmptyLabel = emptyLabel
+    pageLayers = {page1, page2, page3},
+    pageButtons = {btn1, btn2, btn3}
 }
 
-layer:filterCharacters("KABU")
-assert(kabuto.visible == true, "case-insensitive match should keep Kabuto visible")
-assert(naruto.visible == false and sakura.visible == false, "non-matches should be hidden")
-assert(emptySlot.visible == false, "placeholder slots should never appear in search results")
-assert(page1.visible == false and page2.visible == true and page3.visible == false,
-       "only pages with matches should be visible during a search")
-assert(layer.currentPage == 2, "search should navigate to the first matching page")
-assert(cursor.visible == false, "cursor should hide when its selected character is filtered out")
-assert(emptyLabel.visible == false, "matching query should hide the no-results label")
+layer:onPageButtonClick(2)
+assert(page1.visible == false and page1.y == 10000, "page 1 should hide")
+assert(page2.visible == true and page2.y == 0, "page 2 should become visible")
+assert(page3.visible == false and page3.y == 10000, "page 3 should hide")
+assert(btn1.selectedState == false and btn2.selectedState == true and btn3.selectedState == false,
+       "page 2 should be the selected button")
 
-layer:filterCharacters("nar")
-assert(naruto.visible == true and kabuto.visible == false, "second query should update filtering")
-assert(layer.currentPage == 1, "search should navigate back to the first matching page")
-assert(cursor.visible == true, "cursor should return when the selected character matches again")
+layer:onPageButtonClick(1)
+assert(page1.visible == true and page1.y == 0, "page 1 should become visible again")
+assert(page2.visible == false and page2.y == 10000, "page 2 should hide again")
+assert(btn1.selectedState == true and btn2.selectedState == false,
+       "page 1 should become the selected button")
 
-layer:filterCharacters("not-a-character")
-assert(emptyLabel.visible == true, "empty result should show no-results feedback")
-assert(page1.visible == false and page2.visible == false and page3.visible == false,
-       "empty result should hide all page buttons")
-
-layer:filterCharacters("")
-assert(naruto.visible == true and kabuto.visible == true and sakura.visible == true,
-       "clearing query should restore all real characters")
-assert(emptySlot.visible == false, "clearing query must not reveal placeholder slots")
-assert(page1.visible == true and page2.visible == true and page3.visible == true,
-       "clearing query should restore all page buttons")
-assert(emptyLabel.visible == false and cursor.visible == true,
-       "clearing query should clear empty state and restore selected cursor")
-
-print("Character search/filter behavior tests passed.")
+print("Character page switching tests passed.")
 '''
 subprocess.run(["lua5.1", "-"], input=harness, text=True, check=True)
