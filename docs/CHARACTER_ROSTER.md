@@ -1,4 +1,5 @@
 # Senki Modded Roster and Verification Tracker
+> **PRIMARY PRIORITY — EXTERNAL SENKI MOD CHARACTERS:** This tracker must focus on characters implemented by other Naruto Senki mods and their port/integration status. Do not spend roster-expansion work auditing or recounting current V2 characters, forms, summons, or enum-only entities. Use the current V2 roster only as a duplicate/compatibility check. Prioritize new external characters for available slots on pages 1–3, preserving original image-based page controls. Record exact source, implementation files, provenance/permissions, missing components, integration state, and test evidence. A name, asset-only lead, or release-note mention is not an integrated/playable character.
 
 > **This tracker is for content merged into one selected existing Naruto Senki base. Do not create a new game or replacement roster engine. First select the base, then record compatible mod content ported into its native systems.**
 
