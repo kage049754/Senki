@@ -317,3 +317,10 @@ The current source still has 63 roster layout slots (three pages at 21 slots per
 ### Artifact-access gate — repository is public (2026-10-10)
 
 The GitHub API confirms `kage049754/Senki` is public. Workflow artifacts therefore must not be described as private: users with public repository access may download the APK during its retention period. The APK contains third-party game resources whose reuse/redistribution rights are unresolved. No repository visibility change has been made. Before any broader distribution, either obtain the needed permissions or explicitly decide on repository/artifact access controls; a successful diagnostic build is not a release approval.
+
+
+### Latest candidate patch — 2026-10-10
+
+Run #101 passed after adding a safe missing-skill-description frame fallback to the pinned Android candidate. See [run #101](https://github.com/kage049754/Senki/actions/runs/38024966443) and the exact artifact details in `PROGRESS.md`.
+
+This improves failure handling when a skill label frame is absent; it does not restore missing character-specific descriptions, prove runtime rendering, or count as a character integration. Device/emulator validation is still pending. The candidate is still cloned into CI temporarily rather than vendored into this repository.
