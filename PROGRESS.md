@@ -274,3 +274,14 @@ The repo previously received a native Kotlin/Canvas prototype scaffold. It is no
 - [x] Added an exact source-level roster inventory: 37 unique selectable names in the pinned Android-clean candidate. This is not a count of device-verified playable characters.
 - [ ] Next: continue mod-source discovery and compare per-character class/config/resource sets for unique additions; then integrate one compatible character at a time and build.
 - [ ] Physical install, launch after engine intro, selection, and battle remain unverified on the user's phone. Syntax/build/signature checks cannot replace runtime testing.
+
+
+## Dynamic roster pagination patch built successfully — 2026-10-10
+
+- [x] Found and removed the fixed three-page limit in the existing Senki character-selection Lua layer.
+- [x] Added `patches/android-clean/0008-dynamic-roster-pagination.patch`: page count is now calculated from `#ns.CharactersLayout / 21`, and numbered page controls use text labels rather than only the three hardcoded `page1/page2/page3` sprite frames.
+- [x] CI asserts the fixed `self.pageNum = 3` line is gone and the dynamic count/text-label implementation is present.
+- [x] Lua 5.1 syntax validation passed after applying the patch.
+- [x] Run `38016671857`: **SUCCESS** on commit `c2820ec8449d3dedfb62c437ee647b82b20969e2`; Gradle reported `BUILD SUCCESSFUL in 2m 25s`; landscape, app identity, screen assets, APK signature, and native ABI checks passed.
+- [x] Verified artifact `naruto-senki-v2-candidate-debug-apk`, ID `11655938596`, ZIP size 83,752,290 bytes, SHA-256 `7072d0a89ad6d41afe25e62ef12004cdd919cafffaf85d3ee5915a8a91603c1c`, expires 2026-10-24. [Open successful run and artifact](https://github.com/kage049754/Senki/actions/runs/38016671857).
+- [ ] Runtime pagination still needs phone testing with more than three pages of actual character entries. The change removes the fixed cap in source; it does not yet add search/filtering or prove 70+ characters are fully implemented.
