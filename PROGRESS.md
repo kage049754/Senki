@@ -196,3 +196,11 @@ Treat these as priority candidates to investigate in editable Senki mod source. 
 - The narrowed search regression test found that the candidate's existing filter method was incomplete: the apply script had treated the mere presence of its method signature as proof the feature was complete and skipped patching it.
 - Fix: the apply script now checks required behavior markers. If a partial filter method exists, it removes that incomplete method and applies the complete cross-page search implementation; it skips only when the behavior markers are present.
 - This is the root-cause fix for search wiring, not a character addition.
+
+
+## Latest run #267 failure — missing integration steps restored
+
+- Run: https://github.com/kage049754/Senki/actions/runs/38051873971
+- Root cause found while investigating the repeated search-test failure: the previous workflow edit accidentally removed the central patch application, search enhancement, skill fallback, selectable-form, and Two Sage Toads integration steps along with the obsolete APK-import block. The downstream tests were therefore testing an unpatched candidate.
+- Fix: restored all five required integration steps before background/Lua/pagination/audit/build verification. The APK import remains removed; release-note names are still discovery leads only.
+- This correction restores the existing tested baseline; it does not add Kurenai, Guy, Yamato, Shizune, Hashirama, or Rin.
