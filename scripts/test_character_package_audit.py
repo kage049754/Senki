@@ -161,6 +161,9 @@ assert len(cells(off_roster_header)) == 9, "Off-roster candidate table must have
 assert "Han" in off_roster_section and "Roshi" in off_roster_section, (
     "Known Han/Roshi guardian resource packages must remain visible as research leads"
 )
+assert "### Guardian control-path note" in report, "Guardian control-path assessment is missing"
+assert "AI combat behavior override detected" in report, "Guardian AI behavior path should be surfaced for review"
+assert "not evidence of direct player-control support for Han or Roshi" in report, "Guardian AI behavior must not be mistaken for player control"
 assert "File presence alone does not establish a selectable/playable character." in off_roster_section, (
     "Off-roster resource leads must not be presented as verified playable characters"
 )
