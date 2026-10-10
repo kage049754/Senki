@@ -886,4 +886,19 @@ This source is useful for understanding legacy roster/resource wiring but **does
 - **Not yet verified:** phone installation, battle spawn, touch controls, AI, skill behavior, sound playback, death/respawn, and runtime memory/resource behavior.
 - **Counting rule:** this is a variant/replacement of Choji and is excluded from the 70 distinct-base-character target. The source-level roster is 44 selectable entries, 37 distinct base characters, and seven known forms/variants excluded from the distinct count (six native forms plus Two Sage Toads).
 - Next work: test this candidate on device, then prioritize a truly distinct external fighter such as Kurenai, Might Guy, Yamato, Shizune, Hashirama, Rin, Juzo, or another release-note lead. The release notes alone are not a source-level port; each still needs a compatible character implementation and resources.
+## Expanded mod-repository search — 2026-10-10
+
+A wider GitHub repository search was performed after the user's request to search beyond the already-audited candidates.
+
+### New repository leads checked
+- [RieyuXhen/NarutoSenki](https://github.com/RieyuXhen/NarutoSenki) — targeted indexed-source searches for Kurenai, Shizune, Hashirama, and Yamato returned no matches. Not qualified as a source for these characters from available indexed evidence.
+- [syahron951/NarutoSenki](https://github.com/syahron951/NarutoSenki) — targeted indexed-source searches for Kurenai, Shizune, Hashirama, and Yamato returned no matches. Not qualified as a source for these characters from available indexed evidence.
+- [Heachy/NarutoSenki-cocos2dx](https://github.com/Heachy/NarutoSenki-cocos2dx) — appears to be a mirror/fork of the LeaderOnePro legacy Cocos2d-x source family; targeted indexed-source searches returned no matches for Kurenai, Shizune, Hashirama, or Yamato. Do not treat mirrors as independent implementations without a meaningful diff.
+- [Zx-Akito/NarutoSenki](https://github.com/Zx-Akito/NarutoSenki) — editable legacy Cocos2d-x source lead, but targeted indexed-source searches did not surface Kurenai, Shizune, Hashirama, or Yamato. Previously inspected selection entries overlap the V2 base; no new selectable candidate established.
+- [Zx-Akito/NarutoSenki-Release](https://github.com/Zx-Akito/NarutoSenki-Release/releases) changelog is the strongest public lead for the six user-priority characters: v1.25-beta-1 lists Kurenai, Guy, and Yamato; v1.26-beta-1 lists Shizune, Hashirama, and Rin. This is release-note evidence only, not editable source code or authorization to extract packaged assets.
+
+### Decision and next technical direction
+The expanded search did not reveal a complete source-level implementation of any of the six requested characters. The next promising route is to locate the original mod creator's editable source branch/source archive or obtain an authorized source/resource handoff, then diff its actual character class, selection, sprite/atlas, skill/effect/audio, and UI dependencies against the pinned V2 source. If source code is unavailable, implement an original compatible character package using independently created assets and native V2 integration points, keeping provenance clear.
+
+**Status unchanged:** the six requested characters are candidates, not integrated. External characters integrated: **0**. External characters verified playable: **0**. No APK build was triggered by this documentation-only research update.
 
