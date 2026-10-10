@@ -900,3 +900,22 @@ Latest verified CI remains run #204 (success) on the previous code commit. It on
 ## External character sourcing checkpoint — 2026-10-10
 
 After the user's correction, the latest pass compared external release/source repositories and their actual selectable rosters. It confirmed that the v1.26 release host has changelogs only, the inspected legacy Cocos2d-x source has no selectable Jirobo/Tayuya/Hashirama/Shizune package, and the Wilykun V2 fork adds no distinct selectable characters versus the pinned candidate. No new character was integrated. The next step is to find an editable external character source and clear its rights, then port it into page 1–3 and run CI. Do not return to classifying V2-internal entities as roster additions.
+
+
+## Active work checkpoint — external mod source comparison (2026-10-10)
+
+**User priority reaffirmed:** do not spend character-expansion effort on V2-internal forms, summons, enum names, or roster recounting. Find independently implemented characters in other Naruto Senki mods and port them into the selected V2 build. Pages 1–3 remain the first target, with original image-button navigation preserved.
+
+### Newly inspected external source lead: `Zx-Akito/NarutoSenki`
+- Repository: https://github.com/Zx-Akito/NarutoSenki
+- The README identifies it as a modified Naruto game and states that it is based on Cocos2d-x 2.2.2 / Visual Studio 2010. It exposes editable C++ files such as `Classes/Characters.cpp` and `Classes/SelectLayer.cpp`, unlike the release-only host.
+- Its character AI routing includes character-specific implementations for entries such as `Asuma`, `Sai`, `Tenten`, `Suigetsu`, `Konan`, `Nagato`, and others. This is an actual source-code lead, but the old Cocos2d-x code and resource format are not yet confirmed compatible with the selected V2 Lua/C++ project.
+- The initial comparison is a **candidate for deeper per-character diffing**, not proof that any of these names are new relative to V2, complete in all required UI/resource paths, or already integrated.
+- No code or assets have been copied. Before a port, compare its actual selection roster, unit/skill/resource files, animation and audio references against the pinned V2 candidate; record each source revision and resolve reuse permission/provenance. If a distinct complete character is confirmed, adapt one character as a small isolated port to a page 1–3 slot and run the Android build/test loop.
+
+### Current honest status
+- External source lead with editable C++ character logic: **found**.
+- New distinct character fully diffed and selected for port: **not yet confirmed**.
+- External character integrated into central V2 candidate: **0**.
+- External character verified playable: **0**.
+- Do not describe this source lead as a completed character addition.
