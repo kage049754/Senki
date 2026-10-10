@@ -122,3 +122,13 @@ Treat these as priority candidates to investigate in editable Senki mod source. 
 - Character count is unchanged by this correction: **1 external mod variant (Two Sage Toads), 0 external characters verified playable on device, 37 distinct base characters**. Kurenai, Might Guy, Yamato, Shizune, Hashirama, and Rin are still requested source-level port targets, not yet integrated.
 - Next: locate inspectable compatible source/assets for a target, map all character dependencies, implement the complete source-level port, then build and verify.
 
+
+
+## Latest run #246 failure — audit expectation corrected
+
+- Run: https://github.com/kage049754/Senki/actions/runs/38051324289
+- Tested commit: 648c821cbf311120c1085c4d101f2532cb79fc26
+- The APK-import step was removed successfully and the workflow passed the original-background check and Lua parsing.
+- The next failure was a stale audit-test expectation hard-coded to **48/70** and eleven imported base fighters. The actual pinned candidate audit reported **37 selectable entries**, with no new source-level release characters integrated. That stale assertion was invalid after removing the unproven APK import.
+- Fix commit: update the audit test to require the actual **37/70** baseline and prohibit counting release-note-only leads as integrated characters.
+- This is a test expectation fix, not a character addition. External mod variants remain 1 (Two Sage Toads), distinct base-character count 37, and gameplay-verified external characters 0.
