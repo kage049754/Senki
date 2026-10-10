@@ -138,3 +138,12 @@ The character manifest in `docs/CHARACTER_ROSTER.md` must link each asset catego
 - Approved scope: source structure, history, and compatibility research only; no code/assets copied into this central repo.
 - Status: **PERMISSION_REQUIRED / REFERENCE_ONLY**
 - Review date: 2026-10-10
+
+
+### `likill/NarutoSenki-master` — legacy Cocos2d-x reference audit
+- Canonical URL: https://github.com/likill/NarutoSenki-master
+- Inspected files: `Classes/NetworkLayer.cpp`, `Classes/SelectLayer.cpp`, `Classes/Characters.h`, and `Classes/LoadLayer.cpp`.
+- Source metadata: no declared repository license and no root LICENSE file found in the checked tree.
+- Technical observation: Network/Hardcore mode lists 35 non-empty selectable names, while Training mode still lists nine. The inspected 35 names overlap the pinned V2 base roster; this is not a new-character package for the current project.
+- Assets/audio/animations: bundled in the source tree, but separate asset rights are not established.
+- Status: **REFERENCE_ONLY / PERMISSION_REQUIRED**. Do not copy or package code or assets without explicit permission.
