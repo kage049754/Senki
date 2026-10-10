@@ -87,6 +87,54 @@ jobs:
           print("Candidate source tree is ready for source-based character integrations.")
           PY
 
+      - name: Apply central Senki patches
+        shell: bash
+        run: |
+          set -euo pipefail
+          # Preserve original main-menu and character-selection backgrounds.
+          mapfile -t patches < <(find "$GITHUB_WORKSPACE/patches/android-clean" -maxdepth 1 -type f -name '*.patch' ! -name '0004-custom-character-select-background.patch' ! -name '0005-custom-main-menu-background.patch' -print | sort)
+          if [[ ${#patches[@]} -eq 0 ]]; then
+            echo "No local patches found; refusing to build an unmodified candidate by accident."
+            exit 1
+          fi
+          for patch in "${patches[@]}"; do
+            echo "Checking and applying $patch"
+            git -C /tmp/narutosenki-candidate apply --check "$patch"
+            git -C /tmp/narutosenki-candidate apply "$patch"
+          done
+          echo "All central Senki patches applied."
+
+      - name: Apply character search/filter enhancement
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 "$GITHUB_WORKSPACE/scripts/apply_character_search.py" /tmp/narutosenki-candidate/projects/NarutoSenki/lua/ui/SelectLayer.lua
+
+      - name: Apply missing skill-description fallback
+        shell: bash
+        run: |
+          set -euo pipefail
+          GAME=/tmp/narutosenki-candidate/projects/NarutoSenki
+          python3 "$GITHUB_WORKSPACE/scripts/apply_skill_label_fallback.py" "$GAME/lua/ui/SkillLayer.lua"
+          python3 "$GITHUB_WORKSPACE/scripts/test_skill_label_fallback.py" "$GAME/lua/ui/SkillLayer.lua"
+
+      - name: Add existing native forms to roster page four
+        shell: bash
+        run: |
+          set -euo pipefail
+          GAME=/tmp/narutosenki-candidate/projects/NarutoSenki
+          python3 "$GITHUB_WORKSPACE/scripts/apply_selectable_forms.py" "$GAME"
+          python3 "$GITHUB_WORKSPACE/scripts/test_selectable_forms.py" "$GAME"
+
+      - name: Integrate Two Sage Toads as the first external mod character
+        shell: bash
+        run: |
+          set -euo pipefail
+          GAME=/tmp/narutosenki-candidate/projects/NarutoSenki
+          python3 "$GITHUB_WORKSPACE/scripts/apply_two_sage_toads.py" "$GAME" /tmp/narutosenki-toad-mod
+          python3 "$GITHUB_WORKSPACE/scripts/test_two_sage_toads.py" "$GAME"
+          echo "Two Sage Toads source integration checks passed; device gameplay remains unverified."
+
       - name: Verify original character-selection and mode-menu backgrounds
         shell: bash
         run: |
