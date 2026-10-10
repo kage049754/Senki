@@ -477,3 +477,12 @@ Inspected `lua/class/basic.lua` in `Fansirsqi/NarutoSenki-V2`, `ZhReimu/NarutoSe
 - The current Android-only `muhammadadilsyaputra08-alt/NarutoSenki-Custom` snapshot includes Kabuto as an extra selectable entry, so it has 37 unique roster names before the central six-form exposure patch.
 - These repositories are mostly fork/mirror descendants, not independent character sources. This comparison did not identify a ready-to-port source for filling page five.
 - Next search targets are genuinely different mod lineages or editable source packages for the release-note leads (Shizune, Hashirama, Rin, Sakon & Ukon, Juzo, Kurenai). APK-only/decompiled packages remain research leads, not editable character implementations.
+
+
+### `dogoo110/Naruto-godot` — Godot conversion / asset-reference lead
+
+- Repository: https://github.com/dogoo110/Naruto-godot
+- Metadata reports an MIT repository license and GDScript, but the project contains a large set of Naruto Senki game sprites/audio and the rights for those franchise assets are not established by the code license.
+- Inspected tree: 13,272 entries. The project is a Godot conversion/reimplementation, not a compatible Cocos2d-x V2 source base. Its skill icon/half-portrait inventory overlaps the current V2 forms (Sage Jiraiya, Immortal Sasuke, Sage Naruto, Rikudo Naruto, Rock Lee, etc.) rather than providing a clear new character roster.
+- One additional visual lead, `HokageMinato`, has a half portrait, kill-feed frames, a result icon, and an ougi audio file, but the inspected tree did not show a matching complete skill-icon/animation package or evidence that it is a selectable playable character. Treat it as **DISCOVERED / INCOMPLETE ASSET LEAD**, not a character to add.
+- Status: **REFERENCE_ONLY**. No Godot code or assets copied. Next action would require identifying a complete native character implementation and mapping it to the V2 candidate's C++/XML/resource conventions; a portrait/audio fragment alone is insufficient.
