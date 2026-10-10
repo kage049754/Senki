@@ -418,3 +418,16 @@ This is a successful **diagnostic candidate build**, not a final unified release
 - [x] Audit artifact `senki-character-package-audit`, ID `11659103029`; SHA-256 `fa7d7ae391c5f82fc4196797e8b33be6750459c32c7ba8b7d40496fb31664d40`; expires 2026-10-24.
 - [ ] Confirm the fallback visually in the actual skill-view screen on an Android device. CI validates the Lua patch and packages it but cannot establish how the Cocos2d-x UI looks at runtime.
 - [ ] This does not add or complete a character; Kabuto's original description content remains missing and the UI reports that honestly.
+
+
+## Skill-description fallback checkpoint — 2026-10-10
+
+- [x] Commit `2ca3914ae8e10300c3e3070b376c8cf241a26ddb` completed GitHub Actions run **#101** successfully: https://github.com/kage049754/Senki/actions/runs/38024966443
+- [x] The pinned V2 candidate received a guarded skill-description frame lookup: when an expected label sprite frame is absent, the skill-details view displays the visible fallback text `Skill description unavailable` instead of blindly constructing the missing sprite.
+- [x] Static fallback regression test passed; source Lua validation and character-audit report structure test passed.
+- [x] Dynamic pagination, landscape/rotation-stability checks, startup-failure diagnostics, APK package identity, packaged character-search, APK signature/native ABI checks, and artifact uploads passed in the same run.
+- [x] APK artifact `naruto-senki-v2-candidate-debug-apk`, ID `11659082992`, size 83,302,507 bytes, SHA-256 `2c71b02890ee86d87e7882d5365299cde4dc7ff2524cc89f88edb54be218870b`, expires 2026-10-24.
+- [x] Audit artifact `senki-character-package-audit`, ID `11659103029`, SHA-256 `fa7d7ae391c5f82fc4196797e8b33be6750459c32c7ba8b7d40496fb31664d40`, expires 2026-10-24.
+- [ ] Confirm the fallback and skill-view behavior on a real Android device; static tests cannot prove Cocos2d-x runtime compatibility or visual correctness.
+- [ ] Install/launch and play-test the candidate APK on the user's device; CI does not replace device verification.
+- [ ] Continue source-base comparison/provenance and code/asset permissions; no additional character was integrated by this change.
