@@ -81,6 +81,8 @@ transformations = [
     ("HeroEnum::Lee", "HeroEnum::RockLee"),
     ("HeroEnum::Pain", "HeroEnum::Nagato"),
 ]
+if "['Lee'] = 'RockLee'" not in skill:
+    raise SystemExit("Skill-view transformation menu is missing the existing Lee -> RockLee route")
 for base_name, form_name in transformations:
     if base_name not in character_base or form_name not in character_base:
         raise SystemExit(f"Native transformation path is missing: {base_name} -> {form_name}")
