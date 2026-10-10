@@ -64,7 +64,7 @@ for name in names:
     named_selection = [rel for _, rel in relative if Path(rel).name.lower() in {
         f"{low}_select.png", f"{low}_half.png", f"{low}_font.png"
     }]
-    ai_refs = [rel for rel, content in text_files if re.search(rf"\bAI_{re.escape(name)}\b", content, re.IGNORECASE)]
+    ai_refs = [rel for rel, content in text_files if "setAIHandler" in content and re.search(rf"HeroEnum::{re.escape(name)}\b", content, re.IGNORECASE)]
     # Atlas-packed selection art may not exist as standalone PNG files.
     atlas = GAME / "Resources/Select.plist"
     atlas_text = atlas.read_text(encoding="utf-8", errors="replace") if atlas.is_file() else ""
@@ -76,7 +76,7 @@ for name in names:
         selection = "PARTIAL_FRAMES_FOUND"
     else:
         selection = "NOT_FOUND_MANUAL_CHECK"
-    rows.append((name, "YES" if header else "NO/MONOLITHIC", len(char_lua), len(unit), len(audio), selection, "POSSIBLE_AI_REFERENCE" if ai_refs else "NO_NAMED_AI_HOOK_FOUND"))
+    rows.append((name, "YES" if header else "NO/MONOLITHIC", len(char_lua), len(unit), len(audio), selection, "AI_REGISTRATION_REFERENCE_FOUND" if ai_refs else "MANUAL_AI_AUDIT_REQUIRED"))
 
 OUT.parent.mkdir(parents=True, exist_ok=True)
 with OUT.open("w", encoding="utf-8") as f:
@@ -92,7 +92,7 @@ with OUT.open("w", encoding="utf-8") as f:
         f.write("| " + " | ".join(fmt(x) for x in row) + " |\n")
     f.write("\n## Interpretation rules\n\n")
     f.write("- A `NO/MONOLITHIC` header result means the code may be in a shared C++ file; it is not proof the character is absent. Unit/resource counts are broad filename matches and do not prove the correct frames load.\n")
-    f.write("- Zero audio/element files or no named AI hook requires manual investigation; shared assets and indirect registrations can create false negatives.\n")
+    f.write("- Zero audio/unit files or no named AI registration requires manual investigation; shared assets and indirect registrations can create false negatives.\n")
     f.write("- A selection art result is based on finding expected frame names in `Select.plist` or standalone files; runtime selection still needs testing.\n")
     f.write("- Do not promote any entry to implemented or verified based on this report alone. Record voice lines, SFX triggers, skills, resource paths, AI behavior, provenance, and rights separately.\n")
 print(f"Wrote {OUT}; audited {len(names)} unique selectable names.")
