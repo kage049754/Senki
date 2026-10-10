@@ -11,8 +11,21 @@ target = Path(sys.argv[1])
 source = target.read_text(encoding="utf-8")
 
 if "function SelectLayer:filterCharacters(query)" in source:
-    print("Character search/filter already present; leaving file unchanged.")
-    raise SystemExit(0)
+    complete_markers = (
+        "string.find(name, query, 1, true) ~= nil",
+        "self.searchEmptyLabel:setVisible(matchCount == 0 or emptyReservedPage)",
+        "self.searchBox = searchBox",
+    )
+    if all(marker in source for marker in complete_markers):
+        print("Complete character search/filter already present; leaving file unchanged.")
+        raise SystemExit(0)
+    # Repair an incomplete earlier implementation before applying the full version.
+    start = source.index("function SelectLayer:filterCharacters(query)")
+    end = source.find("function SelectLayer:setSelected(btn)", start)
+    if end < 0:
+        raise SystemExit("Found an incomplete character filter but could not locate the next method boundary.")
+    source = source[:start] + source[end:]
+    print("Removed incomplete character filter; applying the complete implementation.")
 
 
 def replace_once(old: str, new: str, label: str) -> None:
