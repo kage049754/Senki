@@ -91,4 +91,17 @@ assert len(detail_rows) == expected_count, (
 assert [row[0] for row in detail_rows] == [row[0] for row in rows], (
     "Detailed asset table roster order/names do not match the main audit table"
 )
-print(f"Character audit report is well-formed: {len(header_cells)} columns, {len(rows)} rows, portrait coverage {coverage.group(1)}/{coverage.group(2)}, skill-label coverage {labels.group(1)}/{labels.group(2)}.")
+missing_atlas = [row[0] for row in detail_rows if row[2] != "PLIST+TEXTURE_FOUND"]
+assert not missing_atlas, (
+    "The pinned candidate's roster has missing/unresolved sprite textures: "
+    + ", ".join(missing_atlas)
+)
+sound_event_counts = [
+    int(match.group(1))
+    for row in detail_rows
+    if (match := re.fullmatch(r"(\\d+) audio event refs", row[3])) is not None
+]
+assert sound_event_counts and any(count > 0 for count in sound_event_counts), (
+    "The audit did not recognize any animation XML audio event references"
+)
+print(f"Character audit report is well-formed: {len(header_cells)} columns, {len(rows)} rows, portrait coverage {coverage.group(1)}/{coverage.group(2)}, skill-label coverage {labels.group(1)}/{labels.group(2)}, sprite atlases/textures {len(detail_rows)-len(missing_atlas)}/{len(detail_rows)}, audio event refs recognized.")
