@@ -156,3 +156,10 @@ The character manifest in `docs/CHARACTER_ROSTER.md` must link each asset catego
 - The source repository is a tracked APK/resource extraction and does not establish asset-specific reuse rights in the inspected root. No permission grant for the Saso sprite atlas or franchise material has been confirmed.
 - Code license: not established for the repository's game content. Asset/audio rights: unresolved.
 - Status: **PRIVATE_TEST_CANDIDATE / PERMISSION_REQUIRED**. Keep generated APK artifacts private; do not make a public release or redistribute these assets until the rights question is resolved or replace them with independently created/permitted assets.
+
+
+## Sasori source action data — conversion note (2026-10-10)
+
+- The candidate now converts `assets/Element/Saso/Saso.xml` from the legacy `animation/action value/dateName/frameName/eventName` schema to the V2 `unit/action name/data/p/f/e` schema. It retains source action order and metadata and maps frame names to the copied Saso atlas.
+- Build evidence: [Run #316 — SUCCESS](https://github.com/kage049754/Senki/actions/runs/38064802954). This is technical compatibility evidence, not permission evidence.
+- Rights remain unresolved for the Saso sprite atlas and any source-specific action definitions; keep artifacts private until cleared or replaced with independently created/permitted assets.

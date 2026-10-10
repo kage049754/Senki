@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-"""Add the source-visible Saso/Sasori fighter as an additive playable slot.
+"""Add an initial Sasori candidate with converted source animation definitions.
 
-Uses the mod repository's tracked Saso sprite atlas and the V2 Kankuro animation/
-combat template as a compatibility baseline. Missing frame names are mapped to
-real atlas frames; the base Kankuro entry is never replaced.
+Converts the source mod's legacy XML vocabulary to the V2 native unit schema.
+The Kankuro controller and skill UI atlas remain compatibility fallbacks; the
+base Kankuro entry is never replaced.
 """
 from pathlib import Path
 import plistlib, re, shutil, sys, xml.etree.ElementTree as ET

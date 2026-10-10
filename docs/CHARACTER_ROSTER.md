@@ -545,9 +545,9 @@ These six are explicitly prioritized by the user for external-mod discovery and 
 - Display name: Sasori
 - Source repository/version: `LeaderOnePro/NarutoSenki1.17Mod`, commit `8c800efe09f8e5489f37ee3314596b329f533225`
 - Tracked visual source files: `assets/Element/Saso/Saso.png`, `assets/Element/Saso/Saso.plist`, `assets/Element/Saso/Saso.xml`
-- Integration: separate roster ID, HeroEnum entry, native Provider dispatch, V2-compatible animation XML, atlas frame mapping, audio paths, selection display-name alias, and skill UI alias.
-- Compatibility baseline: Kankuro controller and skill atlas. This is not yet Sasori's complete unique move set.
-- Build evidence: [Run #312 — SUCCESS](https://github.com/kage049754/Senki/actions/runs/38062969294); character integration/resource checks, Lua syntax validation, character audit, APK signature, and ABI packaging passed.
+- Integration: separate roster ID, HeroEnum entry, native Provider dispatch, converted V2-native action XML, Sasori atlas/frame mapping, audio paths, selection display-name alias, and skill UI alias.
+- Source XML supplies unique idle/walk/hurt/death/basic-attack and skill01 animation data. skill02–skill05 have empty frame lists; native controller and skill-icon atlas remain Kankuro-compatible. This is not yet Sasori's complete unique move set.
+- Build evidence: [Run #316 — SUCCESS](https://github.com/kage049754/Senki/actions/runs/38064802954); legacy-to-V2 XML conversion, frame/audio references, character audit, Lua checks, APK signature, and ABI packaging passed.
 - Asset/code permissions: unresolved. The source tree is an APK/resource distribution and no asset-specific reuse grant was confirmed. Candidate APK is a private testing artifact only; do not publish or redistribute the copied Saso artwork/audio without permission.
 - Runtime status: not tested in an actual match; phone installation not tested.
 - Status: **IN_PROGRESS / CI_CHECKED / GAMEPLAY_UNVERIFIED / RIGHTS_REVIEW**

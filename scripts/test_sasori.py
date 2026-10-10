@@ -35,6 +35,12 @@ skill_texture = skills.get("metadata", {}).get("textureFileName")
 assert main_texture and (unit/main_texture).is_file(), f"Missing main atlas texture {main_texture}"
 assert skill_texture and (unit/skill_texture).is_file(), f"Missing skill atlas texture {skill_texture}"
 root = ET.parse(unit/"Sasori.xml").getroot()
+assert root.tag == "unit", "Sasori animations must use the native V2 unit XML schema"
+actions = {node.get("name"): node for node in root.findall("action")}
+assert {"Idle", "Walk", "Hurt", "Dead", "nAttack", "skill01", "skill02", "skill03", "skill04", "skill05"} <= set(actions), "Missing expected Sasori action names"
+assert any((node.text or "").strip() == "Sasori_NAttack_01" for node in actions["nAttack"].iter("f")), "Sasori-specific basic attack frames were not converted"
+assert any((node.text or "").strip() == "Sasori_Skill02_01" for node in actions["skill01"].iter("f")), "Sasori's first skill must use its own skill animation frames"
+assert not list(root.iter("frameName")) and not list(root.iter("eventName")), "Legacy XML tags were not fully converted"
 refs = {n.text.strip() for n in root.iter("f") if n.text and n.text.strip()}
 assert not (refs - set(main["frames"]) - set(skills["frames"])), "Unresolved animation frame references remain"
 xml = (unit/"Sasori.xml").read_text(encoding="utf-8")
