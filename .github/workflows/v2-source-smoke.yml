@@ -348,6 +348,9 @@ jobs:
           grep -F 'local skillLabelHero = skillUiAlias[self.selectHero] or self.selectHero' /tmp/senki-packaged-SkillLayer.lua
           grep -F "imgPath = skillLabelHero .. '_label' .. (buttonType - 2) .. '.png'" /tmp/senki-packaged-SkillLayer.lua
           grep -F 'pcall(display.newSpriteFrame, imgPath)' /tmp/senki-packaged-SkillLayer.lua
+          grep -F 'local skillDescriptionFallbacks = {' /tmp/senki-packaged-SkillLayer.lua
+          grep -F 'Chakra Scalpel Activation: boosts damage and heals on hits for 6 seconds.' /tmp/senki-packaged-SkillLayer.lua
+          grep -F 'Dead Soul Jutsu: revive and temporarily control a nearby eliminated hero.' /tmp/senki-packaged-SkillLayer.lua
           grep -F 'self._skillExplainClipper:removeFromParent()' /tmp/senki-packaged-SkillLayer.lua
           grep -F 'self._skillExplainClipper = clipper' /tmp/senki-packaged-SkillLayer.lua
           echo "Safe missing-skill-description fallback and whole-tooltip cleanup are present in packaged SkillLayer.lua."
