@@ -27,6 +27,14 @@ body = re.sub(r"--[^\\n]*", "", body)
 tokens = re.findall(r"'[^']*'|\"[^\"]*\"|(?<![\\w])_None(?![\\w])", body)
 if len(tokens) != 84:
     raise SystemExit(f"Expected exactly 84 slots (4 pages), found {len(tokens)}")
+class_headers = {
+    "SageJiraiya": "Jiraiya.hpp",
+    "ImmortalSasuke": "Sasuke.hpp",
+    "SageNaruto": "Naruto.hpp",
+    "RikudoNaruto": "Naruto.hpp",
+    "RockLee": "Lee.hpp",
+    "Nagato": "Pain.hpp",
+}
 for name, (alias, display, skill_alias) in forms.items():
     if f"'{name}'" not in body:
         raise SystemExit(f"Form is missing from roster: {name}")
@@ -34,8 +42,11 @@ for name, (alias, display, skill_alias) in forms.items():
         raise SystemExit(f"Native enum missing for {name}")
     resource = game / "Resources/Unit/Ninja" / name / f"{name}.xml"
     atlas = game / "Resources/Unit/Ninja" / name / f"{name}.plist"
-    if not resource.is_file() or not atlas.is_file():
-        raise SystemExit(f"Missing character XML/plist resources for {name}")
+    header = game / "Classes/Core/Shinobi" / class_headers[name]
+    if not resource.is_file() or not atlas.is_file() or not header.is_file():
+        raise SystemExit(f"Missing character XML/plist/class header for {name}")
+    if f"HeroEnum::{name}" not in header.read_text(encoding="utf-8"):
+        raise SystemExit(f"Native character class does not register {name}: {header}")
     if f"{name} = '{alias}'" not in select or f"{name} = '{display}'" not in select:
         raise SystemExit(f"Missing selection art/display-name aliases for {name}")
     if f"{name} = '{skill_alias}'" not in skill:
