@@ -444,3 +444,10 @@ For every new character on pages 1–3, confirm a real matching portrait/avatar 
 - [x] Record the new `LeaderOnePro/NarutoSenki-cocos2dx` source lead. It contains C++/Cocos2d-x 2.2.6 source and an Android project, but is a legacy architecture and lacks a root license declaration.
 - [ ] Compare this legacy candidate's character implementations with the pinned V2-derived candidate and identify a distinct, complete package that can be adapted without blindly copying its old XML/resource schema.
 - [ ] Continue to prioritize a real new playable character on pages 1–3. Require selection portrait/name, V2-compatible resources, player controls, skills/effects/audio references, AI, kill/death display, and lifecycle tests before counting it.
+
+
+### Legacy-source roster findings
+
+- [x] Count the explicit legacy selection list: 35 distinct names; empty `None` slots excluded.
+- [x] Confirm that resource folders include summons/support entities and cannot be treated as playable characters.
+- [ ] Continue the search for distinct, complete character packages; do not treat this legacy three-page roster as the 70+ solution.

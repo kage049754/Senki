@@ -718,3 +718,11 @@ Decision: these are not 70-character bases and do not solve the additional-roste
 - The repository is not a direct V2-compatible source drop-in: it is a legacy Cocos2d-x 2.2.6 codebase with a different Android project layout and older monolithic character architecture. Treat it as a **legacy source/reference candidate**, not a replacement for the selected V2 base.
 - Potential research value: compare its original character class/resource implementations against the V2 candidate to locate useful mechanics or missing character leads, then map them to V2's Lua roster, `HeroEnum`, provider registration, XML/atlas schema, and AI/input lifecycle. Do not copy its code/assets into the central repository until provenance and applicable rights are resolved.
 - Status: **DISCOVERED / SOURCE_REVIEW / PERMISSION_REQUIRED**. No character is counted as integrated from this repository.
+
+
+#### Roster/resource comparison for the legacy candidate
+
+- Inspected `projects/NarutoSenki/Classes/SelectLayer.cpp` at the candidate's current `main` revision. Its literal `selectList` contains **35 unique named selectable characters** plus empty `None` slots; this is a three-page-era roster, not a 70-character roster.
+- `Classes/Characters.h` centralizes AI functions in the monolithic `Hero` class. The resource tree has many `Resources/Element/<name>` folders, including character names but also summons/support entities such as Akamaru, Kurama, Centipede, DogWall, Slug, and Pain paths. Resource-folder count must not be used as a playable-character count.
+- The resource tree also includes Han and Roshi, but their presence is not proof of a dedicated selectable hero or direct player-control path. Treat them as leads requiring class/control/spawn tracing.
+- Comparison result: this candidate offers a possible **mechanics/resource reference** for future port analysis, but it does not close the distinct playable roster gap and should not replace the selected V2-derived base. No files were copied.

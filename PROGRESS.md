@@ -861,3 +861,12 @@ User requires every new character to have its own correct avatar/portrait in the
 - The Android build reported `BUILD SUCCESSFUL in 3m 12s`; package identity, signature, native ABI, audit-report structure, Lua/source checks, and artifact uploads passed. This remains a diagnostic candidate build, not phone-install or gameplay proof.
 - Latest source audit still has 43 selectable entries / 37 distinct base characters. No new playable character was added in this batch.
 - Next research lead: `LeaderOnePro/NarutoSenki-cocos2dx` is an editable legacy Cocos2d-x source candidate, but not a direct V2 drop-in and has no root license declaration. It is now recorded as reference-only pending code/asset rights and compatibility review.
+
+
+### Legacy candidate roster comparison — 2026-10-10
+
+- [x] Inspected `LeaderOnePro/NarutoSenki-cocos2dx`'s `Classes/SelectLayer.cpp` and `Classes/Characters.h`.
+- Finding: the explicit selectable list has 35 unique names plus empty slots; the character AI is concentrated in a monolithic `Hero` implementation. The many `Resources/Element` directories include summons/support entities, so folder count is not playable count.
+- Finding: Han/Roshi resource folders remain leads only; no claim of selectable/player-controlled implementation was established.
+- Decision: keep this repository as a mechanics/resource reference candidate only. It does not provide a 70+ roster and is not a drop-in replacement for the V2-derived source. No external files were copied.
+- Next: continue source research for distinct character packages with class/control/resource paths, then compare only specific compatible mechanics against the V2 architecture.
