@@ -111,13 +111,24 @@ def convert_xml(raw, source_names, new_id):
     return ET.tostring(root, encoding="utf-8", xml_declaration=True)
 
 def locate_character_xml(zf, names):
+    """Locate nested or flat character XML layouts across public Senki releases."""
     paths = zf.namelist()
     for source in names:
-        suffix = f"/Element/{source}/{source}.xml".lower()
-        matches = [p for p in paths if p.lower().endswith(suffix)]
-        if not matches:
-            suffix = f"/{source}/{source}.xml".lower()
-            matches = [p for p in paths if "/element/" in p.lower() and p.lower().endswith(suffix)]
+        low_name = source.lower()
+        matches = []
+        for path in paths:
+            low = path.lower().replace("\\", "/")
+            if not low.endswith(f"/{low_name}.xml"):
+                continue
+            parts = [part.lower() for part in low.split("/") if part]
+            if "element" not in parts:
+                continue
+            # Accept both Element/Character/Character.xml and legacy
+            # Element/Character.xml layouts, but avoid unrelated XML files.
+            element_index = len(parts) - 1 - parts[::-1].index("element")
+            tail = parts[element_index + 1:]
+            if tail == [f"{low_name}.xml"] or tail == [low_name, f"{low_name}.xml"]:
+                matches.append(path)
         if matches:
             return source, sorted(matches, key=lambda p: ("/resources/" not in p.lower(), len(p)))[0]
     return None, None
