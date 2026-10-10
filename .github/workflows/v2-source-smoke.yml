@@ -92,6 +92,26 @@ jobs:
           set -euo pipefail
           python3 "$GITHUB_WORKSPACE/scripts/test_character_search.py" /tmp/narutosenki-candidate/projects/NarutoSenki/lua/ui/SelectLayer.lua
 
+      - name: Verify visible startup failure diagnostics
+        shell: bash
+        run: |
+          set -euo pipefail
+          MAIN=/tmp/narutosenki-candidate/projects/NarutoSenki/lua/main.lua
+          grep -F "local function showStartupFailure(err)" "$MAIN"
+          grep -F "require 'config'" "$MAIN"
+          grep -F "if not ok then" "$MAIN"
+          grep -F "director:runWithScene(scene)" "$MAIN"
+          python3 - "$MAIN" <<'PY'
+          import sys
+          text = open(sys.argv[1], encoding="utf-8").read()
+          require_line = text.index("require 'config'")
+          protected_start = text.index("local function boot()")
+          assert protected_start < require_line, "config load must be inside protected boot()"
+          assert "xpcall(boot" in text, "startup must use xpcall"
+          assert "showStartupFailure(err)" in text, "failed startup must trigger visible diagnostics"
+          print("Startup config load is protected and a diagnostic screen is wired to boot failures.")
+          PY
+
       - name: Verify dynamic character pagination
         shell: bash
         run: |
