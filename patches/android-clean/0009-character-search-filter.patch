@@ -58,11 +58,8 @@ diff --git a/projects/NarutoSenki/lua/ui/SelectLayer.lua b/projects/NarutoSenki/
 +    self:addChild(self.searchEmptyLabel, 100)
  
      local hero = selectNameList[1]
-@@ -313,2 +352,3 @@
--function SelectLayer:onPageButtonClick(index)
--    audio.playSound(ns.menu.SELECT_SOUND)
-+function SelectLayer:onPageButtonClick(index, silent)
-+    if not silent then audio.playSound(ns.menu.SELECT_SOUND) end
+@@ -313,1 +352,2 @@
+ function SelectLayer:onPageButtonClick(index)
 +    self.currentPage = index
 @@ -329,4 +369,39 @@
              pageLayer:setPositionY(10000)
@@ -101,6 +98,6 @@ diff --git a/projects/NarutoSenki/lua/ui/SelectLayer.lua b/projects/NarutoSenki/
 +    end
 +
 +    if firstPage and firstPage ~= self.currentPage then
-+        self:onPageButtonClick(firstPage, true)
++        self:onPageButtonClick(firstPage)
 +    end
 +end
