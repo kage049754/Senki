@@ -926,3 +926,14 @@ Queue Sasori, Zetsu, Iruka, Sakon & Ukon, Juzo, Jonin Minato, Jirobo, Tayuya, an
 For every candidate, seek editable source/resources and trace the source revision and provenance. Map character logic, ID/selection slot, animation and atlas dependencies, skills/effects, audio/voice, player controls, AI, skill/profile/kill-feed UI and death/respawn lifecycle. If source packages cannot be obtained, the alternate path is a genuinely original implementation using independently created art/audio and native V2 systems—not claiming a packed release character was ported.
 
 Current result remains unchanged: no new distinct character has been completed from this resource-name audit. Two Sage Toads remains a Choji-based variant; no external character is gameplay-verified.
+
+
+## Direct source-tree inspection update — 2026-10-10
+
+Run #300 passed: https://github.com/kage049754/Senki/actions/runs/38055895185 (commit de5f593147fe176085544ae43fbd68cee00221ed). The candidate APK and audit/inventory artifacts were produced. This is technical verification of the candidate, not character-port evidence.
+
+Additional direct recursive-tree inspection was performed on:
+- [Zx-Akito/NarutoSenki](https://github.com/Zx-Akito/NarutoSenki) — editable legacy Cocos2d-x source; it contains Hashirama skill-art resources, but the inspected tree did not establish a complete importable package for the six requested characters. Do not treat a skill-art atlas alone as a character.
+- [muhammadadilsyaputra08-alt/NarutoSenki-Custom](https://github.com/muhammadadilsyaputra08-alt/NarutoSenki-Custom) — a large editable V2-derived tree; the inspected paths did not establish complete source packages for Might Guy, Kurenai, Yamato, Hashirama, Shizune or Rin.
+
+This is a targeted source-tree check, not an exhaustive claim about every public repository. Additional forks/mods remain queued for inspection. Candidate roster and port status are unchanged: no distinct external character is newly verified playable. Continue to prioritize editable source, full dependencies, and a clear asset/provenance path; if unavailable, use an original implementation with independently created assets.
