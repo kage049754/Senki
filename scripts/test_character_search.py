@@ -23,7 +23,8 @@ required = [
     "ui.newImageMenuItem",
     "senki_page\' .. tostring(i) .. \'_off.png",
     "senki_page\' .. tostring(i) .. \'_on.png",
-    "self.pageNum = math.max(1, math.ceil(#charactersList / 21))",
+    "self.pageNum = math.max(5, math.ceil(#charactersList / 21))",
+    "self.currentPage = 1",
 ]
 missing = [fragment for fragment in required if fragment not in source]
 if missing:
