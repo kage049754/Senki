@@ -225,7 +225,7 @@ When supported by existing battle hooks, implement kill/death identity notificat
 
 ## Current authoritative CI checkpoint — 2026-10-10
 
-The latest run is [38019992304](https://github.com/kage049754/Senki/actions/runs/38019992304), run #64, commit `e874e45d90f7e83082ff55b304bdb6f49f82fe65`. It completed **SUCCESS** and uploaded `naruto-senki-v2-candidate-debug-apk` (artifact ID `11657109973`, ZIP size 83,344,194 bytes, SHA-256 `07c153b870d5a56f704dec61907278689cbd8325140b8a533fba9059b4eb9618`, expires 2026-10-24). All build, Lua syntax, search/filter, dynamic pagination, landscape, signature, native ABI, and artifact-upload steps passed. This is a V2-derived diagnostic candidate, not a finished merged roster or phone-tested game. The custom menu/selection patch files are absent from the current tree; the workflow also explicitly excludes them. The 4+ page control visuals remain a known requirement gap because current pages 4+ are text menu items.
+The latest verified build is [run 38020781870](https://github.com/kage049754/Senki/actions/runs/38020781870), run #82, commit `3cc5d3bd807ae6c7814dcce1d61710c05552b7b9`. It completed **SUCCESS** and uploaded `naruto-senki-v2-candidate-debug-apk` (artifact ID `11657917474`, 83,355,267 bytes, SHA-256 `303f9dfbabd11fec739b91dcdda4f818421618c242dda4182794d9497aa6c147`, expires 2026-10-24). The workflow confirms image-based page 4/5 normal/selected controls are packaged and retired custom menu/selection background replacements are absent. This is still a V2-derived diagnostic candidate, not a finished merged roster or phone-tested game. Physical-device appearance and touch behavior remain unverified.
 
 
 ## Mandatory per-character asset manifest and AI acceptance gate
