@@ -50,7 +50,9 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          mapfile -t patches < <(find "$GITHUB_WORKSPACE/patches/android-clean" -maxdepth 1 -type f -name '*.patch' -print | sort)
+          # Keep the game's original main-menu and character-selection backgrounds.
+          # Explicitly exclude the retired custom-background patches.
+          mapfile -t patches < <(find "$GITHUB_WORKSPACE/patches/android-clean" -maxdepth 1 -type f -name '*.patch' ! -name '0004-custom-character-select-background.patch' ! -name '0005-custom-main-menu-background.patch' -print | sort)
           if [[ ${#patches[@]} -eq 0 ]]; then
             echo "No local patches found; refusing to build an unmodified candidate by accident."
             exit 1
@@ -150,8 +152,6 @@ jobs:
           sed -i 's/#ECE342/#10172A/' "$APPRES/values/ic_launcher_background.xml"
           grep -F '<color name="ic_launcher_background">#10172A</color>' "$APPRES/values/ic_launcher_background.xml"
           rsvg-convert -w 1280 -h 720 "$ART/senki-loading.svg" -o "$GAME/Resources/senki_loading.png"
-          rsvg-convert -w 1280 -h 720 "$ART/senki-select.svg" -o "$GAME/Resources/senki_select.png"
-          rsvg-convert -w 1280 -h 720 "$ART/senki-menu.svg" -o "$GAME/Resources/senki_menu.png"
           for entry in "mdpi:48" "hdpi:72" "xhdpi:96" "xxhdpi:144" "xxxhdpi:192"; do
             density="${entry%%:*}"
             size="${entry##*:}"
@@ -167,11 +167,10 @@ jobs:
             rsvg-convert -w "$size" -h "$size" "$ART/senki-launcher-foreground.svg" -o "$dir/ic_launcher_foreground.png"
           done
           test -s "$GAME/Resources/senki_loading.png"
-          test -s "$GAME/Resources/senki_select.png"
-          test -s "$GAME/Resources/senki_menu.png"
           test -s "$APPRES/mipmap-xxxhdpi/ic_launcher.png"
           test -s "$APPRES/mipmap-xxxhdpi/ic_launcher_foreground.png"
-          file "$GAME/Resources/senki_loading.png" "$GAME/Resources/senki_select.png" "$GAME/Resources/senki_menu.png" "$APPRES/mipmap-xxxhdpi/ic_launcher.png" "$APPRES/mipmap-xxxhdpi/ic_launcher_foreground.png"
+          file "$GAME/Resources/senki_loading.png" "$APPRES/mipmap-xxxhdpi/ic_launcher.png" "$APPRES/mipmap-xxxhdpi/ic_launcher_foreground.png"
+          echo "Original menu and character-selection backgrounds are preserved."
           echo "Rendered the editable loading screen and launcher icon into the candidate source tree."
 
       - name: Set up Java 17 for Android SDK provisioning
@@ -222,9 +221,7 @@ jobs:
           APK="$(find /tmp/narutosenki-candidate/projects/NarutoSenki/proj.android-studio -type f -path '*/build/outputs/apk/*/*.apk' -print -quit)"
           test -n "$APK"
           unzip -l "$APK" | grep -F "assets/senki_loading.png"
-          unzip -l "$APK" | grep -F "assets/senki_select.png"
-          unzip -l "$APK" | grep -F "assets/senki_menu.png"
-          echo "Candidate APK exists and all custom UI backgrounds are packaged inside it."
+          echo "Candidate APK exists; loading artwork is packaged while original menu and character-selection backgrounds remain in use."
 
       - name: Verify patched package identity in APK
         if: success()
