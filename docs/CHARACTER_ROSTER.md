@@ -278,3 +278,12 @@ The pinned source contains native classes and unit XML/atlas/texture resources f
 - Several paths have specialized summon/AI behavior; simply adding their names to `ns.CharactersLayout` would not provide correct selection art, skill icons/descriptions, player-control UX, or proof of independent AI behavior.
 - Status: **DISCOVERED / RESOURCE_REVIEW — do not count toward the 70-character target.**
 - Next action: determine which paths are intended as summon-only, inventory their actual actions/sounds/AI, and only consider a selectable conversion if the full skill UI and player-control behavior can be implemented and tested without breaking Pain's existing summon logic.
+
+
+## Automated enum-vs-roster check — run #159 (2026-10-10)
+
+- Visible selection list: **43 distinct names** (the six existing native forms are included).
+- Target shortfall: **27 additional distinct declared entries** to reach 70; actual verified playable count is still unmeasured.
+- Nine enum names are absent from the visible selection list: `AnimalPath`, `AsuraPath`, `HumanPath`, `PertaPath`, `NarakaPath`, `NarutoClone`, `SageNarutoClone`, `RikudoNarutoClone`, and `Guardian`.
+- These are manual-review leads, not extra playable entries: the clone classes and Guardian are support content, while the Pain paths appear to be specialized units used by NarakaPath/Pain. The selection atlas lacks their own selection button/portrait/name frames.
+- CI run [#159](https://github.com/kage049754/Senki/actions/runs/38031862251) passed the updated report test and produced a verified diagnostic APK artifact. This still does not prove runtime playability or device installation.
