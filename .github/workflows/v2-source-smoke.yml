@@ -172,23 +172,7 @@ jobs:
           python3 "$GITHUB_WORKSPACE/scripts/test_two_sage_toads.py" "$GAME"
           echo "Two Sage Toads source integration checks passed; device gameplay remains unverified."
 
-      - name: Integrate Sasori as an additional playable character
-        shell: bash
-        run: |
-          set -euo pipefail
-          GAME=/tmp/narutosenki-candidate/projects/NarutoSenki
-          python3 "$GITHUB_WORKSPACE/scripts/apply_sasori.py" "$GAME" /tmp/narutosenki-toad-mod
-          python3 "$GITHUB_WORKSPACE/scripts/test_sasori.py" "$GAME"
-          echo "Sasori resource/integration checks passed; Kankuro-compatible combat baseline is documented, device gameplay remains unverified."
-
-      - name: Integrate Han as an additional playable character
-        shell: bash
-        run: |
-          set -euo pipefail
-          GAME=/tmp/narutosenki-candidate/projects/NarutoSenki
-          python3 "$GITHUB_WORKSPACE/scripts/apply_han.py" "$GAME"
-          python3 "$GITHUB_WORKSPACE/scripts/test_han.py" "$GAME"
-          echo "Han resource/integration checks passed; Han-specific runtime gameplay remains unverified."
+      # Resource-only leads are not playable additions; require unique combat and complete action resources.
 
       - name: Verify original character-selection and mode-menu backgrounds
         shell: bash

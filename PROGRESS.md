@@ -329,3 +329,13 @@ Sasori, Zetsu, Iruka, Sakon & Ukon, Juzo, Jonin Minato, Jirobo, Tayuya, and Anko
 - Han's selection portrait and skill-label art currently use Kankuro UI aliases; in-match model/action art is Han's. This is an initial candidate, not proof of gameplay correctness.
 - CI is being updated to run the dedicated Han package checks and count **39 distinct base-character entries / 46 selectable entries** (31 more distinct entries to reach 70). The next required gate is the exact Actions result and APK artifact verification.
 - Rights review for source V2 assets remains unresolved; keep artifacts private. Phone install and match gameplay are not verified.
+
+
+## Correction — remove incomplete Sasori/Han candidate entries (2026-10-10)
+
+- The user correctly pointed out that Sasori was not a proper character port: the experimental candidate reused Kankuro combat/controller behavior and its source XML had empty skill02–skill05 frame lists. It was **not a verified playable character**.
+- Han was also not a verified playable port; the source provides a Guardian resource package, not a complete selectable Han implementation. The Han candidate build failed its package audit because the experiment disturbed the expected roster/off-roster inventory.
+- Removed both experimental integration steps from the Android candidate workflow and removed their integration scripts from the active repository. Restored the honest source baseline to **37 distinct base-character entries / 44 selectable entries**. The existing Two Sage Toads variant remains a Choji replacement, not a distinct character.
+- Latest affected build: [Run #323](https://github.com/kage049754/Senki/actions/runs/38066245537) — **FAILURE**, character package audit. It did not produce a verified playable-character addition. Its audit artifact is at https://github.com/kage049754/Senki/actions/runs/38066245537/artifacts/11674378355.
+- New acceptance rule: no character count increase unless the source includes a separate character implementation, complete unique skill/action behavior, matching model/animation/audio/UI resources, native roster and AI/player-control registration, and passing CI; runtime gameplay remains a separate required verification.
+- Next research step: find a mod source with a complete character implementation compatible with this V2 architecture. The public 1.17 mod source inspected so far is an asset package and its Saso XML is incomplete (skills 02–05 empty); the public older C++ source has legacy AI_Saso code but is not a direct V2 character port. Do not use either as evidence of a completed new character.

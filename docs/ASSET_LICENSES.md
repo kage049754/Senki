@@ -163,3 +163,8 @@ The character manifest in `docs/CHARACTER_ROSTER.md` must link each asset catego
 - The candidate now converts `assets/Element/Saso/Saso.xml` from the legacy `animation/action value/dateName/frameName/eventName` schema to the V2 `unit/action name/data/p/f/e` schema. It retains source action order and metadata and maps frame names to the copied Saso atlas.
 - Build evidence: [Run #316 — SUCCESS](https://github.com/kage049754/Senki/actions/runs/38064802954). This is technical compatibility evidence, not permission evidence.
 - Rights remain unresolved for the Saso sprite atlas and any source-specific action definitions; keep artifacts private until cleared or replaced with independently created/permitted assets.
+
+
+## Correction — incomplete Sasori/Han experiments removed (2026-10-10)
+
+The experimental Sasori and Han integration steps were removed from the active candidate workflow. Sasori's available Saso XML lacks skill02–skill05 animation frames and the earlier experiment reused Kankuro behavior; Han is only represented by a Guardian resource package. Neither is shipped/countable as a playable addition. Asset provenance and redistribution rights remain unresolved, and these research leads are not gameplay-verified.

@@ -44,7 +44,7 @@ target = re.search(r"Selectable-entry target: \*\*(\d+)/70 declared \((\d+) more
 assert target, "70-entry roster target gap is missing"
 assert int(target.group(1)) == expected_count, "Roster target count disagrees with unique roster summary"
 assert int(target.group(2)) == max(0, 70 - expected_count), "Roster target shortfall is incorrect"
-assert "Distinct base-character count (excluding 8 known alternate forms): **39/70 (31 additional distinct characters needed" in report, "Current candidate must count Sasori as a separate roster entry and must not count unintegrated release-note characters"
+assert "Distinct base-character count (excluding 8 known alternate forms): **37/70 (33 additional distinct characters needed" in report, "Resource-only Sasori/Han leads must not be counted as playable roster entries"
 assert "Known alternate form mappings (only forms present in the roster are excluded from the distinct-character count):" in report and "`SageJiraiya` → `Jiraiya`" in report and "`RockLee` → `Lee`" in report, "Known alternate-form mappings must be documented clearly without implying absent forms are roster entries"
 assert "Gameplay-verified playable count: **not measured by this static audit.**" in report, (
     "Static audit must not imply gameplay-verified character count"

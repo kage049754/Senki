@@ -552,3 +552,8 @@ These six are explicitly prioritized by the user for external-mod discovery and 
 - Runtime status: not tested in an actual match; phone installation not tested.
 - Status: **IN_PROGRESS / CI_CHECKED / GAMEPLAY_UNVERIFIED / RIGHTS_REVIEW**
 - Next: implement character-specific puppetry attacks, skill effects/cooldowns, and appropriate AI/player-control behavior; verify selection portrait, profile/skill view, kill/death identity, death/respawn, and repeated matches. Only then consider VERIFIED.
+
+
+## Correction — Sasori/Han are not playable additions (2026-10-10)
+
+The earlier experimental integration scripts for Sasori and Han were removed from the active build workflow. Sasori's source Saso XML has empty skill02–skill05 action frames and the experiment reused Kankuro's controller/combat; Han's source package is Guardian-only. Neither counts as a distinct playable character. The source baseline remains 37 distinct base-character entries / 44 selectable entries, and gameplay-verified external additions remain zero. Reopen either lead only when a complete compatible implementation is found.
