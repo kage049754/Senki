@@ -277,3 +277,15 @@ Current candidate changes verified by CI include:
 The candidate currently declares **43 distinct selectable names/forms** against the desired 70-entry target. The static audit does not prove that all 43 are playable. Page four is currently populated with six extra forms; page-five controls are prepared but are not displayed because there are only 84 roster slots (four pages).
 
 **Still not finished:** no physical-device/emulator gameplay validation has been completed; the six form entries need in-game checks; 27 more distinct entries are needed to reach 70 declared names; the candidate source is still fetched into a temporary CI workspace rather than vendored as an editable source tree; source/asset permissions remain unresolved. The artifact is a short-lived diagnostic candidate, not the final unified release.
+
+
+## Roster expansion order — user priority (2026-10-10)
+
+**Do not move on to pages 4 or 5 until the first batch of distinct characters from other Naruto Senki mods has been investigated and integrated into available slots on pages 1, 2, and 3.** The user specifically wants new characters from other Senki mods to appear on pages 1–3 first, not just alternate forms of Naruto, Pain, Sasuke, Rock Lee, or Jiraiya.
+
+- Keep the existing page 1–3 image-button art and touch behavior. Preserve original backgrounds.
+- Audit the actual roster layout and available slots before changing entries. Preserve original characters unless a specific slot is intentionally being replaced; document every changed slot.
+- Prioritize distinct mod characters with complete, compatible character packages. Candidate names in research are leads only, not approved or integrated characters.
+- Do not count a character as added/playable until its permitted assets, selection portrait/name, sprites/animations, attacks/skills/icons/descriptions, effects, audio/voice where available, AI/player behavior, and battle/death/kill-profile references are integrated and tested.
+- Only after pages 1–3 have been populated with the first verified batch should work continue to page 4 and then page 5. Page 4/5 must not be padded with forms merely to demonstrate pagination.
+- Current build success means the pinned V2-derived diagnostic candidate packaged; it does not mean new external characters were integrated or that phone behavior was tested. See PROGRESS.md and docs/CHARACTER_ROSTER.md.
