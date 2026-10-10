@@ -9,7 +9,7 @@ diff --git a/projects/NarutoSenki/lua/ui/SelectLayer.lua b/projects/NarutoSenki/
 +    self.pageNum = math.max(1, math.ceil(#charactersList / 21))
  
      self._comLabel1 = nil
-@@ -120,11 +121,14 @@
+@@ -120,11 +121,23 @@
      for i = 1, self.pageNum do
          -- initial page list
          local index = i
@@ -17,17 +17,38 @@ diff --git a/projects/NarutoSenki/lua/ui/SelectLayer.lua b/projects/NarutoSenki/
 -        local page_btn = ui.newImageMenuItem({
 -            image = '#page' .. tostring(i) .. '_off.png',
 -            imageSelected = '#page' .. tostring(i) .. '_on.png',
-+        local page_btn = ui.newTTFLabelMenuItem({
-+            text = tostring(i),
-+            font = ui.DEFAULT_TTF_FONT,
-+            size = 18,
-+            color = ccc3(245, 245, 245),
-             listener = function()
-+                self.currentPage = index
-                 return self:onPageButtonClick(index)
-             end
-         })
-@@ -141,8 +145,7 @@
+-            listener = function()
+-                return self:onPageButtonClick(index)
+-            end
+-        })
++        local page_btn
++        local pageListener = function()
++            self.currentPage = index
++            return self:onPageButtonClick(index)
++        end
++        if i <= 3 then
++            -- Keep the game's original, known-working touch menu items for
++            -- the first three pages. Replacing these with text-only menu
++            -- items made page taps unreliable on the legacy Cocos UI.
++            page_btn = ui.newImageMenuItem({
++                image = '#page' .. tostring(i) .. '_off.png',
++                imageSelected = '#page' .. tostring(i) .. '_on.png',
++                listener = pageListener
++            })
++        else
++            -- Extra pages use a text item because the source only includes
++            -- page button sprites for pages 1-3.
++            page_btn = ui.newTTFLabelMenuItem({
++                text = tostring(i),
++                font = ui.DEFAULT_TTF_FONT,
++                size = 18,
++                color = ccc3(245, 245, 245),
++                listener = pageListener
++            })
++        end
+ 
+         self:addChild(pageLayer, 5)
+@@ -141,8 +153,7 @@
          table.insert(self.pageLayers, pageLayer)
          table.insert(self.pageButtons, page_btn)
      end
