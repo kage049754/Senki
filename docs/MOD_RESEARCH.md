@@ -420,3 +420,14 @@ The inspected `Fansirsqi/NarutoSenki-V2`, `ZhReimu/NarutoSenki-V2`, `sansaks-jpg
 - Fork comparison: `wsnbbnbb/NarutoSenki1.17Mod` reports this repository as its parent and has the same reported size/tree layout; it is a fork/mirror, not an independent implementation.
 - **Classification: REFERENCE_ONLY / APK-PACKAGED MOD.** It is useful evidence that a Fukasaku/Shima character replacement exists in a 1.17 mod and helps identify the resource families needed for a complete character package. It is not a drop-in V2 source port: no editable character source was found in the tree inspection, the base version differs, and code/assets have no declared reuse terms.
 - **Integration status: not imported.** No APK extraction, binary patching, or asset copying was done. Next step is to find a source-editable version of this character or implement it from a permission-cleared source; then map selection art, skill icons/descriptions, sprites/animations, audio, effects, skill logic, and AI to the chosen V2 architecture and test it.
+
+
+### Legacy source roster leads — Han and Roshi (inspected 2026-10-10)
+
+- Repository: https://github.com/Zx-Akito/NarutoSenki
+- Inspected revision: d847b113dfce486822768ef5a1c1c874b50fa3cd (legacy Cocos2d-x 2.2.2-era source; see the existing base audit).
+- Confirmed editable character animation/config resources: Resources/Element/Han/Han.xml, Resources/Element/Han/Han.plist, Resources/Element/Roshi/Roshi.xml, and Resources/Element/Roshi/Roshi.plist, plus corresponding audio folders, report portraits, and cut-in frames.
+- The XMLs include named states (idle, walk, hurt, float, dead, normal attack, and skills), frame sequences, attack values/ranges, and events for sound, attack boxes, invincibility, buffs, and other commands. Legacy Classes/Element.cpp contains explicit Han/Roshi behavior branches, so the resource XML alone is not a complete portable character implementation.
+- The currently pinned V2 candidate does not include Classes/Core/Shinobi/Han.hpp, Roshi.hpp, Resources/Unit/Ninja/Han/, or Roshi/; neither name appears in its selectable roster. These are potential roster-expansion targets, not already implemented characters.
+- Classification: LEGACY SOURCE REFERENCE. Useful for mapping desired behavior and identifying all resource categories; not a drop-in port because the engine/character architecture differs from the pinned V2 candidate. No files/assets were copied.
+- Next port gate: inspect the corresponding legacy character branches and current V2 Shinobi interfaces; build a complete mapping for selection assets, five skills, XML/animation frames, effects, audio triggers, combat values, and AI before implementing either character. Keep provenance/permission status attached to each component.
