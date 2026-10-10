@@ -6,6 +6,19 @@
 
 Every AI/developer session must read README.md, AGENTS.md, ROADMAP.md, PROGRESS.md, docs/MOD_RESEARCH.md, docs/ASSET_LICENSES.md, and docs/CHARACTER_ROSTER.md before changing code, assets, or roster records. If documents conflict, follow AGENTS.md and correct the conflicting documents.
 
+## Immediate priority: port an external character
+
+**Do not spend the next character-expansion task on more pagination, roster recounting, internal forms, summons, or documentation-only changes.** The next substantive milestone is to identify and qualify one distinct playable character from another Naruto Senki mod, map its actual implementation/resources and permission status, and complete the first port into an available slot on pages 1–3.
+
+1. Inspect the actual source files for an external character—not just a release note, screenshot, or APK.
+2. Compare its character ID/name, class or script, animation/atlas, skills/effects, audio/voice, AI/player controls, selection portrait, skill/profile view, and kill/death UI against the pinned V2 candidate.
+3. Check the code license and the separate rights/provenance for game art, voices, and audio. If rights are unclear, seek an authorized source/package or creator permission; do not extract or redistribute APK contents.
+4. Pick one distinct candidate only after the source, resource dependencies, compatibility, and permission path are documented. Then implement it in the native game systems and record exact changed files.
+5. Run CI, inspect actual logs if it fails, fix and rerun until success, and verify the APK artifact. Report phone installation/gameplay separately.
+6. Continue to the next character after the first port. Never count a character based on a name, portrait, static audit, or build success alone.
+
+Known release-note leads include Shizune, Hashirama, Rin, Sakon & Ukon, Juzo, Kurenai, Might Guy, Yamato, Zetsu, Iruka, Jirobo, Tayuya, and Anko. These remain leads, not integrated characters, until editable source/resources and permissions are verified. The legacy `Zx-Akito/NarutoSenki` source has editable C++ but its inspected selectable roster overlaps the existing V2 roster; `likill/NarutoSenki-master` likewise did not qualify a new character. Continue the search rather than claiming these as ports.
+
 ## The actual goal
 
 - Keep one existing Naruto Senki game and its native Cocos2d-x/C++/Lua systems as the foundation.
@@ -22,12 +35,6 @@ Every AI/developer session must read README.md, AGENTS.md, ROADMAP.md, PROGRESS.
 The central repository is [kage049754/Senki](https://github.com/kage049754/Senki). The selected game reference is [Naruto Senki V2 v2.1.6-fix](https://github.com/Naruto-Senki/files/releases/tag/v2.1.6-fix). A release APK is a packaged binary, not editable source. The source tree used by CI is currently fetched from a pinned external V2-derived repository into a temporary workspace; it is not fully vendored here.
 
 Do not expand the old Kotlin/Canvas prototype as the final game. Keep the existing game engine and battle loop; adapt existing mod content to its native systems.
-
-## External character research policy
-
-Search broadly across public Senki mod source repositories, forks, release notes, and creator-provided resource/source packages. Verify actual implementation and distinguish selectable fighters from summons, guardians, clones, NPCs, alternate forms, and image-only/release-note leads.
-
-Record exact source revision, provenance, code license, asset/voice permission, dependencies, and compatibility. Public visibility is not automatic permission to redistribute source or assets. Do not extract assets/code from APKs or copy unclear-rights content into a distributable build. Continue research and compatibility analysis while seeking a viable authorized source; never fabricate progress.
 
 ## Character completion gate
 
@@ -48,9 +55,11 @@ See [ROADMAP.md](ROADMAP.md) for task lists and exit gates.
 
 ## Current honest status (2026-10-10)
 
-- Last verified central Actions run: [#206 — SUCCESS](https://github.com/kage049754/Senki/actions/runs/38043294444), commit [3c3f7f2](https://github.com/kage049754/Senki/commit/3c3f7f25818dce5c9b966e53a755fd50d74ca04c).
-- The run checks page-button atlas parsing, dynamic pagination, Lua/source assertions, Android candidate build/package checks, and artifact upload.
+- Latest verified central Actions run: [#208 — SUCCESS](https://github.com/kage049754/Senki/actions/runs/38044462856), commit [a5480d1](https://github.com/kage049754/Senki/commit/a5480d1454ead8de8ec36cf1c23455cb759ea9cf).
+- Run #208 checked external-character priority/evidence gates, source/Lua assertions, pagination/background checks, Android candidate build/package checks, and artifact upload.
 - External-mod characters integrated: **0**. External-mod characters verified playable: **0**.
+- Source-level inventory: **37 distinct base names / 43 selectable entries** after exposing six existing native forms; this is not a gameplay-verified count. See `docs/CHARACTER_ROSTER.md`.
+- The last inspected external candidates have not yet yielded a distinct, permission-cleared, complete character package. The next milestone is a real character port—not another documentation-only checkpoint.
 - Page 4/5 image-style pagination is groundwork, not roster progress.
 - Physical-phone install, startup, and gameplay have **not** been verified.
 - Source and third-party asset permissions remain unresolved for inspected candidates. The full V2 source tree is not yet vendored here.
