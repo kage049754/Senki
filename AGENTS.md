@@ -97,3 +97,21 @@ Do not repeatedly interrupt progress with generic permission warnings. Keep lega
 - Source-controlled editable artwork now covers launcher icon, main menu, loading screen, and character selection.
 - Build workflow renders the SVG artwork, applies patches in filename order, builds the pinned V2-derived source, and verifies the generated background assets inside the APK.
 - Preserve the original mode carousel, hero roster/grid/paging, selection behavior, and battle mechanics. Make coordinate/touch changes only after observing the actual device layout; don't assume CI proves visuals are correct.
+
+## Complete character integration contract
+
+When asked to add a character, do not stop after adding a name, portrait, or selection-grid slot. Inspect the target character's actual source implementation and assets, then integrate and verify every applicable layer:
+
+- **Selection identity:** character ID, display name, portrait/avatar, selection entry, correct touch/selection behavior, and a preview if supported.
+- **Skill display:** the character's actual skill names, icons, and descriptions in the skill view when the base supports it. Skill information must correspond to the real combat implementation; do not invent working skills from icons alone.
+- **Assets/animation:** sprites or model, sprite sheets/plists, animation definitions, idle/move/run, basic attack, skill/cast, hit/damage, knockback, death, and other states required by the engine.
+- **Combat logic:** movement, attack timing, hitboxes, damage, cooldowns, projectiles/summons, special skills, visual effects, sound effects, and resource/config references.
+- **Player and AI:** player controls invoke the correct attacks/skills; AI-controlled copies can move, choose attacks/skills, and respond to combat without crashes.
+- **Registration/integrity:** selection roster, character IDs/classes, C++/Lua/XML/plist/config references, resource paths, and effect/sound links must all point to the intended character. Avoid ID collisions and accidental replacement of an existing fighter.
+- **Kill/death feedback:** investigate the base game's battle-event and UI systems. Where feasible, show the actual killer and defeated character with both portrait/avatar and name on kill/death events, plus a clear message such as "Naruto defeated Sasuke." Update existing counters/score/game-over logic consistently. Do not falsely attribute a kill to the selected character when a different AI/ally made it.
+- **Tests:** build and inspect the packaged APK; test character selection and preview, skill panel, movement, basic attacks, each skill, hit detection/damage, animation/effects/sounds, AI, death/respawn, and kill/death attribution. CI success alone is not gameplay verification.
+
+Track each fighter with explicit states: **discovered → source inspected → ported → build-verified → gameplay-verified**. A portrait, name, or skill icon alone is not a playable character. If an implementation or asset is missing, document the gap and complete it rather than marking the fighter done.
+
+For roster pagination, preserve the original image-based page buttons 1–3 and their touch behavior. Pages 4+ must use matching image-based normal/selected button visuals and functional hit targets, not a different-looking text-only clickable control. Pagination only exposes roster entries; it does not make those entries playable.
+
