@@ -25,15 +25,18 @@ assert "class Sasori" in header and "HeroEnum::Sasori" in header
 assert "Sasori = 'Kankuro'" in select and "Sasori = 'Sasori'" in select
 assert "Sasori = 'Kankuro'" in skill
 unit = game / "Resources/Unit/Ninja/Sasori"
-for p in [unit/"Sasori.png", unit/"Sasori.plist", unit/"Sasori.xml", unit/"Sasori_Skill.plist"]:
+for p in [unit/"Sasori.png", unit/"Sasori.plist", unit/"Sasori.xml", unit/"Sasori_Skill.plist", unit/"Sasori_Compat.plist"]:
     assert p.is_file() and p.stat().st_size > 0, f"Missing package file: {p}"
 main = plistlib.loads((unit/"Sasori.plist").read_bytes())
 skills = plistlib.loads((unit/"Sasori_Skill.plist").read_bytes())
+compat = plistlib.loads((unit/"Sasori_Compat.plist").read_bytes())
 assert main.get("frames") and skills.get("frames")
 main_texture = main.get("metadata", {}).get("textureFileName")
 skill_texture = skills.get("metadata", {}).get("textureFileName")
 assert main_texture and (unit/main_texture).is_file(), f"Missing main atlas texture {main_texture}"
 assert skill_texture and (unit/skill_texture).is_file(), f"Missing skill atlas texture {skill_texture}"
+compat_texture = compat.get("metadata", {}).get("textureFileName")
+assert compat_texture and (unit/compat_texture).is_file(), f"Missing compatibility skill texture {compat_texture}"
 root = ET.parse(unit/"Sasori.xml").getroot()
 assert root.tag == "unit", "Sasori animations must use the native V2 unit XML schema"
 actions = {node.get("name"): node for node in root.findall("action")}
@@ -42,9 +45,12 @@ assert any((node.text or "").strip() == "Sasori_NAttack_01" for node in actions[
 assert any((node.text or "").strip() == "Sasori_Skill02_01" for node in actions["skill01"].iter("f")), "Sasori's first skill must use its own skill animation frames"
 assert not list(root.iter("frameName")) and not list(root.iter("eventName")), "Legacy XML tags were not fully converted"
 refs = {n.text.strip() for n in root.iter("f") if n.text and n.text.strip()}
-assert not (refs - set(main["frames"]) - set(skills["frames"])), "Unresolved animation frame references remain"
+assert not (refs - set(main["frames"]) - set(skills["frames"]) - set(compat["frames"])), "Unresolved animation frame references remain"
+for skill_name in ("skill02", "skill03", "skill04", "skill05"):
+    assert list(actions[skill_name].iter("f")), f"{skill_name} fallback action must have animation frames"
+assert all(frame.startswith("SasoriCompat_") for frame in compat["frames"]), "Compatibility atlas frame names must not collide with Sasori own art"
 xml = (unit/"Sasori.xml").read_text(encoding="utf-8")
 for clip in re.findall(r'Audio/Sasori/([^<\" ]+?\.ogg)', xml):
     assert (game/"Resources/Audio/Sasori"/clip).is_file(), f"Missing audio clip: {clip}"
 assert "Audio/Kankuro/" not in xml
-print("Sasori checks passed: roster, enum/provider dispatch, atlases, animation frames, audio references, and selection/skill UI aliases.")
+print("Sasori checks passed: roster, enum/provider dispatch, source animation XML, fallback skills 02-05, atlases, audio references, and selection/skill UI aliases.")
