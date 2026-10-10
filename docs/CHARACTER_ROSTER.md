@@ -64,7 +64,7 @@ No individual character is marked VERIFIED by this tracker. Populate entries onl
 - **New roster ID/display name:** `TwoSageToads` / Two Sage Toads. Added as a separate selectable entry; existing Choji remains available.
 - **Integrated package:** modded character atlas and skill atlas; V2-compatible animation XML; audio package with fallbacks; native enum/Provider dispatch; selection portrait/name handling; UI atlas aliases; resolved XML-to-atlas frame references.
 - **Important limitation:** this is a Choji-replacement mod adapted as a separate variant. It reuses Choji's native combat/AI and skill behavior as a compatibility baseline; it does **not** yet have a unique Two Sage Toads moveset.
-- **CI evidence:** [run #223 — SUCCESS](https://github.com/kage049754/Senki/actions/runs/38049878750), commit `9ad6ad5a8d6e2716d1a9735817c2f807c64b93d9`. APK artifact ID `11668738659`; audit artifact ID `11668783626`.
+- **CI evidence:** [run #225 — SUCCESS](https://github.com/kage049754/Senki/actions/runs/38050182005), commit `de44153c133a56482be4b8ff07f3e0368607cdf1`. APK artifact ID `11669112048`; audit artifact ID `11669441632`.
 - **Remaining verification:** install the APK on a phone, confirm selection art/preview, start a battle, test movement/attacks/skills/AI/death/respawn, and inspect for missing sprites/audio/crashes. Do not count this variant toward the 70 distinct-base-character goal.
 
 ## Batch verification checklist
