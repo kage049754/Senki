@@ -92,6 +92,12 @@ jobs:
           python3 "$GITHUB_WORKSPACE/scripts/apply_selectable_forms.py" "$GAME"
           python3 "$GITHUB_WORKSPACE/scripts/test_selectable_forms.py" "$GAME"
 
+      - name: Verify original character-selection and mode-menu backgrounds
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 "$GITHUB_WORKSPACE/scripts/test_original_backgrounds.py" /tmp/narutosenki-candidate/projects/NarutoSenki
+
       - name: Validate patched Lua scripts
         shell: bash
         run: |
