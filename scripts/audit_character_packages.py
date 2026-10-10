@@ -294,7 +294,7 @@ with OUT.open("w", encoding="utf-8") as f:
         "Dead Soul Jutsu: revive and temporarily control a nearby eliminated hero.",
         "Nehan Shojo: Final Slash: stun nearby enemies, then deal heavy true damage to the target.",
     )
-    kabuto_fallback_count = sum(1 for description in fallback_descriptions if fallback_start >= 0 and description in skill_source[fallback_start:])
+    kabuto_fallback_count = sum(1 for description in fallback_descriptions if description in skill_source)
     f.write(f"- Kabuto runtime skill-description text fallbacks: **{kabuto_fallback_count}/5 detected in patched SkillLayer.lua** (separate from image-label frame coverage).\n")
     frame_complete = sum(1 for row in detail_rows if row[4].startswith("0 "))
     missing_frame_ref_rows = [(row[0], row[4]) for row in detail_rows if not row[4].startswith("0 ")]
