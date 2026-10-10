@@ -217,3 +217,10 @@ Where the existing V2 battle-event hooks support it, the game should show a kill
 ## Original background restoration
 
 The user requested the original Naruto Senki backgrounds restored for both the main menu/mode carousel (Training, Network, Exit interface) and the character-selection screen. The build pipeline must not apply the retired custom main-menu or character-selection background patches, must not generate/use senki_menu.png or senki_select.png, and must preserve the original background/decorative layers and existing UI behavior. The custom loading artwork may remain. Validate this from the applied patch list and source before claiming the rollback is complete; CI does not replace a visual check on the phone.
+
+
+## Current authoritative status — 2026-10-10
+
+The latest central V2-derived candidate build is [GitHub Actions run 38019992304](https://github.com/kage049754/Senki/actions/runs/38019992304) (run #64, commit `e874e45d90f7e83082ff55b304bdb6f49f82fe65`), which completed **SUCCESS**. Artifact: `naruto-senki-v2-candidate-debug-apk`, ID `11657109973`, ZIP size 83,344,194 bytes, SHA-256 `07c153b870d5a56f704dec61907278689cbd8325140b8a533fba9059b4eb9618`, expires 2026-10-24. Lua syntax, search/filter, dynamic page-count, landscape, Android build, package identity, signature, native ABI and artifact checks passed.
+
+The current build recipe no longer applies the retired custom main-menu or character-selection background patches; the custom loading screen remains separate. The APK's asset list still needs an explicit check for absence of the retired replacement images, and the original backgrounds/decorative layers have not yet been visually confirmed on the phone. Pages 4+ still use text-only controls and do not meet the requested image-based normal/selected button style. Only 37 selectable names have been measured in the source; the verified playable count is still unmeasured, no newly discovered character is fully integrated, and the final unified modded game has not been completed or physically tested. See `ROADMAP.md` and `PROGRESS.md` for phase-by-phase blockers.
