@@ -544,3 +544,26 @@ The public GitHub search still has not surfaced a permission-cleared, independen
 - The implementation is a single `Hero` class with many `AI_*` methods selected by character-name string checks, unlike the V2 candidate's separate `HeroEnum` and per-character class/resource organization. This confirms it is **not a drop-in source merge**; any component would require an explicit port/reimplementation against V2 APIs.
 - Legacy source contains AI/behavior paths or references for additional names absent from the current V2 roster, including `MaskRaidon`, `MaskFudon`, `MaskKadon`, `Kurama`, `Centipede`, `Karasu`, `Saso`, `Parents`, `Sanshouuo`, `Slug`, `DogWall`, `Akamaru`, `Roshi`, and `Han`, as well as Pain paths/summons. This is a **research lead only**: a string/AI method is not proof of a complete player-selectable character, and some names are summons/companions or special entities.
 - The repository's public metadata has no declared license. Do not copy code, sprites, animations, audio, or other assets into the central candidate until reuse permission and asset provenance are resolved. Use these names to guide further source inspection and compatibility analysis only.
+
+
+### Fourth-pass roster-source comparison — 2026-10-10
+
+A tree-level comparison was run against the pinned Android-only candidate and three V2-family repositories: `Wilykun/NarutoSenki-V2`, `SILXNTRAY/NarutoSenki-V2`, and `sansaks-jpg/NarutoSenki-V2`.
+
+- All three inspected V2 forks expose the same 41 native `Classes/Core/Shinobi/*.hpp` names as the base family; no extra native character class was found.
+- Their `Resources/Unit/Ninja` folder inventories did not reveal any character package absent from the pinned candidate. The inspected forks were missing the candidate's `Kabuto` resource folder rather than adding a new playable character.
+- This is a scoped tree comparison, not a full source diff or proof that these forks contain no unique AI, balance, skill, or UI changes. Those changes should be evaluated separately if a specific feature is needed.
+- Decision: do not count these forks as roster expansion sources. Avoid spending time copying a duplicate roster merely because the fork has a recent commit or a working APK.
+
+### Legacy release-history character leads — research only
+
+The public `Zx-Akito/NarutoSenki-Release` changelog for older v1.24–v1.26 releases names additional character leads such as Jirobo, Tayuya, Anko, Kurenai, Guy, Yamato, Sasori, Zetsu, Iruka, Shizune, Hashirama, Rin, Sakon & Ukon, and Juzo. These are useful research targets, **not verified V2-ready packages**.
+
+- The inspected `LeaderOnePro/NarutoSenki` source is a separate Cocos2d-x 2.2.2 / VS2010-era project with monolithic C++ gameplay and a Windows-oriented build setup. It is not a drop-in replacement for the selected V2 Cocos2d-x/C++/Lua Android base.
+- Its inspected source tree contains some old effects/skill atlas references (for example a Hashirama skill atlas), but the check did not establish complete playable packages for the full release-history list.
+- The source tree also includes assets for summons, masks, monsters, and other non-player entities. Resource presence alone must not be interpreted as a selectable character.
+- Classification: `REFERENCE_ONLY / PORT_RESEARCH_REQUIRED`. Before a port, inspect the complete source implementation, animation/resource references, AI, skill triggers, and Android feasibility. Keep every character separate from the verified playable count until it is integrated and tested.
+
+### Roster growth decision
+
+The pinned V2 base currently has 37 unique original selectable names plus six existing transformation-form entries (43 distinct selection names). Reaching 70 requires at least 27 additional distinct entries, but the V2 fork family compared above does not supply those extra character packages. The next credible expansion path is a character-by-character port from an inspectable mod/source or another explicitly permission-cleared source, not adding empty slots or duplicating names. Page-4/5 navigation artwork and dynamic pagination are already tested in CI; they do not themselves increase the roster.
