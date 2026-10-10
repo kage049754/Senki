@@ -115,3 +115,14 @@ Track each fighter with explicit states: **discovered → source inspected → p
 
 For roster pagination, preserve the original image-based page buttons 1–3 and their touch behavior. Pages 4+ must use matching image-based normal/selected button visuals and functional hit targets, not a different-looking text-only clickable control. Pagination only exposes roster entries; it does not make those entries playable.
 
+
+
+## Original background rollback requirement (user-requested, 2026-10-10)
+
+Preserve the original Naruto Senki main-menu/mode-carousel background and the original character-selection background. The main menu here is the interface with Training, Network, and Exit. Do not apply 0004-custom-character-select-background.patch or 0005-custom-main-menu-background.patch; do not generate or package senki_select.png or senki_menu.png as replacements. Preserve original decorative layers and selection/menu callbacks. The loading screen is a separate asset and may remain customized. After changing the build recipe, verify a fresh APK build and clearly separate CI evidence from visual confirmation on the phone.
+
+## Full character integration contract
+
+For each requested new character, connect and validate all of the following where the V2 engine/source supports it: selection portrait/avatar and display name; selection preview; skill names/icons/descriptions; character sprites/model and animation states; movement and basic attacks; hit detection/damage; character-specific skills, cooldowns, projectiles/summons and effects; sound; player controls; computer AI; stable IDs and resource/config references. A portrait or skill icon alone is not a playable character. Test that the selected entry maps to the correct combat implementation and does not overwrite another roster entry.
+
+For kill/death identity UI, inspect existing combat, damage, death, scoring, and game-over hooks first. Where supported, show the actual killer and victim portraits/names and optional supported counters; verify that the correct killer/victim are identified for player, ally, and AI kills. Do not mark this complete without runtime testing.
