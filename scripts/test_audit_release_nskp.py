@@ -29,6 +29,7 @@ with tempfile.TemporaryDirectory() as tmp:
     found = audit.scan_apk(apk_path)
     assert "Element/Guy/Guy.xml" in found["Might Guy"]
     assert "Audio/Guy/Guy_Skill01.ogg" in found["Might Guy"]
+    assert "Element/Skills/Guy_Skill.png" in found["Might Guy"]
     assert "Element/Hashirama/Hashirama.xml" in found["Hashirama Senju"]
     guy_flags = audit.classify(found["Might Guy"], audit.TARGETS["Might Guy"])
     assert all(guy_flags.values()), guy_flags
