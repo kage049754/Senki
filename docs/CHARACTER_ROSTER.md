@@ -268,3 +268,13 @@ The current CI patch exposes these six native forms in page four. Their native e
 ## Native enum-only entity audit — 2026-10-10
 
 The pinned V2-derived candidate has 52 enum names but only 37 original selectable names before the six central form entries. The six existing forms are now exposed, for 43 declared selection names. The other enum-only entries include Pain paths, Naruto clones, and a shared Guardian implementation. These are not counted as playable characters because their complete standalone selection assets, player skill/control kits, and gameplay behavior have not been verified. See `docs/MOD_RESEARCH.md` for exact names and paths.
+
+
+## Internal Pain-path character candidates — inspected 2026-10-10
+
+The pinned source contains native classes and unit XML/atlas/texture resources for `AnimalPath`, `AsuraPath`, `NarakaPath`, `HumanPath`, and `PertaPath`. The code indicates that `NarakaPath` spawns several of the other paths as summons; these are not automatically equivalent to five fully playable roster entries.
+
+- Selection atlas check: no `*_select.png`, `*_half.png`, or `*_font.png` frames were found for these five names in the inspected `Resources/Select.plist`.
+- Several paths have specialized summon/AI behavior; simply adding their names to `ns.CharactersLayout` would not provide correct selection art, skill icons/descriptions, player-control UX, or proof of independent AI behavior.
+- Status: **DISCOVERED / RESOURCE_REVIEW — do not count toward the 70-character target.**
+- Next action: determine which paths are intended as summon-only, inventory their actual actions/sounds/AI, and only consider a selectable conversion if the full skill UI and player-control behavior can be implemented and tested without breaking Pain's existing summon logic.
