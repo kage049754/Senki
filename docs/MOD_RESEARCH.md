@@ -902,3 +902,27 @@ The expanded search did not reveal a complete source-level implementation of any
 
 **Status unchanged:** the six requested characters are candidates, not integrated. External characters integrated: **0**. External characters verified playable: **0**. No APK build was triggered by this documentation-only research update.
 
+
+
+## Release NSKP resource-name matrix and expanded integration queue — 2026-10-10
+
+The public v1.25/v1.26 APK audit surfaced these visible resource-name categories:
+
+| Character | Model/XML | Atlas | Audio | Skill art |
+|---|---|---|---|---|
+| Kurenai | Found | Found | Found | Found |
+| Might Guy | Found | Found | Found | Found |
+| Yamato | Found | Found | Found | Found |
+| Hashirama Senju | Found | Found | Found | Not confirmed |
+| Shizune | Not confirmed | Found | Found | Not confirmed |
+| Rin Nohara | Not confirmed | Found | Found | Not confirmed |
+
+**Interpretation:** “Found” means a matching path/name string was visible in the packed NSKP index. The underlying payload remains packed; this is not proof that the actual file bytes are available, valid, or compatible with the source importer. “Not confirmed” means this audit did not find a matching name; it does not prove the asset does not exist. The importer must continue to reject partial packages.
+
+### All remaining named release-note leads
+
+Queue Sasori, Zetsu, Iruka, Sakon & Ukon, Juzo, Jonin Minato, Jirobo, Tayuya, and Anko for the same source/resource investigation. Also include additional distinct fighters discovered from public Senki mod source repositories, after checking that they are not already in the base roster and are independently selectable.
+
+For every candidate, seek editable source/resources and trace the source revision and provenance. Map character logic, ID/selection slot, animation and atlas dependencies, skills/effects, audio/voice, player controls, AI, skill/profile/kill-feed UI and death/respawn lifecycle. If source packages cannot be obtained, the alternate path is a genuinely original implementation using independently created art/audio and native V2 systems—not claiming a packed release character was ported.
+
+Current result remains unchanged: no new distinct character has been completed from this resource-name audit. Two Sage Toads remains a Choji-based variant; no external character is gameplay-verified.
