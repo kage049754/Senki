@@ -39,12 +39,14 @@ Do not spend roster-expansion effort recounting V2 forms, summons, clones, or su
 **Exit gate:** reproducible V2-based build and source provenance are documented; install/startup are separately tested on the phone.
 
 ## Phase 2 — Discover external playable characters (ACTIVE)
-**Status: research in progress; no external character integrated**
+**Status: resource-name audit complete; source-level ports still blocked on editable packages or original replacement implementations**
 
 - [x] Review public Senki mod repositories and release histories.
 - [x] Record leads including Shizune, Hashirama, Rin, Sakon & Ukon, Juzo, Kurenai, Might Guy, Yamato, Sasori, Zetsu, Iruka, Jirobo, Tayuya, and Anko.
 - [x] Inspect several V2 forks and legacy Cocos2d-x sources; many repeat the base roster or expose support/NPC implementations only.
-- [ ] Continue searching for complete, inspectable source/resource implementations from other Senki mods.
+- [x] Inventory visible release-pack resource names for the six priority characters (names only; payloads are packed and not importable by the current importer).
+- [ ] Continue searching for complete, inspectable source/resource implementations from other Senki mods and forks.
+- [ ] If no editable package is found, build an original compatible implementation with independently created assets; never call a name-only audit a port.
 - [ ] Verify that each candidate is independently selectable or map a concrete adaptation path.
 - [ ] Compare exact dependencies with the pinned V2 candidate and identify duplicates.
 - [ ] Track source revision, code license, asset/audio provenance, and permission evidence.
@@ -98,9 +100,9 @@ For every code-affecting change: inspect latest run for exact commit → wait wh
 
 ## Current blocker and next task
 
-External characters integrated: **0**. External characters verified playable: **0**. Page 4/5 image-style pagination is engineering groundwork only.
+External character variants integrated: **1 — Two Sage Toads** (Choji-based variant, not a distinct base character). Distinct external characters verified playable: **0**. Page 4/5 image-style pagination is engineering groundwork only.
 
-**Next:** continue external-source discovery for a distinct, independently selectable character with inspectable source/resources and a clear provenance/permission path. Map all dependencies, then start the first complete port in a page 1–3 slot. Avoid further duplicate roster-counting unless needed to check a specific candidate.
+**Next:** run source-level discovery across all six priority targets and the remaining release-note leads. Prefer the first candidate with editable character logic plus sprite/atlas, animation, skills/effects, AI/input, selection/profile/kill-feed UI and audio where available. If no complete source package can be found, implement an original compatible character from independently created assets and native V2 systems. Then complete the first full port in a page 1–3 slot and repeat in batches; do not mark any character complete until its full gameplay gate passes.
 
 ## Related records
 
