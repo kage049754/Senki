@@ -142,4 +142,20 @@ sound_event_counts = [
 assert sound_event_counts and any(count > 0 for count in sound_event_counts), (
     "The audit did not recognize any animation XML audio event references"
 )
+
+off_roster_heading = "## Off-roster character package leads (not counted as playable)"
+assert off_roster_heading in report, "Off-roster character package inventory is missing"
+off_roster_section = report.split(off_roster_heading, 1)[1].split("## Interpretation rules", 1)[0]
+off_roster_header = next((line for line in off_roster_section.splitlines() if line.startswith("| Candidate |")), None)
+assert off_roster_header is not None, "Off-roster candidate table header is missing"
+assert len(cells(off_roster_header)) == 9, "Off-roster candidate table must have nine columns"
+assert "Han" in off_roster_section and "Roshi" in off_roster_section, (
+    "Known Han/Roshi guardian resource packages must remain visible as research leads"
+)
+assert "File presence alone does not establish a selectable/playable character." in off_roster_section, (
+    "Off-roster resource leads must not be presented as verified playable characters"
+)
+assert "Han" not in [row[0] for row in rows] and "Roshi" not in [row[0] for row in rows], (
+    "Guardian-only Han/Roshi leads must not inflate the visible playable roster count"
+)
 print(f"Character audit report is well-formed: {len(header_cells)} columns, {len(rows)} rows, portrait coverage {coverage.group(1)}/{coverage.group(2)}, skill-label coverage {labels.group(1)}/{labels.group(2)}, sprite atlases/textures {len(detail_rows)-len(missing_atlas)}/{len(detail_rows)}, audio event refs recognized.")
