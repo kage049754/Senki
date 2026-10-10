@@ -483,3 +483,8 @@ This is a successful **diagnostic candidate build**, not a final unified release
 - [x] APK artifact `naruto-senki-v2-candidate-debug-apk`, ID `11660410133`, size 83,334,545 bytes, SHA-256 `a48e46cf0467d0bab35717534aad02ecd8d6bfcaf0d6dd935fb6719c41264635`, expires 2026-10-24.
 - [x] Audit artifact `senki-character-package-audit`, ID `11659909978`, SHA-256 `a1f6650cb079a6bb5a8b46bc94a232b35e06f2f7dca79db0036d95cf0334b4bc`, expires 2026-10-24.
 - [ ] Physical-device UI/gameplay remains unverified. The current source inventory has 63 layout slots (3 pages at 21 slots/page), so pages 4 and 5 are generated and validated as future-ready controls but are not currently reached by this candidate's present roster count.
+
+
+## Artifact access warning — public repository — 2026-10-10
+
+GitHub API confirms `kage049754/Senki` is currently **public**. Therefore, the short-lived Actions APK artifacts are not private to the user; people with public repository read access may be able to download them during the retention window. The workflow's “private testing” wording describes intended use, not access control. The APK contains the third-party V2-derived game's resources and is not permission-cleared for redistribution. Do not describe this artifact as a private release. Repository visibility has not been changed; that would require the user's explicit decision.
