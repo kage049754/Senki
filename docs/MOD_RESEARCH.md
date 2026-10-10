@@ -811,3 +811,21 @@ Additional repositories inspected after the prior checkpoint:
 ### Result and next action
 
 This search pass still found **zero permission-cleared, source-editable external character packages that can responsibly be integrated now**. Repositories with only changelogs, packaged releases, duplicate stock rosters, or unclear rights cannot be treated as character additions. I will not extract an APK or silently copy unlicensed sprites/audio/code just to inflate the count. The next valid step is to locate a source/resource package with explicit reuse permission, or obtain permission from its author, then port one character completely and validate it in-game. Current external additions integrated/playable remain **0/0**.
+
+## Follow-up repository search — 2026-10-10
+
+A fresh GitHub repository search found three additional mirrors/forks of the previously inspected Cocos2d-x 2.2.6 modernization project:
+
+- [Heachy/NarutoSenki-cocos2dx](https://github.com/Heachy/NarutoSenki-cocos2dx) — GitHub API identifies it as a fork of [LeaderOnePro/NarutoSenki-cocos2dx](https://github.com/LeaderOnePro/NarutoSenki-cocos2dx), with no declared license.
+- [dadafei8/NarutoSenki-cocos2dx](https://github.com/dadafei8/NarutoSenki-cocos2dx) — fork of the same parent, with no declared license.
+- [wuhewanxiang/NarutoSenki-cocos2dx](https://github.com/wuhewanxiang/NarutoSenki-cocos2dx) — fork of the same parent, with no declared license.
+
+The repository metadata confirms these are forks of the same parent, not independent implementations. The search result alone does not establish unique character content; they are not new-character sources unless a meaningful code/resource diff proves otherwise. No code or assets were copied.
+
+### Result of this search pass
+
+- New repository leads checked: 3.
+- Confirmed independent new playable character implementations: 0.
+- External characters integrated into the central V2 candidate: 0.
+- External characters verified playable: 0.
+- Next search should favor meaningful mod forks with documented character additions and inspectable source/resource files, rather than mirrors of the same legacy source tree. Continue using release notes to discover candidate names, then find actual source implementations and record provenance before any port.
