@@ -53,9 +53,19 @@ Target: at least 70 verified playable characters. The registry itself must not h
 ## Current verified roster
 **Verified playable character count: NOT YET MEASURED.**
 
-**Source inventory (not runtime-verified):** the pinned Android-clean candidate's original roster defines 37 unique selectable names. The current CI patch exposes six additional existing native forms on page four, for **43 selectable entries but only 37 distinct base characters** across 84 slots/four pages. The target gap is **33 additional distinct characters** to reach 70; alternate forms do not count as new base characters. The five Pain-path C++ headers are implementation classes, not separate selectable roster entries. Gameplay-verified count remains unmeasured. See `PROGRESS.md` for the latest build and artifact.
+**Source inventory (not runtime-verified):** the pinned Android-clean candidate's original roster defines 37 unique selectable names. The current CI patch exposes six additional existing native forms on page four and adds the Two Sage Toads mod variant, for **44 selectable entries but only 37 distinct base characters** across 84 slots/four pages. The target gap remains **33 additional distinct characters** to reach 70; alternate forms and replacement-based mod variants do not count as new base characters. The five Pain-path C++ headers are implementation classes, not separate selectable roster entries. Gameplay-verified count remains unmeasured. See `PROGRESS.md` for the latest build and artifact.
 
-No individual character is marked VERIFIED by this initial tracker. Populate entries only after inspecting the actual project and testing the character.
+No individual character is marked VERIFIED by this tracker. Populate entries only after inspecting the actual project and testing the character.
+
+## Current external mod integration — Two Sage Toads
+
+- **Status:** IMPLEMENTED in the CI candidate; **not gameplay-verified**.
+- **External source:** [LeaderOnePro/NarutoSenki1.17Mod](https://github.com/LeaderOnePro/NarutoSenki1.17Mod), pinned by CI to commit `8c800efe09f8e5489f37ee3314596b329f533225`.
+- **New roster ID/display name:** `TwoSageToads` / Two Sage Toads. Added as a separate selectable entry; existing Choji remains available.
+- **Integrated package:** modded character atlas and skill atlas; V2-compatible animation XML; audio package with fallbacks; native enum/Provider dispatch; selection portrait/name handling; UI atlas aliases; resolved XML-to-atlas frame references.
+- **Important limitation:** this is a Choji-replacement mod adapted as a separate variant. It reuses Choji's native combat/AI and skill behavior as a compatibility baseline; it does **not** yet have a unique Two Sage Toads moveset.
+- **CI evidence:** [run #223 — SUCCESS](https://github.com/kage049754/Senki/actions/runs/38049878750), commit `9ad6ad5a8d6e2716d1a9735817c2f807c64b93d9`. APK artifact ID `11668738659`; audit artifact ID `11668783626`.
+- **Remaining verification:** install the APK on a phone, confirm selection art/preview, start a battle, test movement/attacks/skills/AI/death/respawn, and inspect for missing sprites/audio/crashes. Do not count this variant toward the 70 distinct-base-character goal.
 
 ## Batch verification checklist
 - [ ] IDs are unique and stable.
