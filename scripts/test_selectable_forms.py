@@ -11,6 +11,7 @@ basic = (game / "lua/class/basic.lua").read_text(encoding="utf-8")
 select = (game / "lua/ui/SelectLayer.lua").read_text(encoding="utf-8")
 skill = (game / "lua/ui/SkillLayer.lua").read_text(encoding="utf-8")
 enum = (game / "Classes/Enums/HeroEnum.h").read_text(encoding="utf-8")
+character_base = (game / "Classes/CharacterBase.cpp").read_text(encoding="utf-8")
 forms = {
     "SageJiraiya": ("Jiraiya", "Sage Jiraiya", "Jiraiya"),
     "ImmortalSasuke": ("Sasuke", "Immortal Sasuke", "Sasuke"),
@@ -62,6 +63,19 @@ for name, (alias, display, skill_alias) in forms.items():
 for fragment in ["skillUiAlias[self.selectHero] or self.selectHero", "local skillFrameOk, skillFrame = pcall(display.newSpriteFrame, imgPath)", 'text = "Skill description unavailable"']:
     if fragment not in skill:
         raise SystemExit(f"Missing safe skill-view handling: {fragment}")
+
+# These are the existing native form-transition paths, not just names in a UI list.
+transformations = [
+    ("HeroEnum::Naruto", "HeroEnum::SageNaruto"),
+    ("HeroEnum::SageNaruto", "HeroEnum::RikudoNaruto"),
+    ("HeroEnum::Jiraiya", "HeroEnum::SageJiraiya"),
+    ("HeroEnum::Sasuke", "HeroEnum::ImmortalSasuke"),
+    ("HeroEnum::Lee", "HeroEnum::RockLee"),
+    ("HeroEnum::Pain", "HeroEnum::Nagato"),
+]
+for base_name, form_name in transformations:
+    if base_name not in character_base or form_name not in character_base:
+        raise SystemExit(f"Native transformation path is missing: {base_name} -> {form_name}")
 select_plist = (game / "Resources/Select.plist").read_text(encoding="utf-8", errors="replace")
 for name in forms:
     if f"<key>{name}_half.png</key>" not in select_plist:
