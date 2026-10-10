@@ -263,3 +263,8 @@ The current CI patch exposes these six native forms in page four. Their native e
 - [x] Automated report states 43/70 declared names (27 more entries needed) and explicitly does not measure gameplay-verified playable count.
 - [ ] None of the 43 declared entries should be called VERIFIED until selection, battle spawn, movement, attacks, skills, AI, death/respawn, and device/runtime checks are completed.
 - [ ] Continue sourcing compatible, editable character implementations; asset-only or APK-only leads remain research references.
+
+
+## Native enum-only entity audit — 2026-10-10
+
+The pinned V2-derived candidate has 52 enum names but only 37 original selectable names before the six central form entries. The six existing forms are now exposed, for 43 declared selection names. The other enum-only entries include Pain paths, Naruto clones, and a shared Guardian implementation. These are not counted as playable characters because their complete standalone selection assets, player skill/control kits, and gameplay behavior have not been verified. See `docs/MOD_RESEARCH.md` for exact names and paths.
