@@ -1,7 +1,7 @@
 diff --git a/projects/NarutoSenki/lua/ui/SelectLayer.lua b/projects/NarutoSenki/lua/ui/SelectLayer.lua
 --- a/projects/NarutoSenki/lua/ui/SelectLayer.lua
 +++ b/projects/NarutoSenki/lua/ui/SelectLayer.lua
-@@ -19,5 +19,6 @@
+@@ -19,5 +19,8 @@
      self.enableHardCore = false
  
 -    self.pageNum = 3
