@@ -1,178 +1,98 @@
-# Mandatory Instructions for AI Agents — READ FIRST
-> **PRIMARY PRIORITY — EXTERNAL SENKI MOD CHARACTERS:** Find characters that are actually implemented in OTHER Naruto Senki mods, then integrate those implementations into this existing Naruto Senki V2 project. Do not spend roster-expansion work auditing, recounting, renaming, or exposing characters/forms/summons already present in the current V2 source. Existing V2 content may be checked only as needed to confirm compatibility and avoid duplicates. Prioritize genuine external-mod characters and their complete implementation (selection portrait/name, sprites/animations, skills/effects/audio, player controls, AI, profile/skill display, and kill/death UI). Work on available slots on pages 1–3 first; preserve the original image-based page buttons and touch behavior. Do not claim an addition until the character is integrated and tested.
+# Mandatory AI Agent Instructions — Senki Mod Integration
 
-## Absolute project rule
+**Read this file before acting.** The mission is to integrate distinct playable characters from other Naruto Senki mods into the existing Naruto Senki V2 game. This is not greenfield game development.
 
-**THIS PROJECT IS FOR MODDING AND MERGING EXISTING NARUTO SENKI PROJECTS. DO NOT CREATE A NEW GAME.**
+## 1. Mandatory reading
 
-The central repository is `kage049754/Senki`. The user selected Naruto Senki: V2 as the target game. Use https://github.com/Naruto-Senki/files/releases and the v2.1.6-fix reference at https://github.com/Naruto-Senki/files/releases/tag/v2.1.6-fix; see docs/BASE_GAME.md. This repository is the integration workspace, not a mandate to invent a new engine. Release assets are packaged binaries, not editable source; verify and import actual source before source-level modding. The intended result is one unified modded version of an existing Naruto Senki game.
+At the start of every session, read README.md, AGENTS.md, ROADMAP.md, PROGRESS.md, docs/MOD_RESEARCH.md, docs/ASSET_LICENSES.md, and docs/CHARACTER_ROSTER.md. Inspect the latest commit and Actions run before assuming current status. Historical notes are not current state.
 
-If older instructions, roadmap entries, issues, or code encourage building a game from scratch, these rules override them. Pause new-game development. Inspect the existing Kotlin/Canvas prototype scaffold, but do not extend it as the final engine. First identify and verify the most suitable existing Senki source/base. Only decide what to retain, replace, or remove after the source audit.
+## 2. Non-negotiable rules
 
-## Mandatory reading at the start of every task
+- Work in https://github.com/kage049754/Senki.
+- Target the existing Naruto Senki V2 game; do not create a separate game or replacement engine.
+- Preserve the native Cocos2d-x/C++/Lua architecture and battle lifecycle wherever possible.
+- **Prioritize external-mod playable characters.** Do not spend roster-expansion work recounting or exposing current V2 forms, summons, clones, enum values, or support entities. Inspect current V2 only to check duplicates and compatibility.
+- Fill available slots on pages 1–3 first. Never silently overwrite an existing character.
+- Keep original page 1–3 image-based buttons and touch behavior. Pages 4/5 must use matching image-style normal/selected buttons, not text-only controls.
+- Preserve original training/network/exit, mode-menu, and character-selection backgrounds unless the user requests a change.
+- Aim for 70+ distinct playable characters, but never pad the roster with placeholders, forms, summons, or untested names.
+- Keep code, asset, audio, source revision, and permission provenance accurate.
+- CI success is not physical-device testing.
 
-1. Read `README.md`.
-2. Read this file completely.
-3. Read `ROADMAP.md` and `PROGRESS.md`.
-4. Read `docs/MOD_RESEARCH.md` before investigating/importing external mods.
-5. Read `docs/ASSET_LICENSES.md` before any reuse.
-6. Read roster/scalability docs before roster changes.
-7. Inspect current tree, latest commits, candidate upstreams/forks, and latest Actions run before assuming anything.
+## 3. Required work loop
 
-## Correct workflow: research → choose base → merge
+1. Read instructions, relevant source, and current progress.
+2. Choose the smallest meaningful action that advances external-character discovery/integration or a necessary test.
+3. Inspect the candidate's actual source files, architecture, dependencies, exact revision, upstream/fork relationship, and build process.
+4. Check code and asset terms. Public visibility is not a reuse license. Do not extract code/assets from packaged APKs or copy unclear-rights content into a distributable build. Continue research and compatibility analysis when rights are unresolved.
+5. Implement in small, reversible batches using the game's native character systems.
+6. Run relevant static/regression checks.
+7. Commit the real change with a clear message.
+8. Inspect the newest Actions run for the exact commit. If queued/running, wait and poll; do not start a conflicting build.
+9. If failed, inspect the failing step and actual logs, fix the root cause, commit, rerun, and repeat until success or a genuine blocker.
+10. Verify the exact run's conclusion and artifact. Update PROGRESS.md with run URL, commit, artifact name, and test limitations.
+11. Continue to the next roadmap action; do not stop after merely pushing a workflow.
 
-1. Search for existing Naruto Senki source repositories and mod projects.
-2. Inspect repository tree, source files, engine/version, build scripts, dependencies, history, upstream/fork relation, and licenses.
-3. Compare candidates and document evidence. Do not assume any previously mentioned candidate is compatible or permitted.
-4. Select one existing, buildable Senki project as the base and record the decision in the research docs before large implementation changes.
-5. Preserve that game's engine and core mechanics wherever possible.
-6. Integrate compatible modded characters, skills, animations, effects, maps, UI, and other content into the chosen base. Resolve naming/ID/resource conflicts and engine-version differences.
-7. Keep one central integration workspace and one final APK. Do not produce a family of disconnected game implementations.
-8. Verify each merge by building and testing it. A code copy or successful build alone does not prove a character is playable.
-9. Keep source attribution, license, and asset provenance records accurate.
+Do not invent success. If the tools cannot wait/poll further, state the last verified state precisely.
 
-## Prohibited behavior
+## 4. Research requirements for every external character
 
-- Do not design or implement a replacement game engine as the main deliverable.
-- Do not continue expanding the standalone Kotlin/Canvas prototype into a new game while base selection is unresolved.
-- Do not invent new gameplay systems as a substitute for finding/merging existing Senki systems.
-- Do not claim that a repository, mod, character, animation, or asset was inspected/merged unless evidence exists.
-- Do not blindly merge complete repositories or APKs.
-- Do not extract and redistribute APK assets or copyrighted content without permission.
-- Do not assume a public GitHub repository means its code/assets are free to reuse.
-- Do not call forks independent projects without comparing changes.
-- Do not report queued/running/failed CI as success or claim physical-device tests without actually performing them.
+Verify that the candidate is actually implemented in another Naruto Senki mod, is independently selectable/player-controllable or has a concrete adaptation plan, and has inspectable source/resource files. Map:
+- character ID/class and selection roster/slot;
+- portrait, atlas, textures, sprite/model, animation frames/transitions;
+- movement, basic attacks, all skills, projectiles/effects and dependencies;
+- audio/voice/SFX references where available;
+- player input/control path and AI behavior;
+- skill icons/names/descriptions, profile view, kill/death/report UI;
+- spawn, death/respawn, cleanup and resource lifecycle;
+- source revision, upstream/fork relation, license and asset permissions.
 
-## Merge engineering rules
+Do not treat release-note-only names, APK-only contents, portraits without gameplay, summons/guardians, AI-only NPCs, clones, alternate forms, or enum-only IDs as complete new playable characters.
 
-- Prefer adapting content to the selected base's native architecture rather than replacing the architecture.
-- Maintain a source inventory: canonical URL, upstream/fork relationship, inspected paths, engine, buildability, license/asset terms, useful content, and integration status.
-- Preserve existing gameplay behavior unless the requested mod integration requires a documented change.
-- Standardize identifiers/resources only as needed for compatibility; preserve meaningful variants with distinct gameplay.
-- Make changes in reviewable batches, with a build/test after each batch.
-- If source or asset permission is unclear, mark it reference-only or excluded until clarified.
-- Roster scalability (including 70+ if practical) is a content goal, never a reason to start a new game engine.
+## 5. Completion checklist
 
-## Build and failure loop
+A character is not integrated because a name or icon appears. Before marking it VERIFIED, check:
+- [ ] Unique stable ID and correct display name.
+- [ ] Matching selection portrait and correct resource/atlas frame.
+- [ ] Character sprites/model, animation, movement/facing and basic attack.
+- [ ] Every intended skill, cooldown/resource use, projectile and effect.
+- [ ] Skill icon/name/description and selected-character profile where supported.
+- [ ] Audio/voice/SFX references where available and authorized.
+- [ ] Player controls and AI.
+- [ ] Battle spawn, death/respawn, kill/death/report identity.
+- [ ] Resource loading/cleanup and no blocking crash.
+- [ ] Regression checks, CI build, and actual runtime evidence recorded.
 
-For every integration milestone:
-1. Inspect the latest workflow run.
-2. Wait/poll if queued or running, when tools allow.
-3. On failure, inspect the actual failed job/step logs.
-4. Fix the identified cause directly in the repository.
-5. Commit and rerun.
-6. Repeat until a completed successful run is verified or a real blocker is documented.
-7. Verify the APK artifact and record its exact name and run link.
-8. Separate CI/package verification from real Android installation/gameplay testing.
+Track page/slot and evidence in docs/CHARACTER_ROSTER.md. A static audit/build does not prove gameplay.
 
-If the current tool session cannot keep polling in the background, report the exact last verified state; never pretend work continued.
+## 6. UI invariants
 
-## License and fan-project rule
+- Original page buttons 1–3 retain image-based art and touch behavior.
+- Pages 4/5 use image-style normal/selected controls matching the original design.
+- Keep original menu/selection backgrounds.
+- Do not displace existing characters without explicit direction.
+- Test navigation, selection, portraits, profile/skill view, and back navigation. When enough entries exist, test all five pages and taps.
 
-The user may choose to describe this as a fan-made/non-commercial project, but that does not waive external source licenses or third-party asset rights. The repository root LICENSE covers only original contributions made for this repository; it must not be presented as a license for external Naruto Senki source/assets. Keep unlicensed source/assets as reference-only until terms or permission are established. Read NOTICE.md and docs/V2_BUILD_AUDIT.md.
+## 7. GitHub Actions failure/success loop
 
-The repository now has a `build-v2-candidate` workflow that clones the pinned `muhammadadilsyaputra08-alt/NarutoSenki-Custom` V2-derived source into a temporary runner workspace, applies source-controlled patches, builds a diagnostic APK, and verifies its package/artifact. This is evidence that the patched external candidate builds in CI, not that the full source has been vendored into this repository or that the APK is a finished release. The older legacy prototype scaffold, if built by a separate workflow, must not be reported as the target game.
+The primary workflow is .github/workflows/v2-source-smoke.yml. It is path-filtered; documentation-only commits may not trigger it. Never make meaningless code changes just to force CI.
 
-## Documentation duties
+For each code/patch/script/artwork change: identify the run for the exact commit; wait for queued/running jobs; inspect logs on failure; fix root cause; commit and rerun; wait again; verify completed/success and artifact existence. Report source tests, APK packaging/signature/ABI, and phone testing as separate facts. For infrastructure or permission blockers, report the real blocker.
 
-Update `ROADMAP.md` and `PROGRESS.md` after meaningful work. Update `docs/MOD_RESEARCH.md` for source inspections/base decisions; update `docs/ASSET_LICENSES.md` for provenance and permission decisions. Keep planned, copied, integrated, built, and device-tested content as separate states.
+## 8. Documentation
 
-**Remember every session: we are modding/merging an existing Naruto Senki game. We are not creating a new game.**
+After material changes, update only relevant files:
+- README.md — mission and high-level status.
+- ROADMAP.md — phase, next task, exit gate.
+- PROGRESS.md — exact commits/runs/artifacts and honest status.
+- docs/MOD_RESEARCH.md — source evidence.
+- docs/CHARACTER_ROSTER.md — per-character status/tests.
+- docs/ASSET_LICENSES.md — provenance and permissions.
 
-## User's personal-use modding priority (2026-10-10)
-The user explicitly prioritizes building a personal Naruto Senki mod and wants research to continue even when a candidate has no explicit reuse license or permission statement. Do not stop source discovery, compatibility analysis, or private build experiments solely because a public repository lacks a license. Continue examining publicly accessible Senki forks, mods, releases, source snapshots, and game resources; compare and test promising candidates; record provenance and technical findings; and prioritize getting a complete Android build running for the user's personal testing.
+Do not paste long duplicated checkpoints into every file. Keep one concise authoritative status and link to detailed evidence.
 
-Do not repeatedly interrupt progress with generic permission warnings. Keep legal/licensing discussion brief and only raise it when it materially affects a concrete step. Do not misrepresent a license, bypass access controls, break into private systems, or claim the user has redistribution rights. Never treat public visibility as proof of a license. The immediate engineering goal is private mod development/testing, not publishing a redistributed package. Keep candidate imports traceable so the user can choose how to handle a future public release.
+## 9. Definition of done
 
+The project is done only when the unified V2-based APK includes the intended external characters, regression checks pass, a real artifact is verified, and installation/startup/selection/battle/skills/death-respawn have been checked on the user's phone. A successful CI build alone is not done.
 
-## Central patch and artwork workflow
-- Keep the pinned Android-clean V2-derived source as the current lead base. Do not replace it with a new engine or the separate LAN branch wholesale.
-- Implement modifications as ordered unified patches under `patches/android-clean/NNNN-*.patch`. Keep original editable vector art under `artwork/`; generate PNG assets in the build workflow rather than committing generated binary outputs.
-- The candidate workflow must apply every patch in sorted order, render required artwork, build the real V2 source, inspect the APK package metadata, verify required assets are inside the APK, and upload a short-lived Actions artifact.
-- After any failure, inspect actual logs, correct the cause, rerun, and verify the final run/artifact. Do not call a build successful while queued/running/failed/cancelled.
-- CI success is not proof of a correct visual layout, touch behavior, installation, or gameplay. Track phone testing separately and do not claim it happened unless confirmed.
-- For the next screen work, preserve the existing hero roster, character selection mechanics, battle scene, skills/HP/level, minions, and towers. UI changes must not replace the underlying Naruto Senki V2 gameplay with a new prototype.
-
-
-## Current UI work status
-- Source-controlled editable artwork now covers launcher icon, main menu, loading screen, and character selection.
-- Build workflow renders the SVG artwork, applies patches in filename order, builds the pinned V2-derived source, and verifies the generated background assets inside the APK.
-- Preserve the original mode carousel, hero roster/grid/paging, selection behavior, and battle mechanics. Make coordinate/touch changes only after observing the actual device layout; don't assume CI proves visuals are correct.
-
-## Complete character integration contract
-
-When asked to add a character, do not stop after adding a name, portrait, or selection-grid slot. Inspect the target character's actual source implementation and assets, then integrate and verify every applicable layer:
-
-- **Selection identity:** character ID, display name, portrait/avatar, selection entry, correct touch/selection behavior, and a preview if supported.
-- **Skill display:** the character's actual skill names, icons, and descriptions in the skill view when the base supports it. Skill information must correspond to the real combat implementation; do not invent working skills from icons alone.
-- **Assets/animation:** sprites or model, sprite sheets/plists, animation definitions, idle/move/run, basic attack, skill/cast, hit/damage, knockback, death, and other states required by the engine.
-- **Combat logic:** movement, attack timing, hitboxes, damage, cooldowns, projectiles/summons, special skills, visual effects, sound effects, and resource/config references.
-- **Player and AI:** player controls invoke the correct attacks/skills; AI-controlled copies can move, choose attacks/skills, and respond to combat without crashes.
-- **Registration/integrity:** selection roster, character IDs/classes, C++/Lua/XML/plist/config references, resource paths, and effect/sound links must all point to the intended character. Avoid ID collisions and accidental replacement of an existing fighter.
-- **Kill/death feedback:** investigate the base game's battle-event and UI systems. Where feasible, show the actual killer and defeated character with both portrait/avatar and name on kill/death events, plus a clear message such as "Naruto defeated Sasuke." Update existing counters/score/game-over logic consistently. Do not falsely attribute a kill to the selected character when a different AI/ally made it.
-- **Tests:** build and inspect the packaged APK; test character selection and preview, skill panel, movement, basic attacks, each skill, hit detection/damage, animation/effects/sounds, AI, death/respawn, and kill/death attribution. CI success alone is not gameplay verification.
-
-Track each fighter with explicit states: **discovered → source inspected → ported → build-verified → gameplay-verified**. A portrait, name, or skill icon alone is not a playable character. If an implementation or asset is missing, document the gap and complete it rather than marking the fighter done.
-
-For roster pagination, preserve the original image-based page buttons 1–3 and their touch behavior. Pages 4+ must use matching image-based normal/selected button visuals and functional hit targets, not a different-looking text-only clickable control. Pagination only exposes roster entries; it does not make those entries playable.
-
-
-
-## Original background rollback requirement (user-requested, 2026-10-10)
-
-Preserve the original Naruto Senki main-menu/mode-carousel background and the original character-selection background. The main menu here is the interface with Training, Network, and Exit. Do not apply 0004-custom-character-select-background.patch or 0005-custom-main-menu-background.patch; do not generate or package senki_select.png or senki_menu.png as replacements. Preserve original decorative layers and selection/menu callbacks. The loading screen is a separate asset and may remain customized. After changing the build recipe, verify a fresh APK build and clearly separate CI evidence from visual confirmation on the phone.
-
-## Full character integration contract
-
-For each requested new character, connect and validate all of the following where the V2 engine/source supports it: selection portrait/avatar and display name; selection preview; skill names/icons/descriptions; character sprites/model and animation states; movement and basic attacks; hit detection/damage; character-specific skills, cooldowns, projectiles/summons and effects; sound; player controls; computer AI; stable IDs and resource/config references. A portrait or skill icon alone is not a playable character. Test that the selected entry maps to the correct combat implementation and does not overwrite another roster entry.
-
-For kill/death identity UI, inspect existing combat, damage, death, scoring, and game-over hooks first. Where supported, show the actual killer and victim portraits/names and optional supported counters; verify that the correct killer/victim are identified for player, ally, and AI kills. Do not mark this complete without runtime testing.
-
-
-## Required complete-character package — applies to every added fighter/form
-
-Do not implement a character as just a roster entry, portrait, sprite, or skill icon. Before porting it, search the complete source tree and record a per-character manifest with exact file paths, source revision, provenance/permission, and one of these states for every category: FOUND, ADAPTED, CREATED, NOT APPLICABLE (with reason), MISSING, or BLOCKED.
-
-1. **Selection and identity:** display name, stable ID/form ID, portrait/avatar, button/thumbnail normal and selected states, preview art/model/sprite, and working select/confirm flow.
-2. **Skill display:** actual skill names, icons, descriptions, slot/order, and supported cooldown/cost information. These must correspond to the actual combat functions, not placeholder UI.
-3. **Character art/animation:** sprite/model, atlas/texture/plist, idle, movement/run, facing, basic attacks, casts/skills, hit/damage, knockback, death, transformation/ultimate, and any other states used by the code.
-4. **Audio:** search for and inventory voice clips/voice lines when the source includes them or the design requires them, plus attacks, skills, hit, summon, transformation, and other character-specific sound effects. Never silently claim voice assets exist. If a category has no source asset, document whether it is genuinely not applicable or is a missing completion requirement; do not substitute unrelated sounds without documenting the adaptation.
-5. **Skills and effects:** every skill's logic, animation, projectile/summon, particles/effects, hitbox, damage, cooldown, costs, and all referenced resources/config values.
-6. **AI integration:** explicitly register the character in existing computer-controlled character selection/spawn pools and AI dispatch logic where the mode supports it. Verify AI can select/spawn the character, navigate/move, use basic attacks and every supported skill under valid range/state/cooldown conditions, and handle transformations/summons without crashing. Include team/random selection paths when present. Player selection alone is not proof of AI support.
-7. **Resource/ID integrity:** all C++/Lua/XML/plist/config, character class, animation, UI, effect, and audio references resolve to the correct fighter; IDs are unique; existing characters are not accidentally overwritten.
-
-Use only assets whose reuse is permitted under the repository's provenance/permission rules. Record all missing categories and their impact. A character is not fully complete if required icons, selection art, animation states, voice/audio, skill behavior, or AI support is missing; it may only be reported as partial/incomplete with an explicit gap list. Mark a character playable-verified only after testing selection, preview, skill display, player combat, audio/effects, AI selection and combat, death/respawn, and resource stability. Keep build verification separate from runtime/device verification.
-
-## Expanded character asset manifest — mandatory for every character
-
-For every new or ported fighter, create a per-character manifest and audit the source before editing. A complete package covers:
-
-1. Identity: stable character/form ID, display name, character-select portrait/avatar, normal/selected roster button art, preview art/model/sprite, and selection callback.
-2. Skill view: the correct skill names, icons, descriptions and other fields supported by the base game's skill panel; every listed skill must map to a real implemented ability.
-3. Visuals: in-game sprite/model, texture/atlas, plist/frame names, animation definitions and all states the fighter needs (idle, move/run, attack, cast, skill/ultimate, hit, knockback, death, summon/transform).
-4. Combat: basic attacks, timing, hitboxes, damage, cooldowns, projectile/summon behavior, passive/active/ultimate mechanics when supported, status/effects, and correct references.
-5. Audio: voice clips/lines where available plus attack, skill/ultimate, hit, death, transformation and summon sound effects. Record file paths and event triggers. If a category has no source asset or is unsupported, mark it missing/not-applicable and state the reason; never silently substitute unrelated audio or claim it is complete.
-6. AI availability: trace how computer-controlled fighters are selected/spawned in every relevant supported mode. Register the character where required and test AI movement, basic attacks, range/state/cooldown decisions, every supported skill, summons/transforms, animation, sound and effects. A character selectable only by the human player is not AI-complete.
-7. Integrity: audit character IDs/classes, roster entries, Lua/C++, XML/plist/config, sprite frame names, skill IDs, audio/effect paths and selection/skill UI links for missing references and collisions.
-8. Feedback and verification: where the engine supports it, show correct killer/victim names and portraits on kill/death events. Build and inspect the packaged APK, then test selection, preview, skill view, controls, combat, each ability, effects/audio, AI selection/behavior, death/respawn and resource loading in-game.
-
-Do not copy an asset merely because it exists in a public repository or APK. Track source URL, upstream/fork, exact path/version, provenance and permission status. Missing voice lines or other source assets do not automatically forbid technical testing, but they must remain an explicit incomplete item. Never invent an asset or imply it was included from the source when it was not.
-
-A fighter may be marked PLAYABLE-VERIFIED only when its player path, combat implementation, all applicable resources and supported AI path have passed their relevant tests. Keep separate labels for source-discovered, source-inspected, ported, build-verified, and gameplay-verified.
-
-
-## User-mandated roster order (2026-10-10 — follow before page 4/5)
-
-The next roster task is **distinct new characters from other Naruto Senki mods in available slots on pages 1, 2, and 3 first**. Do not proceed to pages 4 or 5 as the main roster-expansion task until this first batch has been researched and handled.
-
-1. Inspect the real roster order, slot count, selection layout, and each candidate's source; preserve the original page 1–3 image buttons, touch behavior, and original backgrounds.
-2. Prioritize genuinely distinct characters from other Senki mods—not only transformations/forms of Naruto, Pain, Sasuke, Rock Lee, or Jiraiya. Record which exact slots change; do not silently replace originals.
-3. Check provenance, compatibility, and code/asset permissions before reuse. If permission is unresolved, keep the character as a research lead and do not import its assets.
-4. Each accepted character must have a complete package: display name/selection portrait, model or sprite sheets and animation data, attacks/movement/skills, skill names/icons/descriptions, effects, available audio/voice, AI and player controls, and battle/kill/death/profile references. Verify selection, spawn, skills, death/respawn, and resources.
-5. Do not count forms, placeholders, roster labels, portraits alone, or a passing static audit as newly playable characters.
-6. Only after a first verified batch is present on pages 1–3 should page 4 then page 5 be expanded with additional distinct characters. Generated page-button art is only navigation; it is not roster progress.
-7. Update README, ROADMAP, docs/CHARACTER_ROSTER.md, docs/MOD_RESEARCH.md, and PROGRESS.md when actual evidence changes. Never describe a candidate build as a final release or phone-tested APK.
-
-
-## Mandatory character portrait and slot mapping
-Every new selectable character MUST have its own matching character portrait/avatar in the exact selection slot assigned to that character. A name-only entry, blank image, unrelated image, or temporary placeholder does not satisfy this requirement. Use only assets with documented permission/license or approved original replacements. Verify the portrait's atlas/frame/resource path, crop, dimensions, and displayed name in the actual selection UI. Where the game supports them, connect the same character identity to skill/profile panels and kill/death displays. Track page, slot, stable character ID, display name, portrait file/frame, source and license, and test status in docs/CHARACTER_ROSTER.md. If any required portrait/resource is missing or mismatched, mark the character incomplete and do not count it as playable. Pages 1–3 remain the first priority; do not use this requirement as a reason to replace original characters or backgrounds.
+**Next action:** follow the active phase in ROADMAP.md. External-character sourcing and the first complete port on pages 1–3 outrank further roster recounting or cosmetic-only work.
