@@ -255,3 +255,19 @@ For every category, record exact paths and mark FOUND, ADAPTED, CREATED, NOT APP
 - [ ] Record asset manifest and test evidence before marking a character VERIFIED.
 
 **Completion rule:** a character is fully complete only when all applicable categories are accounted for and the player and AI tests pass. If voice/audio or any other required category is unavailable, state the exact gap instead of reporting full completion. The current 37 source-level roster names are not evidence that 37 characters have complete assets or working AI.
+
+## Mandatory character-completion gate (applies to Phases 3–6)
+
+Every character port in Phase 4/5 must pass this gate before being called complete. The task is to reuse and connect the full character implementation from a compatible existing source wherever available—not to add a name/portrait-only placeholder.
+
+- [ ] **Identity/selection:** stable ID, display name, correct portrait/avatar, normal + selected roster button artwork, preview, selection/start callback.
+- [ ] **Skill information:** correct skill names, icons and descriptions in the existing skill-view UI; listed abilities must match the implemented skills.
+- [ ] **Sprite/model/animation:** main sprite/model, atlas/texture/plist/config, idle, move/run, basic attack, skill/cast, hit/knockback, death and applicable ultimate/summon/transformation states.
+- [ ] **Combat:** movement, attack logic/range/timing, hitboxes, damage, cooldowns, passive/active/ultimate skills supported by the source, projectiles/summons, status effects, VFX and resource references.
+- [ ] **Voice and audio:** character voice lines/clips where available; attack, skill/ultimate, hit, death, summon and transformation SFX with correct triggers. Inventory files and trigger mappings. Missing or unsupported audio must be explicitly documented; never report it as included.
+- [ ] **Game AI:** register the fighter in the existing game's AI roster/selection/spawn logic where supported. Test AI movement, attack decisions, range/state/cooldown behavior and all supported skills/summons/transforms. Player-selectable is not equivalent to AI-selectable.
+- [ ] **Data integrity:** all IDs, roster/classes, C++/Lua/XML/plist/config references, skill definitions, animation frames, portraits, audio, effects and file paths resolve with no collisions.
+- [ ] **Match feedback:** where supported, correctly identify the actual killer and victim by name and portrait/avatar while retaining existing kill counts and game-over behavior.
+- [ ] **Verification:** build and inspect APK resources, then test character selection, preview, skill view, each attack/skill, animation/effect/audio triggers, AI roster selection/spawn, damage, death/respawn and supported modes. Record CI and physical-device tests separately.
+
+Maintain a per-character manifest in `docs/CHARACTER_ROSTER.md`. Mark unavailable assets as missing/blocked/not-applicable with evidence and source reason. Do not invent missing assets and claim they are original. Track states separately: DISCOVERED → SOURCE-INSPECTED → PORTED → BUILD-VERIFIED → PLAYABLE-VERIFIED. A portrait, icon, class file, or successful APK build alone never qualifies a character as complete.
