@@ -928,3 +928,12 @@ After the user's correction, the latest pass compared external release/source re
 - `Zx-Akito/NarutoSenki` (older Cocos2d-x 2.2.2 source) has editable C++ character AI and a small selectable roster, but the inspected selectable names (Naruto, Sakura, Sai, Itachi, Konan, Deidara, Sasuke, Karin, Jugo) are already represented in the V2 roster. It is not yet a source for a distinct new selectable character.
 - `LeaderOnePro/NarutoSenki1.17Mod` was confirmed by its root tree to be an APK/package extraction (`AndroidManifest.xml`, `classes.dex`, `assets/`, `res/`), not an editable source project; it cannot supply a source-level character port without relying on packaged binary extraction.
 - Decision: no new character port is justified by these comparisons. Continue searching for an external Senki mod with an independently selectable character implementation and complete source/resource package. Current integrated external characters remain **0**; do not count internal V2 forms or support entities.
+
+
+## Continued external-character work — 2026-10-10
+
+More repositories were inspected directly after the last checkpoint: `LeaderOnePro/NarutoSenki`, `LeaderOnePro/NarutoSenki-cocos2dx`, `sansaks-jpg/NarutoSenki-V2`, and `likill/NarutoSenki-master`. The two LeaderOnePro source trees expose editable C++ but their inspected selectable lists still match the existing core cast; AI-only references to Nagato, Han, Roshi, Pain paths, or forms are not proof of a new selectable external character. The sansaks V2 fork is the stock roster, and likill's expected V2 Lua path is absent. No checked root license was found for these candidates.
+
+**Character result:** no new character is being claimed or counted from this pass. External characters integrated: **0**; external characters verified playable: **0**. This is blocked by lack of a verified, permission-cleared external character source—not by pagination. Do not use APK extraction or copy unlicensed assets as a shortcut.
+
+**CI/artifact checkpoint:** run #204 remains the last verified successful Android diagnostic build, commit `e794b9c529b589b73b5ba5ab67fb3ec208937327`. Artifacts were present: `naruto-senki-v2-candidate-debug-apk` (83,340,076 bytes) and `senki-character-package-audit` (4,336 bytes). This run predates later documentation-only commits and does not verify external character integration or phone installation.
