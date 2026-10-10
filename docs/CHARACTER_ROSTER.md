@@ -431,3 +431,12 @@ Do not count these as integrations. Keep the target gap at 33 distinct base char
 - External character integrated into central V2 candidate: **0**.
 - External character verified playable: **0**.
 - Do not describe this source lead as a completed character addition.
+
+
+### Follow-up roster diff — external V2 fork check (2026-10-10)
+
+- Compared the visible `projects/NarutoSenki/lua/class/basic.lua` roster across `Zx-Akito/NarutoSenki-V2`, `kuiyr0810/NarutoSenki-V2`, `SILXNTRAY/NarutoSenki-V2`, `hitlabmodv2/NarutoSenki-V2`, `BF667/NarutoSenki-V2`, `4399erbai/NarutoSenki-V2`, and the pinned `muhammadadilsyaputra08-alt/NarutoSenki-Custom` candidate.
+- The inspected forks share the same core V2 visible roster pattern; none of those roster files surfaced the external release-note leads Shizune, Hashirama, Rin, Juzo, Jirobo, Tayuya, Anko, Yamato, Sasori, Zetsu, Iruka, or Kurenai. Do not treat another fork of the same roster as a source of new characters.
+- `Zx-Akito/NarutoSenki` (older Cocos2d-x 2.2.2 source) has editable C++ character AI and a small selectable roster, but the inspected selectable names (Naruto, Sakura, Sai, Itachi, Konan, Deidara, Sasuke, Karin, Jugo) are already represented in the V2 roster. It is not yet a source for a distinct new selectable character.
+- `LeaderOnePro/NarutoSenki1.17Mod` was confirmed by its root tree to be an APK/package extraction (`AndroidManifest.xml`, `classes.dex`, `assets/`, `res/`), not an editable source project; it cannot supply a source-level character port without relying on packaged binary extraction.
+- Decision: no new character port is justified by these comparisons. Continue searching for an external Senki mod with an independently selectable character implementation and complete source/resource package. Current integrated external characters remain **0**; do not count internal V2 forms or support entities.
