@@ -135,7 +135,24 @@ for name in names:
     active_xml_text = re.sub(r"<!--.*?-->", "", xml_text, flags=re.DOTALL)
     audio_events = len(re.findall(r"""<e\s+type=['"]setSound['"]>\s*Audio/[^<]+""", active_xml_text, re.IGNORECASE))
     xml_frames = set(re.findall(r"<f>\s*([^<]+?)\s*</f>", active_xml_text, re.IGNORECASE))
-    plist_frames = set(re.findall(r"<key>([^<]+)</key>\s*<dict>", plist_exact_text, re.IGNORECASE)) if plist_exact else set()
+    # A few native forms share animation frames with their base character, and
+    # skill frames may live in a separate *_Skill.plist beside the main atlas.
+    # Compare against all atlases packaged for the character plus its explicit
+    # SkillLayer UI/base-character alias; checking only Name.plist creates false
+    # missing-frame alarms for valid shared frames.
+    frame_atlas_paths = list(unit_dir.glob("*.plist"))
+    frame_alias = skill_ui_aliases.get(name)
+    if frame_alias and frame_alias != name:
+        alias_dir = GAME / "Resources/Unit/Ninja" / frame_alias
+        if alias_dir.is_dir():
+            frame_atlas_paths.extend(alias_dir.glob("*.plist"))
+    plist_frames = set()
+    for frame_atlas_path in dict.fromkeys(frame_atlas_paths):
+        try:
+            frame_atlas_text = frame_atlas_path.read_text(encoding="utf-8", errors="replace")
+        except OSError:
+            continue
+        plist_frames.update(re.findall(r"<key>([^<]+)</key>\s*<dict>", frame_atlas_text, re.IGNORECASE))
     missing_frame_refs = sorted(xml_frames - plist_frames)
     frame_coverage = f"{len(xml_frames - set(missing_frame_refs))}/{len(xml_frames)}" if xml_frames else "NO_XML_FRAMES"
     if missing_frame_refs:
