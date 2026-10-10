@@ -95,3 +95,16 @@ Continue source-level discovery for a complete, independently selectable externa
 - The Network/Hardcore list contains 35 non-empty selectable names, but those names all overlap the pinned Android-clean candidate roster; the same repository's Training list contains only nine.
 - The repository has no declared license/root LICENSE in the checked tree, and its legacy Cocos2d-x 2.2.2 setup has no verified Android build path.
 - Decision: reference-only; no character copied, no new external character integrated. Continue searching for a genuinely distinct character source with a clear permission path.
+
+## User-requested character priority — 2026-10-10
+
+The user explicitly requested these six characters for the external Senki character search and integration queue:
+
+1. Kurenai
+2. Might Guy (Guy)
+3. Yamato
+4. Shizune
+5. Hashirama Senju
+6. Rin (Nohara)
+
+Treat these as priority candidates to investigate in editable Senki mod source. This list is **not** evidence that they have been added. For each one, record the actual source/revision, selectable-character implementation, sprite/animation and skill/effect dependencies, portrait/skill/profile UI, audio/voice where available, AI/player controls, and code/art/audio provenance. Prefer a candidate with inspectable compatible source and a clear permission path; do not claim completion until integrated and tested through the character completion gate in README.md and ROADMAP.md.
