@@ -623,3 +623,15 @@ GitHub API confirms `kage049754/Senki` is currently **public**. Therefore, the s
 - [x] Character audit artifact `senki-character-package-audit`, ID `11661603360`, SHA-256 `3397364510d2db1177a5ae6bc7f442fa329b10afd632a989c83e188f18799943`; expires 2026-10-24.
 - [ ] Physical-device verification of skill-label rendering, tooltip switching, page 4/5 controls, and original backgrounds remains open.
 - [ ] The roster remains 43 distinct selection names. No new character was added by this fix; gameplay-verified playable count is still unmeasured.
+
+
+## Latest informative skill-description fallback — run #152 (2026-10-10)
+
+- [x] Corrected the form-label patch so existing forms use their base character's description labels, and Kabuto receives five readable skill descriptions when the source lacks its expected label frames.
+- [x] Descriptions are based on the pinned candidate's Kabuto class/XML comments and actions: Chakra Scalpel Activation; Nerve Strike Dash; Dead Soul Vault; Dead Soul Jutsu (Possession); Nehan Shojo: Final Slash.
+- [x] GitHub Actions run **#152** succeeded on exact workflow SHA `680ae6429e52e142ba10707ebd71d783525fc261`: https://github.com/kage049754/Senki/actions/runs/38031233006
+- [x] Lua syntax, form-resource regression, character audit, APK build, packaged skill-description checks, expanded roster packaging, signature/native ABI checks, and artifact upload passed.
+- [x] APK artifact `naruto-senki-v2-candidate-debug-apk`, ID `11661624590`, size 83,299,837 bytes, SHA-256 `a14c09e7c0d646504ee9b775a23e415cd25c28cc9476bac754dc9ac934f05193`; expires 2026-10-24.
+- [x] Character audit artifact `senki-character-package-audit`, ID `11662099251`, SHA-256 `fbd2915a317262947ba38b27dfe2f58db12efebbc827e85c656b6f8ceb52dead`; expires 2026-10-24.
+- [ ] Runtime rendering and tooltip scrolling still require Android device/emulator testing.
+- [ ] The roster remains 43 declared selection names; no new character was integrated. Gameplay-verified count remains unmeasured.
