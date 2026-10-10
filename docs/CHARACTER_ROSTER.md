@@ -85,3 +85,11 @@ Names mentioned in source release notes or mod descriptions belong in research r
 - [x] Identified Kabuto as a custom redesigned character unique to the Android-clean candidate compared with the LAN-enhanced candidate.
 - [ ] Test each selectable character in battle before counting it as verified playable.
 - [ ] Audit every character's class, XML/config, sprite/plist, animation/effects/audio, skill IDs, and selection portrait/button assets.
+
+
+## Selection scalability patch status — 2026-10-10
+
+- [x] Central patch `patches/android-clean/0008-dynamic-roster-pagination.patch` removes the fixed three-page cap and derives pages from the actual layout list.
+- [x] CI build `38016671857` passed Lua syntax checks and produced artifact `11655938596`.
+- [ ] No new character has been added by this patch. Current source-level selectable count remains 37; verified playable count remains unmeasured.
+- [ ] After device validation, begin adding compatible characters in small batches with all portrait/button/XML/sprite/plist/audio/skill references audited.
