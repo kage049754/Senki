@@ -290,7 +290,10 @@ jobs:
           unzip -l "$APK" | grep -F "assets/senki_page5_on.png"
           # Keep the original menu/selection background textures in the packaged candidate.
           for asset in red_bg.png blue_bg.png menu_bar2.png menu_bar3.png; do
-            unzip -Z1 "$APK" | grep -E "assets/${asset}$"
+            if ! unzip -Z1 "$APK" | grep -F "assets/$asset"; then
+              echo "Missing original background texture in APK: $asset"
+              exit 1
+            fi
           done
           if unzip -Z1 "$APK" | grep -E 'assets/senki_(menu|select)[.]png$'; then
             echo "Retired custom menu/selection background replacement is still packaged."
