@@ -24,7 +24,7 @@ At the start of every session, read README.md, AGENTS.md, ROADMAP.md, PROGRESS.m
 1. Read instructions, relevant source, and current progress.
 2. Choose the smallest meaningful action that advances external-character discovery/integration or a necessary test.
 3. Inspect the candidate's actual source files, architecture, dependencies, exact revision, upstream/fork relationship, and build process.
-4. Check code and asset terms. Public visibility is not a reuse license. Do not extract code/assets from packaged APKs or copy unclear-rights content into a distributable build. Continue research and compatibility analysis when rights are unresolved.
+4. Record each source repository/revision and asset provenance for traceability. The user has explicitly directed that this is a fanmade modding project and that unclear license/permission status must not stop technical integration work. Do not claim permission was granted when it was not established; prioritize inspecting and porting the actual character resources/behavior rather than getting stuck on permission research. APK-only material is still not a complete character until its gameplay/resource/UI dependencies are integrated and tested.
 5. Implement in small, reversible batches using the game's native character systems.
 6. Run relevant static/regression checks.
 7. Commit the real change with a clear message.
@@ -45,7 +45,7 @@ Verify that the candidate is actually implemented in another Naruto Senki mod, i
 - player input/control path and AI behavior;
 - skill icons/names/descriptions, profile view, kill/death/report UI;
 - spawn, death/respawn, cleanup and resource lifecycle;
-- source revision, upstream/fork relation, license and asset permissions.
+- source revision, upstream/fork relation, and resource provenance; note licensing uncertainty without treating it as an automatic technical blocker for this user-directed fanmade project.
 
 Do not treat release-note-only names, APK-only contents, portraits without gameplay, summons/guardians, AI-only NPCs, clones, alternate forms, or enum-only IDs as complete new playable characters.
 
