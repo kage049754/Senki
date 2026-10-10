@@ -253,3 +253,13 @@ The repo previously received a native Kotlin/Canvas prototype scaffold. It is no
 - [x] Verified artifact `naruto-senki-v2-candidate-debug-apk`, ID `11655846337`, ZIP size 83,726,412 bytes, SHA-256 `38e9900dae77eccee4120c61d03a1c87416b866837d70f72a83fa5057b2ef495`, expires 2026-10-24. Download from the [successful build's artifact card](https://github.com/kage049754/Senki/actions/runs/38015483353).
 - [ ] This remains a CI-built APK assembled from the pinned external V2-derived source plus central patches in a temporary workspace; the full game source has not been vendored into the central repository.
 - [ ] No physical phone install/gameplay result has been reported yet. Blank-screen fallback changes are compile/package verified, but actual launch behavior still needs device testing.
+
+
+## APK installability checks — 2026-10-10
+
+- [x] Added a CI step to verify the final debug APK signature with Android `apksigner` and require native libraries for supported ABIs.
+- [x] One attempted workflow edit produced invalid YAML before GitHub created a job (run `38015821546`, named after the workflow file and with no job records). Rebuilt the workflow tail cleanly in commit `d3dbf83f6bc1ada8eb9b43504b540876402f4768`.
+- [x] Run `38015857617`: **SUCCESS** on commit `d3dbf83f6bc1ada8eb9b43504b540876402f4768`. All patches applied; Gradle build passed; package, custom assets, sensor-landscape manifest, APK signature, and native ABI checks passed.
+- [x] Signature check: APK Signature Scheme v1 and v2 verified. Native libraries verified for both `arm64-v8a` and `armeabi-v7a` (`libcocos2dcpp.so`, `libc++_shared.so`).
+- [x] Verified latest artifact `naruto-senki-v2-candidate-debug-apk`, ID `11656381799`, ZIP size 83,732,890 bytes, SHA-256 `c9114464e52be0cefe7ad2c4a273e6f40441649a32d4a19a8e3137733fc3f9ff`, expires 2026-10-24. See [run and artifact card](https://github.com/kage049754/Senki/actions/runs/38015857617).
+- [ ] Signature/native checks reduce packaging uncertainty, but they do not prove installation on the user's specific Android device. Phone install and gameplay still need to be checked.
