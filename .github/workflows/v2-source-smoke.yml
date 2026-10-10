@@ -7,6 +7,7 @@ on:
     paths:
       - '.github/workflows/v2-source-smoke.yml'
       - 'patches/android-clean/**'
+      - 'scripts/**'
       - 'artwork/**'
 
 permissions:
@@ -67,6 +68,12 @@ jobs:
             git -C /tmp/narutosenki-candidate apply "$patch"
           done
           echo "All central Senki patches applied."
+
+      - name: Apply character search/filter enhancement
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 "$GITHUB_WORKSPACE/scripts/apply_character_search.py" /tmp/narutosenki-candidate/projects/NarutoSenki/lua/ui/SelectLayer.lua
 
       - name: Validate patched Lua scripts
         shell: bash
