@@ -746,3 +746,14 @@ GitHub API confirms `kage049754/Senki` is currently **public**. Therefore, the s
 
 ## Character portrait requirement (2026-10-10)
 User requires every new character to have its own correct avatar/portrait in the exact character-select slot, not merely a name or placeholder. The requirement is now documented in README.md, AGENTS.md, ROADMAP.md, and docs/CHARACTER_ROSTER.md. Each roster record must track the page/slot, stable ID, portrait resource/frame, source/license, and validation; supported profile/skill and kill/death displays must use the matching identity. This documentation update does not import new character assets or claim any new character is playable. Distinct external character integrations remain unverified until their resources, permissions, compatibility, and in-game behavior are checked.
+
+
+## Latest continued-work update — 2026-10-10
+
+- [x] Run #178 completed successfully on source commit `03b1247d01f9d6b981207b3e86914cea661992d3`: https://github.com/kage049754/Senki/actions/runs/38034685428
+- [x] All 37 reported workflow steps completed without a failed step.
+- [x] Verified current-run artifact `naruto-senki-v2-candidate-debug-apk` (83,337,410 bytes; SHA-256 `d8736bafad17d8257ca86ef910fbb6ec9aa8bb3f521ff04c0c50b048ad3fad87`) and `senki-character-package-audit` (3,670 bytes; SHA-256 `6770be74a205d7ade9c94f1a1fe6e414251892ef836433d22288663b772abe3f`). Both were unexpired when checked.
+- [x] Expanded the character research tracker with the Han/Roshi guardian-resource discovery and its technical caveat: the pinned source routes both names to the generic Guardian class, and the resource packages alone do not establish full playable/selection integration.
+- [x] Kept the roster counts honest: 37 source-visible selectable names, 43 after the six existing native forms exposed by the diagnostic patch; Han/Roshi are not counted as integrated characters. Gameplay-verified playable count is still not measured.
+- [ ] Do not mark this as a finished game or final release. This workflow builds a diagnostic candidate from a pinned external source in a temporary CI workspace. Device installation, actual selection/battle/skill tests, full source import, and the 70-verified-character goal remain outstanding.
+- [ ] Next technical step for Han/Roshi: complete the selection portrait/name art and skill UI dependency audit, trace how Guardian units behave when selected as a player, then implement a complete character batch only after those checks pass.
