@@ -204,3 +204,19 @@ The newest artifact and CI evidence are tracked in `PROGRESS.md`; on-device visu
 - [ ] Ensure each page displays the intended registered characters without changing their IDs or replacing existing fighters.
 - [ ] Test page navigation and character selection on an Android device. Dynamic page count alone does not add or complete characters.
 
+
+
+## Phase 5B — Restore original menu and character-selection backgrounds
+**Status: Implemented in the central build recipe; waiting for successful build verification and phone visual check**
+
+- [x] Stop applying the custom character-selection background patch.
+- [x] Stop applying the custom main-menu background patch for the Training / Network / Exit mode interface.
+- [x] Stop generating custom senki_select.png and senki_menu.png in the build workflow; keep the custom loading artwork separate.
+- [ ] Verify the new APK builds successfully and contains no custom menu/selection background replacement.
+- [ ] Check the main-menu and character-selection screens on the phone and confirm the original background/decorative layers are visible.
+
+## Character profile and combat-event acceptance criteria
+
+Every added character must be treated as a full playable integration, not a roster label. Acceptance requires: correct portrait/avatar and display name; correct selection preview; accurate skill names/icons/descriptions where supported; connected sprite/model and animation states; working movement, basic attacks, hitboxes, skills/cooldowns, effects and sounds where available; correct player controls and AI; valid IDs/config/resource references; and tests for selection, combat, damage, death/respawn, and relevant modes.
+
+When supported by existing battle hooks, implement kill/death identity notifications showing the actual killer and victim portraits and names. Confirm events identify the real participants, including when an ally or AI character makes the kill. Add kill counts/streaks only where the existing mode supports them. A character is playable-verified only after runtime gameplay checks, not merely after a successful build or visible portrait.
