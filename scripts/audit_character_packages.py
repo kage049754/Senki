@@ -29,10 +29,16 @@ if not match:
 body = re.sub(r"--\[\[[\s\S]*?\]\]", "", match.group(1))
 body = re.sub(r"--[^\n]*", "", body)
 names = []
+raw_roster_names = []
 for item in re.finditer(r"'([^']*)'|\"([^\"]*)\"|(?<![\w])_None(?![\w])", body):
     name = item.group(1) or item.group(2) or ""
-    if name and name.lower() != "none" and name not in names:
-        names.append(name)
+    if name and name.lower() != "none":
+        raw_roster_names.append(name)
+        if name not in names:
+            names.append(name)
+duplicate_roster_names = sorted({
+    name for name in raw_roster_names if raw_roster_names.count(name) > 1
+})
 
 # These entries are existing forms or modded variants of base characters, not
 # additional distinct characters toward the 70+ distinct-character goal.
@@ -259,6 +265,7 @@ with OUT.open("w", encoding="utf-8") as f:
     target_gap = max(0, 70 - len(names))
     distinct_gap = max(0, 70 - len(distinct_base_names))
     f.write(f"- Unique selectable names found: **{len(names)}**\n")
+    f.write(f"- Duplicate selectable roster IDs: **{len(duplicate_roster_names)}**" + ((": " + ", ".join(f"`{name}`" for name in duplicate_roster_names)) if duplicate_roster_names else "") + ".\\n")
     f.write(f"- Explicit selection slots mapped: **{len(slot_tokens)}** across **{(len(slot_tokens) + 20) // 21} pages** (21 slots per page).\n")
     f.write(f"- Selectable-entry target: **{len(names)}/70 declared ({target_gap} more entries to reach 70; alternate forms are included in this UI-entry count).**\n")
     f.write(f"- Distinct base-character count (excluding {len(KNOWN_FORM_BASES)} known alternate forms): **{len(distinct_base_names)}/70 ({distinct_gap} additional distinct characters needed; gameplay completeness is not implied).**\n")
@@ -357,5 +364,7 @@ with OUT.open("w", encoding="utf-8") as f:
     f.write("- A selection art result is based on finding expected frame names in `Select.plist` or standalone files; runtime selection still needs testing.\n- Kill-feed portrait count checks `<Name>_rp.png` and `<Name>_rpf.png` in `Resources/Report.plist`; it does not prove killer/victim attribution or on-screen rendering works at runtime.\n")
     f.write("- Do not promote any entry to implemented or verified based on this report alone. Record voice lines, SFX triggers, skills, resource paths, AI behavior, provenance, and rights separately.\n")
 print(f"Wrote {OUT}; audited {len(names)} unique selectable names; kill-feed portrait atlas coverage {portrait_complete}/{len(rows)}.")
+if duplicate_roster_names:
+    raise SystemExit("Duplicate selectable roster IDs: " + ", ".join(duplicate_roster_names))
 if missing_portrait_names:
     raise SystemExit("Missing kill-feed portrait frames for: " + ", ".join(missing_portrait_names))
