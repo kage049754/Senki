@@ -406,3 +406,15 @@ AI means the game's computer-controlled fighter behavior here: it must be able t
 - [ ] Current verified playable character count remains **unmeasured**; new characters integrated by this pass: **0**.
 
 This is a successful **diagnostic candidate build**, not a final unified release or proof of physical-device gameplay. The external source is still cloned into the CI runner rather than vendored into this repository, and rights review remains open.
+
+
+## Missing skill-description fallback — run #101 (2026-10-10)
+
+- [x] Added `scripts/apply_skill_label_fallback.py` to patch the pinned candidate's `lua/ui/SkillLayer.lua` safely during CI.
+- [x] The skill-details screen now checks whether the requested label frame exists before constructing its sprite. If a frame is missing, it shows a visible `Skill description unavailable` text label rather than attempting to construct a missing sprite.
+- [x] Added `scripts/test_skill_label_fallback.py` and wired both application and regression test into `.github/workflows/v2-source-smoke.yml`.
+- [x] Run [#101](https://github.com/kage049754/Senki/actions/runs/38024966443), commit `2ca3914ae8e10300c3e3070b376c8cf241a26ddb`, completed **SUCCESS**. The fallback step, Lua parse checks, character audit, search/pagination checks, Android build, APK identity/search/signature/ABI checks, and both artifact uploads passed.
+- [x] APK artifact `naruto-senki-v2-candidate-debug-apk`, ID `11659082992`, 83,302,507 bytes; SHA-256 `2c71b02890ee86d87e7882d5365299cde4dc7ff2524cc89f88edb54be218870b`; expires 2026-10-24.
+- [x] Audit artifact `senki-character-package-audit`, ID `11659103029`; SHA-256 `fa7d7ae391c5f82fc4196797e8b33be6750459c32c7ba8b7d40496fb31664d40`; expires 2026-10-24.
+- [ ] Confirm the fallback visually in the actual skill-view screen on an Android device. CI validates the Lua patch and packages it but cannot establish how the Cocos2d-x UI looks at runtime.
+- [ ] This does not add or complete a character; Kabuto's original description content remains missing and the UI reports that honestly.
