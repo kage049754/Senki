@@ -191,3 +191,17 @@ A field may be marked missing/not-applicable only with a brief reason. Do not tr
 - **Kiba — manual resource audit required:** only three path matches were counted by the broad Unit-resource heuristic. This count does not prove missing assets; inspect exact sprite/projectile/config references.
 - The audit's AI column is only a recognizable registration-pattern clue. `MANUAL_AI_AUDIT_REQUIRED` is not a verdict that AI is broken.
 - These are audit exceptions, not new characters. New characters added: **0**. Full playable/AI-verified roster count remains unmeasured.
+
+
+## Legacy V1.17/V2-adjacent source leads — not integrated
+
+Source inspected: [Zx-Akito/NarutoSenki](https://github.com/Zx-Akito/NarutoSenki), branch `master`. This is a legacy monolithic Cocos2d-x project, not the current modular V2 candidate. These entries are **DISCOVERED / SOURCE-INSPECTED** only; none is added to the central game's roster by this research.
+
+| Candidate form/character | Evidence found in legacy source | Selection package check | Current status / missing work |
+|---|---|---|---|
+| Sage Jiraiya | `Classes/Characters.cpp` has an `AI_SageJiraiya()` dispatch branch; `Resources/Element/SageJiraiya/SageJiraiya.{xml,plist,pvr.ccz}`; character audio folder and skill clips; Ougi audio | `SageJiraiya_half.png` found in legacy `Resources/Select.plist`; expected `_select.png` and `_font.png` not found | **SOURCE-INSPECTED / PARTIAL**. No complete selection identity and no V2 class/resource/AI port. |
+| Immortal Sasuke | AI dispatch branch; `Resources/Element/ImmortalSasuke/ImmortalSasuke.{xml,plist,pvr.ccz}`; character audio and Ougi clip | `ImmortalSasuke_half.png` found; expected `_select.png` and `_font.png` not found | **SOURCE-INSPECTED / PARTIAL**. V2 already has Sasuke but this variant needs a collision-free form ID, actual skill/animation mapping and full selection package. |
+| Rikudo Naruto | AI dispatch branch; `Resources/Element/RikudoNaruto/RikudoNaruto.{xml,plist,pvr.ccz}`; character skill audio and Ougi clip | `RikudoNaruto_half.png` found; expected `_select.png` and `_font.png` not found | **SOURCE-INSPECTED / PARTIAL**. V2 has Naruto-related forms; do not assume this is a drop-in alternate form. |
+| MaskRaidon | AI dispatch branch in legacy `Classes/Characters.cpp`; `Resources/Element/MaskRaidon/MaskRaidon.{xml,plist,pvr.ccz}` | No `_select.png`, `_half.png`, or `_font.png` frame found in the inspected legacy Select atlas | **SOURCE-INSPECTED / PARTIAL**. Needs complete selection UI, skill/audio inventory, and V2 port analysis. |
+
+**Shared gaps for all four:** old Cocos2d-x class/AI architecture and `Resources/Element` conventions do not match the current V2 candidate's `Classes/Core/Shinobi`, AI registration, and `Resources/Unit/Ninja` layout. No asset was copied. Each port still needs a category-by-category manifest covering identity, skill icons/descriptions, model/animations, skills/cooldowns/hitboxes, voice/SFX triggers, effects/projectiles/summons, player controls, AI behavior, unique IDs, and runtime evidence. CI must verify source changes; actual battle/device tests are required before PLAYABLE-VERIFIED.
