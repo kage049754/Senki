@@ -817,3 +817,12 @@ User requires every new character to have its own correct avatar/portrait in the
 - [x] Also checked `likill/NarutoSenki-master`, `LeaderOnePro/NarutoSenki1.17Mod`, and `Zx-Akito/NarutoSenki-Release`; no clear reuse license was found in the inspected default branches, and the release-only repository lacks a source tree.
 - [x] Corrected README wording to distinguish 43 UI entries from 37 distinct base characters. No new character was added or counted.
 - [ ] Continue searching for explicit permission/licensing and complete distinct character packages. Current public mod sources remain research leads, not automatically reusable content.
+
+## Continued UI work — run #201 (2026-10-10)
+
+- [x] Run #201 reached terminal **SUCCESS** after fixing the pagination patch hunk length, adapting the character-search patch to the new page-count comments, and updating the pagination regression test/workflow assertion: https://github.com/kage049754/Senki/actions/runs/38039299010
+- [x] Verified and downloaded APK artifact `naruto-senki-v2-candidate-debug-apk` (artifact ID `11665018115`, artifact size 83,342,451 bytes; SHA-256 of contained `narutosenki-debug.apk`: `ebb6ee0ba6a2f6008bbdb75ab461f8d3a05539b788eb8c88ef08c4690c8c60bb`). The CI archive digest is `sha256:365ebda73043c5fbf2c8a0ae21e4e759248e57285e894200182f91e5a2e6d9c7`.
+- [x] Verified current audit artifact `senki-character-package-audit` (artifact ID `11664803468`; digest `sha256:95bf14472b7110af715e3c085775276d538f0feacca44c0b4344c9cc876c73b3`). It continues to report 37 distinct base characters and the Guardian AI/player-control caveat.
+- [x] Pagination now reserves **five reachable image-based pages** using the original page 1–3 controls and generated matching page 4/5 image states. Regression checks passed. **Page 5 is currently a reserved empty page** until verified characters are added; only 84 roster slots are populated/declared across four pages today.
+- [ ] Next: improve the reserved page's empty-state behavior and continue searching for complete, clearly licensed distinct character packages. Do not claim page 5 is populated or that the roster target is met.
+- [ ] No physical-device installation or gameplay test is claimed by this CI result.
