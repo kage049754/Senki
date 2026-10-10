@@ -186,8 +186,11 @@ select_atlas_path = GAME / "Resources/Select.plist"
 select_atlas_source = select_atlas_path.read_text(encoding="utf-8", errors="replace") if select_atlas_path.is_file() else ""
 report_atlas_path = GAME / "Resources/Report.plist"
 report_atlas_source = report_atlas_path.read_text(encoding="utf-8", errors="replace") if report_atlas_path.is_file() else ""
-off_roster_candidates = []
-for kind in ("Ninja", "Guardian"):
+guardian_class_path = GAME / "Classes/Core/Guardian/Guardian.hpp"
+guardian_class_source = guardian_class_path.read_text(encoding="utf-8", errors="replace") if guardian_class_path.is_file() else ""
+guardian_ai_override_detected = "void perform() override" in guardian_class_source and "attack(" in guardian_class_source and "walk(" in guardian_class_source
+
+off_roster_candidates = []for kind in ("Ninja", "Guardian"):
     root = GAME / "Resources/Unit" / kind
     if not root.is_dir():
         continue
@@ -310,6 +313,12 @@ with OUT.open("w", encoding="utf-8") as f:
     if not off_roster_candidates:
         f.write("| None found | — | — | — | — | — | — | — | — |\n")
     f.write("\n")
+    f.write("\n### Guardian control-path note\n\n")
+    if guardian_ai_override_detected:
+        f.write("- Source-level Guardian assessment: **AI combat behavior override detected** (`perform()` includes target-seeking, `walk()`, and `attack()` calls). This is evidence of an AI behavior path, not evidence of direct player-control support for Han or Roshi.\n")
+    else:
+        f.write("- Source-level Guardian assessment: **not established by this static check**; manually inspect the class and its control path before classifying Han/Roshi.\n")
+    f.write("- Han/Roshi remain resource leads only until a player-controlled Hero lifecycle, unique selection art, skill UI, effects/audio, AI behavior, and full gameplay tests are implemented and verified.\n")
     f.write("\n## Interpretation rules\n\n")
     f.write("- A `NO/MONOLITHIC` header result means the code may be in a shared C++ file; it is not proof the character is absent. Unit/resource counts are broad filename matches and do not prove the correct frames load.\n")
     f.write("- Missing skill icon or description-label frame names require manual investigation. A missing label can make the skill-view UI request a nonexistent frame; this audit does not test runtime handling or invent replacement descriptions. Some forms may share assets/classes and some skill UI may be assembled indirectly.\n")
