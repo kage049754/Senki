@@ -527,3 +527,13 @@ Do not inflate the roster by exposing summons, clones, or guardian NPCs as if th
 
 ### Search conclusion
 The public GitHub search still has not surfaced a permission-cleared, independently editable mod source that supplies a verified new character compatible with this V2 candidate. APK-only mods and older Cocos2d-x 2.2.2 sources remain references, not automatically mergeable content. Continue the search, compare exact revisions, and record provenance; do not invent character functionality or claim a 70-character playable roster based on UI slots.
+
+
+## Additional mod reference: Fansirsqi/NarutoSenki asset extraction — 2026-10-10
+
+- Repository: https://github.com/Fansirsqi/NarutoSenki
+- Default branch: main. GitHub metadata reports MulanPSL-2.0, but this tree is an extracted asset/resource package rather than a complete editable game source tree. Its README explicitly describes extracted assets and references asset authors. The repository-level license must not be assumed to clear Naruto/game assets or third-party artwork/audio.
+- Observed resource-only character leads include Fukasaku, HokageMinato, Saso (likely a Sasori-named asset set), Han, Roshi, and DevaPath, alongside many existing characters. The inspected tree includes animation XML and plist/texture files for these names, but no editable game C++/Lua source in the tree.
+- The README includes mechanics notes for existing characters such as Nagato, Naruto, Hiruzen, Sakura, Kiba, Minato, Hinata, Neji, Obito/Tobi, Tobirama, and Suigetsu. These are design/reference notes, not executable character implementations.
+- Classification: **REFERENCE_ONLY / ASSET_PERMISSION_UNRESOLVED**. Do not copy its assets into the central repository or APK on the strength of the repository-level license alone. Use the character names and mechanic notes to guide future research; find a compatible editable implementation or explicit asset permission before integration.
+- Potential next research targets: determine whether Saso and Fukasaku have a separate editable source fork, and whether HokageMinato is a complete selectable form or only a resource/audio variant. Do not count them toward the 70-character target until a player-controlled implementation, AI, selection/skill UI, resources, and tests exist.
