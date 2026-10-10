@@ -165,3 +165,21 @@ Add this manifest to every planned or integrated character entry. Fill in exact 
 - [ ] Manifest, provenance, missing assets, and runtime evidence are recorded.
 
 A character with missing required assets or unverified AI remains partial/incomplete/blocked. Do not count it as VERIFIED based on its name, portrait, a successful build, or player-only selection. The current 37 roster names are only source-level selectable entries; the number with complete asset packages and verified AI is not yet measured.
+
+## Full character package: required per-entry audit
+
+For each discovered or integrated character, complete these fields in the roster entry or its linked manifest:
+
+- Stable character/form ID and exact source URL, branch/commit/version.
+- Display name; selection portrait/avatar; normal/selected selection button art; preview resource and preview test.
+- Skill-view entries: skill names, icons, descriptions, IDs and link to the actual implementation.
+- In-game sprite/model; texture/atlas/plist; animation states and frame references.
+- Basic attacks, hitboxes/range/timing, damage, cooldowns, passive/active/ultimate abilities supported by the source, projectiles/summons/status effects/VFX.
+- Voice lines/clips, file paths, and the events that trigger them.
+- Attack/skill/ultimate/hit/death/summon/transformation SFX, file paths and event triggers.
+- Player input/selection test and the character actually spawned in battle.
+- Game AI registration/selection/spawn path; AI tests for movement, basic attacks, range/state/cooldowns and each supported skill/summon/transform.
+- Resource/config integrity, duplicate-ID check, APK packaging check, in-game test results and explicit missing/not-applicable reasons.
+- Source/license/permission status for code, art, animation, voice, SFX and effects.
+
+A field may be marked missing/not-applicable only with a brief reason. Do not treat a missing voice pack or unavailable skill as complete. A fighter is not PLAYABLE-VERIFIED until the intended character spawns correctly, the skill UI maps to working skills, applicable assets/audio resolve, and supported AI behavior passes. Build checks and source-level roster names are separate from gameplay verification.
