@@ -633,13 +633,14 @@ Compared `lua/class/basic.lua` with `Classes/Enums/HeroEnum.h` at pinned source 
 - **Potential technical value:** the custom registry is a promising architectural reference for expanding the roster without hard-coding every addition in multiple places. It does not itself supply 70 complete new characters: the inspected `ns.CustomCharacters` table is empty/commented examples, and each registered hero still needs its own valid assets and implementation/gimmick mapping.
 - **Classification:** feature/architecture reference for V2 roster extensibility; not yet selected as the central base and not merged.
 - **Reuse status:** **PERMISSION_REQUIRED**. The repository has no declared license; custom registry code and all bundled Naruto/game assets are not cleared for import. Do not copy it into the central project solely because the implementation looks useful.
-- **Next comparison:** inspect the custom registry's standalone tests/build integration and compare its actual source changes to the pinned candidate; decide whether to reimplement the design independently or obtain permission before porting. Keep the user's existing V2 target and central CI candidate unchanged until a deliberate base decision.
+- **Test/build finding:** the repository tree has no dedicated CustomRegistry unit-test suite; the only test files found are generic Android example tests. The header has a `CUSTOM_REGISTRY_STANDALONE` compile mode, but a standalone registry test was not found in the tree. Build integration and runtime registration still need separate verification.
+- **Next comparison:** inspect the registry's include/call sites and its standalone compile mode against the pinned candidate; decide whether to design an independent extension or obtain permission before porting. Keep the user's existing V2 target and central CI candidate unchanged until a deliberate base decision.
 
 ### Fork similarity check: V2 mirrors
 
 A tree and key-file SHA comparison on 2026-10-10 found:
 - `kuiyr0810/NarutoSenki-V2` and `BF667/NarutoSenki-V2` have the same inspected `SkillLayer.lua`, `SelectLayer.lua`, `basic.lua`, and `Report.plist` blob SHAs as `Zx-Akito/NarutoSenki-V2`; treat them as mirrors for those inspected components, not independent character sources.
-- `ZhReimu/NarutoSenki-V2` shares the same inspected skill UI, select UI, and report atlas blobs, but has a different `basic.lua` blob. This alone does not prove a new playable character; inspect its roster diff and character/resource files before considering any port.
+- `ZhReimu/NarutoSenki-V2` shares the same inspected skill UI, select UI, and report atlas blobs, but has a different `basic.lua` blob. Full-file inspection found its differences in enum/type declarations; its `ns.CharactersLayout` has the same stock roster as `Zx-Akito/NarutoSenki-V2`. No additional selectable character was identified by this comparison.
 - The `SILXNTRAY` repository has distinct UI/registry files and recent commits, but its roster layout still resembles the same base and the custom-character list is not populated in the inspected file.
 - These repositories report no declared GitHub license. Recent commits, fork status, and public access do not grant reuse permission.
 
