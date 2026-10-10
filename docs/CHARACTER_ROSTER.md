@@ -52,7 +52,7 @@ Target: at least 70 verified playable characters. The registry itself must not h
 ## Current verified roster
 **Verified playable character count: NOT YET MEASURED.**
 
-**Source inventory (not runtime-verified):** the pinned Android-clean candidate defines 37 unique selectable names in `lua/class/basic.lua`. The five Pain-path C++ headers are implementation classes, not separate selectable roster entries. See `docs/MOD_RESEARCH.md` for the exact 37-name list and source comparison.
+**Source inventory (not runtime-verified):** the pinned Android-clean candidate's original roster defines 37 unique selectable names. The current CI patch exposes six additional existing native forms on page four (43 non-placeholder entries total, 84 slots/four pages). The five Pain-path C++ headers are implementation classes, not separate selectable roster entries. See `PROGRESS.md` for the latest build and artifact.
 
 No individual character is marked VERIFIED by this initial tracker. Populate entries only after inspecting the actual project and testing the character.
 
@@ -239,3 +239,19 @@ These are research leads from the older Cocos2d-x 2.2.2 source at `Zx-Akito/Naru
 | Akamaru / Karasu / Saso / Parents / Sanshouuo / Slug / Centipede | AI dispatch and/or Element resource packages | DISCOVERED / ENTITY_REVIEW | Treat as summon/entity dependencies until hero-selection evidence exists |
 
 **Counts:** these are 6 high-priority character/form leads and 9 additional entity leads (some categories may overlap); **0** have been ported or gameplay-verified. See `docs/MOD_RESEARCH.md` for the source and compatibility details. Do not increase the verified roster count from this list.
+
+
+## Candidate roster expansion built in CI — 2026-10-10
+
+The current CI patch exposes these six native forms in page four. Their native enum/class and XML/plist resources existed in the pinned candidate before the selection-list change.
+
+| Form | Existing native implementation | Selection UI adaptation | CI result | Device gameplay |
+|---|---|---|---|---|
+| Sage Jiraiya | Jiraiya class dispatch + form resources | Reuses Jiraiya small selection/skill icons; dedicated half portrait; readable text name | BUILD-VERIFIED in run #117 | NOT TESTED |
+| Immortal Sasuke | Sasuke class dispatch + form resources | Reuses Sasuke small selection/skill icons; dedicated half portrait; readable text name | BUILD-VERIFIED in run #117 | NOT TESTED |
+| Sage Naruto | Naruto class dispatch + form resources | Reuses Naruto small selection/skill icons; dedicated half portrait; readable text name | BUILD-VERIFIED in run #117 | NOT TESTED |
+| Six Paths Naruto (Rikudo Naruto) | Naruto class dispatch + form resources | Reuses Naruto small selection/skill icons; dedicated half portrait; readable text name | BUILD-VERIFIED in run #117 | NOT TESTED |
+| Rock Lee | Lee class dispatch + form resources | Reuses Lee small selection/skill icons; dedicated half portrait; readable text name | BUILD-VERIFIED in run #117 | NOT TESTED |
+| Nagato | Pain class dispatch + form resources | Reuses Pain small selection/skill icons; dedicated half portrait; readable text name | BUILD-VERIFIED in run #117 | NOT TESTED |
+
+**Important:** BUILD-VERIFIED means the roster/UI changes are present in the successfully built APK and the package checks pass. It does not prove each form can be selected, spawned, controlled, or used by AI at runtime. The verified playable character count remains **NOT YET MEASURED** until physical-device or suitable emulator gameplay checks pass.
