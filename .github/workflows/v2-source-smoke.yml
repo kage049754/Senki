@@ -100,6 +100,15 @@ jobs:
           test -s "$GAME/Resources/senki_page5_on.png"
           file "$GAME/Resources/senki_page4_off.png" "$GAME/Resources/senki_page4_on.png" "$GAME/Resources/senki_page5_off.png" "$GAME/Resources/senki_page5_on.png"
 
+      - name: Audit every selectable character package
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 "$GITHUB_WORKSPACE/scripts/audit_character_packages.py" \
+            /tmp/narutosenki-candidate/projects/NarutoSenki \
+            "$GITHUB_WORKSPACE/character-package-audit.md"
+          sed -n '1,55p' "$GITHUB_WORKSPACE/character-package-audit.md"
+
       - name: Test character search/filter behavior
         shell: bash
         run: |
@@ -292,6 +301,15 @@ jobs:
           test -s /tmp/senki-native-libs.txt
           cat /tmp/senki-native-libs.txt
           echo "APK signature verified and native Android libraries are packaged."
+
+      - name: Upload character package audit report
+        if: always() && hashFiles('character-package-audit.md') != ''
+        uses: actions/upload-artifact@v4
+        with:
+          name: senki-character-package-audit
+          path: character-package-audit.md
+          if-no-files-found: error
+          retention-days: 14
 
       - name: Upload candidate debug APK for private testing
         if: success()
