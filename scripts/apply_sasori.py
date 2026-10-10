@@ -63,7 +63,7 @@ for legacy_action in legacy_root.findall("action"):
         for event in list(legacy_frame):
             if event.tag == "frameName":
                 frame_name = (event.text or "").strip()
-                frame_name = re.sub(r"\\.png$", "", frame_name, flags=re.I)
+                frame_name = re.sub(r"\.png$", "", frame_name, flags=re.I)
                 frame_name = re.sub(r"^Saso(?=[_./-]|$)", "Sasori", frame_name)
                 ET.SubElement(frame_node, "f").text = frame_name
             elif event.tag == "eventName":
