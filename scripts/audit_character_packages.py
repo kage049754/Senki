@@ -17,6 +17,12 @@ if not BASIC.is_file():
     raise SystemExit(f"Missing expected roster source: {BASIC}")
 
 source = BASIC.read_text(encoding="utf-8", errors="replace")
+SKILL_LAYER = GAME / "lua/ui/SkillLayer.lua"
+skill_source = SKILL_LAYER.read_text(encoding="utf-8", errors="replace") if SKILL_LAYER.is_file() else ""
+alias_match = re.search(r"local skillUiAlias\s*=\s*\{([\s\S]*?)\n\}", skill_source)
+skill_ui_aliases = dict(
+    re.findall(r"([A-Za-z0-9_]+)\s*=\s*['"]([^'"]+)['"]", alias_match.group(1))
+) if alias_match else {}
 match = re.search(r"ns\.CharactersLayout\s*=\s*\{([\s\S]*?)\n\}", source)
 if not match:
     raise SystemExit("Could not locate ns.CharactersLayout in basic.lua")
@@ -65,7 +71,10 @@ for name in names:
     }]
     enum_refs = [rel for rel, content in text_files if re.search(rf"HeroEnum::{re.escape(name)}\b", content, re.IGNORECASE)]
     ai_refs = [rel for rel, content in text_files if "setAIHandler" in content and re.search(rf"HeroEnum::{re.escape(name)}\b", content, re.IGNORECASE)]
-    # SkillLayer.lua requests <Name>_skill1..5.png and <Name>_label1..5.png.
+    # SkillLayer.lua may alias a form to its base character for skill icons/labels.
+    # Count the exact art name that the runtime lookup actually uses.
+    skill_name = skill_ui_aliases.get(name, name)
+    skill_low = skill_name.lower()
     resource_names = {Path(rel).name.lower() for _, rel in relative}
     plist_text = "\\n".join(content.lower() for rel, content in text_files if rel.lower().endswith(".plist"))
     # Battle HUD kill/death reports load portraits from the Report atlas as <Name>_rp.png.
@@ -73,8 +82,8 @@ for name in names:
     report_plist = GAME / "Resources/Report.plist"
     report_text = report_plist.read_text(encoding="utf-8", errors="replace").lower() if report_plist.is_file() else ""
     report_frames_found = sum(1 for suffix in ("_rp.png", "_rpf.png") if f"{low}{suffix}" in report_text)
-    skill_icons_found = sum(1 for i in range(1, 6) if f"{low}_skill{i}.png" in resource_names or f"{low}_skill{i}.png" in plist_text)
-    skill_labels_found = sum(1 for i in range(1, 6) if f"{low}_label{i}.png" in resource_names or f"{low}_label{i}.png" in plist_text)
+    skill_icons_found = sum(1 for i in range(1, 6) if f"{skill_low}_skill{i}.png" in resource_names or f"{skill_low}_skill{i}.png" in plist_text)
+    skill_labels_found = sum(1 for i in range(1, 6) if f"{skill_low}_label{i}.png" in resource_names or f"{skill_low}_label{i}.png" in plist_text)
     # Atlas-packed selection art may not exist as standalone PNG files.
     atlas = GAME / "Resources/Select.plist"
     atlas_text = atlas.read_text(encoding="utf-8", errors="replace") if atlas.is_file() else ""
@@ -103,7 +112,9 @@ with OUT.open("w", encoding="utf-8") as f:
     f.write(f"- Distinct selectable-entry target: **{len(names)}/70 declared ({target_gap} more entries to reach 70; gameplay completeness is not implied).**\n")
     f.write("- Gameplay-verified playable count: **not measured by this static audit.**\n")
     f.write(f"- Kill-feed portrait atlas coverage: **{portrait_complete}/{len(rows)} roster entries have both frames.**\n")
-    f.write(f"- Skill-description label frame coverage: **{label_complete}/{len(rows)} roster entries have all five expected frames.**\n")
+    f.write(f"- Skill-description label frame coverage: **{label_complete}/{len(rows)} roster entries have all five expected frames after applying SkillLayer UI aliases.**\n")
+    if skill_ui_aliases:
+        f.write("- Skill UI art aliases used by the audit: " + ", ".join(f"`{name}` → `{base}`" for name, base in sorted(skill_ui_aliases.items())) + ".\n")
     if missing_label_names:
         f.write("- Skill-description label exceptions requiring manual review: " + ", ".join(f"`{name}` ({count})" for name, count in missing_label_names) + ".\n")
     else:
