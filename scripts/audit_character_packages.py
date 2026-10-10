@@ -149,6 +149,13 @@ with OUT.open("w", encoding="utf-8") as f:
         f.write("- Non-roster enum leads: none found.\n")
     f.write(f"- Kill-feed portrait atlas coverage: **{portrait_complete}/{len(rows)} roster entries have both frames.**\n")
     f.write(f"- Skill-description label frame coverage: **{label_complete}/{len(rows)} roster entries have all five expected frames after applying SkillLayer UI aliases.**\n")
+    frame_complete = sum(1 for row in detail_rows if row[4].startswith("0 "))
+    missing_frame_ref_rows = [(row[0], row[4]) for row in detail_rows if not row[4].startswith("0 ")]
+    f.write(f"- Animation XML frame-reference coverage: **{frame_complete}/{len(detail_rows)} roster entries have no missing XML-to-atlas frame names.**\n")
+    if missing_frame_ref_rows:
+        f.write("- XML-to-atlas frame-reference exceptions: " + ", ".join(f"`{name}` ({count})" for name, count in missing_frame_ref_rows) + ".\n")
+    else:
+        f.write("- XML-to-atlas frame-reference exceptions: none detected by name comparison.\n")
     if skill_ui_aliases:
         f.write("- Skill UI art aliases used by the audit: " + ", ".join(f"`{name}` → `{base}`" for name, base in sorted(skill_ui_aliases.items())) + ".\n")
     if missing_label_names:
