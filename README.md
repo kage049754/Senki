@@ -57,7 +57,7 @@ See [ROADMAP.md](ROADMAP.md) for task lists and exit gates.
 
 - Latest verified central Actions run: [#295 — SUCCESS](https://github.com/kage049754/Senki/actions/runs/38055125607), commit [3a9fa15](https://github.com/kage049754/Senki/commit/3a9fa15ab6f6768385581743d3047a6eccafaaab).
 - Run #295 is a successful technical candidate build; it does **not** mean the six requested characters were ported.
-- External mod variant integrated into the candidate: **1 — Two Sage Toads** (uses native Choji combat/AI; not a distinct base character). Distinct external characters gameplay-verified: **0**.
+- External mod character packages integrated into the candidate: **1 variant — Two Sage Toads** (Choji-based; not a distinct base character). External mod variant integrated into the candidate: **1 — Two Sage Toads** (uses native Choji combat/AI; not a distinct base character). Distinct external characters gameplay-verified: **0**.
 - Source-level roster baseline: **37 distinct base characters / 44 selectable entries**. Goal: 70+ distinct playable characters.
 - Release APK resource-name audit found visible model/XML, atlas and audio *names* for Kurenai, Might Guy and Yamato; Hashirama had model/XML, atlas and audio names but skill-art was not confirmed. Shizune and Rin had atlas/audio names; model/XML and skill-art were not confirmed. These are packed NSKP index references, **not importable assets or proof of playable implementation**.
 - The six priority characters remain **not integrated**: Kurenai, Might Guy, Yamato, Hashirama Senju, Shizune, and Rin Nohara. Other release-note leads to investigate include Sasori, Zetsu, Iruka, Sakon & Ukon, Juzo, Jonin Minato, Jirobo, Tayuya, and Anko.
