@@ -183,3 +183,11 @@ For each discovered or integrated character, complete these fields in the roster
 - Source/license/permission status for code, art, animation, voice, SFX and effects.
 
 A field may be marked missing/not-applicable only with a brief reason. Do not treat a missing voice pack or unavailable skill as complete. A fighter is not PLAYABLE-VERIFIED until the intended character spawns correctly, the skill UI maps to working skills, applicable assets/audio resolve, and supported AI behavior passes. Build checks and source-level roster names are separate from gameplay verification.
+
+
+## Findings from latest automated source inventory (2026-10-10)
+
+- **Kabuto — manual skill-view audit required:** expected `Kabuto_label1.png` through `Kabuto_label5.png` were not found by the current loose-file/plist-name heuristic (0/5 matches). The same report found 5/5 expected skill-icon frame names, selection frame names, a native enum reference, a C++ header, Unit resource paths, and Kabuto-named audio paths. This discrepancy may mean the labels use a different naming/atlas convention; it is **not** proof the skill descriptions are absent. Inspect `SkillLayer.lua`, the actual atlas frame keys, and the in-game skill viewer before deciding.
+- **Kiba — manual resource audit required:** only three path matches were counted by the broad Unit-resource heuristic. This count does not prove missing assets; inspect exact sprite/projectile/config references.
+- The audit's AI column is only a recognizable registration-pattern clue. `MANUAL_AI_AUDIT_REQUIRED` is not a verdict that AI is broken.
+- These are audit exceptions, not new characters. New characters added: **0**. Full playable/AI-verified roster count remains unmeasured.
