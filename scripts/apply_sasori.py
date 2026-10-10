@@ -45,11 +45,17 @@ if not base_xml.is_file() or not base_skill_plist.is_file() or base_skill_png is
 (unit / "Sasori.xml").write_text(base_xml.read_text(encoding="utf-8").replace("Kankuro", "Sasori"), encoding="utf-8")
 shutil.copy2(base_skill_plist, unit / "Sasori_Skill.plist")
 skill_data = plistlib.loads((unit / "Sasori_Skill.plist").read_bytes())
+skill_data["frames"] = {
+    re.sub(r"^Kankuro(?=[_./-]|$)", "Sasori", (k[:-4] if k.endswith(".png") else k)): v
+    for k, v in skill_data.get("frames", {}).items()
+}
 skill_data["metadata"] = skill_data.get("metadata", {})
-skill_data["metadata"]["textureFileName"] = "Sasori_Skill" + base_skill_png.suffix
-skill_data["metadata"]["realTextureFileName"] = "Sasori_Skill" + base_skill_png.suffix
+skill_texture_ext = ".pvr.ccz" if base_skill_png.name.lower().endswith(".pvr.ccz") else base_skill_png.suffix
+skill_texture_name = "Sasori_Skill" + skill_texture_ext
+skill_data["metadata"]["textureFileName"] = skill_texture_name
+skill_data["metadata"]["realTextureFileName"] = skill_texture_name
 (unit / "Sasori_Skill.plist").write_bytes(plistlib.dumps(skill_data, fmt=plistlib.FMT_XML, sort_keys=False))
-shutil.copy2(base_skill_png, unit / ("Sasori_Skill" + base_skill_png.suffix))
+shutil.copy2(base_skill_png, unit / skill_texture_name)
 
 # Fill frame-name gaps only with actual rectangles present in the imported atlas.
 root = ET.parse(unit / "Sasori.xml").getroot()
@@ -195,7 +201,7 @@ missing = refs - set(main.get("frames", {})) - set(skills.get("frames", {}))
 if missing: raise SystemExit("Unresolved Sasori animation frames: " + ", ".join(sorted(missing)[:10]))
 for clip in re.findall(r"Audio/Sasori/([^<\" ]+?\.ogg)", xml_text):
     if not (audio / clip).is_file(): raise SystemExit(f"Missing Sasori audio: {clip}")
-for p in [header_dst, unit / "Sasori.xml", unit / "Sasori.plist", unit / "Sasori.png", unit / "Sasori_Skill.plist", unit / ("Sasori_Skill" + base_skill_png.suffix)]:
+for p in [header_dst, unit / "Sasori.xml", unit / "Sasori.plist", unit / "Sasori.png", unit / "Sasori_Skill.plist", unit / skill_texture_name]:
     if not p.is_file() or p.stat().st_size == 0: raise SystemExit(f"Missing/empty Sasori package file: {p}")
 ET.parse(unit / "Sasori.xml")
 print("Added Sasori as a new selectable fighter using tracked Saso atlas, native dispatch, selection/profile aliases, and compatible Kankuro baseline behavior.")
