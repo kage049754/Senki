@@ -585,3 +585,16 @@ GitHub API confirms `kage049754/Senki` is currently **public**. Therefore, the s
 - [x] APK artifact `naruto-senki-v2-candidate-debug-apk`, ID `11661441846`, size 83,348,767 bytes, SHA-256 `65a9116d9652b65a21eaf9f765ff709b3475aad45da3c2922522ad0253464a8f`; expires 2026-10-24.
 - [x] Character audit artifact `senki-character-package-audit`, ID `11661511654`.
 - [ ] Source and packaged asset checks do not prove visual appearance at runtime. The character-selection and training/network/exit backgrounds still need to be inspected on an actual Android device/emulator.
+
+
+## Latest skill-description fallback and alias-aware audit — run #141 (2026-10-10)
+
+- [x] GitHub Actions run **#141** succeeded on exact source SHA `c02bfb51c34b9bc6ae1c4285eacd48e3cfec4f09`: https://github.com/kage049754/Senki/actions/runs/38030022200
+- [x] The candidate applies a guarded skill-description frame lookup and shows a visible “Skill description unavailable” fallback if an expected label frame is absent.
+- [x] The skill tooltip's clipper container is tracked and removed when switching skills, preventing stale tooltip containers from accumulating.
+- [x] Lua syntax checks, character audit report structure, APK build, package identity, packaged character-search code, signature/native ABI checks, and artifact upload passed.
+- [x] APK artifact `naruto-senki-v2-candidate-debug-apk`, ID `11661692440`, size 83,322,088 bytes, SHA-256 `3342575c632dee2a795af2207d510a97c3f70f6952eb68a536d31f6fa070bb13`; expires 2026-10-24.
+- [x] Character audit artifact `senki-character-package-audit`, ID `11662017164`; expires 2026-10-24.
+- [ ] Physical-device verification of the missing-label fallback, tooltip switching, page 4/5 controls, and original backgrounds remains open.
+- [ ] No new external character was integrated. The audit remains a static resource/source inventory, not a gameplay completeness test.
+- [ ] Source vendoring and code/asset permission review remain open; this successful candidate build does not remove those blockers.
