@@ -285,3 +285,28 @@ Pinned source `muhammadadilsyaputra08-alt/NarutoSenki-Custom@279e85e73040558c849
 - Kabuto is a substantive custom kit implementation with skills, effects, audio/resource definitions, and behavior changes, not just a portrait. It remains source-inspected only; the current CI build has not verified the character in live battle.
 - The selectable layout has 37 unique entries, but the number of fully functional and device-tested characters is **not yet measured**. Do not label all 37 as verified playable until runtime checks pass.
 - Next roster phase: inventory per-character C++ class, XML/config, sprite/plist, effects, audio, skill IDs and selection assets; then identify mod sources that add unique compatible characters without replacing the V2 engine.
+
+
+## Seventh-pass legacy source and mod inventory — 2026-10-10
+
+### `LeaderOnePro/NarutoSenki-cocos2dx`
+- Repository description identifies it as a Cocos2d-x 2.2.6 modernization of the original Naruto Senki source, with Windows/Android/macOS project folders.
+- Root contains `projects/NarutoSenki/proj.android/`, Gradle wrapper/build files, Android manifest, and C++/resource directories. The README documents Android packaging with an old NDK toolchain; GitHub Actions has successful historical runs (latest inspected: `27602136103`, June 16, 2026).
+- This is a useful legacy-source/build reference, but it is not confirmed as the selected V2 base. Treat it as a possible source for investigating older character logic and resource formats, not as a replacement for the Android-clean V2 candidate.
+- No declared GitHub license was found. The project includes an explicit `licenses/` directory and `AUTHORS`; inspect individual dependency notices before using anything. Bundled Naruto/game content remains a separate issue.
+
+### `Zx-Akito/NarutoSenki`
+- Legacy source tree has `Classes/`, `Resources/`, and `proj.win32/`; README states Cocos2d-x 2.2.2 / Visual Studio 2010.
+- `Classes/Characters.cpp` contains the older monolithic character/AI implementation. It references additional support entities (for example Pain paths and summons) but is not a modern per-character V2 module layout.
+- No declared GitHub license was found. Classification: reference-only for tracing older mechanics/resources; Android build path not established.
+
+### `RieyuXhen/NarutoSenki`
+- Public source tree has `Classes/` and `Resources/` only; latest inspected commit adds resources (2025-08-01). No Android project or declared license was found in the root.
+- Its `Characters.cpp` resembles the older monolithic source lineage, so do not count it as an independent new mod without a meaningful file/resource diff.
+
+### `syahron951/NarutoSenki`
+- This repository is a GameMaker project (`.yyp`, `sprites/`, `objects/`, `rooms/`, `scripts/`), not a Cocos2d-x Senki source tree. It may be an unrelated remake/prototype and is excluded from the V2 source-base shortlist.
+
+### Roster evidence
+- Pinned Android-clean V2-derived source has 37 unique selectable names in `lua/class/basic.lua`; 42 C++ Shinobi headers include five Pain-path classes. See `docs/CHARACTER_ROSTER.md`.
+- No new character from these legacy references has been ported or counted as playable. Any candidate contribution must be mapped to the V2 resource formats, IDs, scripts, and animations before a controlled port.
