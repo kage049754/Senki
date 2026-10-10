@@ -23,7 +23,7 @@ diff --git a/projects/NarutoSenki/lua/ui/SelectLayer.lua b/projects/NarutoSenki/
 +            size = 18,
 +            color = ccc3(245, 245, 245),
              listener = function()
-                 self.currentPage = index
++                self.currentPage = index
                  return self:onPageButtonClick(index)
              end
          })
