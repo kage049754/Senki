@@ -77,3 +77,19 @@ Therefore:
 - This also corrects the earlier audit's tentative statement that indexed target search did not find these names: direct inspection of the pinned source file is stronger evidence than the search index.
 - Neither is a new character toward the 70-distinct-character target. No gameplay test was performed, so source selection does not establish runtime verification.
 - Continue looking for release-note characters absent from the target roster (e.g. Shizune, Hashirama, Rin, Sakon & Ukon, Juzo, Kurenai, Yamato, Zetsu, Iruka, Jirobo, Tayuya, Anko), but only count them as candidates until actual source implementation and rights/compatibility are established.
+
+
+## Follow-up source gate — 2026-10-11
+
+The next source search checked the release-note candidates against the accessible source-search index in `LeaderOnePro/NarutoSenki`, `RieyuXhen/NarutoSenki`, `Zx-Akito/NarutoSenki-V2`, `Zx-Akito/NarutoSenki-Release`, and `Fansirsqi/NarutoSenki` for character implementation symbols and class/source references (including Kurenai, Yamato, Hashirama, Shizune, and Tayuya). These searches did not return a qualifying source implementation for those candidates. This is a negative search result, not proof that no implementation exists elsewhere.
+
+The accessible `Zx-Akito/NarutoSenki-Release` repository is release-oriented and its release notes list characters, but the release notes alone do not supply port-ready source implementation. Do not treat APK contents/resource names as source-level AI or player-control proof, and do not copy third-party sprites, voices, or effects until redistribution permission is established.
+
+### Decision
+
+- New source-verified character absent from the central target found in this pass: **0**.
+- New distinct playable character integrated in this pass: **0**.
+- Existing target count remains **37 distinct base names** by static roster inspection; the automated package audit still reports **44 UI entries** when forms/variants are included. Gameplay-verified count remains unmeasured.
+- Next valid candidate must pass all gates: absent from target roster; source-level selection registration; player-control/combat and AI implementation; complete skill/animation/resource mapping; build compatibility; and asset/code permission or independently created replacement assets. No placeholder, duplicate, or Choji-reused variant may be counted toward 70 distinct fighters.
+
+Build verification for the documentation commit is tracked separately in [GitHub Actions](https://github.com/kage049754/Senki/actions). A successful APK build is not evidence that a new fighter was added or that device gameplay was tested.
