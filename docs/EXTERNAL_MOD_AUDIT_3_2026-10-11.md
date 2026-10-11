@@ -65,3 +65,15 @@ Revised source counts:
 - Legacy source-level selectable + AI implementation confirmed: Jugo.
 - New character proven unique to the central target and ready to port: **0**.
 - Characters integrated into central game in this audit: **0**.
+
+
+## Target-roster duplicate check — 2026-10-11
+
+The pinned Android-clean target's `projects/NarutoSenki/lua/class/basic.lua` was fetched directly from `muhammadadilsyaputra08-alt/NarutoSenki-Custom` at the pinned candidate revision `279e85e73040558c84988a0eea310b6286eb77f0`. Its `ns.CharactersLayout` already contains both **Jugo** and **Kimimaro** on page 2/page 3 respectively. The target's `projects/NarutoSenki/Resources/Select.plist` also contains matching frame-name references.
+
+Therefore:
+- Jugo is already a selectable target-roster entry; do **not** add a duplicate from the legacy source.
+- Kimimaro is already a selectable target-roster entry; do **not** add a duplicate from the asset package.
+- This also corrects the earlier audit's tentative statement that indexed target search did not find these names: direct inspection of the pinned source file is stronger evidence than the search index.
+- Neither is a new character toward the 70-distinct-character target. No gameplay test was performed, so source selection does not establish runtime verification.
+- Continue looking for release-note characters absent from the target roster (e.g. Shizune, Hashirama, Rin, Sakon & Ukon, Juzo, Kurenai, Yamato, Zetsu, Iruka, Jirobo, Tayuya, Anko), but only count them as candidates until actual source implementation and rights/compatibility are established.
