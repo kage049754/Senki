@@ -93,3 +93,17 @@ The accessible `Zx-Akito/NarutoSenki-Release` repository is release-oriented and
 - Next valid candidate must pass all gates: absent from target roster; source-level selection registration; player-control/combat and AI implementation; complete skill/animation/resource mapping; build compatibility; and asset/code permission or independently created replacement assets. No placeholder, duplicate, or Choji-reused variant may be counted toward 70 distinct fighters.
 
 Build verification for the documentation commit is tracked separately in [GitHub Actions](https://github.com/kage049754/Senki/actions). A successful APK build is not evidence that a new fighter was added or that device gameplay was tested.
+
+
+## Deeper source-tree check — 2026-10-11
+
+To avoid relying only on indexed code search, inspected recursive Git trees and source files from the legacy `RieyuXhen/NarutoSenki`, `LeaderOnePro/NarutoSenki`, `Zx-Akito/NarutoSenki-V2`, and `Fansirsqi/NarutoSenki` repositories.
+
+- The inspected `RieyuXhen` and `LeaderOnePro` trees contain `Resources/Element/Skills/Hashirama_Skill.plist` and a matching `.ccz` atlas reference, but their `Classes/Characters.cpp` AI dispatch does not include a Hashirama branch and their `Classes/StartMenu.cpp` search did not establish a Hashirama selectable entry. This is **skill-art evidence only**, not a complete Hashirama fighter.
+- The recursive tree of `Zx-Akito/NarutoSenki-V2` returned no filenames matching the release-note candidate names checked in this pass.
+- The recursive tree of `Fansirsqi/NarutoSenki` likewise returned no matching candidate-named files for that set.
+- None of these repositories exposes an explicit repository license for the inspected code, except `Fansirsqi/NarutoSenki` whose root metadata identifies MulanPSL-2.0. A repository license does not by itself establish rights to redistribute Naruto game artwork, voice recordings, or other third-party content.
+
+This is a bounded tree/source inspection, not proof that no other mod contains these fighters. It does mean the Hashirama skill atlas alone is not enough to begin a safe, reliable port. Keep these leads at **asset-only / unqualified** until a selectable registration, player-controlled moves, AI behavior, animation config, full resource set, compatibility, and rights are confirmed.
+
+Counts remain unchanged: 37 distinct base names in the target static roster, 44 UI entries including variants, 0 new distinct fighters integrated in this pass, and runtime gameplay count unmeasured.
